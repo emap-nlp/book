@@ -1,0 +1,1 @@
+window.docContents[79].resolve({"/Applications/#Applications":{"contents":"Três exemplos de PLN que aplicam o Lean visto no capítulo anterior:\nharmonia vocálica do finlandês, plural do sueco e uma representação de\nfonemas por traços.\n\n\n\n\n\n\n\n","context":"Semântica computacional com Lean","header":"3. Aplicações","id":"/Applications/#Applications"}});

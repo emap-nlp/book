@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html>
   <head>
     <script>
       (function(){
@@ -34,9 +33,9 @@
     }
 })();
 </script>
-    <base href="./"><meta charset="utf-8">
+    <base href="./../"><meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <title>Semântica computacional com Lean</title><link rel="stylesheet" href="book.css">
+    <title>Search</title><link rel="stylesheet" href="book.css">
     <link rel="stylesheet" href="verso-vars.css">
     <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js" integrity="sha384-zbcZAIxlvJtNE3Dp5nxLXdXtXyxwOdnILY1TDPVmKFhl4r4nSUG1r8bcFXGVa4Te" crossorigin="anonymous"></script>
     <script defer="defer" src="-verso-search/elasticlunr.min.js"></script>
@@ -1182,6 +1181,7 @@ window.onload = async () => {
   });
 }
 </script>
+    <link rel="preload" href="xref.json" as="fetch">
     </head>
   <body>
     <header>
@@ -1210,39 +1210,22 @@ window.onload = async () => {
       <main><div class="content-wrapper">
           <nav class="prev-next-buttons">
             <div></div>
-            <a class="local-button active" href="IntroCS/#IntroCS" rel="next" title="1. O estudo formal da língua natural"><span class="where">1. O estudo formal da língua natural</span><span class="arrow">→</span></a></nav>
-          <section>
-            <div class="titlepage">
-              <h1>
-                 Semântica computacional com Lean<span class="permalink-widget inline"><a href="find/?domain=Verso.Genre.Manual.section&amp;name=Sem___ntica-computacional-com-Lean" title="Permalink">🔗</a></span></h1>
-              <div class="authors"></div>
-              </div>
-            <section>
-              <h2>
-                Contents</h2>
-              <ol class="section-toc">
-                <li>
-                  <a href="IntroCS/#IntroCS"><span class="number">1.</span> O estudo formal da língua natural</a></li>
-                <li>
-                  <a href="IntroL/#IntroL"><span class="number">2.</span> Programação Funcional no Lean</a></li>
-                <li>
-                  <a href="Applications/#Applications"><span class="number">3.</span> Aplicações</a></li>
-                <li>
-                  <a href="Foundation/#Foundation"><span class="number">4.</span> Conjuntos e Relações, Lambda Calculus e Tipos</a></li>
-                <li>
-                  <a href="Games/#Games"><span class="number">5.</span> Gramáticas para jogos</a></li>
-                <li>
-                  <a href="English/#English"><span class="number">6.</span> Um fragmento de inglês</a></li>
-                <li>
-                  <a href="Logic/#Logic"><span class="number">7.</span> Lógica</a></li>
-                </ol>
-              </section>
+            <div></div>
+            </nav>
+          <section class="search-page">
+            <h1>
+              Search</h1>
+            <div data-search-host="" class="search-page-host"></div>
+            <noscript><p>
+                This search feature requires JavaScript.</p>
+              </noscript><div id="search-page-results"></div>
+            <script type="module" src="-verso-search/search-page.js"></script>
             </section>
           <nav class="prev-next-buttons">
             <div></div>
-            <a class="local-button active" href="IntroCS/#IntroCS" rel="next" title="1. O estudo formal da língua natural"><span class="where">1. O estudo formal da língua natural</span><span class="arrow">→</span></a></nav>
+            <div></div>
+            </nav>
           </div>
         </main></div>
     </body>
   </html>
-
