@@ -1,0 +1,1 @@
+window.docContents[88].resolve({"/#Sem___ntica-computacional-com-Lean":{"contents":"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n","context":"","header":"Semântica computacional com Lean","id":"/#Sem___ntica-computacional-com-Lean"}});

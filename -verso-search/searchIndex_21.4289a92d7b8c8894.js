@@ -1,0 +1,1 @@
+window.docContents[21].resolve({"/English/#English":{"contents":"namespace English\n\n\n\n\n\n\n","context":"Semântica computacional com Lean","header":"8. Um fragmento de inglês","id":"/English/#English"}});

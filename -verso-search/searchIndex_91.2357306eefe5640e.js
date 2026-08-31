@@ -1,1 +1,0 @@
-window.docContents[91].resolve({"/Games/#Games":{"contents":"O capítulo trata de como definir uma língua — no sentido amplo: um conjunto de strings bem formadas — por meio de uma gramática. Os dois exemplos são  de linguagens sobre jogos.\n\n\n\n\n\n","context":"Semântica computacional com Lean","header":"5. Gramáticas para jogos","id":"/Games/#Games"}});

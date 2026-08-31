@@ -13,25 +13,122 @@
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Aplicações", "shortTitle": null, "number": "3"},
+       {"title": "Morfologia", "shortTitle": null, "number": "3"},
        {"title": "Plural do Sueco", "shortTitle": null, "number": "2"}]},
-     "address": "/Applications/"}],
-   "Sem___ntica-computacional-com-Lean--Um-fragmento-de-ingl___s--Uma-l___ngua-para-falar-de-classes":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Um-fragmento-de-ingl___s--Uma-l___ngua-para-falar-de-classes",
+     "address": "/Morphology/"}],
+   "Sets":
+   [{"id": "Sets",
      "data":
-     {"title": "Uma língua para falar de classes",
+     {"title": "Conjuntos e Relações",
       "shortTitle": null,
-      "sectionNum": "6.3.",
+      "sectionNum": "6.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Um fragmento de inglês", "shortTitle": null, "number": "6"},
+       {"title": "Conjuntos e Relações", "shortTitle": null, "number": "6"}]},
+     "address": "/Sets/"}],
+   "Sem___ntica-computacional-com-Lean--Um-motor-de-infer___ncia--Uma-l___ngua-para-falar-de-classes":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--Um-motor-de-infer___ncia--Uma-l___ngua-para-falar-de-classes",
+     "data":
+     {"title": "Uma língua para falar de classes",
+      "shortTitle": null,
+      "sectionNum": "7.1.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Um motor de inferência", "shortTitle": null, "number": "7"},
        {"title": "Uma língua para falar de classes",
         "shortTitle": null,
-        "number": "3"}]},
+        "number": "1"}]},
+     "address": "/InfEngine/"}],
+   "Sem___ntica-computacional-com-Lean--Um-motor-de-infer___ncia--O-motor":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--Um-motor-de-infer___ncia--O-motor",
+     "data":
+     {"title": "O motor",
+      "shortTitle": null,
+      "sectionNum": "7.3.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Um motor de inferência", "shortTitle": null, "number": "7"},
+       {"title": "O motor", "shortTitle": null, "number": "3"}]},
+     "address": "/InfEngine/"}],
+   "Sem___ntica-computacional-com-Lean--Um-motor-de-infer___ncia--A-validade-dos-silogismos___-demonstrada":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--Um-motor-de-infer___ncia--A-validade-dos-silogismos___-demonstrada",
+     "data":
+     {"title": "A validade dos silogismos, demonstrada",
+      "shortTitle": null,
+      "sectionNum": "7.5.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Um motor de inferência", "shortTitle": null, "number": "7"},
+       {"title": "A validade dos silogismos, demonstrada",
+        "shortTitle": null,
+        "number": "5"}]},
+     "address": "/InfEngine/"}],
+   "Sem___ntica-computacional-com-Lean--Um-motor-de-infer___ncia--A-interface-em-l___ngua-natural":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--Um-motor-de-infer___ncia--A-interface-em-l___ngua-natural",
+     "data":
+     {"title": "A interface em língua natural",
+      "shortTitle": null,
+      "sectionNum": "7.4.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Um motor de inferência", "shortTitle": null, "number": "7"},
+       {"title": "A interface em língua natural",
+        "shortTitle": null,
+        "number": "4"}]},
+     "address": "/InfEngine/"}],
+   "Sem___ntica-computacional-com-Lean--Um-motor-de-infer___ncia--A-base-de-conhecimento-e-as-regras":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--Um-motor-de-infer___ncia--A-base-de-conhecimento-e-as-regras",
+     "data":
+     {"title": "A base de conhecimento e as regras",
+      "shortTitle": null,
+      "sectionNum": "7.2.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Um motor de inferência", "shortTitle": null, "number": "7"},
+       {"title": "A base de conhecimento e as regras",
+        "shortTitle": null,
+        "number": "2"}]},
+     "address": "/InfEngine/"}],
+   "Sem___ntica-computacional-com-Lean--Um-fragmento-de-ingl___s--Um-fragmento-lingu___stico--Por-que-isso-serve-___-sem___ntica":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--Um-fragmento-de-ingl___s--Um-fragmento-lingu___stico--Por-que-isso-serve-___-sem___ntica",
+     "data":
+     {"title": "Por que isso serve à semântica",
+      "shortTitle": null,
+      "sectionNum": "8.1.1.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Um fragmento de inglês", "shortTitle": null, "number": "8"},
+       {"title": "Um fragmento linguístico", "shortTitle": null, "number": "1"},
+       {"title": "Por que isso serve à semântica",
+        "shortTitle": null,
+        "number": "1"}]},
      "address": "/English/"}],
    "Sem___ntica-computacional-com-Lean--Um-fragmento-de-ingl___s--Um-fragmento-lingu___stico":
    [{"id":
@@ -39,13 +136,13 @@
      "data":
      {"title": "Um fragmento linguístico",
       "shortTitle": null,
-      "sectionNum": "6.1.",
+      "sectionNum": "8.1.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Um fragmento de inglês", "shortTitle": null, "number": "6"},
+       {"title": "Um fragmento de inglês", "shortTitle": null, "number": "8"},
        {"title": "Um fragmento linguístico",
         "shortTitle": null,
         "number": "1"}]},
@@ -56,22 +153,22 @@
      "data":
      {"title": "Um fragmento do inglês",
       "shortTitle": null,
-      "sectionNum": "6.2.",
+      "sectionNum": "8.2.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Um fragmento de inglês", "shortTitle": null, "number": "6"},
+       {"title": "Um fragmento de inglês", "shortTitle": null, "number": "8"},
        {"title": "Um fragmento do inglês", "shortTitle": null, "number": "2"}]},
      "address": "/English/"}],
-   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--Tipos-indutivos--Exerc___cio___-___-Day":
+   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--Tipos-na-gram___tica-e-na-computa______o--Lean-como-c___lculo-lambda":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--Tipos-indutivos--Exerc___cio___-___-Day",
+     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--Tipos-na-gram___tica-e-na-computa______o--Lean-como-c___lculo-lambda",
      "data":
-     {"title": "Exercício' — Day",
+     {"title": "Lean como cálculo lambda",
       "shortTitle": null,
-      "sectionNum": "2.6.1.",
+      "sectionNum": "2.16.1.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
@@ -80,8 +177,31 @@
        {"title": "Programação Funcional no Lean",
         "shortTitle": null,
         "number": "2"},
-       {"title": "Tipos indutivos", "shortTitle": null, "number": "6"},
-       {"title": "Exercício' — Day", "shortTitle": null, "number": "1"}]},
+       {"title": "Tipos na gramática e na computação",
+        "shortTitle": null,
+        "number": "16"},
+       {"title": "Lean como cálculo lambda",
+        "shortTitle": null,
+        "number": "1"}]},
+     "address": "/IntroL/"}],
+   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--Tipos-na-gram___tica-e-na-computa______o":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--Tipos-na-gram___tica-e-na-computa______o",
+     "data":
+     {"title": "Tipos na gramática e na computação",
+      "shortTitle": null,
+      "sectionNum": "2.16.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Programação Funcional no Lean",
+        "shortTitle": null,
+        "number": "2"},
+       {"title": "Tipos na gramática e na computação",
+        "shortTitle": null,
+        "number": "16"}]},
      "address": "/IntroL/"}],
    "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--Tipos-indutivos":
    [{"id":
@@ -99,6 +219,23 @@
         "shortTitle": null,
         "number": "2"},
        {"title": "Tipos indutivos", "shortTitle": null, "number": "6"}]},
+     "address": "/IntroL/"}],
+   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--Tipos-como-disciplina":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--Tipos-como-disciplina",
+     "data":
+     {"title": "Tipos como disciplina",
+      "shortTitle": null,
+      "sectionNum": "2.17.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Programação Funcional no Lean",
+        "shortTitle": null,
+        "number": "2"},
+       {"title": "Tipos como disciplina", "shortTitle": null, "number": "17"}]},
      "address": "/IntroL/"}],
    "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--Termos-e-Tipos":
    [{"id":
@@ -133,26 +270,6 @@
         "shortTitle": null,
         "number": "2"},
        {"title": "Recursão", "shortTitle": null, "number": "8"}]},
-     "address": "/IntroL/"}],
-   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--Prova-por-indu______o--Exerc___cio___-___-Indu______o-sobre--Nat":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--Prova-por-indu______o--Exerc___cio___-___-Indu______o-sobre--Nat",
-     "data":
-     {"title": "Exercício' — Indução sobre  Nat",
-      "shortTitle": null,
-      "sectionNum": "2.7.1.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Programação Funcional no Lean",
-        "shortTitle": null,
-        "number": "2"},
-       {"title": "Prova por indução", "shortTitle": null, "number": "7"},
-       {"title": "Exercício' — Indução sobre  Nat",
-        "shortTitle": null,
-        "number": "1"}]},
      "address": "/IntroL/"}],
    "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--Prova-por-indu______o":
    [{"id":
@@ -189,122 +306,6 @@
        {"title": "Processamento de listas e composição de funções",
         "shortTitle": null,
         "number": "11"}]},
-     "address": "/IntroL/"}],
-   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--O-tipo-Prop-e-Provas--Exerc___cio___-___-Existe-um-par-par":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--O-tipo-Prop-e-Provas--Exerc___cio___-___-Existe-um-par-par",
-     "data":
-     {"title": "Exercício' — Existe um par par",
-      "shortTitle": null,
-      "sectionNum": "2.5.6.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Programação Funcional no Lean",
-        "shortTitle": null,
-        "number": "2"},
-       {"title": "O tipo Prop e Provas", "shortTitle": null, "number": "5"},
-       {"title": "Exercício' — Existe um par par",
-        "shortTitle": null,
-        "number": "6"}]},
-     "address": "/IntroL/"}],
-   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--O-tipo-Prop-e-Provas--Exerc___cio___-___-Conjun______o-a-partir-das-partes":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--O-tipo-Prop-e-Provas--Exerc___cio___-___-Conjun______o-a-partir-das-partes",
-     "data":
-     {"title": "Exercício' — Conjunção a partir das partes",
-      "shortTitle": null,
-      "sectionNum": "2.5.4.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Programação Funcional no Lean",
-        "shortTitle": null,
-        "number": "2"},
-       {"title": "O tipo Prop e Provas", "shortTitle": null, "number": "5"},
-       {"title": "Exercício' — Conjunção a partir das partes",
-        "shortTitle": null,
-        "number": "4"}]},
-     "address": "/IntroL/"}],
-   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--O-tipo-Prop-e-Provas--Exerc___cio___-___-Comutatividade-da-conjun______o":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--O-tipo-Prop-e-Provas--Exerc___cio___-___-Comutatividade-da-conjun______o",
-     "data":
-     {"title": "Exercício' — Comutatividade da conjunção",
-      "shortTitle": null,
-      "sectionNum": "2.5.5.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Programação Funcional no Lean",
-        "shortTitle": null,
-        "number": "2"},
-       {"title": "O tipo Prop e Provas", "shortTitle": null, "number": "5"},
-       {"title": "Exercício' — Comutatividade da conjunção",
-        "shortTitle": null,
-        "number": "5"}]},
-     "address": "/IntroL/"}],
-   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--O-tipo-Prop-e-Provas--Exerc___cio___-___--double-n-___-n-___-n":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--O-tipo-Prop-e-Provas--Exerc___cio___-___--double-n-___-n-___-n",
-     "data":
-     {"title": "Exercício' —  double n = n + n",
-      "shortTitle": null,
-      "sectionNum": "2.5.2.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Programação Funcional no Lean",
-        "shortTitle": null,
-        "number": "2"},
-       {"title": "O tipo Prop e Provas", "shortTitle": null, "number": "5"},
-       {"title": "Exercício' —  double n = n + n",
-        "shortTitle": null,
-        "number": "2"}]},
-     "address": "/IntroL/"}],
-   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--O-tipo-Prop-e-Provas--Exerc___cio___-___--P-_ARR_-P":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--O-tipo-Prop-e-Provas--Exerc___cio___-___--P-_ARR_-P",
-     "data":
-     {"title": "Exercício' —  P → P",
-      "shortTitle": null,
-      "sectionNum": "2.5.3.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Programação Funcional no Lean",
-        "shortTitle": null,
-        "number": "2"},
-       {"title": "O tipo Prop e Provas", "shortTitle": null, "number": "5"},
-       {"title": "Exercício' —  P → P", "shortTitle": null, "number": "3"}]},
-     "address": "/IntroL/"}],
-   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--O-tipo-Prop-e-Provas--Exerc___cio___":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--O-tipo-Prop-e-Provas--Exerc___cio___",
-     "data":
-     {"title": "Exercício'",
-      "shortTitle": null,
-      "sectionNum": "2.5.1.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Programação Funcional no Lean",
-        "shortTitle": null,
-        "number": "2"},
-       {"title": "O tipo Prop e Provas", "shortTitle": null, "number": "5"},
-       {"title": "Exercício'", "shortTitle": null, "number": "1"}]},
      "address": "/IntroL/"}],
    "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--O-tipo-Prop-e-Provas":
    [{"id":
@@ -414,23 +415,6 @@
      "data":
      {"title": "Classes de tipos",
       "shortTitle": null,
-      "sectionNum": "2.12.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Programação Funcional no Lean",
-        "shortTitle": null,
-        "number": "2"},
-       {"title": "Classes de tipos", "shortTitle": null, "number": "12"}]},
-     "address": "/IntroL/"}],
-   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--Cadeias-e-textos":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--Cadeias-e-textos",
-     "data":
-     {"title": "Cadeias e textos",
-      "shortTitle": null,
       "sectionNum": "2.13.",
       "searchPriority": 50,
       "context":
@@ -440,7 +424,152 @@
        {"title": "Programação Funcional no Lean",
         "shortTitle": null,
         "number": "2"},
-       {"title": "Cadeias e textos", "shortTitle": null, "number": "13"}]},
+       {"title": "Classes de tipos", "shortTitle": null, "number": "13"}]},
+     "address": "/IntroL/"}],
+   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--Cadeias-e-textos":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--Cadeias-e-textos",
+     "data":
+     {"title": "Cadeias e textos",
+      "shortTitle": null,
+      "sectionNum": "2.14.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Programação Funcional no Lean",
+        "shortTitle": null,
+        "number": "2"},
+       {"title": "Cadeias e textos", "shortTitle": null, "number": "14"}]},
+     "address": "/IntroL/"}],
+   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--C___lculo-lambda--Redu______o":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--C___lculo-lambda--Redu______o",
+     "data":
+     {"title": "Redução",
+      "shortTitle": null,
+      "sectionNum": "2.15.2.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Programação Funcional no Lean",
+        "shortTitle": null,
+        "number": "2"},
+       {"title": "Cálculo lambda", "shortTitle": null, "number": "15"},
+       {"title": "Redução", "shortTitle": null, "number": "2"}]},
+     "address": "/IntroL/"}],
+   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--C___lculo-lambda--Fun______es-s___o-dados":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--C___lculo-lambda--Fun______es-s___o-dados",
+     "data":
+     {"title": "Funções são dados",
+      "shortTitle": null,
+      "sectionNum": "2.15.4.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Programação Funcional no Lean",
+        "shortTitle": null,
+        "number": "2"},
+       {"title": "Cálculo lambda", "shortTitle": null, "number": "15"},
+       {"title": "Funções são dados", "shortTitle": null, "number": "4"}]},
+     "address": "/IntroL/"}],
+   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--C___lculo-lambda--Captura-de-vari___vel":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--C___lculo-lambda--Captura-de-vari___vel",
+     "data":
+     {"title": "Captura de variável",
+      "shortTitle": null,
+      "sectionNum": "2.15.3.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Programação Funcional no Lean",
+        "shortTitle": null,
+        "number": "2"},
+       {"title": "Cálculo lambda", "shortTitle": null, "number": "15"},
+       {"title": "Captura de variável", "shortTitle": null, "number": "3"}]},
+     "address": "/IntroL/"}],
+   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--C___lculo-lambda--A-gram___tica-dos-termos":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--C___lculo-lambda--A-gram___tica-dos-termos",
+     "data":
+     {"title": "A gramática dos termos",
+      "shortTitle": null,
+      "sectionNum": "2.15.1.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Programação Funcional no Lean",
+        "shortTitle": null,
+        "number": "2"},
+       {"title": "Cálculo lambda", "shortTitle": null, "number": "15"},
+       {"title": "A gramática dos termos", "shortTitle": null, "number": "1"}]},
+     "address": "/IntroL/"}],
+   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--C___lculo-lambda":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--C___lculo-lambda",
+     "data":
+     {"title": "Cálculo lambda",
+      "shortTitle": null,
+      "sectionNum": "2.15.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Programação Funcional no Lean",
+        "shortTitle": null,
+        "number": "2"},
+       {"title": "Cálculo lambda", "shortTitle": null, "number": "15"}]},
+     "address": "/IntroL/"}],
+   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--As-duas-leituras-de-uma-fun______o--Composi______o":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--As-duas-leituras-de-uma-fun______o--Composi______o",
+     "data":
+     {"title": "Composição",
+      "shortTitle": null,
+      "sectionNum": "2.12.1.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Programação Funcional no Lean",
+        "shortTitle": null,
+        "number": "2"},
+       {"title": "As duas leituras de uma função",
+        "shortTitle": null,
+        "number": "12"},
+       {"title": "Composição", "shortTitle": null, "number": "1"}]},
+     "address": "/IntroL/"}],
+   "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--As-duas-leituras-de-uma-fun______o":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--Programa______o-Funcional-no-Lean--As-duas-leituras-de-uma-fun______o",
+     "data":
+     {"title": "As duas leituras de uma função",
+      "shortTitle": null,
+      "sectionNum": "2.12.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Programação Funcional no Lean",
+        "shortTitle": null,
+        "number": "2"},
+       {"title": "As duas leituras de uma função",
+        "shortTitle": null,
+        "number": "12"}]},
      "address": "/IntroL/"}],
    "Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Sintaxe___-sem___ntica-e-pragm___tica--Saber-___que___-e-___como___":
    [{"id":
@@ -502,50 +631,6 @@
         "shortTitle": null,
         "number": "6"}]},
      "address": "/IntroCS/"}],
-   "Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Os-prop___sitos-da-comunica______o--O-m___todo-dos-fragmentos":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Os-prop___sitos-da-comunica______o--O-m___todo-dos-fragmentos",
-     "data":
-     {"title": "O método dos fragmentos",
-      "shortTitle": null,
-      "sectionNum": "1.3.2.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "O estudo formal da língua natural",
-        "shortTitle": null,
-        "number": "1"},
-       {"title": "Os propósitos da comunicação",
-        "shortTitle": null,
-        "number": "3"},
-       {"title": "O método dos fragmentos",
-        "shortTitle": null,
-        "number": "2"}]},
-     "address": "/IntroCS/"}],
-   "Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Os-prop___sitos-da-comunica______o--A-escada-dos-instrumentos":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Os-prop___sitos-da-comunica______o--A-escada-dos-instrumentos",
-     "data":
-     {"title": "A escada dos instrumentos",
-      "shortTitle": null,
-      "sectionNum": "1.3.1.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "O estudo formal da língua natural",
-        "shortTitle": null,
-        "number": "1"},
-       {"title": "Os propósitos da comunicação",
-        "shortTitle": null,
-        "number": "3"},
-       {"title": "A escada dos instrumentos",
-        "shortTitle": null,
-        "number": "1"}]},
-     "address": "/IntroCS/"}],
    "Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Os-prop___sitos-da-comunica______o":
    [{"id":
      "Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Os-prop___sitos-da-comunica______o",
@@ -603,26 +688,6 @@
         "shortTitle": null,
         "number": "1"}]},
      "address": "/IntroCS/"}],
-   "Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--L___nguas-naturais-e-l___nguas-formais--Composicionalidade":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--L___nguas-naturais-e-l___nguas-formais--Composicionalidade",
-     "data":
-     {"title": "Composicionalidade",
-      "shortTitle": null,
-      "sectionNum": "1.4.1.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "O estudo formal da língua natural",
-        "shortTitle": null,
-        "number": "1"},
-       {"title": "Línguas naturais e línguas formais",
-        "shortTitle": null,
-        "number": "4"},
-       {"title": "Composicionalidade", "shortTitle": null, "number": "1"}]},
-     "address": "/IntroCS/"}],
    "Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--L___nguas-naturais-e-l___nguas-formais":
    [{"id":
      "Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--L___nguas-naturais-e-l___nguas-formais",
@@ -642,40 +707,23 @@
         "shortTitle": null,
         "number": "4"}]},
      "address": "/IntroCS/"}],
-   "Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Fragmentos":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Fragmentos",
-     "data":
-     {"title": "Fragmentos",
-      "shortTitle": null,
-      "sectionNum": "1.7.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "O estudo formal da língua natural",
-        "shortTitle": null,
-        "number": "1"},
-       {"title": "Fragmentos", "shortTitle": null, "number": "7"}]},
-     "address": "/IntroCS/"}],
    "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Sintaxe-e-proposi______o-s___o-coisas-diferentes":
    [{"id":
      "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Sintaxe-e-proposi______o-s___o-coisas-diferentes",
      "data":
      {"title": "Sintaxe e proposição são coisas diferentes",
       "shortTitle": null,
-      "sectionNum": "7.1.2.",
+      "sectionNum": "5.1.3.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
        {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
        {"title": "Sintaxe e proposição são coisas diferentes",
         "shortTitle": null,
-        "number": "2"}]},
+        "number": "3"}]},
      "address": "/Logic/"}],
    "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Sintaxe":
    [{"id":
@@ -683,251 +731,153 @@
      "data":
      {"title": "Sintaxe",
       "shortTitle": null,
-      "sectionNum": "7.1.1.",
+      "sectionNum": "5.1.2.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
        {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
-       {"title": "Sintaxe", "shortTitle": null, "number": "1"}]},
+       {"title": "Sintaxe", "shortTitle": null, "number": "2"}]},
      "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Indu______o-estrutural":
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Sem___ntica":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Indu______o-estrutural",
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Sem___ntica",
      "data":
-     {"title": "Indução estrutural",
+     {"title": "Semântica",
       "shortTitle": null,
-      "sectionNum": "7.1.3.",
+      "sectionNum": "5.1.5.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
        {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
-       {"title": "Indução estrutural", "shortTitle": null, "number": "3"}]},
+       {"title": "Semântica", "shortTitle": null, "number": "5"}]},
      "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--S___mbolos-de-fun______o--Exerc___cio-4___23-_LPAR_p___-84_RPAR_":
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--O-que-as-regras-acima-n___o-d___o":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--S___mbolos-de-fun______o--Exerc___cio-4___23-_LPAR_p___-84_RPAR_",
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--O-que-as-regras-acima-n___o-d___o",
      "data":
-     {"title": "Exercício 4.23 (p. 84)",
+     {"title": "O que as regras acima não dão",
       "shortTitle": null,
-      "sectionNum": "7.2.6.3.",
+      "sectionNum": "5.1.1.6.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"},
-       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
-       {"title": "Símbolos de função", "shortTitle": null, "number": "6"},
-       {"title": "Exercício 4.23 (p. 84)", "shortTitle": null, "number": "3"}]},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
+       {"title": "Regras de dedução, e as táticas que são elas",
+        "shortTitle": null,
+        "number": "1"},
+       {"title": "O que as regras acima não dão",
+        "shortTitle": null,
+        "number": "6"}]},
      "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--S___mbolos-de-fun______o--Exerc___cio-4___22-_LPAR_p___-84_RPAR_":
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Nega______o-e-o-absurdo":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--S___mbolos-de-fun______o--Exerc___cio-4___22-_LPAR_p___-84_RPAR_",
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Nega______o-e-o-absurdo",
      "data":
-     {"title": "Exercício 4.22 (p. 84)",
+     {"title": "Negação e o absurdo",
       "shortTitle": null,
-      "sectionNum": "7.2.6.2.",
+      "sectionNum": "5.1.1.4.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"},
-       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
-       {"title": "Símbolos de função", "shortTitle": null, "number": "6"},
-       {"title": "Exercício 4.22 (p. 84)", "shortTitle": null, "number": "2"}]},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
+       {"title": "Regras de dedução, e as táticas que são elas",
+        "shortTitle": null,
+        "number": "1"},
+       {"title": "Negação e o absurdo", "shortTitle": null, "number": "4"}]},
      "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--S___mbolos-de-fun______o--Exerc___cio-4___21-_LPAR_p___-83_RPAR_-___":
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Implica______o":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--S___mbolos-de-fun______o--Exerc___cio-4___21-_LPAR_p___-83_RPAR_-___",
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Implica______o",
      "data":
-     {"title": "Exercício 4.21 (p. 83) ✎",
+     {"title": "Implicação",
       "shortTitle": null,
-      "sectionNum": "7.2.6.1.",
+      "sectionNum": "5.1.1.1.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"},
-       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
-       {"title": "Símbolos de função", "shortTitle": null, "number": "6"},
-       {"title": "Exercício 4.21 (p. 83) ✎",
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
+       {"title": "Regras de dedução, e as táticas que são elas",
         "shortTitle": null,
-        "number": "1"}]},
+        "number": "1"},
+       {"title": "Implicação", "shortTitle": null, "number": "1"}]},
      "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--S___mbolos-de-fun______o":
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Disjun______o":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--S___mbolos-de-fun______o",
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Disjun______o",
      "data":
-     {"title": "Símbolos de função",
+     {"title": "Disjunção",
       "shortTitle": null,
-      "sectionNum": "7.2.6.",
+      "sectionNum": "5.1.1.3.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"},
-       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
-       {"title": "Símbolos de função", "shortTitle": null, "number": "6"}]},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
+       {"title": "Regras de dedução, e as táticas que são elas",
+        "shortTitle": null,
+        "number": "1"},
+       {"title": "Disjunção", "shortTitle": null, "number": "3"}]},
      "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--Liga______o-de-vari___veis":
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Conjun______o":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--Liga______o-de-vari___veis",
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Conjun______o",
      "data":
-     {"title": "Ligação de variáveis",
+     {"title": "Conjunção",
       "shortTitle": null,
-      "sectionNum": "7.2.1.",
+      "sectionNum": "5.1.1.2.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"},
-       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
-       {"title": "Ligação de variáveis", "shortTitle": null, "number": "1"}]},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
+       {"title": "Regras de dedução, e as táticas que são elas",
+        "shortTitle": null,
+        "number": "1"},
+       {"title": "Conjunção", "shortTitle": null, "number": "2"}]},
      "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--F___rmulas-de-predicados-em-Lean--Exerc___cio-4___20-_LPAR_p___-82_RPAR_":
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Bi-implica______o":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--F___rmulas-de-predicados-em-Lean--Exerc___cio-4___20-_LPAR_p___-82_RPAR_",
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Bi-implica______o",
      "data":
-     {"title": "Exercício 4.20 (p. 82)",
+     {"title": "Bi-implicação",
       "shortTitle": null,
-      "sectionNum": "7.2.5.3.",
+      "sectionNum": "5.1.1.5.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"},
-       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
-       {"title": "Fórmulas de predicados em Lean",
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
+       {"title": "Regras de dedução, e as táticas que são elas",
         "shortTitle": null,
-        "number": "5"},
-       {"title": "Exercício 4.20 (p. 82)", "shortTitle": null, "number": "3"}]},
+        "number": "1"},
+       {"title": "Bi-implicação", "shortTitle": null, "number": "5"}]},
      "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--F___rmulas-de-predicados-em-Lean--Exerc___cio-4___19-_LPAR_p___-82_RPAR_":
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--F___rmulas-de-predicados-em-Lean--Exerc___cio-4___19-_LPAR_p___-82_RPAR_",
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas",
      "data":
-     {"title": "Exercício 4.19 (p. 82)",
-      "shortTitle": null,
-      "sectionNum": "7.2.5.2.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"},
-       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
-       {"title": "Fórmulas de predicados em Lean",
-        "shortTitle": null,
-        "number": "5"},
-       {"title": "Exercício 4.19 (p. 82)", "shortTitle": null, "number": "2"}]},
-     "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--F___rmulas-de-predicados-em-Lean--Exerc___cio-4___18-_LPAR_p___-81_RPAR_":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--F___rmulas-de-predicados-em-Lean--Exerc___cio-4___18-_LPAR_p___-81_RPAR_",
-     "data":
-     {"title": "Exercício 4.18 (p. 81)",
-      "shortTitle": null,
-      "sectionNum": "7.2.5.1.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"},
-       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
-       {"title": "Fórmulas de predicados em Lean",
-        "shortTitle": null,
-        "number": "5"},
-       {"title": "Exercício 4.18 (p. 81)", "shortTitle": null, "number": "1"}]},
-     "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--F___rmulas-de-predicados-em-Lean":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--F___rmulas-de-predicados-em-Lean",
-     "data":
-     {"title": "Fórmulas de predicados em Lean",
-      "shortTitle": null,
-      "sectionNum": "7.2.5.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"},
-       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
-       {"title": "Fórmulas de predicados em Lean",
-        "shortTitle": null,
-        "number": "5"}]},
-     "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--Exerc___cio-4___17-_LPAR_p___-78_RPAR_-___":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--Exerc___cio-4___17-_LPAR_p___-78_RPAR_-___",
-     "data":
-     {"title": "Exercício 4.17 (p. 78) ✎",
-      "shortTitle": null,
-      "sectionNum": "7.2.4.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"},
-       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
-       {"title": "Exercício 4.17 (p. 78) ✎",
-        "shortTitle": null,
-        "number": "4"}]},
-     "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--Exerc___cio-4___16-_LPAR_p___-77_RPAR_-___":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--Exerc___cio-4___16-_LPAR_p___-77_RPAR_-___",
-     "data":
-     {"title": "Exercício 4.16 (p. 77) ✎",
-      "shortTitle": null,
-      "sectionNum": "7.2.3.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"},
-       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
-       {"title": "Exercício 4.16 (p. 77) ✎",
-        "shortTitle": null,
-        "number": "3"}]},
-     "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--Exerc___cio-4___15-_LPAR_p___-77_RPAR_-___":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--Exerc___cio-4___15-_LPAR_p___-77_RPAR_-___",
-     "data":
-     {"title": "Exercício 4.15 (p. 77) ✎",
-      "shortTitle": null,
-      "sectionNum": "7.2.2.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"},
-       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
-       {"title": "Exercício 4.15 (p. 77) ✎",
-        "shortTitle": null,
-        "number": "2"}]},
-     "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--Gram___ticas-para-jogos--Batalha-Naval--Sintaxe":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Gram___ticas-para-jogos--Batalha-Naval--Sintaxe",
-     "data":
-     {"title": "Sintaxe",
+     {"title": "Regras de dedução, e as táticas que são elas",
       "shortTitle": null,
       "sectionNum": "5.1.1.",
       "searchPriority": 50,
@@ -935,7 +885,145 @@
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Gramáticas para jogos", "shortTitle": null, "number": "5"},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
+       {"title": "Regras de dedução, e as táticas que são elas",
+        "shortTitle": null,
+        "number": "1"}]},
+     "address": "/Logic/"}],
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Indu______o-estrutural":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Indu______o-estrutural",
+     "data":
+     {"title": "Indução estrutural",
+      "shortTitle": null,
+      "sectionNum": "5.1.4.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
+       {"title": "Indução estrutural", "shortTitle": null, "number": "4"}]},
+     "address": "/Logic/"}],
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--A-ponte-entre-as-duas-leituras":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--A-ponte-entre-as-duas-leituras",
+     "data":
+     {"title": "A ponte entre as duas leituras",
+      "shortTitle": null,
+      "sectionNum": "5.1.6.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
+       {"title": "A ponte entre as duas leituras",
+        "shortTitle": null,
+        "number": "6"}]},
+     "address": "/Logic/"}],
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--Sem___ntica-da-l___gica-de-predicados":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--Sem___ntica-da-l___gica-de-predicados",
+     "data":
+     {"title": "Semântica da lógica de predicados",
+      "shortTitle": null,
+      "sectionNum": "5.2.5.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
+       {"title": "Semântica da lógica de predicados",
+        "shortTitle": null,
+        "number": "5"}]},
+     "address": "/Logic/"}],
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--S___mbolos-de-fun______o":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--S___mbolos-de-fun______o",
+     "data":
+     {"title": "Símbolos de função",
+      "shortTitle": null,
+      "sectionNum": "5.2.4.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
+       {"title": "Símbolos de função", "shortTitle": null, "number": "4"}]},
+     "address": "/Logic/"}],
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--Liga______o-de-vari___veis":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--Liga______o-de-vari___veis",
+     "data":
+     {"title": "Ligação de variáveis",
+      "shortTitle": null,
+      "sectionNum": "5.2.2.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
+       {"title": "Ligação de variáveis", "shortTitle": null, "number": "2"}]},
+     "address": "/Logic/"}],
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--F___rmulas-de-predicados-em-Lean":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--F___rmulas-de-predicados-em-Lean",
+     "data":
+     {"title": "Fórmulas de predicados em Lean",
+      "shortTitle": null,
+      "sectionNum": "5.2.3.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
+       {"title": "Fórmulas de predicados em Lean",
+        "shortTitle": null,
+        "number": "3"}]},
+     "address": "/Logic/"}],
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--As-regras-dos-quantificadores":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--As-regras-dos-quantificadores",
+     "data":
+     {"title": "As regras dos quantificadores",
+      "shortTitle": null,
+      "sectionNum": "5.2.1.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
+       {"title": "As regras dos quantificadores",
+        "shortTitle": null,
+        "number": "1"}]},
+     "address": "/Logic/"}],
+   "Sem___ntica-computacional-com-Lean--Gram___ticas-para-jogos--Batalha-Naval--Sintaxe":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--Gram___ticas-para-jogos--Batalha-Naval--Sintaxe",
+     "data":
+     {"title": "Sintaxe",
+      "shortTitle": null,
+      "sectionNum": "4.1.1.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Gramáticas para jogos", "shortTitle": null, "number": "4"},
        {"title": "Batalha Naval", "shortTitle": null, "number": "1"},
        {"title": "Sintaxe", "shortTitle": null, "number": "1"}]},
      "address": "/Games/"}],
@@ -945,13 +1033,13 @@
      "data":
      {"title": "Semântica",
       "shortTitle": null,
-      "sectionNum": "5.1.2.",
+      "sectionNum": "4.1.2.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Gramáticas para jogos", "shortTitle": null, "number": "5"},
+       {"title": "Gramáticas para jogos", "shortTitle": null, "number": "4"},
        {"title": "Batalha Naval", "shortTitle": null, "number": "1"},
        {"title": "Semântica", "shortTitle": null, "number": "2"}]},
      "address": "/Games/"}],
@@ -961,233 +1049,141 @@
      "data":
      {"title": "Pragmática",
       "shortTitle": null,
-      "sectionNum": "5.1.3.",
+      "sectionNum": "4.1.3.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Gramáticas para jogos", "shortTitle": null, "number": "5"},
+       {"title": "Gramáticas para jogos", "shortTitle": null, "number": "4"},
        {"title": "Batalha Naval", "shortTitle": null, "number": "1"},
        {"title": "Pragmática", "shortTitle": null, "number": "3"}]},
      "address": "/Games/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Tipos-na-gram___tica-e-na-computa______o--Lean-como-c___lculo-lambda":
+   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Rela______es--Propriedades":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Tipos-na-gram___tica-e-na-computa______o--Lean-como-c___lculo-lambda",
-     "data":
-     {"title": "Lean como cálculo lambda",
-      "shortTitle": null,
-      "sectionNum": "4.5.1.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
-       {"title": "Tipos na gramática e na computação",
-        "shortTitle": null,
-        "number": "5"},
-       {"title": "Lean como cálculo lambda",
-        "shortTitle": null,
-        "number": "1"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Tipos-na-gram___tica-e-na-computa______o":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Tipos-na-gram___tica-e-na-computa______o",
-     "data":
-     {"title": "Tipos na gramática e na computação",
-      "shortTitle": null,
-      "sectionNum": "4.5.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
-       {"title": "Tipos na gramática e na computação",
-        "shortTitle": null,
-        "number": "5"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Tipos-como-disciplina":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Tipos-como-disciplina",
-     "data":
-     {"title": "Tipos como disciplina",
-      "shortTitle": null,
-      "sectionNum": "4.6.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
-       {"title": "Tipos como disciplina", "shortTitle": null, "number": "6"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Rela______es--Propriedades":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Rela______es--Propriedades",
+     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Rela______es--Propriedades",
      "data":
      {"title": "Propriedades",
       "shortTitle": null,
-      "sectionNum": "4.2.3.",
+      "sectionNum": "6.2.3.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
+       {"title": "Conjuntos e Relações", "shortTitle": null, "number": "6"},
        {"title": "Relações", "shortTitle": null, "number": "2"},
        {"title": "Propriedades", "shortTitle": null, "number": "3"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Rela______es--Inversa":
+     "address": "/Sets/"}],
+   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Rela______es--Inversa":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Rela______es--Inversa",
+     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Rela______es--Inversa",
      "data":
      {"title": "Inversa",
       "shortTitle": null,
-      "sectionNum": "4.2.1.",
+      "sectionNum": "6.2.1.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
+       {"title": "Conjuntos e Relações", "shortTitle": null, "number": "6"},
        {"title": "Relações", "shortTitle": null, "number": "2"},
        {"title": "Inversa", "shortTitle": null, "number": "1"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Rela______es--Composi______o":
+     "address": "/Sets/"}],
+   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Rela______es--Composi______o":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Rela______es--Composi______o",
+     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Rela______es--Composi______o",
      "data":
      {"title": "Composição",
       "shortTitle": null,
-      "sectionNum": "4.2.2.",
+      "sectionNum": "6.2.2.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
+       {"title": "Conjuntos e Relações", "shortTitle": null, "number": "6"},
        {"title": "Relações", "shortTitle": null, "number": "2"},
        {"title": "Composição", "shortTitle": null, "number": "2"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Rela______es--Calcular-ou-enunciar___-outra-vez":
+     "address": "/Sets/"}],
+   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Rela______es--Calcular-ou-enunciar___-outra-vez":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Rela______es--Calcular-ou-enunciar___-outra-vez",
+     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Rela______es--Calcular-ou-enunciar___-outra-vez",
      "data":
      {"title": "Calcular ou enunciar, outra vez",
       "shortTitle": null,
-      "sectionNum": "4.2.4.",
+      "sectionNum": "6.2.4.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
+       {"title": "Conjuntos e Relações", "shortTitle": null, "number": "6"},
        {"title": "Relações", "shortTitle": null, "number": "2"},
        {"title": "Calcular ou enunciar, outra vez",
         "shortTitle": null,
         "number": "4"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Rela______es":
+     "address": "/Sets/"}],
+   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Rela______es":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Rela______es",
+     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Rela______es",
      "data":
      {"title": "Relações",
       "shortTitle": null,
-      "sectionNum": "4.2.",
+      "sectionNum": "6.2.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
+       {"title": "Conjuntos e Relações", "shortTitle": null, "number": "6"},
        {"title": "Relações", "shortTitle": null, "number": "2"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Fun______es--Fun______o-caracter___stica":
+     "address": "/Sets/"}],
+   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Fun______es--Fun______o-caracter___stica":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Fun______es--Fun______o-caracter___stica",
+     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Fun______es--Fun______o-caracter___stica",
      "data":
      {"title": "Função característica",
       "shortTitle": null,
-      "sectionNum": "4.3.2.",
+      "sectionNum": "6.3.1.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
+       {"title": "Conjuntos e Relações", "shortTitle": null, "number": "6"},
        {"title": "Funções", "shortTitle": null, "number": "3"},
-       {"title": "Função característica", "shortTitle": null, "number": "2"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Fun______es--Composi______o":
+       {"title": "Função característica", "shortTitle": null, "number": "1"}]},
+     "address": "/Sets/"}],
+   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Fun______es":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Fun______es--Composi______o",
-     "data":
-     {"title": "Composição",
-      "shortTitle": null,
-      "sectionNum": "4.3.1.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
-       {"title": "Funções", "shortTitle": null, "number": "3"},
-       {"title": "Composição", "shortTitle": null, "number": "1"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Fun______es":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Fun______es",
+     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Fun______es",
      "data":
      {"title": "Funções",
       "shortTitle": null,
-      "sectionNum": "4.3.",
+      "sectionNum": "6.3.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
+       {"title": "Conjuntos e Relações", "shortTitle": null, "number": "6"},
        {"title": "Funções", "shortTitle": null, "number": "3"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Conjuntos-e-nota______o-de-conjuntos--Mais-teoria-dos-conjuntos--Calcular-ou-enunciar":
+     "address": "/Sets/"}],
+   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Conjuntos-e-nota______o-de-conjuntos--Mais-teoria-dos-conjuntos--Calcular-ou-enunciar":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Conjuntos-e-nota______o-de-conjuntos--Mais-teoria-dos-conjuntos--Calcular-ou-enunciar",
+     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Conjuntos-e-nota______o-de-conjuntos--Mais-teoria-dos-conjuntos--Calcular-ou-enunciar",
      "data":
      {"title": "Calcular ou enunciar",
       "shortTitle": null,
-      "sectionNum": "4.1.2.1.",
+      "sectionNum": "6.1.2.1.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
+       {"title": "Conjuntos e Relações", "shortTitle": null, "number": "6"},
        {"title": "Conjuntos e notação de conjuntos",
         "shortTitle": null,
         "number": "1"},
@@ -1195,179 +1191,64 @@
         "shortTitle": null,
         "number": "2"},
        {"title": "Calcular ou enunciar", "shortTitle": null, "number": "1"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Conjuntos-e-nota______o-de-conjuntos--Mais-teoria-dos-conjuntos":
+     "address": "/Sets/"}],
+   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Conjuntos-e-nota______o-de-conjuntos--Mais-teoria-dos-conjuntos":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Conjuntos-e-nota______o-de-conjuntos--Mais-teoria-dos-conjuntos",
+     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Conjuntos-e-nota______o-de-conjuntos--Mais-teoria-dos-conjuntos",
      "data":
      {"title": "Mais teoria dos conjuntos",
       "shortTitle": null,
-      "sectionNum": "4.1.2.",
+      "sectionNum": "6.1.2.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
+       {"title": "Conjuntos e Relações", "shortTitle": null, "number": "6"},
        {"title": "Conjuntos e notação de conjuntos",
         "shortTitle": null,
         "number": "1"},
        {"title": "Mais teoria dos conjuntos",
         "shortTitle": null,
         "number": "2"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Conjuntos-e-nota______o-de-conjuntos--Aquecimento___-conjuntos-com-nome":
+     "address": "/Sets/"}],
+   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Conjuntos-e-nota______o-de-conjuntos--Aquecimento___-conjuntos-com-nome":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Conjuntos-e-nota______o-de-conjuntos--Aquecimento___-conjuntos-com-nome",
+     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Conjuntos-e-nota______o-de-conjuntos--Aquecimento___-conjuntos-com-nome",
      "data":
      {"title": "Aquecimento: conjuntos com nome",
       "shortTitle": null,
-      "sectionNum": "4.1.1.",
+      "sectionNum": "6.1.1.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
+       {"title": "Conjuntos e Relações", "shortTitle": null, "number": "6"},
        {"title": "Conjuntos e notação de conjuntos",
         "shortTitle": null,
         "number": "1"},
        {"title": "Aquecimento: conjuntos com nome",
         "shortTitle": null,
         "number": "1"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Conjuntos-e-nota______o-de-conjuntos":
+     "address": "/Sets/"}],
+   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Conjuntos-e-nota______o-de-conjuntos":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--Conjuntos-e-nota______o-de-conjuntos",
+     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es--Conjuntos-e-nota______o-de-conjuntos",
      "data":
      {"title": "Conjuntos e notação de conjuntos",
       "shortTitle": null,
-      "sectionNum": "4.1.",
+      "sectionNum": "6.1.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
+       {"title": "Conjuntos e Relações", "shortTitle": null, "number": "6"},
        {"title": "Conjuntos e notação de conjuntos",
         "shortTitle": null,
         "number": "1"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--C___lculo-lambda--Redu______o":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--C___lculo-lambda--Redu______o",
-     "data":
-     {"title": "Redução",
-      "shortTitle": null,
-      "sectionNum": "4.4.2.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
-       {"title": "Cálculo lambda", "shortTitle": null, "number": "4"},
-       {"title": "Redução", "shortTitle": null, "number": "2"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--C___lculo-lambda--Por-que-isso-serve-___-sem___ntica":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--C___lculo-lambda--Por-que-isso-serve-___-sem___ntica",
-     "data":
-     {"title": "Por que isso serve à semântica",
-      "shortTitle": null,
-      "sectionNum": "4.4.5.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
-       {"title": "Cálculo lambda", "shortTitle": null, "number": "4"},
-       {"title": "Por que isso serve à semântica",
-        "shortTitle": null,
-        "number": "5"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--C___lculo-lambda--Fun______es-s___o-dados":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--C___lculo-lambda--Fun______es-s___o-dados",
-     "data":
-     {"title": "Funções são dados",
-      "shortTitle": null,
-      "sectionNum": "4.4.4.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
-       {"title": "Cálculo lambda", "shortTitle": null, "number": "4"},
-       {"title": "Funções são dados", "shortTitle": null, "number": "4"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--C___lculo-lambda--Captura-de-vari___vel":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--C___lculo-lambda--Captura-de-vari___vel",
-     "data":
-     {"title": "Captura de variável",
-      "shortTitle": null,
-      "sectionNum": "4.4.3.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
-       {"title": "Cálculo lambda", "shortTitle": null, "number": "4"},
-       {"title": "Captura de variável", "shortTitle": null, "number": "3"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--C___lculo-lambda--A-gram___tica-dos-termos":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--C___lculo-lambda--A-gram___tica-dos-termos",
-     "data":
-     {"title": "A gramática dos termos",
-      "shortTitle": null,
-      "sectionNum": "4.4.1.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
-       {"title": "Cálculo lambda", "shortTitle": null, "number": "4"},
-       {"title": "A gramática dos termos", "shortTitle": null, "number": "1"}]},
-     "address": "/Foundation/"}],
-   "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--C___lculo-lambda":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--Conjuntos-e-Rela______es___-Lambda-Calculus-e-Tipos--C___lculo-lambda",
-     "data":
-     {"title": "Cálculo lambda",
-      "shortTitle": null,
-      "sectionNum": "4.4.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"},
-       {"title": "Cálculo lambda", "shortTitle": null, "number": "4"}]},
-     "address": "/Foundation/"}],
+     "address": "/Sets/"}],
    "Sem___ntica-computacional-com-Lean":
    [{"id": "Sem___ntica-computacional-com-Lean",
      "data":
@@ -1385,13 +1266,13 @@
      "data":
      {"title": "Batalha Naval",
       "shortTitle": null,
-      "sectionNum": "5.1.",
+      "sectionNum": "4.1.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Gramáticas para jogos", "shortTitle": null, "number": "5"},
+       {"title": "Gramáticas para jogos", "shortTitle": null, "number": "4"},
        {"title": "Batalha Naval", "shortTitle": null, "number": "1"}]},
      "address": "/Games/"}],
    "Phonemes":
@@ -1405,37 +1286,50 @@
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Aplicações", "shortTitle": null, "number": "3"},
+       {"title": "Morfologia", "shortTitle": null, "number": "3"},
        {"title": "Aplicação: representando fonemas",
         "shortTitle": null,
         "number": "3"}]},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "PL":
    [{"id": "PL",
      "data":
      {"title": "Lógica proposicional",
       "shortTitle": null,
-      "sectionNum": "7.1.",
+      "sectionNum": "5.1.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
        {"title": "Lógica proposicional", "shortTitle": null, "number": "1"}]},
      "address": "/Logic/"}],
+   "Morphology":
+   [{"id": "Morphology",
+     "data":
+     {"title": "Morfologia",
+      "shortTitle": null,
+      "sectionNum": "3.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Morfologia", "shortTitle": null, "number": "3"}]},
+     "address": "/Morphology/"}],
    "Mastermind":
    [{"id": "Mastermind",
      "data":
      {"title": "Mastermind (Jogo Senha)",
       "shortTitle": null,
-      "sectionNum": "5.2.",
+      "sectionNum": "4.2.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Gramáticas para jogos", "shortTitle": null, "number": "5"},
+       {"title": "Gramáticas para jogos", "shortTitle": null, "number": "4"},
        {"title": "Mastermind (Jogo Senha)",
         "shortTitle": null,
         "number": "2"}]},
@@ -1445,13 +1339,13 @@
      "data":
      {"title": "Lógica",
       "shortTitle": null,
-      "sectionNum": "7.",
+      "sectionNum": "5.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"}]},
+       {"title": "Lógica", "shortTitle": null, "number": "5"}]},
      "address": "/Logic/"}],
    "IntroL":
    [{"id": "IntroL",
@@ -1483,23 +1377,23 @@
         "shortTitle": null,
         "number": "1"}]},
      "address": "/IntroCS/"}],
-   "Games":
-   [{"id": "Games",
+   "InfEngine":
+   [{"id": "InfEngine",
      "data":
-     {"title": "Gramáticas para jogos",
+     {"title": "Um motor de inferência",
       "shortTitle": null,
-      "sectionNum": "5.",
+      "sectionNum": "7.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Gramáticas para jogos", "shortTitle": null, "number": "5"}]},
-     "address": "/Games/"}],
-   "Foundation":
-   [{"id": "Foundation",
+       {"title": "Um motor de inferência", "shortTitle": null, "number": "7"}]},
+     "address": "/InfEngine/"}],
+   "Games":
+   [{"id": "Games",
      "data":
-     {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
+     {"title": "Gramáticas para jogos",
       "shortTitle": null,
       "sectionNum": "4.",
       "searchPriority": 50,
@@ -1507,10 +1401,8 @@
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "shortTitle": null,
-        "number": "4"}]},
-     "address": "/Foundation/"}],
+       {"title": "Gramáticas para jogos", "shortTitle": null, "number": "4"}]},
+     "address": "/Games/"}],
    "FinnishVowelHarmony":
    [{"id": "FinnishVowelHarmony",
      "data":
@@ -1522,23 +1414,23 @@
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Aplicações", "shortTitle": null, "number": "3"},
+       {"title": "Morfologia", "shortTitle": null, "number": "3"},
        {"title": "Harmonia vocálica do finlandês",
         "shortTitle": null,
         "number": "1"}]},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "FOL":
    [{"id": "FOL",
      "data":
      {"title": "Lógica de predicados",
       "shortTitle": null,
-      "sectionNum": "7.2.",
+      "sectionNum": "5.2.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "7"},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
        {"title": "Lógica de predicados", "shortTitle": null, "number": "2"}]},
      "address": "/Logic/"}],
    "English":
@@ -1546,27 +1438,14 @@
      "data":
      {"title": "Um fragmento de inglês",
       "shortTitle": null,
-      "sectionNum": "6.",
+      "sectionNum": "8.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
         "shortTitle": null,
         "number": null},
-       {"title": "Um fragmento de inglês", "shortTitle": null, "number": "6"}]},
-     "address": "/English/"}],
-   "Applications":
-   [{"id": "Applications",
-     "data":
-     {"title": "Aplicações",
-      "shortTitle": null,
-      "sectionNum": "3.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Aplicações", "shortTitle": null, "number": "3"}]},
-     "address": "/Applications/"}]}},
+       {"title": "Um fragmento de inglês", "shortTitle": null, "number": "8"}]},
+     "address": "/English/"}]}},
  "Verso.Genre.Manual.example":
  {"title": "Verso.Genre.Manual.example",
   "description": null,
@@ -1574,315 +1453,494 @@
   {"SwedishPlural.swedishVowels":
    [{"id": "SwedishPlural___swedishVowels",
      "data":
-     {"/Applications/#SwedishPlural___swedishVowels":
+     {"/Morphology/#SwedishPlural___swedishVowels":
       {"display": "swedishVowels",
        "context":
-       ["Semântica computacional com Lean", "Aplicações", "Plural do Sueco"]}},
-     "address": "/Applications/"}],
+       ["Semântica computacional com Lean", "Morfologia", "Plural do Sueco"]}},
+     "address": "/Morphology/"}],
    "SwedishPlural.oSlash":
    [{"id": "SwedishPlural___oSlash",
      "data":
-     {"/Applications/#SwedishPlural___oSlash":
+     {"/Morphology/#SwedishPlural___oSlash":
       {"display": "oSlash",
        "context":
-       ["Semântica computacional com Lean", "Aplicações", "Plural do Sueco"]}},
-     "address": "/Applications/"}],
+       ["Semântica computacional com Lean", "Morfologia", "Plural do Sueco"]}},
+     "address": "/Morphology/"}],
    "SwedishPlural.aRing":
    [{"id": "SwedishPlural___aRing",
      "data":
-     {"/Applications/#SwedishPlural___aRing":
+     {"/Morphology/#SwedishPlural___aRing":
       {"display": "aRing",
        "context":
-       ["Semântica computacional com Lean", "Aplicações", "Plural do Sueco"]}},
-     "address": "/Applications/"}],
+       ["Semântica computacional com Lean", "Morfologia", "Plural do Sueco"]}},
+     "address": "/Morphology/"}],
    "SwedishPlural.DeclClass.Two":
    [{"id": "SwedishPlural___DeclClass___Two",
      "data":
-     {"/Applications/#SwedishPlural___DeclClass___Two":
+     {"/Morphology/#SwedishPlural___DeclClass___Two":
       {"display": "Two",
        "context":
-       ["Semântica computacional com Lean", "Aplicações", "Plural do Sueco"]}},
-     "address": "/Applications/"}],
+       ["Semântica computacional com Lean", "Morfologia", "Plural do Sueco"]}},
+     "address": "/Morphology/"}],
    "SwedishPlural.DeclClass.Three":
    [{"id": "SwedishPlural___DeclClass___Three",
      "data":
-     {"/Applications/#SwedishPlural___DeclClass___Three":
+     {"/Morphology/#SwedishPlural___DeclClass___Three":
       {"display": "Three",
        "context":
-       ["Semântica computacional com Lean", "Aplicações", "Plural do Sueco"]}},
-     "address": "/Applications/"}],
+       ["Semântica computacional com Lean", "Morfologia", "Plural do Sueco"]}},
+     "address": "/Morphology/"}],
    "SwedishPlural.DeclClass.One":
    [{"id": "SwedishPlural___DeclClass___One",
      "data":
-     {"/Applications/#SwedishPlural___DeclClass___One":
+     {"/Morphology/#SwedishPlural___DeclClass___One":
       {"display": "One",
        "context":
-       ["Semântica computacional com Lean", "Aplicações", "Plural do Sueco"]}},
-     "address": "/Applications/"}],
+       ["Semântica computacional com Lean", "Morfologia", "Plural do Sueco"]}},
+     "address": "/Morphology/"}],
    "SwedishPlural.DeclClass.Four":
    [{"id": "SwedishPlural___DeclClass___Four",
      "data":
-     {"/Applications/#SwedishPlural___DeclClass___Four":
+     {"/Morphology/#SwedishPlural___DeclClass___Four":
       {"display": "Four",
        "context":
-       ["Semântica computacional com Lean", "Aplicações", "Plural do Sueco"]}},
-     "address": "/Applications/"}],
+       ["Semântica computacional com Lean", "Morfologia", "Plural do Sueco"]}},
+     "address": "/Morphology/"}],
    "SwedishPlural.DeclClass.Five":
    [{"id": "SwedishPlural___DeclClass___Five",
      "data":
-     {"/Applications/#SwedishPlural___DeclClass___Five":
+     {"/Morphology/#SwedishPlural___DeclClass___Five":
       {"display": "Five",
        "context":
-       ["Semântica computacional com Lean", "Aplicações", "Plural do Sueco"]}},
-     "address": "/Applications/"}],
+       ["Semântica computacional com Lean", "Morfologia", "Plural do Sueco"]}},
+     "address": "/Morphology/"}],
    "SwedishPlural.DeclClass":
    [{"id": "SwedishPlural___DeclClass",
      "data":
-     {"/Applications/#SwedishPlural___DeclClass":
+     {"/Morphology/#SwedishPlural___DeclClass":
       {"display": "DeclClass",
        "context":
-       ["Semântica computacional com Lean", "Aplicações", "Plural do Sueco"]}},
-     "address": "/Applications/"}],
+       ["Semântica computacional com Lean", "Morfologia", "Plural do Sueco"]}},
+     "address": "/Morphology/"}],
+   "Sets.my_univ":
+   [{"id": "Sets___my_univ",
+     "data":
+     {"/Sets/#Sets___my_univ":
+      {"display": "my_univ",
+       "context":
+       ["Semântica computacional com Lean",
+        "Conjuntos e Relações",
+        "Conjuntos e notação de conjuntos"]}},
+     "address": "/Sets/"}],
+   "Sets.my_emptyset":
+   [{"id": "Sets___my_emptyset",
+     "data":
+     {"/Sets/#Sets___my_emptyset":
+      {"display": "my_emptyset",
+       "context":
+       ["Semântica computacional com Lean",
+        "Conjuntos e Relações",
+        "Conjuntos e notação de conjuntos"]}},
+     "address": "/Sets/"}],
+   "Sets.likesR":
+   [{"id": "Sets___likesR",
+     "data":
+     {"/Sets/#Sets___likesR":
+      {"display": "likesR",
+       "context":
+       ["Semântica computacional com Lean",
+        "Conjuntos e Relações",
+        "Relações"]}},
+     "address": "/Sets/"}],
+   "Sets.isEven":
+   [{"id": "Sets___isEven",
+     "data":
+     {"/Sets/#Sets___isEven":
+      {"display": "isEven",
+       "context":
+       ["Semântica computacional com Lean",
+        "Conjuntos e Relações",
+        "Conjuntos e notação de conjuntos",
+        "Mais teoria dos conjuntos",
+        "Calcular ou enunciar"]}},
+     "address": "/Sets/"}],
+   "Sets.above5":
+   [{"id": "Sets___above5",
+     "data":
+     {"/Sets/#Sets___above5":
+      {"display": "above5",
+       "context":
+       ["Semântica computacional com Lean",
+        "Conjuntos e Relações",
+        "Conjuntos e notação de conjuntos",
+        "Aquecimento: conjuntos com nome"]}},
+     "address": "/Sets/"}],
+   "Sets.above2":
+   [{"id": "Sets___above2",
+     "data":
+     {"/Sets/#Sets___above2":
+      {"display": "above2",
+       "context":
+       ["Semântica computacional com Lean",
+        "Conjuntos e Relações",
+        "Conjuntos e notação de conjuntos"]}},
+     "address": "/Sets/"}],
+   "Sets.Transitive'":
+   [{"id": "Sets___Transitive___",
+     "data":
+     {"/Sets/#Sets___Transitive___":
+      {"display": "Transitive'",
+       "context":
+       ["Semântica computacional com Lean",
+        "Conjuntos e Relações",
+        "Relações",
+        "Propriedades"]}},
+     "address": "/Sets/"}],
+   "Sets.Symmetric'":
+   [{"id": "Sets___Symmetric___",
+     "data":
+     {"/Sets/#Sets___Symmetric___":
+      {"display": "Symmetric'",
+       "context":
+       ["Semântica computacional com Lean",
+        "Conjuntos e Relações",
+        "Relações",
+        "Propriedades"]}},
+     "address": "/Sets/"}],
+   "Sets.S2":
+   [{"id": "Sets___S2",
+     "data":
+     {"/Sets/#Sets___S2":
+      {"display": "S2",
+       "context":
+       ["Semântica computacional com Lean",
+        "Conjuntos e Relações",
+        "Conjuntos e notação de conjuntos"]}},
+     "address": "/Sets/"}],
+   "Sets.S1":
+   [{"id": "Sets___S1",
+     "data":
+     {"/Sets/#Sets___S1":
+      {"display": "S1",
+       "context":
+       ["Semântica computacional com Lean",
+        "Conjuntos e Relações",
+        "Conjuntos e notação de conjuntos"]}},
+     "address": "/Sets/"}],
+   "Sets.Reflexive'":
+   [{"id": "Sets___Reflexive___",
+     "data":
+     {"/Sets/#Sets___Reflexive___":
+      {"display": "Reflexive'",
+       "context":
+       ["Semântica computacional com Lean",
+        "Conjuntos e Relações",
+        "Relações",
+        "Propriedades"]}},
+     "address": "/Sets/"}],
+   "Sets.Entity.toto":
+   [{"id": "Sets___Entity___toto",
+     "data":
+     {"/Sets/#Sets___Entity___toto":
+      {"display": "toto",
+       "context":
+       ["Semântica computacional com Lean",
+        "Conjuntos e Relações",
+        "Relações"]}},
+     "address": "/Sets/"}],
+   "Sets.Entity.dorothy":
+   [{"id": "Sets___Entity___dorothy",
+     "data":
+     {"/Sets/#Sets___Entity___dorothy":
+      {"display": "dorothy",
+       "context":
+       ["Semântica computacional com Lean",
+        "Conjuntos e Relações",
+        "Relações"]}},
+     "address": "/Sets/"}],
+   "Sets.Entity":
+   [{"id": "Sets___Entity",
+     "data":
+     {"/Sets/#Sets___Entity":
+      {"display": "Entity",
+       "context":
+       ["Semântica computacional com Lean",
+        "Conjuntos e Relações",
+        "Relações"]}},
+     "address": "/Sets/"}],
    "Phonema.yawelmaniVowels":
    [{"id": "Phonema___yawelmaniVowels",
      "data":
-     {"/Applications/#Phonema___yawelmaniVowels":
+     {"/Morphology/#Phonema___yawelmaniVowels":
       {"display": "yawelmaniVowels",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.unrealizeVowel":
    [{"id": "Phonema___unrealizeVowel",
      "data":
-     {"/Applications/#Phonema___unrealizeVowel":
+     {"/Morphology/#Phonema___unrealizeVowel":
       {"display": "unrealizeVowel",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.u":
    [{"id": "Phonema___u",
      "data":
-     {"/Applications/#Phonema___u":
+     {"/Morphology/#Phonema___u":
       {"display": "u",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.tokenize":
    [{"id": "Phonema___tokenize",
      "data":
-     {"/Applications/#Phonema___tokenize":
+     {"/Morphology/#Phonema___tokenize":
       {"display": "tokenize",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.surfaceTable":
    [{"id": "Phonema___surfaceTable",
      "data":
-     {"/Applications/#Phonema___surfaceTable":
+     {"/Morphology/#Phonema___surfaceTable":
       {"display": "surfaceTable",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.realize":
    [{"id": "Phonema___realize",
      "data":
-     {"/Applications/#Phonema___realize":
+     {"/Morphology/#Phonema___realize":
       {"display": "realize",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.o":
    [{"id": "Phonema___o",
      "data":
-     {"/Applications/#Phonema___o":
+     {"/Morphology/#Phonema___o":
       {"display": "o",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.i":
    [{"id": "Phonema___i",
      "data":
-     {"/Applications/#Phonema___i":
+     {"/Morphology/#Phonema___i":
       {"display": "i",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.fMatch":
    [{"id": "Phonema___fMatch",
      "data":
-     {"/Applications/#Phonema___fMatch":
+     {"/Morphology/#Phonema___fMatch":
       {"display": "fMatch",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.e":
    [{"id": "Phonema___e",
      "data":
-     {"/Applications/#Phonema___e":
+     {"/Morphology/#Phonema___e":
       {"display": "e",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.c":
    [{"id": "Phonema___c",
      "data":
-     {"/Applications/#Phonema___c":
+     {"/Morphology/#Phonema___c":
       {"display": "c",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.a":
    [{"id": "Phonema___a",
      "data":
-     {"/Applications/#Phonema___a":
+     {"/Morphology/#Phonema___a":
       {"display": "a",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.Value.Plus":
    [{"id": "Phonema___Value___Plus",
      "data":
-     {"/Applications/#Phonema___Value___Plus":
+     {"/Morphology/#Phonema___Value___Plus":
       {"display": "Plus",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.Value.Minus":
    [{"id": "Phonema___Value___Minus",
      "data":
-     {"/Applications/#Phonema___Value___Minus":
+     {"/Morphology/#Phonema___Value___Minus":
       {"display": "Minus",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.Value":
    [{"id": "Phonema___Value",
      "data":
-     {"/Applications/#Phonema___Value":
+     {"/Morphology/#Phonema___Value":
       {"display": "Value",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.Phoneme":
    [{"id": "Phonema___Phoneme",
      "data":
-     {"/Applications/#Phonema___Phoneme":
+     {"/Morphology/#Phonema___Phoneme":
       {"display": "Phoneme",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.Feature.value":
    [{"id": "Phonema___Feature___value",
      "data":
-     {"/Applications/#Phonema___Feature___value":
+     {"/Morphology/#Phonema___Feature___value":
       {"display": "value",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.Feature.attr":
    [{"id": "Phonema___Feature___attr",
      "data":
-     {"/Applications/#Phonema___Feature___attr":
+     {"/Morphology/#Phonema___Feature___attr":
       {"display": "attr",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.Feature":
    [{"id": "Phonema___Feature",
      "data":
-     {"/Applications/#Phonema___Feature":
+     {"/Morphology/#Phonema___Feature":
       {"display": "Feature",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.Attr.Round":
    [{"id": "Phonema___Attr___Round",
      "data":
-     {"/Applications/#Phonema___Attr___Round":
+     {"/Morphology/#Phonema___Attr___Round":
       {"display": "Round",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.Attr.High":
    [{"id": "Phonema___Attr___High",
      "data":
-     {"/Applications/#Phonema___Attr___High":
+     {"/Morphology/#Phonema___Attr___High":
       {"display": "High",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.Attr.Cons":
    [{"id": "Phonema___Attr___Cons",
      "data":
-     {"/Applications/#Phonema___Attr___Cons":
+     {"/Morphology/#Phonema___Attr___Cons":
       {"display": "Cons",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.Attr.Back":
    [{"id": "Phonema___Attr___Back",
      "data":
-     {"/Applications/#Phonema___Attr___Back":
+     {"/Morphology/#Phonema___Attr___Back":
       {"display": "Back",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "Phonema.Attr":
    [{"id": "Phonema___Attr",
      "data":
-     {"/Applications/#Phonema___Attr":
+     {"/Morphology/#Phonema___Attr":
       {"display": "Attr",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Aplicação: representando fonemas"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
+   "PL.wizardOrLazy_means":
+   [{"id": "PL___wizardOrLazy_means",
+     "data":
+     {"/Logic/#PL___wizardOrLazy_means":
+      {"display": "wizardOrLazy_means",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "A ponte entre as duas leituras"]}},
+     "address": "/Logic/"}],
+   "PL.update":
+   [{"id": "PL___update",
+     "data":
+     {"/Logic/#PL___update":
+      {"display": "update",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Semântica"]}},
+     "address": "/Logic/"}],
+   "PL.genVals":
+   [{"id": "PL___genVals",
+     "data":
+     {"/Logic/#PL___genVals":
+      {"display": "genVals",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Semântica"]}},
+     "address": "/Logic/"}],
    "PL.form2'":
    [{"id": "PL___form2___",
      "data":
@@ -1916,6 +1974,17 @@
         "Lógica proposicional",
         "Sintaxe"]}},
      "address": "/Logic/"}],
+   "PL.Valuation":
+   [{"id": "PL___Valuation",
+     "data":
+     {"/Logic/#PL___Valuation":
+      {"display": "Valuation",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Semântica"]}},
+     "address": "/Logic/"}],
    "PL.Form.top":
    [{"id": "PL___Form___top",
      "data":
@@ -1937,6 +2006,28 @@
         "Lógica",
         "Lógica proposicional",
         "Sintaxe"]}},
+     "address": "/Logic/"}],
+   "PL.Form.tautology":
+   [{"id": "PL___Form___tautology",
+     "data":
+     {"/Logic/#PL___Form___tautology":
+      {"display": "Form.tautology",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Semântica"]}},
+     "address": "/Logic/"}],
+   "PL.Form.satisfiable":
+   [{"id": "PL___Form___satisfiable",
+     "data":
+     {"/Logic/#PL___Form___satisfiable":
+      {"display": "Form.satisfiable",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Semântica"]}},
      "address": "/Logic/"}],
    "PL.Form.rightParens":
    [{"id": "PL___Form___rightParens",
@@ -1982,6 +2073,17 @@
         "Lógica proposicional",
         "Indução estrutural"]}},
      "address": "/Logic/"}],
+   "PL.Form.implies":
+   [{"id": "PL___Form___implies",
+     "data":
+     {"/Logic/#PL___Form___implies":
+      {"display": "Form.implies",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Semântica"]}},
+     "address": "/Logic/"}],
    "PL.Form.impl":
    [{"id": "PL___Form___impl",
      "data":
@@ -1992,6 +2094,39 @@
         "Lógica",
         "Lógica proposicional",
         "Sintaxe"]}},
+     "address": "/Logic/"}],
+   "PL.Form.eval_iff_denote":
+   [{"id": "PL___Form___eval_iff_denote",
+     "data":
+     {"/Logic/#PL___Form___eval_iff_denote":
+      {"display": "Form.eval_iff_denote",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "A ponte entre as duas leituras"]}},
+     "address": "/Logic/"}],
+   "PL.Form.eval":
+   [{"id": "PL___Form___eval",
+     "data":
+     {"/Logic/#PL___Form___eval":
+      {"display": "Form.eval",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Semântica"]}},
+     "address": "/Logic/"}],
+   "PL.Form.equivalent":
+   [{"id": "PL___Form___equivalent",
+     "data":
+     {"/Logic/#PL___Form___equivalent":
+      {"display": "Form.equivalent",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Semântica"]}},
      "address": "/Logic/"}],
    "PL.Form.equi":
    [{"id": "PL___Form___equi",
@@ -2025,6 +2160,28 @@
         "Lógica",
         "Lógica proposicional",
         "Sintaxe"]}},
+     "address": "/Logic/"}],
+   "PL.Form.denote":
+   [{"id": "PL___Form___denote",
+     "data":
+     {"/Logic/#PL___Form___denote":
+      {"display": "Form.denote",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "A ponte entre as duas leituras"]}},
+     "address": "/Logic/"}],
+   "PL.Form.contradiction":
+   [{"id": "PL___Form___contradiction",
+     "data":
+     {"/Logic/#PL___Form___contradiction":
+      {"display": "Form.contradiction",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Semântica"]}},
      "address": "/Logic/"}],
    "PL.Form.conjs":
    [{"id": "PL___Form___conjs",
@@ -2069,6 +2226,17 @@
         "Lógica",
         "Lógica proposicional",
         "Sintaxe"]}},
+     "address": "/Logic/"}],
+   "PL.Form.allVals":
+   [{"id": "PL___Form___allVals",
+     "data":
+     {"/Logic/#PL___Form___allVals":
+      {"display": "Form.allVals",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Semântica"]}},
      "address": "/Logic/"}],
    "PL.Form":
    [{"id": "PL___Form",
@@ -2321,6 +2489,27 @@
         "Programação Funcional no Lean",
         "Cadeias e textos"]}},
      "address": "/IntroL/"}],
+   "IntroL.restful":
+   [{"id": "IntroL___restful",
+     "data":
+     {"/IntroL/#IntroL___restful":
+      {"display": "restful",
+       "context":
+       ["Semântica computacional com Lean",
+        "Programação Funcional no Lean",
+        "Tipos na gramática e na computação"]}},
+     "address": "/IntroL/"}],
+   "IntroL.pluralize":
+   [{"id": "IntroL___pluralize",
+     "data":
+     {"/IntroL/#IntroL___pluralize":
+      {"display": "pluralize",
+       "context":
+       ["Semântica computacional com Lean",
+        "Programação Funcional no Lean",
+        "Cálculo lambda",
+        "Funções são dados"]}},
+     "address": "/IntroL/"}],
    "IntroL.p1":
    [{"id": "IntroL___p1",
      "data":
@@ -2381,16 +2570,27 @@
         "Programação Funcional no Lean",
         "Funções"]}},
      "address": "/IntroL/"}],
-   "IntroL.isWeekend":
-   [{"id": "IntroL___isWeekend",
+   "IntroL.kelvinToFahrenheit":
+   [{"id": "IntroL___kelvinToFahrenheit",
      "data":
-     {"/IntroL/#IntroL___isWeekend":
-      {"display": "isWeekend",
+     {"/IntroL/#IntroL___kelvinToFahrenheit":
+      {"display": "kelvinToFahrenheit",
        "context":
        ["Semântica computacional com Lean",
         "Programação Funcional no Lean",
-        "Tipos indutivos",
-        "Exercício' — Day"]}},
+        "As duas leituras de uma função",
+        "Composição"]}},
+     "address": "/IntroL/"}],
+   "IntroL.kelvinToCelsius":
+   [{"id": "IntroL___kelvinToCelsius",
+     "data":
+     {"/IntroL/#IntroL___kelvinToCelsius":
+      {"display": "kelvinToCelsius",
+       "context":
+       ["Semântica computacional com Lean",
+        "Programação Funcional no Lean",
+        "As duas leituras de uma função",
+        "Composição"]}},
      "address": "/IntroL/"}],
    "IntroL.initS":
    [{"id": "IntroL___initS",
@@ -2522,6 +2722,16 @@
         "Programação Funcional no Lean",
         "Classes de tipos"]}},
      "address": "/IntroL/"}],
+   "IntroL.celsiusToFahrenheit":
+   [{"id": "IntroL___celsiusToFahrenheit",
+     "data":
+     {"/IntroL/#IntroL___celsiusToFahrenheit":
+      {"display": "celsiusToFahrenheit",
+       "context":
+       ["Semântica computacional com Lean",
+        "Programação Funcional no Lean",
+        "As duas leituras de uma função"]}},
+     "address": "/IntroL/"}],
    "IntroL.b":
    [{"id": "IntroL___b",
      "data":
@@ -2551,6 +2761,17 @@
        ["Semântica computacional com Lean",
         "Programação Funcional no Lean",
         "Termos e Tipos"]}},
+     "address": "/IntroL/"}],
+   "IntroL.applyToDragon":
+   [{"id": "IntroL___applyToDragon",
+     "data":
+     {"/IntroL/#IntroL___applyToDragon":
+      {"display": "applyToDragon",
+       "context":
+       ["Semântica computacional com Lean",
+        "Programação Funcional no Lean",
+        "Cálculo lambda",
+        "Funções são dados"]}},
      "address": "/IntroL/"}],
    "IntroL.agePlusNameSize":
    [{"id": "IntroL___agePlusNameSize",
@@ -2621,6 +2842,50 @@
        ["Semântica computacional com Lean",
         "Programação Funcional no Lean",
         "O tipo Prop e Provas"]}},
+     "address": "/IntroL/"}],
+   "IntroL.Lam.var":
+   [{"id": "IntroL___Lam___var",
+     "data":
+     {"/IntroL/#IntroL___Lam___var":
+      {"display": "var",
+       "context":
+       ["Semântica computacional com Lean",
+        "Programação Funcional no Lean",
+        "Cálculo lambda",
+        "A gramática dos termos"]}},
+     "address": "/IntroL/"}],
+   "IntroL.Lam.lam":
+   [{"id": "IntroL___Lam___lam",
+     "data":
+     {"/IntroL/#IntroL___Lam___lam":
+      {"display": "lam",
+       "context":
+       ["Semântica computacional com Lean",
+        "Programação Funcional no Lean",
+        "Cálculo lambda",
+        "A gramática dos termos"]}},
+     "address": "/IntroL/"}],
+   "IntroL.Lam.app":
+   [{"id": "IntroL___Lam___app",
+     "data":
+     {"/IntroL/#IntroL___Lam___app":
+      {"display": "app",
+       "context":
+       ["Semântica computacional com Lean",
+        "Programação Funcional no Lean",
+        "Cálculo lambda",
+        "A gramática dos termos"]}},
+     "address": "/IntroL/"}],
+   "IntroL.Lam":
+   [{"id": "IntroL___Lam",
+     "data":
+     {"/IntroL/#IntroL___Lam":
+      {"display": "Lam",
+       "context":
+       ["Semântica computacional com Lean",
+        "Programação Funcional no Lean",
+        "Cálculo lambda",
+        "A gramática dos termos"]}},
      "address": "/IntroL/"}],
    "IntroL.Day.wednesday":
    [{"id": "IntroL___Day___wednesday",
@@ -2710,8 +2975,7 @@
        "context":
        ["Semântica computacional com Lean",
         "O estudo formal da língua natural",
-        "Línguas naturais e línguas formais",
-        "Composicionalidade"]}},
+        "Línguas naturais e línguas formais"]}},
      "address": "/IntroCS/"}],
    "IntroCS.sevenPlusFive":
    [{"id": "IntroCS___sevenPlusFive",
@@ -2721,8 +2985,7 @@
        "context":
        ["Semântica computacional com Lean",
         "O estudo formal da língua natural",
-        "Línguas naturais e línguas formais",
-        "Composicionalidade"]}},
+        "Línguas naturais e línguas formais"]}},
      "address": "/IntroCS/"}],
    "IntroCS.sentence":
    [{"id": "IntroCS___sentence",
@@ -2742,8 +3005,7 @@
        "context":
        ["Semântica computacional com Lean",
         "O estudo formal da língua natural",
-        "Os propósitos da comunicação",
-        "O método dos fragmentos"]}},
+        "Os propósitos da comunicação"]}},
      "address": "/IntroCS/"}],
    "IntroCS.eval":
    [{"id": "IntroCS___eval",
@@ -2753,8 +3015,7 @@
        "context":
        ["Semântica computacional com Lean",
         "O estudo formal da língua natural",
-        "Línguas naturais e línguas formais",
-        "Composicionalidade"]}},
+        "Línguas naturais e línguas formais"]}},
      "address": "/IntroCS/"}],
    "IntroCS.andOn":
    [{"id": "IntroCS___andOn",
@@ -2774,8 +3035,7 @@
        "context":
        ["Semântica computacional com Lean",
         "O estudo formal da língua natural",
-        "Línguas naturais e línguas formais",
-        "Composicionalidade"]}},
+        "Línguas naturais e línguas formais"]}},
      "address": "/IntroCS/"}],
    "IntroCS.Expr.plus":
    [{"id": "IntroCS___Expr___plus",
@@ -2785,8 +3045,7 @@
        "context":
        ["Semântica computacional com Lean",
         "O estudo formal da língua natural",
-        "Línguas naturais e línguas formais",
-        "Composicionalidade"]}},
+        "Línguas naturais e línguas formais"]}},
      "address": "/IntroCS/"}],
    "IntroCS.Expr.num":
    [{"id": "IntroCS___Expr___num",
@@ -2796,8 +3055,7 @@
        "context":
        ["Semântica computacional com Lean",
         "O estudo formal da língua natural",
-        "Línguas naturais e línguas formais",
-        "Composicionalidade"]}},
+        "Línguas naturais e línguas formais"]}},
      "address": "/IntroCS/"}],
    "IntroCS.Expr":
    [{"id": "IntroCS___Expr",
@@ -2807,383 +3065,548 @@
        "context":
        ["Semântica computacional com Lean",
         "O estudo formal da língua natural",
-        "Línguas naturais e línguas formais",
-        "Composicionalidade"]}},
+        "Línguas naturais e línguas formais"]}},
      "address": "/IntroCS/"}],
-   "Foundation.toto":
-   [{"id": "Foundation___toto",
+   "InfEngine.update":
+   [{"id": "InfEngine___update",
      "data":
-     {"/Foundation/#Foundation___toto":
-      {"display": "toto",
+     {"/InfEngine/#InfEngine___update":
+      {"display": "update",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Tipos na gramática e na computação"]}},
-     "address": "/Foundation/"}],
-   "Foundation.pluralize":
-   [{"id": "Foundation___pluralize",
+        "Um motor de inferência",
+        "A interface em língua natural"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.tellAbout":
+   [{"id": "InfEngine___tellAbout",
      "data":
-     {"/Foundation/#Foundation___pluralize":
-      {"display": "pluralize",
+     {"/InfEngine/#InfEngine___tellAbout":
+      {"display": "tellAbout",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Cálculo lambda",
-        "Funções são dados"]}},
-     "address": "/Foundation/"}],
-   "Foundation.my_univ":
-   [{"id": "Foundation___my_univ",
+        "Um motor de inferência",
+        "O motor"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.supersets":
+   [{"id": "InfEngine___supersets",
      "data":
-     {"/Foundation/#Foundation___my_univ":
-      {"display": "my_univ",
+     {"/InfEngine/#InfEngine___supersets":
+      {"display": "supersets",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Conjuntos e notação de conjuntos"]}},
-     "address": "/Foundation/"}],
-   "Foundation.my_emptyset":
-   [{"id": "Foundation___my_emptyset",
+        "Um motor de inferência",
+        "O motor"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.subsetRel":
+   [{"id": "InfEngine___subsetRel",
      "data":
-     {"/Foundation/#Foundation___my_emptyset":
-      {"display": "my_emptyset",
+     {"/InfEngine/#InfEngine___subsetRel":
+      {"display": "subsetRel",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Conjuntos e notação de conjuntos"]}},
-     "address": "/Foundation/"}],
-   "Foundation.likesToto":
-   [{"id": "Foundation___likesToto",
+        "Um motor de inferência",
+        "O motor"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.rtc":
+   [{"id": "InfEngine___rtc",
      "data":
-     {"/Foundation/#Foundation___likesToto":
-      {"display": "likesToto",
+     {"/InfEngine/#InfEngine___rtc":
+      {"display": "rtc",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Tipos na gramática e na computação"]}},
-     "address": "/Foundation/"}],
-   "Foundation.likesR":
-   [{"id": "Foundation___likesR",
+        "Um motor de inferência",
+        "O motor"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.respond":
+   [{"id": "InfEngine___respond",
      "data":
-     {"/Foundation/#Foundation___likesR":
-      {"display": "likesR",
+     {"/InfEngine/#InfEngine___respond":
+      {"display": "respond",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Relações"]}},
-     "address": "/Foundation/"}],
-   "Foundation.likes":
-   [{"id": "Foundation___likes",
+        "Um motor de inferência",
+        "A interface em língua natural"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.rSection":
+   [{"id": "InfEngine___rSection",
      "data":
-     {"/Foundation/#Foundation___likes":
-      {"display": "likes",
+     {"/InfEngine/#InfEngine___rSection":
+      {"display": "rSection",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Tipos na gramática e na computação"]}},
-     "address": "/Foundation/"}],
-   "Foundation.kelvinToFahrenheit":
-   [{"id": "Foundation___kelvinToFahrenheit",
+        "Um motor de inferência",
+        "O motor"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.process":
+   [{"id": "InfEngine___process",
      "data":
-     {"/Foundation/#Foundation___kelvinToFahrenheit":
-      {"display": "kelvinToFahrenheit",
+     {"/InfEngine/#InfEngine___process":
+      {"display": "process",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Funções",
-        "Composição"]}},
-     "address": "/Foundation/"}],
-   "Foundation.kelvinToCelsius":
-   [{"id": "Foundation___kelvinToCelsius",
+        "Um motor de inferência",
+        "A interface em língua natural"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.preprocess":
+   [{"id": "InfEngine___preprocess",
      "data":
-     {"/Foundation/#Foundation___kelvinToCelsius":
-      {"display": "kelvinToCelsius",
+     {"/InfEngine/#InfEngine___preprocess":
+      {"display": "preprocess",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Funções",
-        "Composição"]}},
-     "address": "/Foundation/"}],
-   "Foundation.isEven":
-   [{"id": "Foundation___isEven",
+        "Um motor de inferência",
+        "A interface em língua natural"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.parse":
+   [{"id": "InfEngine___parse",
      "data":
-     {"/Foundation/#Foundation___isEven":
-      {"display": "isEven",
+     {"/InfEngine/#InfEngine___parse":
+      {"display": "parse",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Conjuntos e notação de conjuntos",
-        "Mais teoria dos conjuntos",
-        "Calcular ou enunciar"]}},
-     "address": "/Foundation/"}],
-   "Foundation.happy":
-   [{"id": "Foundation___happy",
+        "Um motor de inferência",
+        "A interface em língua natural"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.nsupersets":
+   [{"id": "InfEngine___nsupersets",
      "data":
-     {"/Foundation/#Foundation___happy":
-      {"display": "happy",
+     {"/InfEngine/#InfEngine___nsupersets":
+      {"display": "nsupersets",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Tipos na gramática e na computação"]}},
-     "address": "/Foundation/"}],
-   "Foundation.dorothyLikesToto":
-   [{"id": "Foundation___dorothyLikesToto",
+        "Um motor de inferência",
+        "O motor"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.nsubsetRel":
+   [{"id": "InfEngine___nsubsetRel",
      "data":
-     {"/Foundation/#Foundation___dorothyLikesToto":
-      {"display": "dorothyLikesToto",
+     {"/InfEngine/#InfEngine___nsubsetRel":
+      {"display": "nsubsetRel",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Tipos na gramática e na computação"]}},
-     "address": "/Foundation/"}],
-   "Foundation.dorothy":
-   [{"id": "Foundation___dorothy",
+        "Um motor de inferência",
+        "O motor"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.mytxt":
+   [{"id": "InfEngine___mytxt",
      "data":
-     {"/Foundation/#Foundation___dorothy":
-      {"display": "dorothy",
+     {"/InfEngine/#InfEngine___mytxt":
+      {"display": "mytxt",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Tipos na gramática e na computação"]}},
-     "address": "/Foundation/"}],
-   "Foundation.celsiusToFahrenheit":
-   [{"id": "Foundation___celsiusToFahrenheit",
+        "Um motor de inferência",
+        "A interface em língua natural"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.makeKB.go":
+   [{"id": "InfEngine___makeKB___go",
      "data":
-     {"/Foundation/#Foundation___celsiusToFahrenheit":
-      {"display": "celsiusToFahrenheit",
+     {"/InfEngine/#InfEngine___makeKB___go":
+      {"display": "go",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Funções"]}},
-     "address": "/Foundation/"}],
-   "Foundation.applyToDragon":
-   [{"id": "Foundation___applyToDragon",
+        "Um motor de inferência",
+        "A interface em língua natural"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.makeKB":
+   [{"id": "InfEngine___makeKB",
      "data":
-     {"/Foundation/#Foundation___applyToDragon":
-      {"display": "applyToDragon",
+     {"/InfEngine/#InfEngine___makeKB":
+      {"display": "makeKB",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Cálculo lambda",
-        "Funções são dados"]}},
-     "address": "/Foundation/"}],
-   "Foundation.above5":
-   [{"id": "Foundation___above5",
+        "Um motor de inferência",
+        "A interface em língua natural"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.lfp":
+   [{"id": "InfEngine___lfp",
      "data":
-     {"/Foundation/#Foundation___above5":
-      {"display": "above5",
+     {"/InfEngine/#InfEngine___lfp":
+      {"display": "lfp",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Conjuntos e notação de conjuntos",
-        "Aquecimento: conjuntos com nome"]}},
-     "address": "/Foundation/"}],
-   "Foundation.above2":
-   [{"id": "Foundation___above2",
+        "Um motor de inferência",
+        "O motor"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.kb1":
+   [{"id": "InfEngine___kb1",
      "data":
-     {"/Foundation/#Foundation___above2":
-      {"display": "above2",
+     {"/InfEngine/#InfEngine___kb1":
+      {"display": "kb1",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Conjuntos e notação de conjuntos"]}},
-     "address": "/Foundation/"}],
-   "Foundation.VP":
-   [{"id": "Foundation___VP",
+        "Um motor de inferência",
+        "A interface em língua natural"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.kb0":
+   [{"id": "InfEngine___kb0",
      "data":
-     {"/Foundation/#Foundation___VP":
-      {"display": "VP",
+     {"/InfEngine/#InfEngine___kb0":
+      {"display": "kb0",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Tipos na gramática e na computação"]}},
-     "address": "/Foundation/"}],
-   "Foundation.Transitive'":
-   [{"id": "Foundation___Transitive___",
+        "Um motor de inferência",
+        "O motor"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.domain":
+   [{"id": "InfEngine___domain",
      "data":
-     {"/Foundation/#Foundation___Transitive___":
-      {"display": "Transitive'",
+     {"/InfEngine/#InfEngine___domain":
+      {"display": "domain",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Relações",
-        "Propriedades"]}},
-     "address": "/Foundation/"}],
-   "Foundation.TV":
-   [{"id": "Foundation___TV",
+        "Um motor de inferência",
+        "O motor"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.derive":
+   [{"id": "InfEngine___derive",
      "data":
-     {"/Foundation/#Foundation___TV":
-      {"display": "TV",
+     {"/InfEngine/#InfEngine___derive":
+      {"display": "derive",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Tipos na gramática e na computação"]}},
-     "address": "/Foundation/"}],
-   "Foundation.Symmetric'":
-   [{"id": "Foundation___Symmetric___",
+        "Um motor de inferência",
+        "O motor"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.darii":
+   [{"id": "InfEngine___darii",
      "data":
-     {"/Foundation/#Foundation___Symmetric___":
-      {"display": "Symmetric'",
+     {"/InfEngine/#InfEngine___darii":
+      {"display": "darii",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Relações",
-        "Propriedades"]}},
-     "address": "/Foundation/"}],
-   "Foundation.S2":
-   [{"id": "Foundation___S2",
+        "Um motor de inferência",
+        "A validade dos silogismos, demonstrada"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.comp":
+   [{"id": "InfEngine___comp",
      "data":
-     {"/Foundation/#Foundation___S2":
-      {"display": "S2",
+     {"/InfEngine/#InfEngine___comp":
+      {"display": "comp",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Conjuntos e notação de conjuntos"]}},
-     "address": "/Foundation/"}],
-   "Foundation.S1":
-   [{"id": "Foundation___S1",
+        "Um motor de inferência",
+        "O motor"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.celarent":
+   [{"id": "InfEngine___celarent",
      "data":
-     {"/Foundation/#Foundation___S1":
-      {"display": "S1",
+     {"/InfEngine/#InfEngine___celarent":
+      {"display": "celarent",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Conjuntos e notação de conjuntos"]}},
-     "address": "/Foundation/"}],
-   "Foundation.S":
-   [{"id": "Foundation___S",
+        "Um motor de inferência",
+        "A validade dos silogismos, demonstrada"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.barbara":
+   [{"id": "InfEngine___barbara",
      "data":
-     {"/Foundation/#Foundation___S":
-      {"display": "S",
+     {"/InfEngine/#InfEngine___barbara":
+      {"display": "barbara",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Tipos na gramática e na computação"]}},
-     "address": "/Foundation/"}],
-   "Foundation.Reflexive'":
-   [{"id": "Foundation___Reflexive___",
+        "Um motor de inferência",
+        "A validade dos silogismos, demonstrada"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Statement.toStringImpl":
+   [{"id": "InfEngine___Statement___toStringImpl",
      "data":
-     {"/Foundation/#Foundation___Reflexive___":
-      {"display": "Reflexive'",
+     {"/InfEngine/#InfEngine___Statement___toStringImpl":
+      {"display": "Statement.toStringImpl",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Relações",
-        "Propriedades"]}},
-     "address": "/Foundation/"}],
-   "Foundation.NP":
-   [{"id": "Foundation___NP",
+        "Um motor de inferência",
+        "Uma língua para falar de classes"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Statement.someAreNot":
+   [{"id": "InfEngine___Statement___someAreNot",
      "data":
-     {"/Foundation/#Foundation___NP":
-      {"display": "NP",
+     {"/InfEngine/#InfEngine___Statement___someAreNot":
+      {"display": "someAreNot",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Tipos na gramática e na computação"]}},
-     "address": "/Foundation/"}],
-   "Foundation.Lam.var":
-   [{"id": "Foundation___Lam___var",
+        "Um motor de inferência",
+        "Uma língua para falar de classes"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Statement.someAre":
+   [{"id": "InfEngine___Statement___someAre",
      "data":
-     {"/Foundation/#Foundation___Lam___var":
-      {"display": "var",
+     {"/InfEngine/#InfEngine___Statement___someAre":
+      {"display": "someAre",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Cálculo lambda",
-        "A gramática dos termos"]}},
-     "address": "/Foundation/"}],
-   "Foundation.Lam.lam":
-   [{"id": "Foundation___Lam___lam",
+        "Um motor de inferência",
+        "Uma língua para falar de classes"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Statement.noneAre":
+   [{"id": "InfEngine___Statement___noneAre",
      "data":
-     {"/Foundation/#Foundation___Lam___lam":
-      {"display": "lam",
+     {"/InfEngine/#InfEngine___Statement___noneAre":
+      {"display": "noneAre",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Cálculo lambda",
-        "A gramática dos termos"]}},
-     "address": "/Foundation/"}],
-   "Foundation.Lam.app":
-   [{"id": "Foundation___Lam___app",
+        "Um motor de inferência",
+        "Uma língua para falar de classes"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Statement.allAre":
+   [{"id": "InfEngine___Statement___allAre",
      "data":
-     {"/Foundation/#Foundation___Lam___app":
-      {"display": "app",
+     {"/InfEngine/#InfEngine___Statement___allAre":
+      {"display": "allAre",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Cálculo lambda",
-        "A gramática dos termos"]}},
-     "address": "/Foundation/"}],
-   "Foundation.Lam":
-   [{"id": "Foundation___Lam",
+        "Um motor de inferência",
+        "Uma língua para falar de classes"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Statement":
+   [{"id": "InfEngine___Statement",
      "data":
-     {"/Foundation/#Foundation___Lam":
-      {"display": "Lam",
+     {"/InfEngine/#InfEngine___Statement":
+      {"display": "Statement",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Cálculo lambda",
-        "A gramática dos termos"]}},
-     "address": "/Foundation/"}],
-   "Foundation.Entity.toto":
-   [{"id": "Foundation___Entity___toto",
+        "Um motor de inferência",
+        "Uma língua para falar de classes"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Relation":
+   [{"id": "InfEngine___Relation",
      "data":
-     {"/Foundation/#Foundation___Entity___toto":
-      {"display": "toto",
+     {"/InfEngine/#InfEngine___Relation":
+      {"display": "Relation",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Relações"]}},
-     "address": "/Foundation/"}],
-   "Foundation.Entity.dorothy":
-   [{"id": "Foundation___Entity___dorothy",
+        "Um motor de inferência",
+        "O motor"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Query.whatAbout":
+   [{"id": "InfEngine___Query___whatAbout",
      "data":
-     {"/Foundation/#Foundation___Entity___dorothy":
-      {"display": "dorothy",
+     {"/InfEngine/#InfEngine___Query___whatAbout":
+      {"display": "whatAbout",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Relações"]}},
-     "address": "/Foundation/"}],
-   "Foundation.Entity":
-   [{"id": "Foundation___Entity",
+        "Um motor de inferência",
+        "Uma língua para falar de classes"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Query.neg":
+   [{"id": "InfEngine___Query___neg",
      "data":
-     {"/Foundation/#Foundation___Entity":
-      {"display": "Entity",
+     {"/InfEngine/#InfEngine___Query___neg":
+      {"display": "Query.neg",
        "context":
        ["Semântica computacional com Lean",
-        "Conjuntos e Relações, Lambda Calculus e Tipos",
-        "Relações"]}},
-     "address": "/Foundation/"}],
+        "Um motor de inferência",
+        "A interface em língua natural"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Query.areNone":
+   [{"id": "InfEngine___Query___areNone",
+     "data":
+     {"/InfEngine/#InfEngine___Query___areNone":
+      {"display": "areNone",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "Uma língua para falar de classes"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Query.areAny":
+   [{"id": "InfEngine___Query___areAny",
+     "data":
+     {"/InfEngine/#InfEngine___Query___areAny":
+      {"display": "areAny",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "Uma língua para falar de classes"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Query.areAll":
+   [{"id": "InfEngine___Query___areAll",
+     "data":
+     {"/InfEngine/#InfEngine___Query___areAll":
+      {"display": "areAll",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "Uma língua para falar de classes"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Query.anyNot":
+   [{"id": "InfEngine___Query___anyNot",
+     "data":
+     {"/InfEngine/#InfEngine___Query___anyNot":
+      {"display": "anyNot",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "Uma língua para falar de classes"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Query":
+   [{"id": "InfEngine___Query",
+     "data":
+     {"/InfEngine/#InfEngine___Query":
+      {"display": "Query",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "Uma língua para falar de classes"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Outcome.known":
+   [{"id": "InfEngine___Outcome___known",
+     "data":
+     {"/InfEngine/#InfEngine___Outcome___known":
+      {"display": "known",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "A interface em língua natural"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Outcome.inconsistent":
+   [{"id": "InfEngine___Outcome___inconsistent",
+     "data":
+     {"/InfEngine/#InfEngine___Outcome___inconsistent":
+      {"display": "inconsistent",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "A interface em língua natural"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Outcome.added":
+   [{"id": "InfEngine___Outcome___added",
+     "data":
+     {"/InfEngine/#InfEngine___Outcome___added":
+      {"display": "added",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "A interface em língua natural"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Outcome":
+   [{"id": "InfEngine___Outcome",
+     "data":
+     {"/InfEngine/#InfEngine___Outcome":
+      {"display": "Outcome",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "A interface em língua natural"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.KB":
+   [{"id": "InfEngine___KB",
+     "data":
+     {"/InfEngine/#InfEngine___KB":
+      {"display": "KB",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "A base de conhecimento e as regras"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Input.stmt":
+   [{"id": "InfEngine___Input___stmt",
+     "data":
+     {"/InfEngine/#InfEngine___Input___stmt":
+      {"display": "stmt",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "A interface em língua natural"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Input.query":
+   [{"id": "InfEngine___Input___query",
+     "data":
+     {"/InfEngine/#InfEngine___Input___query":
+      {"display": "query",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "A interface em língua natural"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Input":
+   [{"id": "InfEngine___Input",
+     "data":
+     {"/InfEngine/#InfEngine___Input":
+      {"display": "Input",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "A interface em língua natural"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Class.toStringImpl":
+   [{"id": "InfEngine___Class___toStringImpl",
+     "data":
+     {"/InfEngine/#InfEngine___Class___toStringImpl":
+      {"display": "Class.toStringImpl",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "Uma língua para falar de classes"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Class.opposite":
+   [{"id": "InfEngine___Class___opposite",
+     "data":
+     {"/InfEngine/#InfEngine___Class___opposite":
+      {"display": "Class.opposite",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "Uma língua para falar de classes"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Class.opp":
+   [{"id": "InfEngine___Class___opp",
+     "data":
+     {"/InfEngine/#InfEngine___Class___opp":
+      {"display": "opp",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "Uma língua para falar de classes"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Class.cls":
+   [{"id": "InfEngine___Class___cls",
+     "data":
+     {"/InfEngine/#InfEngine___Class___cls":
+      {"display": "cls",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "Uma língua para falar de classes"]}},
+     "address": "/InfEngine/"}],
+   "InfEngine.Class":
+   [{"id": "InfEngine___Class",
+     "data":
+     {"/InfEngine/#InfEngine___Class":
+      {"display": "Class",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um motor de inferência",
+        "Uma língua para falar de classes"]}},
+     "address": "/InfEngine/"}],
    "FinnishVowelHarmony.front":
    [{"id": "FinnishVowelHarmony___front",
      "data":
-     {"/Applications/#FinnishVowelHarmony___front":
+     {"/Morphology/#FinnishVowelHarmony___front":
       {"display": "front",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Harmonia vocálica do finlandês"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "FinnishVowelHarmony.back":
    [{"id": "FinnishVowelHarmony___back",
      "data":
-     {"/Applications/#FinnishVowelHarmony___back":
+     {"/Morphology/#FinnishVowelHarmony___back":
       {"display": "back",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Harmonia vocálica do finlandês"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "FinnishVowelHarmony.appendSuffixF":
    [{"id": "FinnishVowelHarmony___appendSuffixF",
      "data":
-     {"/Applications/#FinnishVowelHarmony___appendSuffixF":
+     {"/Morphology/#FinnishVowelHarmony___appendSuffixF":
       {"display": "appendSuffixF",
        "context":
        ["Semântica computacional com Lean",
-        "Aplicações",
+        "Morfologia",
         "Harmonia vocálica do finlandês"]}},
-     "address": "/Applications/"}],
+     "address": "/Morphology/"}],
    "FOL.z":
    [{"id": "FOL___z",
      "data":
@@ -3226,8 +3649,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean",
-        "Exercício 4.19 (p. 82)"]}},
+        "Fórmulas de predicados em Lean"]}},
      "address": "/Logic/"}],
    "FOL.varsInTerms":
    [{"id": "FOL___varsInTerms",
@@ -3260,8 +3682,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Símbolos de função",
-        "Exercício 4.22 (p. 84)"]}},
+        "Símbolos de função"]}},
      "address": "/Logic/"}],
    "FOL.tz":
    [{"id": "FOL___tz",
@@ -3305,8 +3726,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean",
-        "Exercício 4.20 (p. 82)"]}},
+        "Fórmulas de predicados em Lean"]}},
      "address": "/Logic/"}],
    "FOL.isVar":
    [{"id": "FOL___isVar",
@@ -3318,30 +3738,6 @@
         "Lógica",
         "Lógica de predicados",
         "Símbolos de função"]}},
-     "address": "/Logic/"}],
-   "FOL.freeVarsInFormula":
-   [{"id": "FOL___freeVarsInFormula",
-     "data":
-     {"/Logic/#FOL___freeVarsInFormula":
-      {"display": "freeVarsInFormula",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica de predicados",
-        "Fórmulas de predicados em Lean",
-        "Exercício 4.18 (p. 81)"]}},
-     "address": "/Logic/"}],
-   "FOL.freeVarsInForm":
-   [{"id": "FOL___freeVarsInForm",
-     "data":
-     {"/Logic/#FOL___freeVarsInForm":
-      {"display": "freeVarsInForm",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica de predicados",
-        "Símbolos de função",
-        "Exercício 4.23 (p. 84)"]}},
      "address": "/Logic/"}],
    "FOL.formula2":
    [{"id": "FOL___formula2",
@@ -3375,18 +3771,6 @@
         "Lógica",
         "Lógica de predicados",
         "Fórmulas de predicados em Lean"]}},
-     "address": "/Logic/"}],
-   "FOL.ex421Term":
-   [{"id": "FOL___ex421Term",
-     "data":
-     {"/Logic/#FOL___ex421Term":
-      {"display": "ex421Term",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica de predicados",
-        "Símbolos de função",
-        "Exercício 4.21 (p. 83) ✎"]}},
      "address": "/Logic/"}],
    "FOL.Variable.toStringImpl":
    [{"id": "FOL___Variable___toStringImpl",
@@ -3476,6 +3860,83 @@
         "Lógica de predicados",
         "Símbolos de função"]}},
      "address": "/Logic/"}],
+   "FOL.Node.two":
+   [{"id": "FOL___Node___two",
+     "data":
+     {"/Logic/#FOL___Node___two":
+      {"display": "two",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica de predicados",
+        "As regras dos quantificadores"]}},
+     "address": "/Logic/"}],
+   "FOL.Node.three":
+   [{"id": "FOL___Node___three",
+     "data":
+     {"/Logic/#FOL___Node___three":
+      {"display": "three",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica de predicados",
+        "As regras dos quantificadores"]}},
+     "address": "/Logic/"}],
+   "FOL.Node.one":
+   [{"id": "FOL___Node___one",
+     "data":
+     {"/Logic/#FOL___Node___one":
+      {"display": "one",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica de predicados",
+        "As regras dos quantificadores"]}},
+     "address": "/Logic/"}],
+   "FOL.Node":
+   [{"id": "FOL___Node",
+     "data":
+     {"/Logic/#FOL___Node":
+      {"display": "Node",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica de predicados",
+        "As regras dos quantificadores"]}},
+     "address": "/Logic/"}],
+   "FOL.M":
+   [{"id": "FOL___M",
+     "data":
+     {"/Logic/#FOL___M":
+      {"display": "M",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica de predicados",
+        "Semântica da lógica de predicados"]}},
+     "address": "/Logic/"}],
+   "FOL.Interp":
+   [{"id": "FOL___Interp",
+     "data":
+     {"/Logic/#FOL___Interp":
+      {"display": "Interp",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica de predicados",
+        "Semântica da lógica de predicados"]}},
+     "address": "/Logic/"}],
+   "FOL.Formula.top":
+   [{"id": "FOL___Formula___top",
+     "data":
+     {"/Logic/#FOL___Formula___top":
+      {"display": "top",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica de predicados",
+        "Fórmulas de predicados em Lean"]}},
+     "address": "/Logic/"}],
    "FOL.Formula.toStringImpl":
    [{"id": "FOL___Formula___toStringImpl",
      "data":
@@ -3508,6 +3969,17 @@
         "Lógica",
         "Lógica de predicados",
         "Fórmulas de predicados em Lean"]}},
+     "address": "/Logic/"}],
+   "FOL.Formula.holds":
+   [{"id": "FOL___Formula___holds",
+     "data":
+     {"/Logic/#FOL___Formula___holds":
+      {"display": "Formula.holds",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica de predicados",
+        "Semântica da lógica de predicados"]}},
      "address": "/Logic/"}],
    "FOL.Formula.forall_":
    [{"id": "FOL___Formula___forall_",
@@ -3553,6 +4025,17 @@
         "Lógica de predicados",
         "Fórmulas de predicados em Lean"]}},
      "address": "/Logic/"}],
+   "FOL.Formula.disjs":
+   [{"id": "FOL___Formula___disjs",
+     "data":
+     {"/Logic/#FOL___Formula___disjs":
+      {"display": "Formula.disjs",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica de predicados",
+        "Fórmulas de predicados em Lean"]}},
+     "address": "/Logic/"}],
    "FOL.Formula.disj":
    [{"id": "FOL___Formula___disj",
      "data":
@@ -3564,11 +4047,33 @@
         "Lógica de predicados",
         "Fórmulas de predicados em Lean"]}},
      "address": "/Logic/"}],
+   "FOL.Formula.conjs":
+   [{"id": "FOL___Formula___conjs",
+     "data":
+     {"/Logic/#FOL___Formula___conjs":
+      {"display": "Formula.conjs",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica de predicados",
+        "Fórmulas de predicados em Lean"]}},
+     "address": "/Logic/"}],
    "FOL.Formula.conj":
    [{"id": "FOL___Formula___conj",
      "data":
      {"/Logic/#FOL___Formula___conj":
       {"display": "conj",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica de predicados",
+        "Fórmulas de predicados em Lean"]}},
+     "address": "/Logic/"}],
+   "FOL.Formula.bot":
+   [{"id": "FOL___Formula___bot",
+     "data":
+     {"/Logic/#FOL___Formula___bot":
+      {"display": "bot",
        "context":
        ["Semântica computacional com Lean",
         "Lógica",
@@ -3597,6 +4102,50 @@
         "Lógica de predicados",
         "Fórmulas de predicados em Lean"]}},
      "address": "/Logic/"}],
+   "FOL.Assign.update":
+   [{"id": "FOL___Assign___update",
+     "data":
+     {"/Logic/#FOL___Assign___update":
+      {"display": "Assign.update",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica de predicados",
+        "Semântica da lógica de predicados"]}},
+     "address": "/Logic/"}],
+   "FOL.Assign":
+   [{"id": "FOL___Assign",
+     "data":
+     {"/Logic/#FOL___Assign":
+      {"display": "Assign",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica de predicados",
+        "Semântica da lógica de predicados"]}},
+     "address": "/Logic/"}],
+   "English.toto":
+   [{"id": "English___toto",
+     "data":
+     {"/English/#English___toto":
+      {"display": "toto",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um fragmento de inglês",
+        "Um fragmento linguístico",
+        "Por que isso serve à semântica"]}},
+     "address": "/English/"}],
+   "English.t":
+   [{"id": "English___t",
+     "data":
+     {"/English/#English___t":
+      {"display": "t",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um fragmento de inglês",
+        "Um fragmento linguístico",
+        "Por que isso serve à semântica"]}},
+     "address": "/English/"}],
    "English.snowWhile":
    [{"id": "English___snowWhile",
      "data":
@@ -3626,6 +4175,61 @@
        ["Semântica computacional com Lean",
         "Um fragmento de inglês",
         "Um fragmento linguístico"]}},
+     "address": "/English/"}],
+   "English.likesToto":
+   [{"id": "English___likesToto",
+     "data":
+     {"/English/#English___likesToto":
+      {"display": "likesToto",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um fragmento de inglês",
+        "Um fragmento linguístico",
+        "Por que isso serve à semântica"]}},
+     "address": "/English/"}],
+   "English.likes":
+   [{"id": "English___likes",
+     "data":
+     {"/English/#English___likes":
+      {"display": "likes",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um fragmento de inglês",
+        "Um fragmento linguístico",
+        "Por que isso serve à semântica"]}},
+     "address": "/English/"}],
+   "English.e":
+   [{"id": "English___e",
+     "data":
+     {"/English/#English___e":
+      {"display": "e",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um fragmento de inglês",
+        "Um fragmento linguístico",
+        "Por que isso serve à semântica"]}},
+     "address": "/English/"}],
+   "English.dorothyLikesToto":
+   [{"id": "English___dorothyLikesToto",
+     "data":
+     {"/English/#English___dorothyLikesToto":
+      {"display": "dorothyLikesToto",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um fragmento de inglês",
+        "Um fragmento linguístico",
+        "Por que isso serve à semântica"]}},
+     "address": "/English/"}],
+   "English.dorothy":
+   [{"id": "English___dorothy",
+     "data":
+     {"/English/#English___dorothy":
+      {"display": "dorothy",
+       "context":
+       ["Semântica computacional com Lean",
+        "Um fragmento de inglês",
+        "Um fragmento linguístico",
+        "Por que isso serve à semântica"]}},
      "address": "/English/"}],
    "English.WithPP.mookWithSword":
    [{"id": "English___WithPP___mookWithSword",
@@ -4717,56 +5321,6 @@
         "Um fragmento de inglês",
         "Um fragmento linguístico"]}},
      "address": "/English/"}],
-   "English.Statement.someAreNot":
-   [{"id": "English___Statement___someAreNot",
-     "data":
-     {"/English/#English___Statement___someAreNot":
-      {"display": "someAreNot",
-       "context":
-       ["Semântica computacional com Lean",
-        "Um fragmento de inglês",
-        "Uma língua para falar de classes"]}},
-     "address": "/English/"}],
-   "English.Statement.someAre":
-   [{"id": "English___Statement___someAre",
-     "data":
-     {"/English/#English___Statement___someAre":
-      {"display": "someAre",
-       "context":
-       ["Semântica computacional com Lean",
-        "Um fragmento de inglês",
-        "Uma língua para falar de classes"]}},
-     "address": "/English/"}],
-   "English.Statement.noneAre":
-   [{"id": "English___Statement___noneAre",
-     "data":
-     {"/English/#English___Statement___noneAre":
-      {"display": "noneAre",
-       "context":
-       ["Semântica computacional com Lean",
-        "Um fragmento de inglês",
-        "Uma língua para falar de classes"]}},
-     "address": "/English/"}],
-   "English.Statement.allAre":
-   [{"id": "English___Statement___allAre",
-     "data":
-     {"/English/#English___Statement___allAre":
-      {"display": "allAre",
-       "context":
-       ["Semântica computacional com Lean",
-        "Um fragmento de inglês",
-        "Uma língua para falar de classes"]}},
-     "address": "/English/"}],
-   "English.Statement":
-   [{"id": "English___Statement",
-     "data":
-     {"/English/#English___Statement":
-      {"display": "Statement",
-       "context":
-       ["Semântica computacional com Lean",
-        "Um fragmento de inglês",
-        "Uma língua para falar de classes"]}},
-     "address": "/English/"}],
    "English.Sentences":
    [{"id": "English___Sentences",
      "data":
@@ -4877,66 +5431,6 @@
         "Um fragmento de inglês",
         "Um fragmento do inglês"]}},
      "address": "/English/"}],
-   "English.Query.whatAbout":
-   [{"id": "English___Query___whatAbout",
-     "data":
-     {"/English/#English___Query___whatAbout":
-      {"display": "whatAbout",
-       "context":
-       ["Semântica computacional com Lean",
-        "Um fragmento de inglês",
-        "Uma língua para falar de classes"]}},
-     "address": "/English/"}],
-   "English.Query.areNoPNPN":
-   [{"id": "English___Query___areNoPNPN",
-     "data":
-     {"/English/#English___Query___areNoPNPN":
-      {"display": "areNoPNPN",
-       "context":
-       ["Semântica computacional com Lean",
-        "Um fragmento de inglês",
-        "Uma língua para falar de classes"]}},
-     "address": "/English/"}],
-   "English.Query.areAnyPNPN":
-   [{"id": "English___Query___areAnyPNPN",
-     "data":
-     {"/English/#English___Query___areAnyPNPN":
-      {"display": "areAnyPNPN",
-       "context":
-       ["Semântica computacional com Lean",
-        "Um fragmento de inglês",
-        "Uma língua para falar de classes"]}},
-     "address": "/English/"}],
-   "English.Query.areAnyPNNotPN":
-   [{"id": "English___Query___areAnyPNNotPN",
-     "data":
-     {"/English/#English___Query___areAnyPNNotPN":
-      {"display": "areAnyPNNotPN",
-       "context":
-       ["Semântica computacional com Lean",
-        "Um fragmento de inglês",
-        "Uma língua para falar de classes"]}},
-     "address": "/English/"}],
-   "English.Query.areAllPNPN":
-   [{"id": "English___Query___areAllPNPN",
-     "data":
-     {"/English/#English___Query___areAllPNPN":
-      {"display": "areAllPNPN",
-       "context":
-       ["Semântica computacional com Lean",
-        "Um fragmento de inglês",
-        "Uma língua para falar de classes"]}},
-     "address": "/English/"}],
-   "English.Query":
-   [{"id": "English___Query",
-     "data":
-     {"/English/#English___Query":
-      {"display": "Query",
-       "context":
-       ["Semântica computacional com Lean",
-        "Um fragmento de inglês",
-        "Uma língua para falar de classes"]}},
-     "address": "/English/"}],
    "English.Predicate.Wrote":
    [{"id": "English___Predicate___Wrote",
      "data":
@@ -4956,16 +5450,6 @@
        ["Semântica computacional com Lean",
         "Um fragmento de inglês",
         "Um fragmento linguístico"]}},
-     "address": "/English/"}],
-   "English.PN":
-   [{"id": "English___PN",
-     "data":
-     {"/English/#English___PN":
-      {"display": "PN",
-       "context":
-       ["Semântica computacional com Lean",
-        "Um fragmento de inglês",
-        "Uma língua para falar de classes"]}},
      "address": "/English/"}],
    "English.NP.toStringImpl":
    [{"id": "English___NP___toStringImpl",

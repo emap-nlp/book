@@ -1,1 +1,0 @@
-window.docContents[93].resolve({"/Logic/#Logic":{"contents":"Como preparação para a semântica de fragmentos de inglês, introduzimos a\nlógica proposicional e a lógica de predicados, e mostramos como\nimplementar sua sintaxe em Lean.\n\n\n\n\n\n","context":"Semântica computacional com Lean","header":"7. Lógica","id":"/Logic/#Logic"}});
