@@ -153,7 +153,7 @@ def game1 : Game :=
 -- regra para "não atacar duas vezes a mesma posição" vai para além da sintaxe
 -- ou semântica, refere-se a pragmática, ou como ele deve ser jogado.
 
--- ### Exercise (2 stars): BNFgameOver ⭐⭐
+-- ### Exercise (2 stars): game-over-grammar ⭐⭐
 
 -- Revise a gramática de modo que fique explícito, nas regras da gramática,
 -- que o jogo termina assim que um dos jogadores é derrotado.
@@ -183,7 +183,7 @@ inductive WellFormed : Game → Prop where
 -- predicado, e não o tipo `Game`, carregar a restrição que a gramática
 -- revisada impõe estruturalmente.
 
--- ### Exercise (3 stars): WellFormedDefeatedLast ⭐⭐⭐
+-- ### Exercise (3 stars): defeated-last ⭐⭐⭐
 
 -- Prove que toda `Game` bem-formada não é vazia, e que ela sempre termina com
 -- uma reação `.defeated`, não importa o comprimento da sequência.
@@ -328,7 +328,7 @@ sf_expect_failure
       noClashes := by native_decide
       shipsOK := by native_decide }
 
--- ### Exercise (3 stars): addShip ⭐⭐⭐
+-- ### Exercise (3 stars): add-ship ⭐⭐⭐
 
 -- Um estado válido só pode ser estendido por outro estado válido. Complete
 -- `addShip`, que tenta adicionar um navio a um estado, preservando as duas
@@ -447,7 +447,7 @@ end Battleship
 -- por outro caminho, exigindo a reação mais informativa em cada estágio do
 -- jogo.
 
--- ### Exercise (1 star): Grice ⭐
+-- ### Exercise (1 star): grice-maxims ⭐
 
 -- O que mais se pode dizer sobre a pragmática de Batalha Naval em termos das
 -- máximas de Grice?
@@ -482,8 +482,22 @@ end Battleship
 -- Note que os pinos pretos e brancos são colocados em qualquer ordem, não
 -- correspondem a uma sinalização por posição. Uma desvantagem da
 -- implementação a seguir é que dois diferentes termos do tipo `Reaction`
--- poderiam representar a mesma *resposta* para uma tentativa. Sobre a
--- definição de `Subtypes`, ver (Baanen et al., 2026).
+-- poderiam representar a mesma *resposta* para uma tentativa.
+
+-- Dois tipos do Lean entram aqui, ambos porque a gramática fixa quantidades.
+-- Um palpite tem exatamente quatro pinos, e `Vector Colour 4` é a lista de
+-- `Colour` cujo comprimento é quatro — o tamanho faz parte do tipo, então uma
+-- lista de três cores sequer elabora como `Guess`. Seus valores se escrevem
+-- `#v[...]`, como em `turn1` abaixo.
+
+-- Uma resposta tem **no máximo** quatro pinos, que é uma condição e não um
+-- tamanho fixo. Para isso serve um **subtipo**:
+-- `{ r : List Answer // r.length ≤ 4 }` é o tipo das listas de `Answer`
+-- acompanhadas de uma prova de que seu comprimento não passa de quatro. Um
+-- valor seu é o par `⟨lista, prova⟩` — daí o `⟨[.black, .white], by simp⟩`
+-- mais abaixo, onde `by simp` é a prova de que essa lista tem comprimento
+-- menor ou igual a quatro. Sobre ambos, ver (FRO, 2026); sobre subtipos em
+-- particular, (Baanen et al., 2026).
 
 namespace Mastermind
 
@@ -513,7 +527,7 @@ def turn1 : Turn :=
 
 end Mastermind
 
--- ### Exercise (1 star): mastermind-4-passos ⭐
+-- ### Exercise (1 star): four-turn-game ⭐
 
 -- Revise a gramática para garantir que um jogo tenha no máximo quatro
 -- jogadas.

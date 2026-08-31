@@ -1,6 +1,6 @@
 import CSwL.IntroL
 
--- # Aplicações
+-- # Morfologia
 
 -- Três exemplos de PLN que aplicam o Lean visto no capítulo anterior:
 -- harmonia vocálica do finlandês, plural do sueco e uma representação de
@@ -102,7 +102,7 @@ def oSlash : Char := Char.ofNat 248
 def swedishVowels : List Char :=
   ['a','i','o','u','e','y', 'ä', aRing, 'ö', oSlash]
 
--- ### Exercise (2 stars): swedishPlural ⭐⭐
+-- ### Exercise (2 stars): swedish-plural ⭐⭐
 
 -- A forma do plural é determinada pela classe de declinação. Na terceira
 -- classe ela depende também de a palavra terminar ou não em vogal.
@@ -140,8 +140,6 @@ end SwedishPlural
 
 -- ## Aplicação: representando fonemas
 
--- Ref. CSwFP/3 §3.14 (p. 58–61).
-
 -- Vimos uma implementação simples da harmonia vocálica do finlandês por
 -- manipulação de strings. Do ponto de vista linguístico isso não satisfaz:
 -- processos fonológicos como harmonia vocálica não são regras de substituição
@@ -171,7 +169,7 @@ deriving Repr, BEq
 
 abbrev Phoneme := List Feature
 
--- ### Exercise (2 stars): fValue ⭐⭐
+-- ### Exercise (2 stars): feature-value ⭐⭐
 
 -- Consulta o valor de um traço.
 
@@ -282,7 +280,7 @@ def realize (x : Phoneme) : Option Char :=
 example : realize i = some 'i' := rfl
 example : realize (fMatch .Back .Plus i) = none := rfl
 
--- ### Exercise (3 stars): 3.19 ⭐⭐⭐
+-- ### Exercise (3 stars): yawelmani-harmony ⭐⭐⭐
 
 -- A harmonia vocálica em Yawelmani tem a seguinte forma simplificada. As
 -- vogais do sufixo concordam em `Back` e `Round` com a vogal do radical — mas
@@ -384,7 +382,7 @@ def unrealizeVowel (tok : String) : Option Phoneme :=
   else if tok == "e" then some e
   else none
 
--- ### Exercise (3 stars): appendSuffix-texto ⭐⭐⭐
+-- ### Exercise (3 stars): append-suffix-text ⭐⭐⭐
 
 -- `appendSuffixY` trabalha sobre `List Phoneme`. Este exercício pede a mesma
 -- harmonia partindo de `String`.

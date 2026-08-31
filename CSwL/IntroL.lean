@@ -120,7 +120,7 @@ opaque g : ℕ → ℕ → ℕ
 
 #check g a
 
--- ### Exercise (1 star): sumOfSquares ⭐
+-- ### Exercise (1 star): sum-of-squares ⭐
 
 -- Defina `sumOfSquares` que recebe dois naturais e devolve `m² + n²`.
 
@@ -186,7 +186,7 @@ def h₂ (x : Nat) : (Nat → Nat) :=
 
 #check h₁ 1
 
--- ### Exercise (1 star): construindo-termos ⭐
+-- ### Exercise (1 star): building-terms ⭐
 
 -- Adaptado de (Baanen et al., 2026). Cada `def` declara `{α β γ : Type}`, são
 -- funções parametrizadas por tipo. Para as quatro funções abaixo, cujo tipo
@@ -351,9 +351,9 @@ theorem square₁_eq_square₂ : square₁ = square₂ := by
 -- Eq.refl square₁
 
 -- Além de `rfl`, um pequeno repertório de táticas resolve o que os capítulos
--- 3 e 4 precisam — conferido nos próprios arquivos, não escolhido a priori. A
--- ordem abaixo é a de (Yingchareonthawornchai, 2025), que apresenta as
--- táticas nesta sequência; `decide`, `omega`, `obtain`, `cases`, `simp` e
+-- seguintes precisam — conferido nos próprios arquivos, não escolhido a
+-- priori. A ordem abaixo é a de (Yingchareonthawornchai, 2025), que apresenta
+-- as táticas nesta sequência; `decide`, `omega`, `obtain`, `cases`, `simp` e
 -- `induction` não vêm de lá (o curso os introduz onde a necessidade aparece)
 -- e ficam ao final, fora da ordem do FAA2025:
 
@@ -374,79 +374,69 @@ theorem square₁_eq_square₂ : square₁ = square₂ := by
 -- simp [...]   reescreve com um conjunto de lemas até não haver mais o que
 --              simplificar
 -- induction x  prova por casos sobre a forma como x foi construído
+-- funext x     duas funções são iguais quando concordam em todo ponto
 
 -- Duas notações de prova não são táticas: `⟨t, h⟩` monta um par (para provar
 -- uma conjunção ou exibir a testemunha de um existencial), e `h.1`/`h.2`
 -- desmontam um par que está numa hipótese.
 
--- ### Exercício'
+-- ### Exercise (1 star): rfl-arithmetic ⭐
 
 -- Termine a prova usando `rfl`.
 
 example : 7 * 6 = 42 :=
-  rfl
+  sorry
 
--- ### Exercício' — `double n = n + n`
+-- ### Exercise (1 star): square-unfold ⭐
 
--- Prove que `double n = n + n`; uma variável aparece, então `rfl` não basta.
+-- Prove que `square₁ n = n * n`; uma variável aparece, então `rfl` não basta
+-- sozinho — é preciso desdobrar a definição antes.
 
 example (n : Nat) : square₁ n = n * n := by
-  unfold square₁
-  rfl
+  sorry
 
--- ### Exercício' — `P → P`
+-- ### Exercise (1 star): identity-implication ⭐
 
--- Provar `P → Q` é: suponha `P`, derive `Q`. Provar `P ∧ Q` é provar as duas
--- coisas. Fonte: (Yingchareonthawornchai, 2025)
+-- Provar `P → Q` é: suponha `P`, derive `Q`. Prove `P → P`. Fonte:
+-- (Yingchareonthawornchai, 2025)
 
 example (P : Prop) : P → P := by
-  intro h
-  exact h
+  sorry
 
--- ### Exercise (1 star): p-implica-q-implica-p ⭐
+-- ### Exercise (1 star): p-implies-q-implies-p ⭐
 
 -- Complete a prova abaixo. Fonte: (Yingchareonthawornchai, 2025)
 
 example (P Q : Prop) : P → (Q → P) := by
   sorry
 
--- ### Exercício' — Conjunção a partir das partes
+-- ### Exercise (1 star): and-intro ⭐
 
--- Fonte: (Yingchareonthawornchai, 2025). Dica: `constructor` parte o objetivo
--- `P ∧ Q` em dois; cada um se fecha com `exact`.
+-- Prove `P ∧ Q` a partir de `P` e de `Q`. Fonte: (Yingchareonthawornchai,
+-- 2025). Dica: `constructor` parte o objetivo `P ∧ Q` em dois; cada um se
+-- fecha com `exact`.
 
 #check And.intro
 
 -- And.intro {a b : Prop} (left : a) (right : b) : a ∧ b
 
 example (P Q : Prop) (hP : P) (hQ : Q) : P ∧ Q := by
-  apply And.intro
-  · exact hP
-  · exact hQ
+  sorry
 
--- ### Exercício' — Comutatividade da conjunção
+-- ### Exercise (2 stars): and-comm ⭐⭐
 
--- Fonte: (Yingchareonthawornchai, 2025). Dica: um `↔` se parte em dois
--- objetivos com `constructor`; em cada um, `intro h` seguido de
--- `obtain ⟨_,_⟩ := h` desmonta a conjunção da hipótese, e `constructor`
--- reconstrói a conjunção invertida.
+-- Prove que a conjunção comuta. Fonte: (Yingchareonthawornchai, 2025). Dica:
+-- um `↔` se parte em dois objetivos com `constructor`; em cada um, `intro h`
+-- seguido de `obtain ⟨_,_⟩ := h` desmonta a conjunção da hipótese, e
+-- `constructor` reconstrói a conjunção invertida.
 
 -- Veja também o que acontece ao avaliar `(10,20).1`. `And` em Lean é uma
 -- `structure` com dois campos.
 
 example (P Q : Prop) : P ∧ Q ↔ Q ∧ P := by
- constructor
- · intro h
-   obtain ⟨h1, h2⟩ := h
-   apply And.intro
-   · exact h2
-   · exact h1
- · intro h
-   constructor
-   · exact h.2
-   · exact h.1
+ sorry
 
--- ### Exercise (1 star): transitividade-implicacao ⭐
+-- ### Exercise (1 star): implication-transitivity ⭐
 
 -- Fonte: (Yingchareonthawornchai, 2025). Dica: `intro`, depois `apply` duas
 -- vezes, encadeando as duas hipóteses.
@@ -455,7 +445,7 @@ example (P Q R : Prop) (h : P → Q) (h2 : Q → R) :
     P → R := by
   sorry
 
--- ### Exercise (1 star): apply-varias-premissas ⭐
+-- ### Exercise (1 star): apply-several-premises ⭐
 
 -- Adaptado de (Yingchareonthawornchai, 2025).
 
@@ -466,7 +456,7 @@ example (P Q R S : Prop) (h0 : P ∧ Q ∧ R)
 -- Nem toda prova precisa de lógica proposicional abstrata — às vezes o que
 -- falta é desdobrar uma definição local antes de concluir.
 
--- ### Exercise (1 star): prova-direta-unfold ⭐
+-- ### Exercise (1 star): unfold-direct-proof ⭐
 
 -- Fonte: (Yingchareonthawornchai, 2025), com `f` definida localmente igual ao
 -- arquivo. Dica: `intro h`, `unfold f at h` (ou `rw [f] at h`), depois
@@ -477,14 +467,14 @@ def f₁ (x y : Nat) : Prop := x = y
 example (x : Nat) : f₁ x 1 → x ≠ 2 := by
   sorry
 
--- ### Exercise (1 star): desmontando-conjuncao-unfold ⭐
+-- ### Exercise (1 star): unfold-conjunction ⭐
 
 -- Fonte: (Yingchareonthawornchai, 2025).
 
 example (x y : Nat) : f₁ 0 x ∧ f₁ 0 y → x = y := by
   sorry
 
--- ### Exercício' — Existe um par par
+-- ### Exercise (1 star): exists-witness ⭐
 
 -- Prove que `∃ n : Nat, n + n = 10`, exibindo a testemunha com `⟨_, _⟩` ou
 -- usando `Exists.intro`.
@@ -494,10 +484,9 @@ example (x y : Nat) : f₁ 0 x ∧ f₁ 0 y → x = y := by
 -- Exists.intro.{u} {α : Sort u} {p : α → Prop} (w : α) (h : p w) : Exists p
 
 example : ∃ n : Nat, n + n = 10 := by
-  apply Exists.intro 5
-  rfl
+  sorry
 
--- ### Exercise (1 star): casos-sobre-ou ⭐
+-- ### Exercise (1 star): cases-on-or ⭐
 
 -- Prove que `P ∨ Q → Q ∨ P`, usando `cases` sobre a hipótese, complete a
 -- prova.
@@ -520,19 +509,19 @@ example (P Q : Prop) : P ∨ Q → Q ∨ P := by
 
 -- ## Tipos indutivos
 
--- Ref. CSwFP/3 §3.13 (p. 55) — adiantado para antes da recursão, por
--- necessidade Lean-vs-Haskell: em Lean a recursão se apresenta por casamento
--- de padrão sobre um `inductive`, então o tipo indutivo tem de vir primeiro.
+-- Tipos indutivos vêm antes da recursão porque, em Lean, uma função recursiva
+-- se escreve casando padrão sobre as formas de um tipo indutivo: sem o tipo
+-- declarado, não há sobre o que recursar.
 
 -- `inductive` declara um tipo listando as formas que seus valores podem ter.
 -- Quando nenhuma forma carrega argumento, o tipo é uma enumeração; quando
 -- carrega, é um registro variante; quando a forma se refere ao próprio tipo
 -- sendo definido, é uma árvore. As três coisas são o mesmo mecanismo.
 
--- Essa é a construção mais importante do curso. O capítulo 3 mostra que uma
--- gramática escrita na notação usual — a Forma de Backus-Naur — é
--- literalmente um tipo `inductive`, e do capítulo 4 em diante todo fragmento
--- da língua é declarado assim.
+-- Essa é a construção mais importante do curso. Em Gramáticas para jogos
+-- veremos que uma gramática escrita na notação usual — a Forma de Backus-Naur
+-- — é literalmente um tipo `inductive`, e daí em diante todo fragmento da
+-- língua é declarado assim.
 
 -- A enumeração é o caso mais simples. `deriving Repr, DecidableEq` pede que a
 -- exibição e o teste de igualdade sejam gerados em vez de escritos à mão.
@@ -549,15 +538,12 @@ inductive Day where
   | sunday
 deriving Repr
 
--- ### Exercício' — Day
+-- ### Exercise (1 star): is-weekend ⭐
 
 -- Complete `isWeekend`, que responde se o dia é sábado ou domingo.
 
 def isWeekend (d : Day) : Bool :=
- match d with
- | .saturday => true
- | .sunday => true
- | _ => false
+ sorry
 
 -- `Bool` é a enumeração de duas formas; `Nat` é o caso em que uma das formas
 -- se refere ao próprio tipo que está sendo definido. E `#print` mostra a
@@ -604,24 +590,18 @@ example : 2 = Nat.succ (Nat.succ Nat.zero) := rfl
 -- A última tática da tabela, `induction`, prova algo para todo valor de um
 -- tipo indutivo, e não para um valor de cada vez.
 
--- ### Exercício' — Indução sobre `Nat`
+-- ### Exercise (1 star): add-zero-induction ⭐
 
 -- Prove que `n + 0 = n` para todo `n`, usando `induction n`. No caso `0`,
 -- `rfl` fecha; no caso `n + 1`, a hipótese de indução (`ih`) resolve `omega`.
 
 example (n : Nat) : n + 0 = n := by
- induction n with
- | zero => rfl
- | succ a ih =>
-   -- try `apply?`
-   omega
+ sorry
 
 -- Quem quiser praticar Lean provas em Lean, pode jogar o [Natural Number
 -- Game](https://adam.math.hhu.de/#/g/leanprover-community/nng4/).
 
 -- ## Recursão
-
--- Ref. CSwFP/3 §3.5 (p. 40).
 
 -- Uma definição recursiva precisa de duas coisas: ter caso base, e chegar
 -- nele. O segundo não é uma recomendação — é uma exigência que o compilador
@@ -707,7 +687,7 @@ def story : Nat → String
 -- Their leader got up and addressed them like this:
 -- 'Let's cook and eat that final missionary, and off to bed.''
 
--- ### Exercise (1 star): sumTo ⭐
+-- ### Exercise (1 star): sum-to ⭐
 
 -- Implemente `sumTo n` para devolver `0 + 1 + ... + n` e termine a prova de
 -- que a função está correta para a entrada `4`.
@@ -718,8 +698,6 @@ def sumTo : Nat → Nat :=
 theorem sumTo_test : sumTo 4 = 10 := sorry
 
 -- ## Listas e polimorfismo
-
--- Ref. CSwFP/3 §3.6 (p. 41) + §3.4 (p. 39, polimorfismo genérico).
 
 -- `List α` é o tipo das listas de elementos do tipo `α`, e é um tipo indutivo
 -- como os da seção anterior: uma lista é vazia, `[]` (`List.nil`), ou é um
@@ -758,7 +736,7 @@ def size {α : Type} : List α → Nat
 
 -- 2
 
--- ### Exercise (1 star): sumList ⭐
+-- ### Exercise (1 star): sum-list ⭐
 
 -- `sumList` soma os elementos de uma lista. Complete e termine a prova.
 
@@ -768,7 +746,7 @@ def sumList : List Nat → Nat :=
 theorem sumList_test : sumList [1, 2, 3, 4] = 10 :=
   sorry
 
--- ### Exercise (1 star): countZeros ⭐
+-- ### Exercise (1 star): count-zeros ⭐
 
 -- `countZeros` conta quantos zeros a lista tem. Idem.
 
@@ -836,8 +814,6 @@ def average (xs : List Int) : Option Rat :=
 
 -- ## Processamento de listas e composição de funções
 
--- Ref. CSwFP/3 §3.7 e CSwFP/3 §3.8 (p. 42–43).
-
 -- Algumas perações cobrem quase todo uso de lista no curso. Todas se
 -- escreveriam por recursão, como `size` acima, mas estas função de ordem
 -- superior simplificam nosso trabalho.
@@ -884,9 +860,49 @@ def entities : List String :=
 
 -- [7, 4, 7, 9]
 
--- ## Classes de tipos
+-- ## As duas leituras de uma função
 
--- Ref. CSwFP/3 §3.9 (p. 45).
+-- Uma função admite duas leituras, e as duas importam:
+
+-- - **extensional** — a função como tabela: o conjunto de pares entrada/saída.
+--   Uma conversão de Celsius para Fahrenheit é a tabela
+--   `{(0, 32), (100, 212), …}`, ponto.
+
+-- - **intensional** — a função como instrução de cálculo. A mesma conversão é
+--   `x ↦ x * 9 / 5 + 32`, uma receita que produz a tabela sem precisar
+--   listá-la.
+
+-- Em Lean, `def` escreve sempre a versão intensional — a instrução —, mas
+-- duas instruções diferentes podem ser a mesma função, no sentido
+-- extensional, se produzem a mesma tabela. É isso que `funext` verifica: duas
+-- funções são iguais quando concordam em todo ponto do domínio.
+
+def celsiusToFahrenheit (c : Int) : Int := c * 9 / 5 + 32
+
+#eval celsiusToFahrenheit 0
+
+-- 32
+
+#eval celsiusToFahrenheit 100
+
+-- 212
+
+-- ### Composição
+
+-- Componhamos duas conversões: de Kelvin para Celsius, depois de Celsius para
+-- Fahrenheit. `∘` é `Function.comp`, e `(f ∘ g) x = f (g x)` — primeiro `g`,
+-- depois `f`, na ordem em que a leitura da notação sugere o contrário.
+
+def kelvinToCelsius (k : Int) : Int := k - 273
+
+def kelvinToFahrenheit : Int → Int :=
+  celsiusToFahrenheit ∘ kelvinToCelsius
+
+#eval kelvinToFahrenheit 373
+
+-- 212
+
+-- ## Classes de tipos
 
 -- Nós já vimos isso lá no começo, mas `count` conta ocorrências em qualquer
 -- lista cujos elementos se possam comparar. Essa exigência entra na
@@ -914,9 +930,48 @@ def count {α : Type} [BEq α] (x : α) : List α → Nat
 
 -- 2
 
--- ## Cadeias e textos
+-- Até aqui só **usamos** classes: `[BEq α]` pede uma instância que o Lean
+-- encontra sozinho. Falta o outro lado — declarar uma.
 
--- Ref. CSwFP/3 §3.10 (p. 47–48).
+-- Na verdade já declaramos várias, sem escrever nenhuma. Toda vez que um tipo
+-- termina com `deriving Repr`, o Lean escreve por nós a instância de `Repr`
+-- que o `#eval` usa para exibir valores daquele tipo. É o que `Day` faz:
+
+#eval Day.saturday
+
+-- IntroL.Day.saturday
+
+-- O que sai é o nome do construtor, porque é isso que uma instância derivada
+-- sabe fazer. Para escolher a forma de exibição, a instância tem de ser
+-- escrita à mão, com a palavra-chave `instance`. A classe para isso é
+-- `ToString`, que dá sentido a `toString`:
+
+instance : ToString Day where
+  toString
+    | .monday    => "segunda"
+    | .tuesday   => "terça"
+    | .wednesday => "quarta"
+    | .thursday  => "quinta"
+    | .friday    => "sexta"
+    | .saturday  => "sábado"
+    | .sunday    => "domingo"
+
+#eval toString Day.saturday
+
+-- "sábado"
+
+-- A instância não tem nome: quem a procura é o Lean, pelo tipo, e não nós
+-- pelo nome. Declarar uma instância é dizer "este tipo pertence a esta
+-- classe, e eis como" — implementar os campos que a classe exige, aqui só o
+-- `toString`.
+
+-- `Repr` e `ToString` convivem porque servem a coisas diferentes: `Repr`
+-- exibe para quem está programando e tende a mostrar a estrutura; `ToString`
+-- produz o texto que se quer mostrar a quem lê. Nos capítulos seguintes,
+-- quase toda instância escrita à mão será de `ToString` — para que uma árvore
+-- sintática se imprima como a sentença que ela representa.
+
+-- ## Cadeias e textos
 
 -- `String` é uma sequência UTF-8 empacotada, não uma lista de caracteres.
 -- Isso a torna eficiente para guardar texto e inadequada para percorrer a
@@ -953,6 +1008,273 @@ def initS (s : String) : String :=
 #eval initS "flicka"
 
 -- "flick"
+
+-- ## Cálculo lambda
+
+-- A notação `fun x => e` não é invenção de linguagem de programação. Ela
+-- resolve uma ambiguidade real, e vale ver qual.
+
+-- A expressão `x² + y` não determina uma função. Ela pode ser lida como
+-- função de `x`, com `y` fixo; como função de `y`, com `x` fixo; ou como
+-- função dos dois. O que falta é dizer qual variável é o parâmetro — e o
+-- operador lambda é exatamente o marcador que diz isso. Em `λx ↦ x² + y`, o
+-- `x` está **ligado** e o `y` está **livre**.
+
+-- O nome da variável ligada não importa: `λz ↦ z² + y` é a mesma função. E
+-- isso não é convenção — em Lean as duas são o mesmo termo, e o `rfl` prova:
+
+example :
+    (fun (x : Nat) => x * x) =
+      (fun (z : Nat) => z * z) := rfl
+
+-- ### A gramática dos termos
+
+-- O cálculo lambda tem três formas de construir expressão, e nada mais.
+-- Escritas na notação usual para gramáticas — a Forma de Backus-Naur, ou BNF:
+
+-- E ::= _v | "(" E E ")" | "(" "λ" _v "↦" E ")" ;
+
+-- Leia: uma expressão é uma variável, ou a justaposição de duas expressões
+-- (aplicação), ou um lambda seguido de variável e expressão (abstração). A
+-- última cláusula é implícita e importante: **nada além disso é expressão**.
+
+-- Aqui está o ponto. Uma gramática BNF é uma definição indutiva, e uma
+-- definição indutiva é um tipo `inductive` — o mesmo mecanismo com que
+-- Morfologia declara as classes de declinação do sueco e os traços
+-- fonológicos. As duas coisas são a mesma, escritas em notações diferentes:
+
+-- A gramática acima, como tipo. Cada cláusula da BNF virou um construtor.
+
+inductive Lam where
+  | var (name : String)
+  | app (fn arg : Lam)
+  | lam (binder : String) (body : Lam)
+
+-- Essa correspondência é o motor do curso. Daqui em diante, cada fragmento da
+-- língua vai ser dado por uma gramática, e a gramática vai ser um tipo
+-- `inductive` — o que torna "esta expressão é bem formada" a mesma coisa que
+-- "este termo tem esse tipo".
+
+-- Aqui, `Lam` fica como ilustração e não será usado: o cálculo lambda que
+-- interessa é o próprio Lean, não uma cópia dele dentro de Lean.
+
+-- ### Redução
+
+-- O que se faz com uma aplicação é substituir. A regra é uma só:
+
+-- (λx ↦ E) A  →  E\[x := A\]
+
+-- onde `E\[x := A\]` é `E` com toda ocorrência livre de `x` trocada por `A`.
+-- Isso é a β-redução, e é o único mecanismo de cálculo do cálculo lambda
+-- inteiro.
+
+-- Em Lean essa redução é o que o `#eval` executa e o que o `rfl` verifica:
+
+example : (fun (x : Nat) => x + 42) 5 = 5 + 42 := rfl
+
+-- ### Captura de variável
+
+-- Substituir ingenuamente dá errado, e o exemplo clássico merece atenção
+-- porque o erro é silencioso. Considere aplicar `λyλx ↦ x + y` ao argumento
+-- `x`.
+
+-- Trocando `y` por `x` sem cuidado, obtém-se `λx ↦ x + x` — a função que soma
+-- um número a si mesmo. Mas o resultado correto é a função que soma `x` a um
+-- número dado: o `x` que veio de fora foi **capturado** pelo `λx` que já
+-- estava lá. Que o resultado é outro se vê renomeando antes: `λyλz
+-- ↦ z + y`
+-- aplicado a `x` dá `λz ↦ z + x`, que é o certo.
+
+-- A saída é renomear a variável ligada quando houver risco de captura. Lean
+-- faz isso sozinho — internamente as variáveis ligadas não têm nome, e o
+-- problema não existe:
+
+example (x : Nat) :
+    (fun y => fun z => z + y) x = (fun z => z + x) := rfl
+
+-- ### Funções são dados
+
+-- Abstração e aplicação, como definidas, não distinguem dados de funções. Se
+-- tudo é expressão, então uma função pode receber função, devolver função, e
+-- ser aplicada a si mesma. Não há duas categorias de coisas.
+
+-- É isso que permite escrever uma função que aplica outra a um argumento
+-- fixo:
+
+def applyToDragon (f : String → String) : String :=
+  f "dragon"
+
+def pluralize (w : String) : String := w ++ "s"
+
+#eval applyToDragon pluralize
+
+-- "dragons"
+
+-- ### Exercise (1 star): twice ⭐
+
+-- Outro exemplo de função de ordem superior é `λf λx ↦ f (f x)`, que aplica
+-- uma função duas vezes a uma entrada dada. Ponha-a para trabalhar reduzindo:
+-- `(λf λx ↦ f (f x)) (λy ↦ 1 + y)`.
+
+def twice {α : Type} (f : α → α) : α → α :=
+  sorry
+
+theorem twice_test1 :
+    twice (fun y => 1 + y) = fun x => 2 + x := sorry
+
+theorem twice_test2 : twice (fun y => 1 + y) 0 = 2 :=
+  sorry
+
+-- Um aspecto do cálculo lambda é que reduções podem não terminar. Observe o
+-- comportamento de redução de `(λx ↦ x x) (λx ↦ x x)`, e depois de
+-- `(λx
+-- ↦ x x x) (λx ↦ x x x)`.
+
+-- Este exercício não se enuncia em Lean, e a razão é o assunto da questão:
+
+-- **1. Um passo de redução.** Substituindo `x` por `(λx ↦ x x)` no corpo
+-- `x x`, obtém-se `(λx ↦ x x) (λx ↦ x x)` — o mesmo termo de partida. A
+-- redução é portanto um laço: qualquer número de passos devolve o termo
+-- original, e a normalização nunca termina. Este termo é o combinador
+-- tradicionalmente chamado `Ω`. Já `(λx ↦ x x x) (λx ↦ x x x)` reduz a
+-- `(λx ↦ x x x) (λx ↦ x x x) (λx ↦ x x x)`: além de não terminar, cada passo
+-- produz um termo *maior* que o anterior, então nem mesmo o tamanho fica
+-- estável.
+
+-- **2. A mensagem do Lean.** Descomentando
+-- `def omega := (fun x => x x)
+-- (fun x => x x)` abaixo, o Lean acusa dois
+-- erros: a auto-aplicação `x x` exige que `x` seja função de algum tipo
+-- `?m → ?n`, mas o argumento é o próprio `x`, que teria então de ter
+-- simultaneamente o tipo `?m`. O elaborador precisa resolver `?m = ?m → ?n`,
+-- e não existe tipo que satisfaça isso (falha o *occurs check*: `?m`
+-- ocorreria dentro de si mesmo). Como não há atribuição de tipos possível, o
+-- termo não pode nem ser *escrito* em Lean.
+
+-- **3. Relação entre não terminar e não ter tipo.** O cálculo lambda *tipado*
+-- (simplesmente tipado, e também o de Lean) é fortemente normalizante: todo
+-- termo bem tipado tem forma normal, e a redução sempre termina. A
+-- contrapositiva é o que se observa aqui: um termo cuja redução não termina
+-- não pode ser bem tipado. Os dois fenômenos têm a mesma raiz — a
+-- auto-aplicação `x x` — e o sistema de tipos funciona como um filtro que
+-- rejeita exatamente esses termos. É por isso que Lean pode ser ao mesmo
+-- tempo uma linguagem de programação e uma lógica consistente: a terminação é
+-- garantida pelos tipos, não pela boa vontade do programador. (O preço é que
+-- Lean também rejeita programas que terminam, mas cuja terminação ele não
+-- sabe verificar; daí a necessidade de provar terminação em definições
+-- recursivas.)
+
+-- -- def omega := (fun x => x x) (fun x => x x)
+
+-- ## Tipos na gramática e na computação
+
+-- No cálculo lambda como está, toda expressão se aplica a toda expressão.
+-- Nada impede escrever o número `4` aplicado a uma função, e o resultado não
+-- é falso — é sem sentido. Tipos existem para excluir isso.
+
+-- A gramática dos tipos também é uma BNF, com duas cláusulas:
+
+-- τ ::= _b | "(" τ "→" τ ")" ;
+
+-- Há tipos básicos, e há tipos de função construídos a partir deles. Na
+-- semântica, os dois básicos costumam ser `e`, das entidades, e `t`, dos
+-- valores de verdade — a notação de Montague, que o capítulo sobre o
+-- fragmento de inglês retoma. Em Lean, `t` é `Prop`.
+
+-- E a atribuição de tipos a expressões se dá por três regras:
+
+-- - **variáveis** — para cada tipo há variáveis daquele tipo;
+-- - **abstração** — se `x : δ` e `E : τ`, então `(λx ↦ E) : δ → τ`;
+-- - **aplicação** — se `E₁ : δ → τ` e `E₂ : δ`, então `(E₁ E₂) : τ`.
+
+-- Não há mais nada. O `#check` do Lean é essas três regras rodando:
+
+-- `restful` é uma propriedade de dias: aplicada a um, dá uma afirmação.
+-- `opaque` declara o nome com o tipo e sem corpo — aqui o assunto são os
+-- tipos, e qualquer definição serviria.
+
+opaque restful : Day → Prop
+
+section
+variable (d : Day)
+
+-- regra da aplicação: `restful : Day → Prop` e `d : Day`, logo
+-- `restful
+-- d : Prop`
+
+#check restful d
+
+-- restful d : Prop
+
+-- regra da abstração: `y : Day` e `restful y : Prop`, logo o lambda é
+-- `Day → Prop`
+
+#check fun (y : Day) => restful y
+
+-- fun y => restful y : Day → Prop
+
+end
+
+-- ### Lean como cálculo lambda
+
+-- O que se descreveu acima é o cálculo lambda com tipos simples, e Lean o
+-- contém. Abstração, aplicação, β-redução, tipos de função: tudo o que foi
+-- dito vale literalmente, e os `#check` acima são as regras de tipagem sendo
+-- aplicadas.
+
+-- Lean vai além disso em pontos que o curso vai usar:
+
+-- - **tipos indutivos** — os deste capítulo, que aqui se revelam ser
+--   gramáticas: uma BNF é um tipo, com casamento de padrão e recursão
+--   garantidamente terminante;
+
+-- - **tipos dependentes** — um tipo pode depender de um valor, o que permite
+--   exigir na assinatura condições que aqui teriam de ser verificadas à parte;
+
+-- - **proposições como tipos** — `Prop` não é um tipo básico opaco: uma prova
+--   de `P` é um termo de tipo `P`, e é por isso que o mesmo verificador serve
+--   para checar programas e demonstrações;
+
+-- - **universos** — `Type`, `Type 1`, e assim por diante, o que evita os
+--   paradoxos que apareceriam se houvesse um tipo de todos os tipos.
+
+-- Para o que vem pela frente, a leitura útil é essa: o aparato da semântica
+-- de Montague é um fragmento do que Lean oferece, e o excedente é o que vai
+-- permitir demonstrar coisas sobre os significados, e não apenas calculá-los.
+
+-- E o termo `(λx ↦ x x) (λx ↦ x x)` do exercício anterior? Você consegue
+-- achar um tipo para ele?
+
+-- **Não.** Nenhuma atribuição de tipos funciona, e a maneira de mostrar isso
+-- é tentar construí-la e ver onde ela quebra.
+
+-- Suponha que `λx ↦ x x` tenha tipo. Chame de `σ` o tipo de `x`. No corpo
+-- `x x`, o `x` da esquerda está em posição de função aplicada a um argumento,
+-- logo `σ` tem de ser um tipo de função: `σ = σ₁ → τ` para algum `σ₁` e `τ`.
+-- O `x` da direita é o argumento dessa aplicação, então seu tipo tem de ser o
+-- domínio: `σ = σ₁`. Combinando as duas exigências, `σ = σ → τ`. Não há tipo
+-- simples que satisfaça essa equação: qualquer solução teria de ser um tipo
+-- estritamente maior que si mesmo (a árvore de `σ → τ` contém a de `σ` como
+-- subárvore própria), e não existe tipo finito assim. É precisamente o
+-- *occurs check* que o unificador do Lean reporta ao dizer que `x` tem tipo
+-- `?m → ?n` mas se espera `?m`.
+
+-- Portanto `λx ↦ x x` já é intipável, e a fortiori a aplicação dele a si
+-- mesmo também. Vale notar que a impossibilidade não é um defeito do Lean:
+-- ela é consequência de o sistema ser fortemente normalizante. Sistemas que
+-- admitem tipos recursivos (`σ ≅ σ → τ`, via `μ`-tipos) conseguem tipar esse
+-- termo, mas ao preço de perder a garantia de terminação — e, se usados como
+-- lógica, a consistência.
+
+-- ## Tipos como disciplina
+
+-- O tipo de uma função diz o que ela aceita e o que devolve, e Lean recusa a
+-- aplicação que não respeite isso — ao escrever, antes de rodar.
+
+-- Essa recusa é o instrumento central do texto. As árvores sintáticas das
+-- gramáticas que vêm a seguir serão tipos, e os significados também; daí em
+-- diante, "esta combinação de palavras não é bem formada" e "este programa
+-- não tipa" passam a ser a mesma frase.
 
 end IntroL
 

@@ -1,3 +1,5 @@
+import CSwL.Sets
+
 -- # Um fragmento de inglês
 
 namespace English
@@ -83,6 +85,155 @@ def makeS (s : Subject) (p : Predicate) : Sentence := .S s p
   makeS .Chomsky (makeP "Syntactic Structures")
 
 -- Chomsky wrote "Syntactic Structures"
+
+-- ### Por que isso serve à semântica
+
+-- Um verbo transitivo é uma função de dois lugares. *Likes* se escreve
+-- `λxλy ↦ y likes x`, onde `likes` é a função característica da relação de
+-- gostar — a mesma `Sets.likesR` de Conjuntos e Relações, só que agora vista
+-- como instrução curried em vez de par de argumentos.
+
+-- Aqui a aplicação parcial deixa de ser conveniência de programação e passa a
+-- ter conteúdo linguístico. `add 3` era uma função à espera do segundo
+-- número; do mesmo modo, o verbo aplicado ao seu objeto é uma expressão à
+-- espera do sujeito — que é precisamente o que se chama de sintagma verbal. A
+-- currificação não modela o VP por acaso: ela é o VP.
+
+-- Repare no que a notação **não** diz. Ela não diz o que *likes* significa no
+-- mundo. Diz apenas com que outras expressões o verbo se combina e que papel
+-- desempenha na expressão maior — e é justamente por dizer só isso que o
+-- cálculo lambda serve à semântica composicional. A derivação do significado
+-- pode então acompanhar, passo a passo, a estrutura sintática da sentença.
+
+-- Tipos, em programação e no cálculo lambda, se comportam como **categorias
+-- sintáticas** em gramática — e essa observação amarra as duas metades do
+-- argumento acima.
+
+-- Categorias como NP correspondem a tipos básicos: expressões completas, que
+-- carregam significado por si. Categorias como VP correspondem a tipos de
+-- função: expressões incompletas, cujo significado consiste na contribuição
+-- que dão à expressão em que aparecem.
+
+-- Sob essa leitura, uma regra de reescrita como `S → NP VP` diz uma coisa
+-- sobre tipos: se `a : NP` e `b : VP`, então a concatenação de `a` e `b` é um
+-- `S`. E se o VP é o que combina com um NP para dar um S, então o próprio VP
+-- tem tipo `e → t` — a categoria deixa de ser um rótulo e passa a ser uma
+-- função.
+
+-- Essa é a ideia da **gramática categorial**, que vem de Ajdukiewicz. Um
+-- verbo transitivo, que combina com dois NPs, tem tipo `e → (e → t)` — e é
+-- justamente o tipo de `Sets.likesR`, `Entity → Entity → Prop`, lido com
+-- `e := Entity` e `t := Prop`. A relação binária da seção anterior já era,
+-- sem que se precisasse dizer, um verbo transitivo em potencial: **o verbo
+-- transitivo denota uma relação binária, e o tipo de `Sets.likesR` já dizia
+-- isso.**
+
+-- A regra de combinação é uma só: uma expressão de categoria `A` combina com
+-- uma de categoria `A → B` e produz uma de categoria `B` — isto é, aplicação.
+-- Em Lean isso se escreve diretamente, e o verificador de tipos passa a
+-- validar a derivação:
+
+abbrev e := Sets.Entity
+abbrev t := Prop
+
+def dorothy : e := .dorothy
+def toto : e := .toto
+
+-- O verbo, como função de dois lugares: recebe o objeto, depois o sujeito.
+
+opaque likes : e → e → t
+
+-- O VP: o verbo já recebeu o objeto e espera o sujeito.
+
+def likesToto : e → t := likes toto
+
+-- E a sentença, com o sujeito no lugar.
+
+def dorothyLikesToto : t := likesToto dorothy
+
+#check dorothyLikesToto
+
+-- English.dorothyLikesToto : t
+
+-- A derivação da sentença é uma sequência de duas aplicações, e cada passo é
+-- conferido pelos tipos. Uma combinação mal formada não chega a ser um termo.
+
+-- Atribua tipos às expressões lambda da derivação a seguir:
+
+-- S  = Dorothy likes Toto
+-- NP = Dorothy
+-- VP = λy ↦ y likes Toto
+-- V  = λx λy ↦ y likes x
+-- NP = Toto
+
+-- Com os dois tipos básicos já em uso acima — `e := Entity` e `t := Prop`, as
+-- letras de Montague:
+
+-- - S — `Dorothy likes Toto` — tipo `t`
+-- - NP — `Dorothy` — tipo `e`
+-- - VP — `λy ↦ y likes Toto` — tipo `e → t`
+-- - V — `λx λy ↦ y likes x` — tipo `e → (e → t)`
+-- - NP — `Toto` — tipo `e`
+
+-- A operação que leva do tipo de `V` ao tipo de `VP` é a **aplicação de
+-- função**: aplicar `likes : e → (e → t)` ao objeto `toto : e` satura o
+-- primeiro argumento e devolve `e → t`, que é o tipo de `VP` — é exatamente
+-- `likesToto` acima. O mesmo passo, aplicado outra vez com o sujeito
+-- `dorothy : e`, leva até `t` — é `dorothyLikesToto`. Em suma, a árvore
+-- sintática é lida como uma cadeia de aplicações, e cada combinação de nós
+-- consome um argumento; a frase completa é o ponto em que não falta mais
+-- nada, e é por isso que seu tipo é `t` e não uma função.
+
+-- Observação sobre convenção: como o léxico escreve `V = λx λy ↦ y likes
+-- x`,
+-- o *objeto* é o primeiro argumento e o *sujeito* o segundo — é o que
+-- `likesToto := likes toto` e `dorothyLikesToto := likesToto dorothy` acima
+-- já fazem, na ordem certa.
+
+-- ### Exercise (1 star): adjective-types ⭐
+
+-- Adjetivos combinam com nomes para formar nomes complexos: *friendly*
+-- combina com *wizard* para formar *friendly wizard*. Adjetivos são,
+-- portanto, de tipo `N → N`.
+
+-- Ache um tipo para o advérbio *very*, tal que se possa construir *very
+-- friendly wizard* e *very very friendly wizard*. (Assuma que as expressões
+-- se estruturam como `(very friendly) wizard` e
+-- `(very (very
+-- friendly)) wizard`.)
+
+-- `very : Adj → Adj`: um advérbio de grau não modifica um nome, modifica um
+-- *adjetivo*, e devolve outro adjetivo. É exatamente isso que permite as duas
+-- construções pedidas — como o resultado de `very` é de novo um `Adj`, ele
+-- serve como argumento de si mesmo.
+
+abbrev N := String
+abbrev Adj := N → N
+
+def wizard : N := "wizard"
+def friendly : Adj := fun n => "friendly " ++ n
+
+def very : Adj → Adj :=
+  sorry
+
+theorem very_test1 :
+    very friendly wizard = "very friendly wizard" :=
+  sorry
+theorem very_test2 :
+    very (very friendly) wizard =
+      "very very friendly wizard" :=
+  sorry
+
+-- O ponto teórico é que o tipo de `very` é *endomórfico* na categoria dos
+-- adjetivos (entra `Adj`, sai `Adj`), e por isso a iteração é ilimitada com
+-- um único tipo, sem precisar de um tipo novo para cada nível de encaixe. As
+-- duas verificações por `rfl` acima compilam — o que faz do próprio
+-- verificador de tipos a confirmação da resposta.
+
+-- Para ver a recusa acontecer, tente dar ao verbo um objeto que não é uma
+-- entidade: `#check likes "Toto"` não compila, e o erro aponta o argumento —
+-- uma `String` onde se esperava um `e`. É a versão tipada de dizer que a
+-- combinação não é bem formada.
 
 -- ## Um fragmento do inglês
 
@@ -584,44 +735,6 @@ end WithCoord
 -- acrescentar mais uma regra para RCNs de três coordenadas, depois quatro, e
 -- assim por diante — o fragmento não captura a generalização "coordenação de
 -- qualquer número de VPs paralelas".
-
--- ## Uma língua para falar de classes
-
--- O livro não dá código Haskell nesta seção — adia a implementação para o
--- motor de inferência do capítulo 5. A gramática é um fragmento minúsculo
--- para perguntar e afirmar coisas sobre classes:
-
--- Q ::= Are all PN PN?
---     | Are no PN PN?
---     | Are any PN PN?
---     | Are any PN not PN?
---     | What about PN?
-
--- S ::= All PN are PN.
---     | No PN are PN.
---     | Some PN are PN.
---     | Some PN are not PN.
-
--- onde `PN` (plural noun) fica deliberadamente sem gramática própria. A
--- tradução para Lean é barata e o capítulo 5 a reaproveita — uma base de
--- conhecimento consultável por essas perguntas e afirmações.
-
-abbrev PN := String
-
-inductive Statement where
-  | allAre (a b : PN)
-  | noneAre (a b : PN)
-  | someAre (a b : PN)
-  | someAreNot (a b : PN)
-  deriving DecidableEq, Repr
-
-inductive Query where
-  | areAllPNPN (a b : PN)
-  | areNoPNPN (a b : PN)
-  | areAnyPNPN (a b : PN)
-  | areAnyPNNotPN (a b : PN)
-  | whatAbout (a : PN)
-  deriving DecidableEq, Repr
 
 end English
 
