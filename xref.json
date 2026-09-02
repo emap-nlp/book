@@ -707,6 +707,24 @@
         "shortTitle": null,
         "number": "4"}]},
      "address": "/IntroCS/"}],
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Traduzindo--Form--para--Prop":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Traduzindo--Form--para--Prop",
+     "data":
+     {"title": "Traduzindo  Form  para  Prop",
+      "shortTitle": null,
+      "sectionNum": "5.1.5.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
+       {"title": "Traduzindo  Form  para  Prop",
+        "shortTitle": null,
+        "number": "5"}]},
+     "address": "/Logic/"}],
    "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Sintaxe":
    [{"id":
      "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Sintaxe",
@@ -772,24 +790,6 @@
        {"title": "Lógica", "shortTitle": null, "number": "5"},
        {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
        {"title": "Introdução", "shortTitle": null, "number": "1"}]},
-     "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--A-ponte-entre-as-duas-leituras":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--A-ponte-entre-as-duas-leituras",
-     "data":
-     {"title": "A ponte entre as duas leituras",
-      "shortTitle": null,
-      "sectionNum": "5.1.5.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "5"},
-       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
-       {"title": "A ponte entre as duas leituras",
-        "shortTitle": null,
-        "number": "5"}]},
      "address": "/Logic/"}],
    "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--Sem___ntica-da-l___gica-de-predicados":
    [{"id":
@@ -2146,7 +2146,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica proposicional",
-        "A ponte entre as duas leituras"]}},
+        "Traduzindo  Form  para  Prop"]}},
      "address": "/Logic/"}],
    "PL.Form.eval":
    [{"id": "PL___Form___eval",
@@ -2212,7 +2212,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica proposicional",
-        "A ponte entre as duas leituras"]}},
+        "Traduzindo  Form  para  Prop"]}},
      "address": "/Logic/"}],
    "PL.Form.contradiction":
    [{"id": "PL___Form___contradiction",
