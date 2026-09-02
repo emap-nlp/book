@@ -72,6 +72,32 @@
   white-space: pre;
 }
 </style><style>
+table.tabular {
+  margin: auto;
+  border-spacing: 1rem;
+}
+table.tabular.left-align {
+  margin-right: auto;
+  margin-left: 0;
+}
+table.tabular.center-align {
+  margin: auto;
+}
+table.tabular.right-align {
+  margin-left auto;
+  margin-right: 0;
+}
+table.tabular td, table.tabular th {
+  text-align: left;
+  vertical-align: top;
+}
+table.tabular td > p:first-child, table.tabular th > p:first-child {
+  margin-top: 0;
+}
+table.tabular td > p:last-child, table.tabular th > p:first-child {
+  margin-bottom: 0;
+}
+</style><style>
 .exercise {
   margin: 1.2em 0;
   padding: 0.6em 1em;
@@ -1655,11 +1681,11 @@ Some CSS frameworks customize details/summary in ways not compatible with Verso'
         "shortTitle": null,
         "number": "4"}]},
      "address": "/IntroCS/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Sintaxe-e-proposi______o-s___o-coisas-diferentes":
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Sintaxe":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Sintaxe-e-proposi______o-s___o-coisas-diferentes",
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Sintaxe",
      "data":
-     {"title": "Sintaxe e proposição são coisas diferentes",
+     {"title": "Sintaxe",
       "shortTitle": null,
       "sectionNum": "5.1.3.",
       "searchPriority": 50,
@@ -1669,181 +1695,13 @@ Some CSS frameworks customize details/summary in ways not compatible with Verso'
         "number": null},
        {"title": "Lógica", "shortTitle": null, "number": "5"},
        {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
-       {"title": "Sintaxe e proposição são coisas diferentes",
-        "shortTitle": null,
-        "number": "3"}]},
-     "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Sintaxe":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Sintaxe",
-     "data":
-     {"title": "Sintaxe",
-      "shortTitle": null,
-      "sectionNum": "5.1.2.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "5"},
-       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
-       {"title": "Sintaxe", "shortTitle": null, "number": "2"}]},
+       {"title": "Sintaxe", "shortTitle": null, "number": "3"}]},
      "address": "/Logic/"}],
    "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Sem___ntica":
    [{"id":
      "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Sem___ntica",
      "data":
      {"title": "Semântica",
-      "shortTitle": null,
-      "sectionNum": "5.1.5.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "5"},
-       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
-       {"title": "Semântica", "shortTitle": null, "number": "5"}]},
-     "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--O-que-as-regras-acima-n___o-d___o":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--O-que-as-regras-acima-n___o-d___o",
-     "data":
-     {"title": "O que as regras acima não dão",
-      "shortTitle": null,
-      "sectionNum": "5.1.1.6.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "5"},
-       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
-       {"title": "Regras de dedução, e as táticas que são elas",
-        "shortTitle": null,
-        "number": "1"},
-       {"title": "O que as regras acima não dão",
-        "shortTitle": null,
-        "number": "6"}]},
-     "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Nega______o-e-o-absurdo":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Nega______o-e-o-absurdo",
-     "data":
-     {"title": "Negação e o absurdo",
-      "shortTitle": null,
-      "sectionNum": "5.1.1.4.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "5"},
-       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
-       {"title": "Regras de dedução, e as táticas que são elas",
-        "shortTitle": null,
-        "number": "1"},
-       {"title": "Negação e o absurdo", "shortTitle": null, "number": "4"}]},
-     "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Implica______o":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Implica______o",
-     "data":
-     {"title": "Implicação",
-      "shortTitle": null,
-      "sectionNum": "5.1.1.1.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "5"},
-       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
-       {"title": "Regras de dedução, e as táticas que são elas",
-        "shortTitle": null,
-        "number": "1"},
-       {"title": "Implicação", "shortTitle": null, "number": "1"}]},
-     "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Disjun______o":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Disjun______o",
-     "data":
-     {"title": "Disjunção",
-      "shortTitle": null,
-      "sectionNum": "5.1.1.3.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "5"},
-       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
-       {"title": "Regras de dedução, e as táticas que são elas",
-        "shortTitle": null,
-        "number": "1"},
-       {"title": "Disjunção", "shortTitle": null, "number": "3"}]},
-     "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Conjun______o":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Conjun______o",
-     "data":
-     {"title": "Conjunção",
-      "shortTitle": null,
-      "sectionNum": "5.1.1.2.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "5"},
-       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
-       {"title": "Regras de dedução, e as táticas que são elas",
-        "shortTitle": null,
-        "number": "1"},
-       {"title": "Conjunção", "shortTitle": null, "number": "2"}]},
-     "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Bi-implica______o":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas--Bi-implica______o",
-     "data":
-     {"title": "Bi-implicação",
-      "shortTitle": null,
-      "sectionNum": "5.1.1.5.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "5"},
-       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
-       {"title": "Regras de dedução, e as táticas que são elas",
-        "shortTitle": null,
-        "number": "1"},
-       {"title": "Bi-implicação", "shortTitle": null, "number": "5"}]},
-     "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Regras-de-dedu______o___-e-as-t___ticas-que-s___o-elas",
-     "data":
-     {"title": "Regras de dedução, e as táticas que são elas",
-      "shortTitle": null,
-      "sectionNum": "5.1.1.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "5"},
-       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
-       {"title": "Regras de dedução, e as táticas que são elas",
-        "shortTitle": null,
-        "number": "1"}]},
-     "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Indu______o-estrutural":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Indu______o-estrutural",
-     "data":
-     {"title": "Indução estrutural",
       "shortTitle": null,
       "sectionNum": "5.1.4.",
       "searchPriority": 50,
@@ -1853,7 +1711,41 @@ Some CSS frameworks customize details/summary in ways not compatible with Verso'
         "number": null},
        {"title": "Lógica", "shortTitle": null, "number": "5"},
        {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
-       {"title": "Indução estrutural", "shortTitle": null, "number": "4"}]},
+       {"title": "Semântica", "shortTitle": null, "number": "4"}]},
+     "address": "/Logic/"}],
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--L___gica-Proposicional-em-Lean":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--L___gica-Proposicional-em-Lean",
+     "data":
+     {"title": "Lógica Proposicional em Lean",
+      "shortTitle": null,
+      "sectionNum": "5.1.2.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
+       {"title": "Lógica Proposicional em Lean",
+        "shortTitle": null,
+        "number": "2"}]},
+     "address": "/Logic/"}],
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Introdu______o":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--Introdu______o",
+     "data":
+     {"title": "Introdução",
+      "shortTitle": null,
+      "sectionNum": "5.1.1.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
+       {"title": "Introdução", "shortTitle": null, "number": "1"}]},
      "address": "/Logic/"}],
    "Sem___ntica-computacional-com-Lean--L___gica--L___gica-proposicional--A-ponte-entre-as-duas-leituras":
    [{"id":
@@ -1861,7 +1753,7 @@ Some CSS frameworks customize details/summary in ways not compatible with Verso'
      "data":
      {"title": "A ponte entre as duas leituras",
       "shortTitle": null,
-      "sectionNum": "5.1.6.",
+      "sectionNum": "5.1.5.",
       "searchPriority": 50,
       "context":
       [{"title": "Semântica computacional com Lean",
@@ -1871,7 +1763,7 @@ Some CSS frameworks customize details/summary in ways not compatible with Verso'
        {"title": "Lógica proposicional", "shortTitle": null, "number": "1"},
        {"title": "A ponte entre as duas leituras",
         "shortTitle": null,
-        "number": "6"}]},
+        "number": "5"}]},
      "address": "/Logic/"}],
    "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--Sem___ntica-da-l___gica-de-predicados":
    [{"id":
@@ -2856,22 +2748,44 @@ Some CSS frameworks customize details/summary in ways not compatible with Verso'
         "Morfologia",
         "Aplicação: representando fonemas"]}},
      "address": "/Morphology/"}],
-   "PL.wizardOrLazy_means":
-   [{"id": "PL___wizardOrLazy_means",
+   "PL.vestidos":
+   [{"id": "PL___vestidos",
      "data":
-     {"/Logic/#PL___wizardOrLazy_means":
-      {"display": "wizardOrLazy_means",
+     {"/Logic/#PL___vestidos":
+      {"display": "vestidos",
        "context":
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica proposicional",
-        "A ponte entre as duas leituras"]}},
+        "Lógica Proposicional em Lean"]}},
      "address": "/Logic/"}],
    "PL.update":
    [{"id": "PL___update",
      "data":
      {"/Logic/#PL___update":
       {"display": "update",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Semântica"]}},
+     "address": "/Logic/"}],
+   "PL.unsat":
+   [{"id": "PL___unsat",
+     "data":
+     {"/Logic/#PL___unsat":
+      {"display": "unsat",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Semântica"]}},
+     "address": "/Logic/"}],
+   "PL.taut":
+   [{"id": "PL___taut",
+     "data":
+     {"/Logic/#PL___taut":
+      {"display": "taut",
        "context":
        ["Semântica computacional com Lean",
         "Lógica",
@@ -2888,17 +2802,6 @@ Some CSS frameworks customize details/summary in ways not compatible with Verso'
         "Lógica",
         "Lógica proposicional",
         "Semântica"]}},
-     "address": "/Logic/"}],
-   "PL.form2'":
-   [{"id": "PL___form2___",
-     "data":
-     {"/Logic/#PL___form2___":
-      {"display": "form2'",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica proposicional",
-        "Sintaxe"]}},
      "address": "/Logic/"}],
    "PL.form2":
    [{"id": "PL___form2",
@@ -2922,6 +2825,17 @@ Some CSS frameworks customize details/summary in ways not compatible with Verso'
         "Lógica proposicional",
         "Sintaxe"]}},
      "address": "/Logic/"}],
+   "PL.cannotExtractLeft":
+   [{"id": "PL___cannotExtractLeft",
+     "data":
+     {"/Logic/#PL___cannotExtractLeft":
+      {"display": "cannotExtractLeft",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Sintaxe"]}},
+     "address": "/Logic/"}],
    "PL.Valuation":
    [{"id": "PL___Valuation",
      "data":
@@ -2933,22 +2847,209 @@ Some CSS frameworks customize details/summary in ways not compatible with Verso'
         "Lógica proposicional",
         "Semântica"]}},
      "address": "/Logic/"}],
+   "PL.Premissas.hp1":
+   [{"id": "PL___Premissas___hp1",
+     "data":
+     {"/Logic/#PL___Premissas___hp1":
+      {"display": "hp1",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
+   "PL.Premissas.hp":
+   [{"id": "PL___Premissas___hp",
+     "data":
+     {"/Logic/#PL___Premissas___hp":
+      {"display": "hp",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
+   "PL.Premissas.hb1":
+   [{"id": "PL___Premissas___hb1",
+     "data":
+     {"/Logic/#PL___Premissas___hb1":
+      {"display": "hb1",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
+   "PL.Premissas.hb":
+   [{"id": "PL___Premissas___hb",
+     "data":
+     {"/Logic/#PL___Premissas___hb":
+      {"display": "hb",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
+   "PL.Premissas.ha1":
+   [{"id": "PL___Premissas___ha1",
+     "data":
+     {"/Logic/#PL___Premissas___ha1":
+      {"display": "ha1",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
+   "PL.Premissas.ha":
+   [{"id": "PL___Premissas___ha",
+     "data":
+     {"/Logic/#PL___Premissas___ha":
+      {"display": "ha",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
+   "PL.Premissas.hM1":
+   [{"id": "PL___Premissas___hM1",
+     "data":
+     {"/Logic/#PL___Premissas___hM1":
+      {"display": "hM1",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
+   "PL.Premissas.hM":
+   [{"id": "PL___Premissas___hM",
+     "data":
+     {"/Logic/#PL___Premissas___hM":
+      {"display": "hM",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
+   "PL.Premissas.hC1":
+   [{"id": "PL___Premissas___hC1",
+     "data":
+     {"/Logic/#PL___Premissas___hC1":
+      {"display": "hC1",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
+   "PL.Premissas.hC":
+   [{"id": "PL___Premissas___hC",
+     "data":
+     {"/Logic/#PL___Premissas___hC":
+      {"display": "hC",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
+   "PL.Premissas.hA1":
+   [{"id": "PL___Premissas___hA1",
+     "data":
+     {"/Logic/#PL___Premissas___hA1":
+      {"display": "hA1",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
+   "PL.Premissas.hA":
+   [{"id": "PL___Premissas___hA",
+     "data":
+     {"/Logic/#PL___Premissas___hA":
+      {"display": "hA",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
+   "PL.Premissas.h5":
+   [{"id": "PL___Premissas___h5",
+     "data":
+     {"/Logic/#PL___Premissas___h5":
+      {"display": "h5",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
+   "PL.Premissas.h4":
+   [{"id": "PL___Premissas___h4",
+     "data":
+     {"/Logic/#PL___Premissas___h4":
+      {"display": "h4",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
+   "PL.Premissas.h3":
+   [{"id": "PL___Premissas___h3",
+     "data":
+     {"/Logic/#PL___Premissas___h3":
+      {"display": "h3",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
+   "PL.Premissas.h2":
+   [{"id": "PL___Premissas___h2",
+     "data":
+     {"/Logic/#PL___Premissas___h2":
+      {"display": "h2",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
+   "PL.Premissas.h1":
+   [{"id": "PL___Premissas___h1",
+     "data":
+     {"/Logic/#PL___Premissas___h1":
+      {"display": "h1",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
+   "PL.Premissas":
+   [{"id": "PL___Premissas",
+     "data":
+     {"/Logic/#PL___Premissas":
+      {"display": "Premissas",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica proposicional",
+        "Lógica Proposicional em Lean"]}},
+     "address": "/Logic/"}],
    "PL.Form.top":
    [{"id": "PL___Form___top",
      "data":
      {"/Logic/#PL___Form___top":
       {"display": "top",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica proposicional",
-        "Sintaxe"]}},
-     "address": "/Logic/"}],
-   "PL.Form.toStringPolish":
-   [{"id": "PL___Form___toStringPolish",
-     "data":
-     {"/Logic/#PL___Form___toStringPolish":
-      {"display": "Form.toStringPolish",
        "context":
        ["Semântica computacional com Lean",
         "Lógica",
@@ -2977,17 +3078,6 @@ Some CSS frameworks customize details/summary in ways not compatible with Verso'
         "Lógica proposicional",
         "Semântica"]}},
      "address": "/Logic/"}],
-   "PL.Form.rightParens":
-   [{"id": "PL___Form___rightParens",
-     "data":
-     {"/Logic/#PL___Form___rightParens":
-      {"display": "Form.rightParens",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica proposicional",
-        "Indução estrutural"]}},
-     "address": "/Logic/"}],
    "PL.Form.neg":
    [{"id": "PL___Form___neg",
      "data":
@@ -2998,28 +3088,6 @@ Some CSS frameworks customize details/summary in ways not compatible with Verso'
         "Lógica",
         "Lógica proposicional",
         "Sintaxe"]}},
-     "address": "/Logic/"}],
-   "PL.Form.leftParens_eq_rightParens":
-   [{"id": "PL___Form___leftParens_eq_rightParens",
-     "data":
-     {"/Logic/#PL___Form___leftParens_eq_rightParens":
-      {"display": "Form.leftParens_eq_rightParens",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica proposicional",
-        "Indução estrutural"]}},
-     "address": "/Logic/"}],
-   "PL.Form.leftParens":
-   [{"id": "PL___Form___leftParens",
-     "data":
-     {"/Logic/#PL___Form___leftParens":
-      {"display": "Form.leftParens",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica proposicional",
-        "Indução estrutural"]}},
      "address": "/Logic/"}],
    "PL.Form.implies":
    [{"id": "PL___Form___implies",
