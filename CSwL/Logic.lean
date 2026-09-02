@@ -746,7 +746,12 @@ end ValuationTableEx
 def Form.impliesL (ps : List Form) (c : Form) : Bool :=
   sorry
 
--- ### A ponte entre as duas leituras
+-- ### Exercise (1 star): bangu-proof ⭐
+
+-- Como podemos identificar os torcedores do Bangu e os não torcedores,
+-- supondo que todos os depoimentos são verdadeiros.
+
+-- ### Traduzindo `Form` para `Prop`
 
 -- O capítulo começou distinguindo raciocinar em lógica proposicional de
 -- raciocinar sobre fórmulas dela. Temos que `p ∧ q` é uma proposição, do tipo
@@ -783,15 +788,6 @@ theorem Form.eval_iff_denote (f : Form) (v : Valuation) :
       simp [Form.eval, Form.denote, ihg, ihh]
   | disj g h ihg ihh =>
       simp [Form.eval, Form.denote, ihg, ihh]
-
--- ### Exercise (1 star): bangu-proof ⭐
-
--- Identificar os torcedores do Bangu e os não torcedores, supondo que todos
--- os depoimentos são verdadeiros.
-
-#eval Form.impliesL [depo1, depo2, depo3] A
-#eval Form.impliesL [depo1, depo2, depo3] J
-#eval Form.impliesL [depo1, depo2, depo3] C
 
 end PL
 
