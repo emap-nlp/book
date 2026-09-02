@@ -348,8 +348,7 @@ variable (
   : Prop)
 
 def exchange : Prop :=
-  sorry → (q ∨ r)
-
+  sorry
 end
 
 -- ### Exercise (2 stars): dresses ⭐⭐
@@ -531,7 +530,7 @@ def form2 : Form :=
 def Form.opsNr : Form → Nat :=
   sorry
 
-theorem opsNr_test : form1.opsNr = 2 := by decide
+theorem opsNr_test : form1.opsNr = 2 := sorry
 
 -- ### Exercise (1 star): formula-depth ⭐
 
