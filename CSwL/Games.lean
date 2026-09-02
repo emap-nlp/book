@@ -16,12 +16,13 @@ import Mathlib.Data.List.Chain
 -- jogo pode ser jogado com uma comunicação bastante limitada entre os
 -- jogadores.
 
--- Cada jogador tem dois tabuleiros, `10×10` (colunas `A..J`, linhas `0..9`).
--- Um tabuleiro representa a disposição dos navios do jogador e onde ele irá
--- registrar os 'tiros' do seu oponente, o outro representa a tabuleiro do seu
--- oponente, onde ele marca os 'tiros' que realizou, que podem acertar ou
--- erras parte dos navios do oponente. O objetivo de cada jogador é revelar o
--- tabuleiro do oponente, afundando todos os navios a frota adversária.
+-- Cada jogador tem dois tabuleiros, `10 × 10`. Usualmente, as colunas são
+-- identificadas por `A..J` e as linhas `0..9`. Um tabuleiro representa a
+-- disposição dos navios do jogador e onde ele irá registrar os 'tiros' do seu
+-- oponente, o outro representa a tabuleiro do seu oponente, onde ele marca os
+-- 'tiros' que realizou, que podem acertar ou erras parte dos navios do
+-- oponente. O objetivo de cada jogador é revelar o tabuleiro do oponente,
+-- afundando todos os navios a frota adversária.
 
 -- Modelar o jogo como uma linguagem `L` significa determinarmos quais são as
 -- sentenças válidas de nossa linguagem. Como o jogo é jogado em turnos, cada
