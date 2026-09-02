@@ -1,1 +1,0 @@
-window.docContents[227].resolve({"/Games/#SeaBattle":{"contents":"\n\n\n\n\n\n","context":"Semântica computacional com Lean\u0009Gramáticas para jogos","header":"4.1. Batalha Naval","id":"/Games/#SeaBattle"}});
