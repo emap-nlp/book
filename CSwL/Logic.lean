@@ -14,27 +14,28 @@ namespace PL
 
 -- ### Introdução
 
--- A lógica proposicional (ou cálculo sentencial) trata de fórmulas
+-- A lógica proposicional (LP, ou cálculo sentencial) trata de fórmulas
 -- construídas a partir de variáveis proposicionais usando os conectivos `¬`,
 -- `∧`, `∨`, `→` e `↔`. Intuitivamente, uma variável proposicional `p`
 -- representa uma sentença ou proposição que pode ser verdadeira ou falsa.
--- Queremos usar lógica proposicional para fugir das impressões das linguas
+-- Queremos usar lógica proposicional para fugir das impressões das línguas
 -- naturais. Formalizar proposições e provas quando podemos concluir uma
 -- proposição a partir de outras proposições tomadas como premissas.
 
--- Como primeiro exemplo, a sentença "traços de potássio foram observados"
--- pode ser traduzida para a linguagem formal como o símbolo `K`. Já para a
--- sentença fortemente relacionada "traços de potássio não foram observados",
--- podemos usar `¬ K`. Aqui `¬` é o nosso símbolo de negação, lido como "não".
--- Poderíamos também pensar em traduzir "traços de potássio não foram
--- observados" por algum símbolo novo `J`, mas preferimos decompor sentenças
--- em suas partes atômicas tanto quanto possível. Para uma sentença não
--- relacionada, "a amostra continha cloro" escolhemo o símbolo `C`. Assim, as
--- seguintes sentenças compostas podem ser formalizadas.
+-- Como primeiro exemplo, adaptado de Enderton (2001), a sentença "traços de
+-- potássio foram observados" pode ser traduzida para a linguagem formal como
+-- o símbolo `K`. Já para a sentença fortemente relacionada "traços de
+-- potássio não foram observados", podemos usar `¬ K`. Aqui `¬` é o nosso
+-- símbolo de negação, lido como "não". Poderíamos também pensar em traduzir
+-- "traços de potássio não foram observados" por algum símbolo novo `J`, mas
+-- preferimos decompor sentenças em suas partes atômicas tanto quanto
+-- possível. Para uma sentença não relacionada, "a amostra continha cloro"
+-- escolhemos o símbolo `C`. Assim, as seguintes sentenças compostas podem ser
+-- formalizadas.
 
 -- - A sentença "Se traços de potássio foram observados, então a amostra não
 --   continha cloro." é formalizada como `(K → (¬C))` com símbolo `→`
---   significando "if ... then ...".
+--   significando "se ... então ...".
 
 -- - A sentença "A amostra continha cloro, e traços de potássio foram
 --   observados." é formalizada como `(C ∧ K)` com símbolo `∧` significando a
@@ -68,20 +69,20 @@ namespace PL
 -- - F
 -- - T
 -- - F
--- - T
--- - T
--- - F
--- - F
 -- - F
 -- - T
 -- - F
+-- - F
+-- - F
+-- - T
+-- - T
 -- - F
 -- - F
 
 -- _Quiz:_
 
 -- Três irmãs - Ana, Maria e Cláudia — foram a uma festa com vestidos de cores
--- diferentes. Uma vestiu azul, a outra pranco, e a terceira, preto.
+-- diferentes. Uma vestiu azul, a outra branco, e a terceira, preto.
 
 -- Chegando à festa, o anfitrião perguntou quem era cada uma delas.
 
@@ -89,13 +90,13 @@ namespace PL
 -- - A de branco disse: "Eu sou Maria";
 -- - A de preto respondeu: "Cláudia é quem está de branco".
 
--- O anfitrião foi capaz cada irmã considerando que:
+-- O anfitrião foi capaz de identificar cada irmã considerando que:
 
 -- - Ana sempre diz a verdade;
 -- - Maria às vezes diz a verdade;
 -- - Cláudia nunca diz a verdade.
 
--- Podemos formalizar o problema anterior em LP. Uma das motivação é tornar a
+-- Podemos formalizar o problema anterior em LP. Uma das motivações é tornar a
 -- argumentação precisa e convincente e, se possível, mecânica.
 
 -- Para isso, primeiro precisamos identificar as proposições mais elementares
@@ -105,18 +106,18 @@ namespace PL
 -- formalizar a resposta em uma fórmula em LP, vamos chamar de `α`.
 
 -- Finalmente, precisamos de um método para definir se a fórmula `α` é
--- **consequência** das premissas `Γ`. Um dos métodos possíveis é semântico.
--- Quando para toda possível escolha de valores verdade para os símbolos
--- proposicionais, sempre que todas as premissas forem **verdade** a conclusão
--- deve ser **verdade**. Usamos a notação `Γ ⊧ α` para indicar que `α` é
--- consequência das premissas.
+-- **consequência lógica** das premissas `Γ`. Um dos métodos possíveis é
+-- semântico. Quando para toda possível escolha de valores verdade para os
+-- símbolos proposicionais, sempre que todas as premissas forem **verdade** a
+-- conclusão deve ser **verdade**. Usamos a notação `Γ ⊧ α` para indicar que
+-- `α` é consequência lógica das premissas.
 
 -- No problema dos vestidos, o número de personagens e atributos é finito,
 -- portanto há apenas um número finito de possíveis proposições. Os números
 -- também são pequenos o suficiente para que análise sistemática de todas as
--- combinações de valores verdade seja possível. Para demonstrar que todo
--- número par maior que dois pode ser escrito como uma soma de números primos
--- esta estratégia não seria válida.
+-- combinações de valores verdade seja viável na prática. Para demonstrar que
+-- todo número par maior que dois pode ser escrito como uma soma de dois
+-- números primos esta estratégia não seria válida.
 
 -- ### Lógica Proposicional em Lean
 
@@ -130,7 +131,7 @@ namespace PL
 -- um conjunto de hipóteses.
 
 -- Continuando a partir do quiz anterior. Para começar, vamos introduzir
--- variábeis do tipo `Prop`, cada uma delas representado uma proposição. São 3
+-- variáveis do tipo `Prop`, cada uma delas representado uma proposição. São 3
 -- pessoas e 3 cores. Vamos representar "Ana veste azul" por `Aa` e assim por
 -- diante.
 
@@ -149,7 +150,7 @@ variable (
 -- diretamente a partir da construção linguística original, uma oração
 -- coordenando seus constituintes no predicado. Intuitivamente, a sentença foi
 -- antes interpretada como três orações coordenadas (proposições completas),
--- "Ana veste azul ou Ana vestre branco ou Ana veste preto".
+-- "Ana veste azul ou Ana veste branco ou Ana veste preto".
 
 -- A formalização completa do problema deve levar em consideração não apenas o
 -- que foi dito explicitamente mas algumas condições implicitamente assumidas.
@@ -198,7 +199,7 @@ theorem vestidos (h : Premissas Aa Ab Ap Ma Mb Mp Ca Cb Cp)
 -- o formato de uma implicação, que pode ser lido como `Γ ⊢ α` Do conjunto `Γ`
 -- de premissas em `Premissas` posso **derivar** `Ap ∧ Cb ∧ Ma`. A leitura é
 -- sintática. Podemos construir a prova de `α` a partir da aplicação de regras
--- de dedução a partir das fómulas de `Γ`.
+-- de dedução a partir das fórmulas de `Γ`.
 
 -- Chamamos "sistema dedutivo" um conjunto das regras de dedução. Existem
 -- vários sistemas dedutivos. A formalização de Prop em Lean corresponde a
@@ -353,7 +354,7 @@ end
 
 -- ### Exercise (2 stars): dresses ⭐⭐
 
--- Complete a prova do teorema que resposta do quiz anterior.
+-- Complete a prova do teorema que responde o quiz anterior.
 
 theorem vestidos₁ (h : Premissas Aa Ab Ap Ma Mb Mp Ca Cb Cp)
   : Ap ∧ Cb ∧ Ma := by
@@ -450,7 +451,7 @@ inductive Form where
 -- Vale observar que a biblioteca `cslib` define o tipo
 -- `Cslib.Logic.PL.Proposition` que poderia ser usado nesta seção, mas isto
 -- introduziria uma complexidade desnecessária. Acima escolhemos não declarar
--- os símbolos `→` e `↔` como construtores do tipo, eles serão funçòes que
+-- os símbolos `→` e `↔` como construtores do tipo, eles serão funções que
 -- criam `Form` a partir de `Form`.
 
 def Form.impl (f g : Form) : Form := .disj (.neg f) g
@@ -596,10 +597,9 @@ def Form.eval (f : Form) (v : Valuation) : Bool :=
 -- `⊨ α`. As fórmulas que são sempre falsas para toda valoração são chamadas
 -- de **contradições** (ou insatisfatíveis) e podemos concluir que se `α` é
 -- uma contradição, então `⊨ ¬ α` (sua negação é válida). Uma fórmula é
--- **satisfatível** se há ao menos uma valoração que a torna verdadeira,
--- escrevemos `⊭ α` se existe pelo menos uma valoração que torna `α` falsa.
--- Uma fórmula é **contingente** se é satisfatível mas não é uma tautologia.
--- Toda tautologia é satisfatível, mas nem toda fórmula satisfatível é uma
+-- **satisfatível** se há ao menos uma valoração que a torna verdadeira. Uma
+-- fórmula é **contingente** se é satisfatível mas não é uma tautologia. Toda
+-- tautologia é satisfatível, mas nem toda fórmula satisfatível é uma
 -- tautologia.
 
 def taut  : Form :=  (.disj (.atom "p") (.neg (.atom "p")))
@@ -749,7 +749,7 @@ def Form.impliesL (ps : List Form) (c : Form) : Bool :=
 -- ### Exercise (1 star): bangu-proof ⭐
 
 -- Como podemos identificar os torcedores do Bangu e os não torcedores,
--- supondo que todos os depoimentos são verdadeiros.
+-- supondo que todos os depoimentos são verdadeiros?
 
 -- ### Traduzindo `Form` para `Prop`
 
@@ -795,31 +795,26 @@ end PL
 
 namespace FOL
 
--- Frases como "Todo príncipe viu uma dama" não se relacionam em lógica
+-- Frases como "Todo príncipe viu uma dama" não podem ser expressas em lógica
 -- proposicional — ficariam como átomos `p`/`q` totalmente desconectados, sem
--- capturar que a mesma noção de "príncipe" e "viu" está em jogo nas duas.
--- Lógica de predicados acrescenta três ingredientes à proposicional:
+-- capturar que a mesma entidade que é "príncipe" foi a que realizou o ato de
+-- ver. Lógica de predicados acrescenta três ingredientes:
 
--- - uma proposição básica estruturada, um predicado `n`-ário seguido de `n`
---   variáveis;
+-- - proposições básicas, predicados `n`-ário seguidos de `n` variáveis;
+-- - fórmulas universalmente quantificadas, `∀` seguido de variável e fórmula;
+-- - fórmulas existencialmente quantificadas, `∃` seguido de variável e fórmula.
 
--- - uma fórmula universalmente quantificada, `∀` seguido de variável e fórmula;
+-- Também chamada de "lógica de primeira ordem" (FOL, "first order logic")
+-- está relacionado a quantificação ser sobre entidades, objetos de primeira
+-- ordem. Vamos assumir que predicados aridade até 3 (relações unárias,
+-- binárias e ternárias). Relações com mais de três argumentos quase nunca são
+-- necessárias para capturar a semântica de linguagem natural. A BNF completa
+-- segue abaixo e gera fórmulas como `¬P x`, `∀ x R x x` e `∀ x ∃ y R x y`.
 
--- - uma fórmula existencialmente quantificada, `∃` seguido de variável e
---   fórmula.
-
--- Por isso o outro nome, "lógica de primeira ordem" — a quantificação é sobre
--- entidades, objetos de primeira ordem. O livro assume predicados de aridade
--- até 3 (relações unárias, binárias e ternárias — a última para verbos como
--- "dar", com sujeito, objeto e destinatário): "relações com mais de três
--- argumentos quase nunca são necessárias". A BNF completa (usando primos para
--- gerar infinitas variáveis e infinitos predicados de cada aridade, como na
--- lógica proposicional):
-
--- v    ::= "x" | "y" | "z" | v "′" ;
--- P    ::= "P" | P "′" ;
--- R    ::= "R" | R "′" ;
--- S    ::= "S" | S "′" ;
+-- v    ::= "x" | "y" | "z" | v "'" ;
+-- P    ::= "P" | P "'" ;
+-- R    ::= "R" | R "'" ;
+-- S    ::= "S" | S "'" ;
 -- atom ::= P v | R v v | S v v v ;
 -- F    ::= atom
 --   | "(" v "=" v ")" ("identidade")
@@ -829,140 +824,145 @@ namespace FOL
 --   | "∀" v F ("quantificação universal")
 --   | "∃" v F ("quantificação existencial") ;
 
--- gerando fórmulas como `¬P′x`, `∀xRxx` ("tudo mantém a relação `R` consigo
--- mesmo") e `∀x∃x′Rxx′` ("para todo primeiro há algo que é `R`-ado por ele").
+-- Em Lean, o mesmo tipo `Prop` em Lean pode ser usado na representação de
+-- fórmulas de primeira ordem. Também veremos como as fórmulas podem ser
+-- manipuladas como dados.
 
--- ### As regras dos quantificadores
+-- ### As regras dos quantificadores em Lean
 
--- Como no capítulo proposicional, duas leituras convivem aqui: os
--- quantificadores do próprio Lean, com que se enuncia e demonstra, e as
--- fórmulas como dado, que é o que `Formula` será. Esta seção é sobre os
--- primeiros, e são duas regras novas — uma para cada quantificador. O domínio
--- dos exemplos é um tipo de três elementos, `Node`, que a seção sobre
--- semântica retoma como domínio de um modelo.
+-- O Lean se baseia em na teoria dos tipos, na qual se assume que cada
+-- variável pertence a algum tipo. Você pode pensar em um tipo como um
+-- "universo" ou um "domínio de discurso", no sentido da lógica de primeira
+-- ordem.
 
-inductive Node where
-  | one | two | three
-  deriving DecidableEq, Repr
+-- Seguindo a apresentação de Lógica Proposicional, quatro novas regras
+-- precisam ser explicadas, duas para cada quantificador.
 
--- A introdução de `∀` diz: para provar que algo vale de todo `x`, tome um `x`
--- arbitrário e prove que vale dele. É `intro` de novo, agora sobre um objeto
--- em vez de uma hipótese.
+section
 
-example (P : Node → Prop) (h : ∀ x, P x) : ∀ y, P y := by
+variable (U : Type)
+variable (P Q : U → Prop)
+
+-- A introdução de `∀` diz que para provar que algo vale de todo `x`, tome um
+-- `x` arbitrário e prove que vale para ele. É a mesma `intro` agora sobre um
+-- objeto em vez de uma hipótese. A eliminação de `∀` é aplicação: de
+-- `∀ x P x` e de um objeto `d`, sai `P d`.
+
+example (h : ∀ x, P x) : ∀ y, P y := by
   intro y
   exact h y
 
--- A eliminação de `∀` é aplicação: de `∀x P x` e de um objeto `d`, sai `P d`.
--- É o `h y` da prova acima.
+-- A introdução de `∃` exige exibir a testemunha. A tática `use` substitui a
+-- variável quantificada pelo objeto passado, e deixa como objetivo o que
+-- falta provar sobre ele.
 
--- A introdução de `∃` exige exibir a testemunha. A tática `use` faz isso —
--- ela substitui a variável quantificada pelo objeto que se oferece, e deixa
--- como objetivo o que falta provar sobre ele.
+example (y : U) (h : P y) : ∃ x, P x :=
+  Exists.intro y h
 
-example : ∃ x : Node, x = Node.two := by
-  use Node.two
+example (y : U) (h : P y) : ∃ x, P x := by
+  use y
 
--- A eliminação de `∃` é a mais delicada, e pelo mesmo motivo que a de `∨`: de
--- `∃x P x` sabe-se que há uma testemunha, mas não qual. A tática `obtain` a
--- introduz com um nome, junto com a propriedade que ela satisfaz.
+-- A eliminação de `∃` é a mais delicada. De `∃ x P x` sabe-se que há uma
+-- testemunha, mas não sabemos qual elemento do domínio ela é. A tática
+-- `obtain` aplica o teorema `Exists.elim`, introduz com um nome, junto com a
+-- propriedade que ele satisfaz.
 
-example (P Q : Node → Prop)
-    (h : ∃ x, P x ∧ Q x) : ∃ x, Q x := by
+example (h : ∃ x, P x ∧ Q x) : ∃ x, Q x := by
+  apply Exists.elim h
+  intro d hd
+  use d
+  exact hd.2
+
+example (h : ∃ x, P x ∧ Q x) : ∃ x, Q x := by
   obtain ⟨d, hP, hQ⟩ := h
   exact ⟨d, hQ⟩
 
--- Com as duas regras, a validade que a seção anterior enunciou — que de `∀xF`
--- segue `∃xF` quando o domínio é não vazio — pode ser demonstrada, e não
--- apenas afirmada. A não vacuidade do domínio entra como a hipótese
--- `d : Node`, isto é, como a exibição de um habitante.
+-- Podemos ainda considera uma lógica de múltiplos tipos, onde podemos ter
+-- múltiplos universos. Por exemplo, podemos querer usar a lógica de primeira
+-- ordem para geometria, com quantificadores sobre pontos e linhas. Mas acima
+-- restringimos os predicados a um único universo `U`.
 
-example (P : Node → Prop) (d : Node)
-    (h : ∀ x, P x) : ∃ x, P x :=
-  ⟨d, h d⟩
+-- A demonstração abaixo não é válida se não declararmos uma variável `u : U`,
+-- mesmo que `u` não apareça no enunciado do teorema. Isso destaca uma
+-- diferença entre a lógica de primeira ordem e a lógica implementada em Lean.
+-- Na dedução natural, podemos provar `∀ x P x → ∃ x P x`, o que mostra que
+-- nosso sistema de prova assume implicitamente que o universo tem pelo menos
+-- um objeto. Em contraste, a afirmação `(∀ x : U, P x) → ∃ x : U, P x` não é
+-- demonstrável em Lean. Em outras palavras, em Lean, é possível que um tipo
+-- esteja vazio, e, portanto, a prova acima requer uma suposição explícita de
+-- que existe um elemento `u : U`.
 
--- Repare que num domínio vazio a prova não existiria: não há testemunha a
--- oferecer. É a mesma exigência que o modelo faz, agora visível no tipo.
+variable (u : U)
+
+example: (∀ x , P x) → ∃ x, P x := by
+ intro h
+ use u
+ exact h u
+
+end
 
 -- ### Exercise (2 stars): forall-exists-swap ⭐⭐
 
--- Uma das duas direções vale, a outra não. Prove a que vale.
+-- Prove o primeiro exemplo.
 
-example (R : Node → Node → Prop) (h : ∃ y, ∀ x, R x y) :
-    ∀ x, ∃ y, R x y := sorry
+example {U : Type} (R : U → U → Prop) :
+  (∃ y, ∀ x, R x y) → (∀ x, ∃ y, R x y) :=
+ sorry
+
+-- Explique porque a volta da implicação não vale.
 
 -- ### Ligação de variáveis
 
--- Numa fórmula `∀xF` (ou `∃xF`), o quantificador liga toda ocorrência de `x`
--- em `F` que não esteja já ligada por um `∀x`/`∃x` interno a `F`. Uma fórmula
--- é **aberta** se tem ao menos uma ocorrência livre de variável, e
+-- Numa fórmula `∀x F` (ou `∃x F`), o quantificador liga toda ocorrência de
+-- `x` em `F` que não esteja já ligada por um `∀x`/`∃x` interno a `F`. Uma
+-- fórmula é **aberta** se tem ao menos uma ocorrência livre de variável, e
 -- **fechada** (também chamada **sentença**) caso contrário. Por exemplo,
--- `(Px ∧ ∃xRxx)` é aberta — o `x` de `Px` está fora do escopo do `∃x` — mas
--- `∃x(Px ∧ ∃xRxx)` é uma sentença.
+-- `(Px ∧ ∃x Rxx)` é aberta, o `x` de `Px` está fora do escopo do `∃x`. Mas
+-- `∃x (Px ∧ ∃x Rxx)` é uma sentença.
 
--- Essa distinção é o que motiva a ambiguidade de escopo de *"Todo príncipe
--- viu uma dama"*: duas leituras, "para cada príncipe existe uma dama (talvez
--- diferente) que ele viu" contra "existe uma dama que todo príncipe viu",
--- formalizadas respectivamente como
+-- Essa distinção é o que motiva a ambiguidade de escopo de "Todo príncipe viu
+-- uma dama". Duas leituras possíveis, "para cada príncipe existe uma dama
+-- (talvez diferente) que ele viu" contra "existe uma dama que todo príncipe
+-- viu", formalizadas respectivamente como:
 
--- ∀x(Prince x → ∃y(Lady y ∧ Saw x y))
--- ∃y(Lady y ∧ ∀x(Prince x → Saw x y))
+-- ∀x (Prince x → ∃y (Lady y ∧ Saw x y))
+-- ∃y (Lady y ∧ ∀x (Prince x → Saw x y))
 
--- — repare que a leitura universal usa `→` como conectivo principal, e a
--- existencial usa `∧`; vale a pena perguntar por quê — o assunto volta com a
--- semântica. Já *"Algum príncipe viu uma dama bonita"* não é ambígua:
--- `∃x∃y(Prince x ∧ Lady y ∧ Beautiful y ∧ Saw x y)`.
+-- Repare que a leitura universal usa `→` como conectivo principal, e a
+-- existencial usa `∧`. Já "Algum príncipe viu uma dama bonita" admite apenas
+-- uma formalização, `∃x∃y (Prince x ∧ Lady y ∧ Beautiful y ∧ Saw x y)`.
 
--- ### Exercise (2 stars): predicate-unique-readability ⭐⭐
+-- Nota editorial (Alexandre (arademaker)):
+--     Em Lean, indexar por aridade é mais natural do que empilhar primos: um
+--     `structure PredSymbol` com campos `name : String` e `arity : Nat` já
+--     representa "infinitos predicados de cada aridade finita" sem precisar
+--     de uma família de gramáticas, uma por aridade. Fica como observação,
+--     `Formula` (abaixo) não adota `PredSymbol`.
 
--- Prove que as fórmulas desta língua têm a propriedade de leitura única.
+-- ### O tipo Fórmulas de FOL
 
--- ### Exercise (1 star): infinite-predicates-bnf ⭐
-
--- Dê uma gramática BNF para uma língua de lógica de predicados com infinitos
--- símbolos de predicado para cada aridade finita. (Dica: use `‴P`, `‴P′`,
--- `‴P″`, ... para o conjunto de predicados de três lugares, e assim por
--- diante.)
-
--- ### Exercise (1 star): bound-occurrences ⭐
-
--- Dê as ocorrências ligadas de `x` na fórmula seguinte.
-
--- ∃x(Rxy ∨ Sxyz) ∧ Px
-
--- ### Fórmulas de predicados em Lean
-
--- O "problema da aridade" (predicados de aridade 1, 2, 3, ... exigiriam um
--- `inductive` por aridade) se resolve como em linguagens como Prolog: um
--- predicado nomeado por `String`, aplicado a uma **lista** de termos — o
--- comprimento da lista já determina a aridade, sem precisar de um tipo por
--- aridade.
-
--- Uma variável carrega nome e um índice (lista de inteiros, para gerar
--- variáveis "frescas" a partir de uma dada — usadas quando a semântica
--- precisar renomear variáveis ligadas):
+-- Uma variável carrega nome e um índice (lista de naturais usada para gerar
+-- variáveis "frescas" a partir de uma dada variável):
 
 structure Variable where
   name : String
   index : List Nat
-  deriving DecidableEq, Repr
+  deriving DecidableEq
 
-def Variable.toStringImpl : Variable → String
+def Variable.format : Variable → Std.Format
   | ⟨name, []⟩ => name
   | ⟨name, [i]⟩ => name ++ toString i
   | ⟨name, is⟩ =>
     name ++ String.intercalate "_" (is.map toString)
 
-instance : ToString Variable := ⟨Variable.toStringImpl⟩
+instance : Repr Variable := ⟨fun v _ => v.format⟩
 
 def x : Variable := ⟨"x", []⟩
 def y : Variable := ⟨"y", []⟩
 def z : Variable := ⟨"z", []⟩
 
 -- `Formula α` é parametrizado no tipo dos termos que preenchem os predicados
--- — por ora `α := Variable` (a seção sobre símbolos de função, adiante,
--- introduz `Term`, estruturado, e reaproveita `Formula` trocando o
--- parâmetro).
+-- — por ora nossos termos são apenas `Variable`.
 
 inductive Formula (α : Type) where
   | atom (name : String) (args : List α)
@@ -976,17 +976,12 @@ inductive Formula (α : Type) where
   | disj (f1 f2 : Formula α)
   | forall_ (v : Variable) (f : Formula α)
   | exists_ (v : Variable) (f : Formula α)
-  deriving Repr
 
 -- A conjunção e a disjunção são binárias, e `top` e `bot` são construtores
--- próprios — o mesmo desenho do tipo das fórmulas proposicionais, pelo mesmo
--- motivo: um construtor que guardasse uma lista de fórmulas dentro do próprio
--- tipo o tornaria um indutivo *nested*, e com isso se perderiam `induction` e
--- `deriving`. O `α` em `atom name (args : List α)` não cria esse problema,
--- porque é parâmetro, não o próprio tipo.
-
--- A notação n-ária se recupera com duas funções, como lá: uma conjunção vazia
--- é `top`, uma disjunção vazia é `bot`.
+-- próprios — o mesmo que fizemos para as fórmulas proposicionais, pelo mesmo
+-- motivo. O `α` em `atom` não cria esse problema, porque é parâmetro, não o
+-- próprio tipo. A notação n-ária se recupera com as funções abaixo. Uma
+-- conjunção vazia é `top`, uma disjunção vazia é `bot`, como fizemos em LP.
 
 def Formula.conjs {α : Type} : List (Formula α) → Formula α
   | [] => .top
@@ -998,70 +993,75 @@ def Formula.disjs {α : Type} : List (Formula α) → Formula α
   | [f] => f
   | f :: fs => .disj f (Formula.disjs fs)
 
--- E a instância de `ToString`:
+-- E a instância de `Repr` para exibirmos fórmulas de forma legível. Note que
+-- ela demanda que o tipo `α` tenha também uma instância de `Repr`.
 
-def Formula.toStringImpl [ToString α] : Formula α → String
+def Formula.format {α} [Repr α] : Formula α → Std.Format
   | .atom name [] => name
   | .atom name args =>
     name ++ "[" ++
-      String.intercalate "," (args.map toString) ++ "]"
-  | .eq t1 t2 => s!"{t1}={t2}"
-  | .neg f => s!"~{f.toStringImpl}"
+      Std.Format.joinSep (args.map (repr ·)) ", " ++ "]"
+  | .eq t1 t2 => f!"{repr t1} = {repr t2}"
+  | .neg f => f!"~{f.format}"
   | .impl f1 f2 =>
-    s!"({f1.toStringImpl}==>{f2.toStringImpl})"
+    f!"({f1.format} ==> {f2.format})"
   | .equi f1 f2 =>
-    s!"({f1.toStringImpl}<=>{f2.toStringImpl})"
+    f!"({f1.format} <=> {f2.format})"
   | .top => "true"
   | .bot => "false"
   | .conj f1 f2 =>
-    s!"({f1.toStringImpl}&{f2.toStringImpl})"
+    f!"({f1.format} & {f2.format})"
   | .disj f1 f2 =>
-    s!"({f1.toStringImpl}|{f2.toStringImpl})"
-  | .forall_ v f => s!"A{v} {f.toStringImpl}"
-  | .exists_ v f => s!"E{v} {f.toStringImpl}"
+    f!"({f1.format} | {f2.format})"
+  | .forall_ v f => f!"A {repr v} {f.format}"
+  | .exists_ v f => f!"E {repr v} {f.format}"
 
-instance [ToString α] : ToString (Formula α) :=
-  ⟨Formula.toStringImpl⟩
+instance {α} [Repr α] : Repr (Formula α) :=
+  ⟨fun f _ => f.format⟩
 
-def formula0 : Formula Variable := .atom "R" [x, y]
+-- `Repr` é a classe que o `#eval` procura primeiro, e é por isso que basta
+-- escrever `#eval formula0`. Ela devolve um `Std.Format`, e não uma `String`.
+-- O segundo argumento que a instância ignora é a precedência.
 
--- A instância acima recebe outra entre colchetes: para imprimir uma
--- `Formula α` é preciso saber imprimir os `α` que a preenchem, e o
--- `[ToString α]` é essa exigência. Uma instância pode assim depender de
--- outras, e o Lean encadeia a busca — dado `ToString Variable`, ele monta
--- sozinho `ToString (Formula Variable)`.
-
-#eval toString formula0
-
--- "R[x,y]"
+-- A seguir, `formula1` expressa que o predicado `R` é reflexivo enquanto
+-- `formula2` expressa que ele é simétrico.
 
 def formula1 : Formula Variable :=
   .forall_ x (.atom "R" [x, x])
-
-#eval toString formula1
-
--- "Ax R[x,x]"
-
--- reflexividade de R
 
 def formula2 : Formula Variable :=
   .forall_ x (.forall_ y
     (.impl (.atom "R" [x, y]) (.atom "R" [y, x])))
 
-#eval toString formula2
+-- Coletar as variáveis livres de uma fórmula é uma operação que faremos mais
+-- de uma vez, com termos de tipos diferentes. Definimos uma só vez, deixando
+-- como parâmetro a função que extrai as variáveis de um termo — o que muda de
+-- um caso para outro é apenas ela. Nos quantificadores, `filter` remove a
+-- variável ligada, e remove **todas** as suas ocorrências.
 
--- "Ax Ay (R[x,y]==>R[y,x])"
-
--- simetria de R
+def Formula.freeVars {α} (vars : α → List Variable) :
+    Formula α → List Variable
+  | .atom _ args => (args.map vars).flatten
+  | .eq t1 t2 => vars t1 ++ vars t2
+  | .top => []
+  | .bot => []
+  | .neg f => f.freeVars vars
+  | .impl f1 f2 => f1.freeVars vars ++ f2.freeVars vars
+  | .equi f1 f2 => f1.freeVars vars ++ f2.freeVars vars
+  | .conj f1 f2 => f1.freeVars vars ++ f2.freeVars vars
+  | .disj f1 f2 => f1.freeVars vars ++ f2.freeVars vars
+  | .forall_ v f => (f.freeVars vars).filter (· != v)
+  | .exists_ v f => (f.freeVars vars).filter (· != v)
 
 -- ### Exercise (2 stars): closed-form ⭐⭐
 
 -- Escreva uma função `closedForm : Formula Variable → Bool` que verifica se
--- uma fórmula é fechada. Comece por uma função que coleta a lista de
--- variáveis livres de uma fórmula: as fechadas são as que têm essa lista
--- vazia.
+-- uma fórmula é fechada. Aqui cada termo é uma variável, então extrair as
+-- variáveis de um termo é devolvê-lo numa lista de um elemento. As fórmulas
+-- fechadas são as que têm a lista de livres vazia.
 
-def freeVarsInFormula : Formula Variable → List Variable :=
+def freeVarsInFormula (f : Formula Variable) :
+    List Variable :=
   sorry
 
 def closedForm (f : Formula Variable) : Bool :=
@@ -1070,83 +1070,99 @@ def closedForm (f : Formula Variable) : Bool :=
 -- ### Exercise (1 star): implication-as-abbrev ⭐
 
 -- Implicações e equivalências podem ser vistas como abreviações, pois se
--- definem a partir de negação e conjunção. Escreva uma função
+-- definem a partir de negação, conjunção e disjunção — as mesmas
+-- equivalências usadas na lógica proposicional. Escreva uma função
 -- `withoutIDs : Formula Variable → Formula Variable` que substitui cada
 -- fórmula por uma equivalente sem ocorrências de `impl` ou `equi`.
 
-def withoutIDs : Formula Variable → Formula Variable :=
+def withoutIDs (frm : Formula Variable) :
+    Formula Variable :=
   sorry
 
 -- ### Exercise (2 stars): negation-normal-form ⭐⭐
 
--- Toda fórmula de lógica de predicados é equivalente a uma fórmula em **forma
--- normal negativa**, onde negações só ocorrem diante de átomos. A receita é
--- "empurrar" as negações através dos quantificadores por `¬∀xF ≡ ∃x¬F` e
--- `¬∃xF ≡ ∀x¬F`, e através de disjunções e conjunções pelas leis de De
--- Morgan: `¬(F1 ∧ F2) ≡ ¬F1 ∨ ¬F2` e `¬(F1 ∨ F2) ≡ ¬F1
--- ∧ ¬F2`. `¬¬F ≡ F`
--- elimina dupla negação. Escreva uma função
--- `nnf :
--- Formula Variable → Formula Variable` que transforma uma fórmula em
--- forma normal negativa. (Dica: use a função do exercício anterior para
--- eliminar `impl`/`equi` primeiro.)
+-- Toda fórmula de lógica de predicados pode ser transformada em uma
+-- equivalente na **forma normal da negação** (NNF, "negation normal form"),
+-- onde negações só ocorrem diante de átomos. A receita é "empurrar" as
+-- negações através dos quantificadores por `¬ ∀x F ≡  ∃x ¬F` e
+-- `¬ ∃x F ≡ ∀x ¬F`, e através de disjunções e conjunções pelas leis de De
+-- Morgan: `¬(F1 ∧ F2) ≡ ¬F1 ∨ ¬F2` e `¬(F1 ∨ F2) ≡ ¬F1 ∧ ¬F2`. Finalmente,
+-- `¬¬F ≡ F` elimina dupla negação. Complete o código da função `nnf`.
 
--- **Cuidado ao implementar** (dica de verdade, não parte da nota de rodapé):
--- uma função `nnf`/`nnfNeg` mutuamente recursivas, com `nnfNeg` chamando
--- `nnfNeg (withoutIDs ...)` nos casos de `impl`/`equi`, não termina por
--- recursão estrutural — o Lean não consegue provar que `withoutIDs f` é
--- "menor" que `f` (em geral não é: `withoutIDs` pode crescer o termo).
--- Aplicar `withoutIDs` uma única vez, no início, resolve — mas então as
--- funções internas ainda precisam cobrir os casos `impl`/`equi`, mesmo que
--- nunca sejam de fato alcançados depois desse passo.
+-- Dica: a receita acima diz o que fazer com `¬` diante de alguma subfórmula.
+-- Isso sugere duas funções, uma para cada situação em que uma subfórmula pode
+-- aparecer. As duas se chamam mutuamente, e por isso vão num bloco `mutual`.
 
-def nnf : Formula Variable → Formula Variable := sorry
+-- - `nnfPos f` devolve a NNF de `f`;
+-- - `nnfNeg f` devolve a NNF de `¬f`.
+
+-- Trate `impl` e `equi` diretamente nas duas funções, sem passar por
+-- `withoutIDs`.
+
+mutual
+def nnfPos (frm : Formula Variable) : Formula Variable :=
+ sorry
+
+def nnfNeg (frm : Formula Variable) : Formula Variable :=
+ sorry
+end
+
+def Formula.nnf (f : Formula Variable) : Formula Variable :=
+  sorry
+
+#eval Formula.neg formula2
+#eval (Formula.neg formula2).nnf
 
 -- ### Símbolos de função
 
--- Lógica de predicados, como definida até aqui, não expressa equações de
--- aritmética escolar: um termo como `(5 + 3) × 4` é complexo, não uma
--- variável isolada. A solução é introduzir **constantes de função** para
--- operações arbitrárias — o mesmo movimento de nomear relações binárias
--- arbitrárias em vez de fixar "menor que" como primitivo.
-
--- Termos complexos, com símbolo de função e lista de argumentos — outro
--- `inductive` nested (a lista de `Term` dentro do próprio `Term`), então sem
--- `deriving DecidableEq`/`induction`, como `Form` teria sido se a gramática
--- da lógica proposicional não fosse binária:
+-- Termos denotam objetos do domínio, e diferentes termos podem denotar um
+-- mesmo objeto como o termo `(5 + 3) × 4`, `8 × 4` e `32`. Para representar
+-- termos mais complexos que apenas variáveis, a solução é introduzir símbolos
+-- funcionais para as operações entre termos. Da mesma forma como escolhemos
+-- representar relações binárias quaisquer, ao invés de fixar símbolos
+-- específicos para relações como "menor que".
 
 inductive Term where
   | var (v : Variable)
   | struct (name : String) (args : List Term)
 
-def Term.toStringImpl : Term → String
-  | .var v => toString v
+def Term.format : Term → Std.Format
+  | .var v => repr v
   | .struct name [] => name
   | .struct name args =>
     name ++ "[" ++
-      String.intercalate ","
-        (args.map Term.toStringImpl) ++ "]"
+      Std.Format.joinSep
+        (args.map Term.format) "," ++ "]"
 
-instance : ToString Term := ⟨Term.toStringImpl⟩
+instance : Repr Term := ⟨fun t _ => t.format⟩
 
 def tx : Term := .var x
 def ty : Term := .var y
 def tz : Term := .var z
 
--- Um termo **livre para** uma variável `v` numa fórmula `F` é um termo que,
--- substituído em toda ocorrência livre de `v` em `F`, não tem nenhuma de suas
--- próprias variáveis capturada por um quantificador de `F`. Substituir sem
--- essa cautela muda o significado: em `(∀yRxy →
--- ∀xRxx)`, o `x` livre da
--- premissa, substituído por `y`, produz `(∀yRyy → ∀xRxx)` — o `y` do termo
--- foi capturado pelo `∀y` que já estava lá. Uma **variante alfabética** (a
--- mesma fórmula, só renomeando variáveis ligadas — aqui, `(∀zRxz → ∀xRxx)`)
--- evita a captura.
+-- Um termo `t` é **livre para** a variável `v` na fórmula `F` se toda
+-- ocorrência livre de `v` em `F` pode ser substituída por `t` sem que nenhuma
+-- das variáveis de `t` fique ligada. Por exemplo, `y` é livre para `x` em
+-- `Px → ∀x Px`, mas o mesmo termo não é livre para `x` em `∀y Rxy → ∀x Rxx`.
+-- Da mesma forma, `g(x,y)` não é livre para `x` em `∀y Rxy → ∀x Rxx`.
 
--- Com `Term`, `Formula Term` são fórmulas com termos estruturados — o
--- semântica, daqui em diante, usa esse `Formula Term`, não mais
--- `Formula
--- Variable`.
+-- Um termo livre para uma variável `v` pode ser substituído nas ocorrências
+-- livres de `v` sem uma mudança não intencional de significado. Considere a
+-- fórmula aberta `∀y Rxy → ∀x Rxx`. Se substituirmos a ocorrência livre de
+-- `x` nessa fórmula por `y`, obtemos uma fórmula fechada `∀y Ryy → ∀x Rxx`.
+-- Uma variável que originalmente era livre acabou capturada.
+
+-- Se `t` não é livre para `v` em `F`, podemos sempre renomear as variáveis
+-- ligadas de `F` para garantir que a substituição de `t` por `v` em `F` tenha
+-- o significado correto. Embora `g(y,c)` não seja livre para `x` em
+-- `∀y Rxy → ∀x Rxx`, o termo é livre para `x` em `∀z Rxz → ∀x Rxx`, que é uma
+-- chamada **variante alfabética** da fórmula original. Uma variante
+-- alfabética de uma fórmula é uma fórmula que difere da original apenas por
+-- usar variáveis ligadas diferentes.
+
+-- A função `isVar` verifica se um termo é uma variável. As funções
+-- `varsInTerm` e `varsInTerms` retornam as variáveis que ocorrem num termo ou
+-- numa lista de termos sem duplicatas.
 
 def isVar : Term → Bool
   | .var _ => true
@@ -1157,60 +1173,52 @@ def varsInTerm : Term → List Variable
   | .var v => [v]
   | .struct _ ts => varsInTerms ts
 
-def varsInTerms : List Term → List Variable
-  | [] => []
-  | t :: ts => varsInTerm t ++ varsInTerms ts
+def varsInTerms (ts : List Term) : List Variable :=
+  ts.map varsInTerm |>.flatten |>.eraseDups
+
 end
 
--- O bloco `mutual` aparece aqui pela primeira vez. Ele agrupa definições que
--- se chamam umas às outras: `varsInTerm` chama `varsInTerms` na segunda
--- linha, e `varsInTerms` chama `varsInTerm` na sua. Definidas separadamente,
--- a primeira mencionaria um nome que ainda não existe. Dentro de um `mutual`,
--- o Lean elabora as duas ao mesmo tempo e verifica juntas a terminação — a
--- recursão diminui o termo a cada volta, mesmo alternando entre as duas
--- funções.
-
--- A necessidade vem da forma do dado: um `Term` carrega uma `List Term`,
--- então percorrer um termo é percorrer uma lista de termos, e vice-versa.
--- Onde os tipos se referem uns aos outros, as funções sobre eles também se
--- referem — e no fragmento de inglês, mais adiante no livro, gramáticas
--- inteiras serão declaradas assim.
-
--- ### Exercise (1 star): term-parse-tree ⭐
-
--- Dê uma árvore de análise para o termo `f″[f′[x, y], f‴[z, z, f[x]]]`.
+-- Agora que temos o tipo `Term` podemos usar `Formula Term` ao invés de
+-- `Formula Variable`.
 
 -- ### Exercise (1 star): vars-in-formula ⭐
 
 -- Implemente uma função `varsInForm : Formula Term → List Variable` que dá a
--- lista de variáveis que ocorrem numa fórmula.
+-- lista de variáveis que ocorrem numa fórmula. Aqui não se trata de
+-- ocorrências **livres**: conte todas, inclusive a variável que cada
+-- quantificador liga. Mantenha a lista sem duplicatas, como fazem
+-- `varsInTerm` e `varsInTerms`.
 
-def varsInForm : Formula Term → List Variable := sorry
+def Formula.varsInForm (frm : Formula Term) : List Variable :=
+  sorry
+
+-- ### Exercise (2 stars): free-vars-in-formula ⭐⭐
+
+-- Implemente `freeVarsInForm : Formula Term → List Variable`, que dá a lista
+-- de variáveis com ocorrências livres numa fórmula.
+
+def Formula.freeVarsInForm (f : Formula Term) : List Variable :=
+  sorry
 
 -- ### Exercise (2 stars): open-form ⭐⭐
 
--- Implemente `freeVarsInForm : Formula Term → List Variable`, que dá a lista
--- de variáveis com ocorrências livres numa fórmula, e sobre ela
--- `openForm : Formula Term → Bool`, que verifica se uma fórmula é aberta (ver
--- a seção sobre ligação de variáveis).
-
-def freeVarsInForm : Formula Term → List Variable := sorry
+-- Usando a função `freeVarsInForm`, complete a função `openForm`, que
+-- verifica se uma fórmula é aberta. Reaproveite as funções anteriores.
 
 def openForm (f : Formula Term) : Bool :=
   sorry
 
 -- ### Semântica da lógica de predicados
 
--- A semântica da lógica de predicados é estática de novo. Por conveniência,
--- nos limitamos a um fragmento de língua com apenas três letras de predicado:
--- `P`, de um lugar, `R`, de dois, e `S`, de três.
+-- Por conveniência, nos limitamos a um fragmento de língua com apenas três
+-- letras de predicado: `P` (unário), `R` (binário), e `S` (ternário).
 
 -- Como deve ser uma estrutura extralinguística para as constantes `P`, `R` e
 -- `S`? Tal estrutura deve conter ao menos um domínio de discurso `D`, formado
 -- por entidades individuais, com uma interpretação para `P`, para `R` e para
--- `S`. Essas interpretações são dadas por uma função `I`, que a cada nome de
--- predicado e a cada lista de elementos do domínio associa a afirmação de que
--- a relação vale entre eles.
+-- `S`. Essas interpretações são dadas por uma função `Interp`, que a cada
+-- nome de predicado e a cada lista de elementos do domínio associa a
+-- afirmação de que a relação vale entre eles.
 
 abbrev Interp (D : Type) := String → List D → Prop
 
@@ -1220,15 +1228,15 @@ abbrev Interp (D : Type) := String → List D → Prop
 -- símbolos de relação de `L`, é chamada de **modelo** para `L`. Sempre
 -- suporemos que o domínio de um modelo é não vazio.
 
--- Eis um modelo concreto, com domínio de três elementos. `P` vale de `1` e de
--- `3`; `R` relaciona `1` a `1` e a `2`, `2` a `2`, e `3` a `1` e a `2`.
+-- Eis um modelo concreto, com domínio de três elementos. `P` vale para `1` ou
+-- `3`; `R` relaciona `1` a `1` e `2`, `2` a `2`, e `3` a `1` e `2`.
 
-def M : Interp Node
-  | "P", [d] => d = .one ∨ d = .three
+def M : Interp Nat
+  | "P", [d] => d = 1 ∨ d = 3
   | "R", [d, e] =>
-      (d = .one ∧ (e = .one ∨ e = .two))
-      ∨ (d = .two ∧ e = .two)
-      ∨ (d = .three ∧ (e = .one ∨ e = .two))
+      (d = 1 ∧ (e = 1 ∨ e = 2))
+      ∨ (d = 2 ∧ e = 2)
+      ∨ (d = 3 ∧ (e = 1 ∨ e = 2))
   | _, _ => False
 
 -- Dada uma estrutura com função de interpretação `M = (D, I)`, podemos
@@ -1258,31 +1266,28 @@ def Assign.update {D : Type} (g : Assign D)
 -- `v`, e `∃v F` quando vale para ao menos uma.
 
 def Formula.holds {D : Type} (I : Interp D)
-    (g : Assign D) : Formula Variable → Prop
+  (g : Assign D) : Formula Variable → Prop
   | .atom name args => I name (args.map g)
   | .eq t1 t2 => g t1 = g t2
   | .top => True
   | .bot => False
   | .neg f => ¬ Formula.holds I g f
   | .impl f1 f2 =>
-      Formula.holds I g f1 → Formula.holds I g f2
+    Formula.holds I g f1 → Formula.holds I g f2
   | .equi f1 f2 =>
-      Formula.holds I g f1 ↔ Formula.holds I g f2
+    Formula.holds I g f1 ↔ Formula.holds I g f2
   | .conj f1 f2 =>
-      Formula.holds I g f1 ∧ Formula.holds I g f2
+    Formula.holds I g f1 ∧ Formula.holds I g f2
   | .disj f1 f2 =>
-      Formula.holds I g f1 ∨ Formula.holds I g f2
+    Formula.holds I g f1 ∨ Formula.holds I g f2
   | .forall_ v f =>
-      ∀ d : D, Formula.holds I (g.update v d) f
+    ∀ d : D, Formula.holds I (g.update v d) f
   | .exists_ v f =>
-      ∃ d : D, Formula.holds I (g.update v d) f
+    ∃ d : D, Formula.holds I (g.update v d) f
 
 -- Um caso por construtor, e cada caso troca o construtor pelo conectivo
--- correspondente do Lean — a mesma correspondência que o capítulo
--- proposicional enuncia como ponte entre as duas leituras.
-
--- Se avaliamos fórmulas fechadas, isto é, sem variáveis livres, a atribuição
--- `g` se torna irrelevante.
+-- correspondente do Lean. Se avaliamos fórmulas fechadas, isto é, sem
+-- variáveis livres, a atribuição `g` se torna irrelevante.
 
 -- A definição de verdade faz uso essencial das atribuições e, ainda assim,
 -- nos exercícios em que se olha apenas para fórmulas fechadas, a verdade ou a
