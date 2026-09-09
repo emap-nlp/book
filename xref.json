@@ -825,6 +825,22 @@
        {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
        {"title": "Símbolos de função", "shortTitle": null, "number": "4"}]},
      "address": "/Logic/"}],
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--O-tipo-F___rmulas-de-FOL":
+   [{"id":
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--O-tipo-F___rmulas-de-FOL",
+     "data":
+     {"title": "O tipo Fórmulas de FOL",
+      "shortTitle": null,
+      "sectionNum": "5.2.3.",
+      "searchPriority": 50,
+      "context":
+      [{"title": "Semântica computacional com Lean",
+        "shortTitle": null,
+        "number": null},
+       {"title": "Lógica", "shortTitle": null, "number": "5"},
+       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
+       {"title": "O tipo Fórmulas de FOL", "shortTitle": null, "number": "3"}]},
+     "address": "/Logic/"}],
    "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--Liga______o-de-vari___veis":
    [{"id":
      "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--Liga______o-de-vari___veis",
@@ -841,29 +857,11 @@
        {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
        {"title": "Ligação de variáveis", "shortTitle": null, "number": "2"}]},
      "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--F___rmulas-de-predicados-em-Lean":
+   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--As-regras-dos-quantificadores-em-Lean":
    [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--F___rmulas-de-predicados-em-Lean",
+     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--As-regras-dos-quantificadores-em-Lean",
      "data":
-     {"title": "Fórmulas de predicados em Lean",
-      "shortTitle": null,
-      "sectionNum": "5.2.3.",
-      "searchPriority": 50,
-      "context":
-      [{"title": "Semântica computacional com Lean",
-        "shortTitle": null,
-        "number": null},
-       {"title": "Lógica", "shortTitle": null, "number": "5"},
-       {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
-       {"title": "Fórmulas de predicados em Lean",
-        "shortTitle": null,
-        "number": "3"}]},
-     "address": "/Logic/"}],
-   "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--As-regras-dos-quantificadores":
-   [{"id":
-     "Sem___ntica-computacional-com-Lean--L___gica--L___gica-de-predicados--As-regras-dos-quantificadores",
-     "data":
-     {"title": "As regras dos quantificadores",
+     {"title": "As regras dos quantificadores em Lean",
       "shortTitle": null,
       "sectionNum": "5.2.1.",
       "searchPriority": 50,
@@ -873,7 +871,7 @@
         "number": null},
        {"title": "Lógica", "shortTitle": null, "number": "5"},
        {"title": "Lógica de predicados", "shortTitle": null, "number": "2"},
-       {"title": "As regras dos quantificadores",
+       {"title": "As regras dos quantificadores em Lean",
         "shortTitle": null,
         "number": "1"}]},
      "address": "/Logic/"}],
@@ -3658,7 +3656,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.y":
    [{"id": "FOL___y",
@@ -3669,7 +3667,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.x":
    [{"id": "FOL___x",
@@ -3680,18 +3678,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
-     "address": "/Logic/"}],
-   "FOL.withoutIDs":
-   [{"id": "FOL___withoutIDs",
-     "data":
-     {"/Logic/#FOL___withoutIDs":
-      {"display": "withoutIDs",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.varsInTerms":
    [{"id": "FOL___varsInTerms",
@@ -3709,17 +3696,6 @@
      "data":
      {"/Logic/#FOL___varsInTerm":
       {"display": "varsInTerm",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica de predicados",
-        "Símbolos de função"]}},
-     "address": "/Logic/"}],
-   "FOL.varsInForm":
-   [{"id": "FOL___varsInForm",
-     "data":
-     {"/Logic/#FOL___varsInForm":
-      {"display": "varsInForm",
        "context":
        ["Semântica computacional com Lean",
         "Lógica",
@@ -3759,17 +3735,6 @@
         "Lógica de predicados",
         "Símbolos de função"]}},
      "address": "/Logic/"}],
-   "FOL.nnf":
-   [{"id": "FOL___nnf",
-     "data":
-     {"/Logic/#FOL___nnf":
-      {"display": "nnf",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
-     "address": "/Logic/"}],
    "FOL.isVar":
    [{"id": "FOL___isVar",
      "data":
@@ -3790,7 +3755,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.formula1":
    [{"id": "FOL___formula1",
@@ -3801,29 +3766,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
-     "address": "/Logic/"}],
-   "FOL.formula0":
-   [{"id": "FOL___formula0",
-     "data":
-     {"/Logic/#FOL___formula0":
-      {"display": "formula0",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
-     "address": "/Logic/"}],
-   "FOL.Variable.toStringImpl":
-   [{"id": "FOL___Variable___toStringImpl",
-     "data":
-     {"/Logic/#FOL___Variable___toStringImpl":
-      {"display": "Variable.toStringImpl",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Variable.name":
    [{"id": "FOL___Variable___name",
@@ -3834,7 +3777,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Variable.index":
    [{"id": "FOL___Variable___index",
@@ -3845,7 +3788,18 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
+     "address": "/Logic/"}],
+   "FOL.Variable.format":
+   [{"id": "FOL___Variable___format",
+     "data":
+     {"/Logic/#FOL___Variable___format":
+      {"display": "Variable.format",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica de predicados",
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Variable":
    [{"id": "FOL___Variable",
@@ -3856,24 +3810,13 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Term.var":
    [{"id": "FOL___Term___var",
      "data":
      {"/Logic/#FOL___Term___var":
       {"display": "var",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica de predicados",
-        "Símbolos de função"]}},
-     "address": "/Logic/"}],
-   "FOL.Term.toStringImpl":
-   [{"id": "FOL___Term___toStringImpl",
-     "data":
-     {"/Logic/#FOL___Term___toStringImpl":
-      {"display": "Term.toStringImpl",
        "context":
        ["Semântica computacional com Lean",
         "Lógica",
@@ -3891,6 +3834,17 @@
         "Lógica de predicados",
         "Símbolos de função"]}},
      "address": "/Logic/"}],
+   "FOL.Term.format":
+   [{"id": "FOL___Term___format",
+     "data":
+     {"/Logic/#FOL___Term___format":
+      {"display": "Term.format",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica de predicados",
+        "Símbolos de função"]}},
+     "address": "/Logic/"}],
    "FOL.Term":
    [{"id": "FOL___Term",
      "data":
@@ -3901,50 +3855,6 @@
         "Lógica",
         "Lógica de predicados",
         "Símbolos de função"]}},
-     "address": "/Logic/"}],
-   "FOL.Node.two":
-   [{"id": "FOL___Node___two",
-     "data":
-     {"/Logic/#FOL___Node___two":
-      {"display": "two",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica de predicados",
-        "As regras dos quantificadores"]}},
-     "address": "/Logic/"}],
-   "FOL.Node.three":
-   [{"id": "FOL___Node___three",
-     "data":
-     {"/Logic/#FOL___Node___three":
-      {"display": "three",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica de predicados",
-        "As regras dos quantificadores"]}},
-     "address": "/Logic/"}],
-   "FOL.Node.one":
-   [{"id": "FOL___Node___one",
-     "data":
-     {"/Logic/#FOL___Node___one":
-      {"display": "one",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica de predicados",
-        "As regras dos quantificadores"]}},
-     "address": "/Logic/"}],
-   "FOL.Node":
-   [{"id": "FOL___Node",
-     "data":
-     {"/Logic/#FOL___Node":
-      {"display": "Node",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica de predicados",
-        "As regras dos quantificadores"]}},
      "address": "/Logic/"}],
    "FOL.M":
    [{"id": "FOL___M",
@@ -3977,18 +3887,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
-     "address": "/Logic/"}],
-   "FOL.Formula.toStringImpl":
-   [{"id": "FOL___Formula___toStringImpl",
-     "data":
-     {"/Logic/#FOL___Formula___toStringImpl":
-      {"display": "Formula.toStringImpl",
-       "context":
-       ["Semântica computacional com Lean",
-        "Lógica",
-        "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Formula.neg":
    [{"id": "FOL___Formula___neg",
@@ -3999,7 +3898,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Formula.impl":
    [{"id": "FOL___Formula___impl",
@@ -4010,7 +3909,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Formula.holds":
    [{"id": "FOL___Formula___holds",
@@ -4023,6 +3922,28 @@
         "Lógica de predicados",
         "Semântica da lógica de predicados"]}},
      "address": "/Logic/"}],
+   "FOL.Formula.freeVars":
+   [{"id": "FOL___Formula___freeVars",
+     "data":
+     {"/Logic/#FOL___Formula___freeVars":
+      {"display": "Formula.freeVars",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica de predicados",
+        "O tipo Fórmulas de FOL"]}},
+     "address": "/Logic/"}],
+   "FOL.Formula.format":
+   [{"id": "FOL___Formula___format",
+     "data":
+     {"/Logic/#FOL___Formula___format":
+      {"display": "Formula.format",
+       "context":
+       ["Semântica computacional com Lean",
+        "Lógica",
+        "Lógica de predicados",
+        "O tipo Fórmulas de FOL"]}},
+     "address": "/Logic/"}],
    "FOL.Formula.forall_":
    [{"id": "FOL___Formula___forall_",
      "data":
@@ -4032,7 +3953,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Formula.exists_":
    [{"id": "FOL___Formula___exists_",
@@ -4043,7 +3964,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Formula.equi":
    [{"id": "FOL___Formula___equi",
@@ -4054,7 +3975,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Formula.eq":
    [{"id": "FOL___Formula___eq",
@@ -4065,7 +3986,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Formula.disjs":
    [{"id": "FOL___Formula___disjs",
@@ -4076,7 +3997,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Formula.disj":
    [{"id": "FOL___Formula___disj",
@@ -4087,7 +4008,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Formula.conjs":
    [{"id": "FOL___Formula___conjs",
@@ -4098,7 +4019,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Formula.conj":
    [{"id": "FOL___Formula___conj",
@@ -4109,7 +4030,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Formula.bot":
    [{"id": "FOL___Formula___bot",
@@ -4120,7 +4041,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Formula.atom":
    [{"id": "FOL___Formula___atom",
@@ -4131,7 +4052,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Formula":
    [{"id": "FOL___Formula",
@@ -4142,7 +4063,7 @@
        ["Semântica computacional com Lean",
         "Lógica",
         "Lógica de predicados",
-        "Fórmulas de predicados em Lean"]}},
+        "O tipo Fórmulas de FOL"]}},
      "address": "/Logic/"}],
    "FOL.Assign.update":
    [{"id": "FOL___Assign___update",
