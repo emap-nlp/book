@@ -2,9 +2,8 @@ import CSwL.IntroL
 
 -- # Morfologia
 
--- Três exemplos de PLN que aplicam o Lean visto no capítulo anterior:
--- harmonia vocálica do finlandês, plural do sueco e uma representação de
--- fonemas por traços.
+-- Três exemplos de processamento de língua natural: harmonia vocálica do
+-- finlandês, plural do sueco e uma representação de fonemas por traços.
 
 -- ## Harmonia vocálica do finlandês
 

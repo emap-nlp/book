@@ -120,6 +120,17 @@ opaque g : ℕ → ℕ → ℕ
 
 #check g a
 
+-- Os exercícios deste capítulo vêm com **testes**, e os testes são escritos
+-- na mesma linguagem. Um `example` enuncia uma afirmação sem lhe dar nome; o
+-- que vem depois do `:=` é a justificativa. A tática `rfl` fecha uma
+-- igualdade quando os dois lados **calculam** o mesmo valor — é o que confere
+-- se a definição pedida faz o que se pediu. Um `theorem` é um `example` com
+-- nome, e o nome serve para que o enunciado possa ser citado depois.
+
+-- Aqui esses três recursos aparecem só como ferramenta de teste. O que
+-- significa provar em Lean, e como se constrói uma prova que `rfl` não fecha
+-- sozinha, é o assunto de Prova em Lean.
+
 -- ### Exercise (1 star): sum-of-squares ⭐
 
 -- Defina `sumOfSquares` que recebe dois naturais e devolve `m² + n²`.
@@ -292,221 +303,6 @@ def scaleX (p : Point) (factor : Float) : Point :=
 
 #eval scaleX ⟨2.0, 3.0⟩ 10.0
 
--- ## O tipo Prop e Provas
-
--- O que diferencia Lean de outras linguagens como Python e Java é a
--- capacidade de na mesma linguagem que usamos para 'programar' funções,
--- escrevermos 'provas' sobre estas funções.
-
--- Nesta 'Exemplos extraídos de (Yingchareonthawornchai, 2025). Uma proposição
--- é um enunciado que pode ser verdadeiro ou falso. O enunciado `1 = 1` é
--- verdadeiro, enquanto `square₁ 12 = 2` é falso. Toda proposição é todo tipo
--- `Prop`.
-
-#check square₁ 12 = 2
-
--- Podemos declarar proposições como a seguir e verificar que `1 = 1 : Prop`,
--- mas não podemos *avaliar* uma proposição.
-
-def p1 : Prop := 1 = 1
-
-#check p1
-
--- Toda proposição verdadeira tem uma prova, e uma prova é um *termo* do tipo
--- da proposição que testemunha a verdade da proposição. Provar `1 = 1` é
--- exibir um termo de tipo `1 = 1`, exatamente o que o termo `Eq.refl 1` faz
--- abaixo. Declarar um teorema é muito parecido com declarar uma função.
-
-theorem OneEqSelf : 1 = 1 := Eq.refl 1
-
--- A mesma ideia vale para dizer que duas funções são a mesma coisa — não é
--- analogia, é a proposição `f = g`, provável do mesmo jeito. Agora usando o
--- modo `tactic` iniciado com `by`. Usamos as taticas `rfl` e `intro` que
--- iremos explicar a seguir. Com `example` não precisamos dar nomes a teoremas
--- que não serão reusados.
-
-example :
-  ∀ (z : Nat), (λ x ↦ x * x) z = (fun y => y * y) z := by
-  intro n
-  rfl
-
--- Note que perguntar pelo tipo não é o mesmo que decidir se ela é verdadeira:
-
-#check (square₁ = square₂)
-
--- Provar é dar um termo cujo tipo é a proposição. Para uma igualdade em que
--- os dois lados reduzem ao mesmo valor, o termo é `rfl` — de *reflexividade*,
--- que é o princípio de que tudo é igual a si mesmo. Ver (Baanen et al., 2026)
--- para uma explicação sobre `rfl`.
-
-theorem square₁_eq_square₂ : square₁ = square₂ := by
- rfl
-
--- Escrito com `by`, `rfl` é uma *tática*: uma instrução para construir a
--- prova. Você pode inspecionar a definição de Lean para `Eq.refl`.
-
-#print square₁_eq_square₂
-
--- theorem IntroL.square₁_eq_square₂ : square₁ = square₂ :=
--- Eq.refl square₁
-
--- Além de `rfl`, um pequeno repertório de táticas resolve o que os capítulos
--- seguintes precisam — conferido nos próprios arquivos, não escolhido a
--- priori. A ordem abaixo é a de (Yingchareonthawornchai, 2025), que apresenta
--- as táticas nesta sequência; `decide`, `omega`, `obtain`, `cases`, `simp` e
--- `induction` não vêm de lá (o curso os introduz onde a necessidade aparece)
--- e ficam ao final, fora da ordem do FAA2025:
-
--- rfl          fecha a = b quando os dois lados calculam o mesmo valor
--- exact e      fornece o termo que é a prova
--- intro h      introduz uma hipótese, para provar uma implicação ou ∀
--- constructor  parte um ∧ ou um ↔ em dois objetivos
--- apply h      aplica uma implicação ou lema, deixando a(s) premissa(s)
---              como novo(s) objetivo(s)
--- unfold nome  desdobra uma definição, antes de continuar
--- rw [h]       reescreve o objetivo usando a igualdade h, da esquerda para
---              a direita
--- assumption   fecha o objetivo com uma hipótese já disponível
--- decide       fecha um objetivo decidível calculando a resposta
--- omega        resolve aritmética linear em Nat e Int
--- obtain ⟨_,_⟩ := h  desmonta uma hipótese composta (conjunção, existencial)
--- cases h      dado h : P ∨ Q, parte a prova em dois casos
--- simp [...]   reescreve com um conjunto de lemas até não haver mais o que
---              simplificar
--- induction x  prova por casos sobre a forma como x foi construído
--- funext x     duas funções são iguais quando concordam em todo ponto
-
--- Duas notações de prova não são táticas: `⟨t, h⟩` monta um par (para provar
--- uma conjunção ou exibir a testemunha de um existencial), e `h.1`/`h.2`
--- desmontam um par que está numa hipótese.
-
--- ### Exercise (1 star): rfl-arithmetic ⭐
-
--- Termine a prova usando `rfl`.
-
-example : 7 * 6 = 42 :=
-  sorry
-
--- ### Exercise (1 star): square-unfold ⭐
-
--- Prove que `square₁ n = n * n`; uma variável aparece, então `rfl` não basta
--- sozinho — é preciso desdobrar a definição antes.
-
-example (n : Nat) : square₁ n = n * n := by
-  sorry
-
--- ### Exercise (1 star): identity-implication ⭐
-
--- Provar `P → Q` é: suponha `P`, derive `Q`. Prove `P → P`. Fonte:
--- (Yingchareonthawornchai, 2025)
-
-example (P : Prop) : P → P := by
-  sorry
-
--- ### Exercise (1 star): p-implies-q-implies-p ⭐
-
--- Complete a prova abaixo. Fonte: (Yingchareonthawornchai, 2025)
-
-example (P Q : Prop) : P → (Q → P) := by
-  sorry
-
--- ### Exercise (1 star): and-intro ⭐
-
--- Prove `P ∧ Q` a partir de `P` e de `Q`. Fonte: (Yingchareonthawornchai,
--- 2025). Dica: `constructor` parte o objetivo `P ∧ Q` em dois; cada um se
--- fecha com `exact`.
-
-#check And.intro
-
--- And.intro {a b : Prop} (left : a) (right : b) : a ∧ b
-
-example (P Q : Prop) (hP : P) (hQ : Q) : P ∧ Q := by
-  sorry
-
--- ### Exercise (2 stars): and-comm ⭐⭐
-
--- Prove que a conjunção comuta. Fonte: (Yingchareonthawornchai, 2025). Dica:
--- um `↔` se parte em dois objetivos com `constructor`; em cada um, `intro h`
--- seguido de `obtain ⟨_,_⟩ := h` desmonta a conjunção da hipótese, e
--- `constructor` reconstrói a conjunção invertida.
-
--- Veja também o que acontece ao avaliar `(10,20).1`. `And` em Lean é uma
--- `structure` com dois campos.
-
-example (P Q : Prop) : P ∧ Q ↔ Q ∧ P := by
- sorry
-
--- ### Exercise (1 star): implication-transitivity ⭐
-
--- Fonte: (Yingchareonthawornchai, 2025). Dica: `intro`, depois `apply` duas
--- vezes, encadeando as duas hipóteses.
-
-example (P Q R : Prop) (h : P → Q) (h2 : Q → R) :
-    P → R := by
-  sorry
-
--- ### Exercise (1 star): apply-several-premises ⭐
-
--- Adaptado de (Yingchareonthawornchai, 2025).
-
-example (P Q R S : Prop) (h0 : P ∧ Q ∧ R)
-    (h : P → Q → R → S) : S := by
-  sorry
-
--- Nem toda prova precisa de lógica proposicional abstrata — às vezes o que
--- falta é desdobrar uma definição local antes de concluir.
-
--- ### Exercise (1 star): unfold-direct-proof ⭐
-
--- Fonte: (Yingchareonthawornchai, 2025), com `f` definida localmente igual ao
--- arquivo. Dica: `intro h`, `unfold f at h` (ou `rw [f] at h`), depois
--- concluir por `omega` ou `assumption`.
-
-def f₁ (x y : Nat) : Prop := x = y
-
-example (x : Nat) : f₁ x 1 → x ≠ 2 := by
-  sorry
-
--- ### Exercise (1 star): unfold-conjunction ⭐
-
--- Fonte: (Yingchareonthawornchai, 2025).
-
-example (x y : Nat) : f₁ 0 x ∧ f₁ 0 y → x = y := by
-  sorry
-
--- ### Exercise (1 star): exists-witness ⭐
-
--- Prove que `∃ n : Nat, n + n = 10`, exibindo a testemunha com `⟨_, _⟩` ou
--- usando `Exists.intro`.
-
-#check Exists.intro
-
--- Exists.intro.{u} {α : Sort u} {p : α → Prop} (w : α) (h : p w) : Exists p
-
-example : ∃ n : Nat, n + n = 10 := by
-  sorry
-
--- ### Exercise (1 star): cases-on-or ⭐
-
--- Prove que `P ∨ Q → Q ∨ P`, usando `cases` sobre a hipótese, complete a
--- prova.
-
-#check Or.intro_left
-
--- Or.intro_left {a : Prop} (b : Prop) (h : a) : a ∨ b
-
-#check Or.intro_right
-
--- Or.intro_right {b : Prop} (a : Prop) (h : b) : a ∨ b
-
-example (P Q : Prop) : P ∨ Q → Q ∨ P := by
-  intro h
-  cases h with
-  | inl hp =>
-    sorry
-  | inr hq =>
-    sorry
-
 -- ## Tipos indutivos
 
 -- Tipos indutivos vêm antes da recursão porque, em Lean, uma função recursiva
@@ -518,10 +314,10 @@ example (P Q : Prop) : P ∨ Q → Q ∨ P := by
 -- carrega, é um registro variante; quando a forma se refere ao próprio tipo
 -- sendo definido, é uma árvore. As três coisas são o mesmo mecanismo.
 
--- Essa é a construção mais importante do curso. Em Gramáticas para jogos
--- veremos que uma gramática escrita na notação usual — a Forma de Backus-Naur
--- — é literalmente um tipo `inductive`, e daí em diante todo fragmento da
--- língua é declarado assim.
+-- Essa é a construção mais importante do curso. Em Batalha Naval veremos que
+-- uma gramática escrita na notação usual — a Forma de Backus-Naur — é
+-- literalmente um tipo `inductive`, e daí em diante todo fragmento da língua
+-- é declarado assim.
 
 -- A enumeração é o caso mais simples. `deriving Repr, DecidableEq` pede que a
 -- exibição e o teste de igualdade sejam gerados em vez de escritos à mão.
@@ -584,22 +380,6 @@ def isWeekend (d : Day) : Bool :=
 -- Nat.zero)`.
 
 example : 2 = Nat.succ (Nat.succ Nat.zero) := rfl
-
--- ## Prova por indução
-
--- A última tática da tabela, `induction`, prova algo para todo valor de um
--- tipo indutivo, e não para um valor de cada vez.
-
--- ### Exercise (1 star): add-zero-induction ⭐
-
--- Prove que `n + 0 = n` para todo `n`, usando `induction n`. No caso `0`,
--- `rfl` fecha; no caso `n + 1`, a hipótese de indução (`ih`) resolve `omega`.
-
-example (n : Nat) : n + 0 = n := by
- sorry
-
--- Quem quiser praticar Lean provas em Lean, pode jogar o [Natural Number
--- Game](https://adam.math.hhu.de/#/g/leanprover-community/nng4/).
 
 -- ## Recursão
 

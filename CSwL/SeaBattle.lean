@@ -1,15 +1,12 @@
 import CSwLCompat
 import Mathlib.Data.List.Chain
 
--- # Gramáticas para jogos
+-- # Batalha Naval
 
--- O capítulo trata de como definir uma língua — no sentido amplo: um conjunto
--- de strings bem formadas — por meio de uma gramática. Os dois exemplos são
--- de linguagens sobre jogos.
+-- Como definir uma língua — no sentido amplo: um conjunto de strings bem
+-- formadas — por meio de uma gramática. O exemplo é a linguagem de um jogo.
 
--- ## Batalha Naval
-
--- ### Sintaxe
+-- ## Sintaxe
 
 -- Batalha naval é um jogo de tabuleiro de dois jogadores, no qual os
 -- jogadores têm de adivinhar em que quadrados estão os navios do oponente. O
@@ -219,7 +216,7 @@ example : ¬ WellFormed badDerivation := by
   cases h with
   | step t g hne hwf => apply hne; simp
 
--- ### Semântica
+-- ## Semântica
 
 -- Dar semântica a Batalha Naval exige um modelo do que existe fora da
 -- linguagem — o estado do tabuleiro — e uma regra que ligue cada expressão da
@@ -319,10 +316,9 @@ def exampleState : State :=
 -- `State` pode conter só esse navio: a prova de `shipsOK` que a `structure`
 -- exige não existe.
 
+def gapShip : Grid := [(.A, 0), (.C, 0)]
+
 sf_expect_failure
-  /-- Contraexemplo: mesma linha, com lacuna na coluna B. -/
-  def gapShip : Grid := [(.A, 0), (.C, 0)]
-  
   def badState : State :=
     { ships := [gapShip]
       attacks := []
@@ -341,11 +337,9 @@ def addShip (ship : Grid) (s : State) : Option State :=
 example : (addShip [(.A, 0), (.A, 1)] exampleState).isSome :=
   sorry
 
-/-- `gapShip` não é um navio válido: a adição falha. -/
 example : addShip gapShip exampleState = none :=
   sorry
 
-/-- `destroyerCells` já ocupa células de `exampleState`: colide. -/
 example : addShip destroyerCells exampleState = none :=
   sorry
 
@@ -405,7 +399,7 @@ def updateBattle (a : Attack) (s : State) : State :=
 
 end Battleship
 
--- ### Pragmática
+-- ## Pragmática
 
 -- As definições da seção anterior para `hit`, `missed`, `defeated` e `sunk`
 -- seguem uma hierarquia entre as reações: todo ataque que termina uma partida
@@ -452,139 +446,4 @@ end Battleship
 
 -- O que mais se pode dizer sobre a pragmática de Batalha Naval em termos das
 -- máximas de Grice?
-
--- ## Mastermind (Jogo Senha)
-
--- Outra linguagem bem simples é a do Mastermind (Jogo Senha). O Mastermind é
--- um jogo de dois jogadores em que um deles tenta descobrir o código
--- escolhido pelo outro. Um dos jogadores decide uma sequência de quatro pinos
--- coloridos, com as cores escolhidas dentro de um conjunto fixo. O outro
--- jogador (quem tenta decifrar) tenta adivinhar o padrão de cores. Depois de
--- cada palpite, quem propôs o código dá uma resposta indicando sua correção.
--- Essa resposta consiste numa sequência de pinos pretos e brancos: um pino
--- preto para cada pino da cor certa na posição certa, e um pino branco para
--- cada pino adicional da cor certa, mas na posição errada. Se o código
--- secreto é vermelho, azul, verde, amarelo, e o palpite é verde, azul,
--- vermelho, laranja, a resposta é um preto (o azul está na posição certa) e
--- dois brancos (verde e vermelho aparecem no palpite, mas nas posições
--- erradas). Os palpites e as respostas se alternam até que o padrão seja
--- descoberto. O desafio é adivinhar o padrão no menor número de tentativas.
-
--- colour ::= "red" | "yellow" | "blue" | "green" | "orange" ;
--- answer ::= "black" | "white" ;
--- guess ::= colour colour colour colour ;
--- reaction ::= answer
---   | answer answer
---   | answer answer answer
---   | answer answer answer answer ;
--- turn ::= guess reaction ;
--- game ::= turn | turn game ;
-
--- Note que os pinos pretos e brancos são colocados em qualquer ordem, não
--- correspondem a uma sinalização por posição. Uma desvantagem da
--- implementação a seguir é que dois diferentes termos do tipo `Reaction`
--- poderiam representar a mesma *resposta* para uma tentativa.
-
--- Dois tipos do Lean entram aqui, ambos porque a gramática fixa quantidades.
--- Um palpite tem exatamente quatro pinos, e `Vector Colour 4` é a lista de
--- `Colour` cujo comprimento é quatro — o tamanho faz parte do tipo, então uma
--- lista de três cores sequer elabora como `Guess`. Seus valores se escrevem
--- `#v[...]`, como em `turn1` abaixo.
-
--- Uma resposta tem **no máximo** quatro pinos, que é uma condição e não um
--- tamanho fixo. Para isso serve um **subtipo**:
--- `{ r : List Answer // r.length ≤ 4 }` é o tipo das listas de `Answer`
--- acompanhadas de uma prova de que seu comprimento não passa de quatro. Um
--- valor seu é o par `⟨lista, prova⟩` — daí o `⟨[.black, .white], by simp⟩`
--- mais abaixo, onde `by simp` é a prova de que essa lista tem comprimento
--- menor ou igual a quatro. Sobre ambos, ver (FRO, 2026); sobre subtipos em
--- particular, (Baanen et al., 2026).
-
-namespace Mastermind
-
-inductive Colour where
-  | red | yellow | blue | green | orange
-  deriving DecidableEq, Repr
-
-inductive Answer where
-  | black | white
-  deriving DecidableEq, Repr
-
-abbrev Guess := Vector Colour 4
-
-/-- uma alternativa `Vector (Option Answer) 4` -/
-abbrev Reaction := { r : List Answer // r.length ≤ 4 }
-
-structure Turn where
-  guess : Guess
-  reaction : Reaction
-  deriving DecidableEq, Repr
-
-abbrev Game := List Turn
-
-def turn1 : Turn :=
-  ⟨#v[.green, .blue, .red, .orange],
-   (⟨[.black, .white], by simp⟩ : Reaction) ⟩
-
-end Mastermind
-
--- ### Exercise (1 star): four-turn-game ⭐
-
--- Revise a gramática para garantir que um jogo tenha no máximo quatro
--- jogadas.
-
-namespace Mastermind
-
-abbrev Game₄ := sorry
-
-end Mastermind
-
--- ### Exercise (1 star): chess-grammar ⭐
-
--- Escreva suas próprias gramáticas para o xadrez e em seguida sua
--- implementação no Lean.
-
--- figure ::= "King" | "Queen" | "Knight"
---   | "Rook" | "Bishop" | "Pawn" ;
--- row    ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" ;
--- column ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" ;
--- move   ::= figure row column ;
--- turn   ::= move move ;
--- game   ::= turn | turn game ;
-
-namespace Chess
-
-inductive Figure where
-  | king | queen | knight | rook | bishop | pawn
-  deriving DecidableEq, Repr
-
-inductive Row where
-  | a | b | c | d | e | f | g | h
-  deriving DecidableEq, Repr
-
-structure Move where
-  figure : Figure
-  row : Row
-  column : Fin 8
-  deriving DecidableEq, Repr
-
-structure Turn where
-  white : Move
-  black : Move
-  deriving DecidableEq, Repr
-
-abbrev Game := List Turn
-
-end Chess
-
--- _Quiz:_
-
--- Todas as gramáticas que discutimos geram linguagens infinitas?
-
--- A partir das discussões acima, poderíamos sugerir uma primeira gramática
--- para um fragmennto do inglês talvez um tanto quanto permissiva. Qualquer
--- sequencia de caracteres ASCII.
-
--- character ::= _ascii ;
---  string ::= character | character string ;
 
