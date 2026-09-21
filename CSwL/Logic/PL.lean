@@ -153,8 +153,6 @@ def Formula.namesRaw₁ (f : Formula) (sofar : List String) : List String :=
 def Formula.names₁ (f : Formula) : List String :=
   sorry
 
-#eval Maria.form₁.names₁
-
 example : Maria.form₁.names₁ == ["MB", "MJ", "MT"] :=
   sorry
 
