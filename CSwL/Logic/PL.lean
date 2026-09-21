@@ -28,7 +28,7 @@ namespace PL
 sf_expect_failure
   def doesNotWork (p q : Prop) (h : p ∧ q) : Type :=
     match h with
-    | And.intro ha hb => ha
+    | And.intro ha _hb => ha
 
 -- Nesta seção, queremos manipular fórmulas e decidir quando uma fórmula `α` é
 -- consequência lógica de `β`, isto é, `β ⊧ α `. A noção de consequência
@@ -120,9 +120,10 @@ def Formula.namesRaw : Formula → List String
   | .disj f g => f.namesRaw ++ g.namesRaw
 
 def Formula.names (f : Formula) : List String :=
-  sorry
+  f.namesRaw.dedup.mergeSort (· ≤ ·)
 
-#eval Maria.form₁.names
+example : Maria.form₁.names == ["MB", "MJ", "MT"] :=
+  by native_decide
 
 -- ### Exercise (1 star): collect-atoms ⭐
 
@@ -259,7 +260,7 @@ def form3 : Formula :=
 def Formula.countOps : Formula → Nat :=
   sorry
 
-example : form2.countOps = 3 := by decide
+example : form2.countOps = 3 := sorry
 
 -- ### Exercise (1 star): formula-depth ⭐
 
@@ -269,7 +270,7 @@ example : form2.countOps = 3 := by decide
 def Formula.depth : Formula → Nat :=
   sorry
 
-example : form2.depth = 3 := by decide
+example : form2.depth = 3 := sorry
 
 -- ## Semântica de Lógica Proposicional
 
