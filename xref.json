@@ -1621,6 +1621,16 @@
         "Morfologia",
         "Aplicação: representando fonemas"]}},
      "address": "/Morphology/"}],
+   "Phonema.fValue":
+   [{"id": "Phonema___fValue",
+     "data":
+     {"/Morphology/#Phonema___fValue":
+      {"display": "fValue",
+       "context":
+       ["Semântica computacional com Lean",
+        "Morfologia",
+        "Aplicação: representando fonemas"]}},
+     "address": "/Morphology/"}],
    "Phonema.fMatch":
    [{"id": "Phonema___fMatch",
      "data":

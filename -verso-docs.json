@@ -1,37 +1,36 @@
 {"999":
- "<code>Phonema.appendSuffixY_test2 :\n  List.map realize (appendSuffixY [c, a, c] [c, i, c]) = [some 'c', some 'a', some 'c', some 'c', some 'i', some 'c']</code>",
- "998":
  "<code>Phonema.appendSuffixY_test1 :\n  List.map realize (appendSuffixY [c, u, c] [c, i, c]) = [some 'c', some 'u', some 'c', some 'c', some 'u', some 'c']</code>",
- "997":
+ "998":
  "<code>Phonema.appendSuffixY (stem suffix : List Phoneme) : List Phoneme</code>",
- "996": "<code>Phonema.harmonize (stemV suffixPh : Phoneme) : Phoneme</code>",
- "995": "<code>List Phoneme</code>",
- "994": "<code>Phonema.stemVowel (stem : List Phoneme) : Option Phoneme</code>",
- "993":
+ "997": "<code>Phonema.harmonize (stemV suffixPh : Phoneme) : Phoneme</code>",
+ "996": "<code>List Phoneme</code>",
+ "995": "<code>Phonema.stemVowel (stem : List Phoneme) : Option Phoneme</code>",
+ "994":
  "<code>Option.map.{u_1, u_2} {α : Type u_1} {β : Type u_2} (f : α → β) : Option α → Option β</code><span class=\"sep\"></span><code class=\"docstring\">Apply a function to an optional value, if present.\n\nFrom the perspective of `Option` as a container with at most one value, this is analogous to\n`List.map`. It can also be accessed via the `Functor Option` instance.\n\nExamples:\n * `(none : Option Nat).map (· + 1) = none`\n * `(some 3).map (· + 1) = some 4`\n</code>",
- "992": "<code>Phoneme × Char</code>",
- "991":
+ "993": "<code>Phoneme × Char</code>",
+ "992":
  "<code>List.find?.{u} {α : Type u} (p : α → Bool) : List α → Option α</code><span class=\"sep\"></span><code class=\"docstring\">Returns the first element of the list for which the predicate `p` returns `true`, or `none` if no\nsuch element is found.\n\n`O(|l|)`.\n\nExamples:\n* `[7, 6, 5, 8, 1, 2, 6].find? (· &lt; 5) = some 1`\n* `[7, 6, 5, 8, 1, 2, 6].find? (· &lt; 1) = none`\n</code>",
- "990": "<code>Phonema.realize (x : Phoneme) : Option Char</code>",
+ "991": "<code>Phonema.realize (x : Phoneme) : Option Char</code>",
+ "990": "<code><span class=\"literal char\">'c'</span> : Char</code>",
  "99": "<code>IntroL.Day.saturday : Day</code>",
- "989": "<code><span class=\"literal char\">'c'</span> : Char</code>",
- "988": "<code>Phonema.surfaceTable : List (Phoneme × Char)</code>",
- "987": "<code>Phonema.c : Phoneme</code>",
- "986": "<code>Phonema.yawelmaniVowels : List Phoneme</code>",
- "985": "<code>Phonema.u : Phoneme</code>",
- "984": "<code>Phonema.o : Phoneme</code>",
- "983": "<code>Phonema.i : Phoneme</code>",
- "982": "<code>Phonema.e : Phoneme</code>",
- "981":
+ "989": "<code>Phonema.surfaceTable : List (Phoneme × Char)</code>",
+ "988": "<code>Phonema.c : Phoneme</code>",
+ "987": "<code>Phonema.yawelmaniVowels : List Phoneme</code>",
+ "986": "<code>Phonema.u : Phoneme</code>",
+ "985": "<code>Phonema.o : Phoneme</code>",
+ "984": "<code>Phonema.i : Phoneme</code>",
+ "983": "<code>Phonema.e : Phoneme</code>",
+ "982":
  "<code>Phonema.Feature.mk (attr : Attr) (value : Value) : Feature</code>",
- "980": "<code>Phonema.a : Phoneme</code>",
+ "981": "<code>Phonema.a : Phoneme</code>",
+ "980": "<code>Value</code>",
  "98": "<code>IntroL.Day.friday : Day</code>",
- "979": "<code>Value</code>",
- "978": "<code>Feature</code>",
- "977": "<code>Phoneme</code>",
- "976": "<code>Value</code>",
- "975":
+ "979": "<code>Phoneme</code>",
+ "978": "<code>Value</code>",
+ "977":
  "<code>Phonema.fMatch (attr : Attr) (value : Value) (fs : Phoneme) : Phoneme</code>",
+ "976": "<code>List Feature</code>",
+ "975": "<code>Feature</code>",
  "974": "<code>Attr</code>",
  "973": "<code>Phonema.fValue (attr : Attr) : Phoneme → Option Value</code>",
  "972": "<code>Phonema.Phoneme : Type</code>",
@@ -1270,651 +1269,653 @@
  "<code>List.map.{u_1, u_2} {α : Type u_1} {β : Type u_2} (f : α → β) (l : List α) : List β</code><span class=\"sep\"></span><code class=\"docstring\">Applies a function to each element of the list, returning the resulting list of values.\n\n`O(|l|)`.\n\nExamples:\n* `[a, b, c].map f = [f a, f b, f c]`\n* `[].map Nat.succ = []`\n* `[\"one\", \"two\", \"three\"].map (·.length) = [3, 3, 5]`\n* `[\"one\", \"two\", \"three\"].map (·.reverse) = [\"eno\", \"owt\", \"eerht\"]`\n</code>",
  "145":
  "<code>Char : Type</code><span class=\"sep\"></span><code class=\"docstring\">Characters are Unicode [scalar values](http://www.unicode.org/glossary/#unicode_scalar_value).\n</code>",
- "1445":
+ "1446":
  "<code>English.values_correct : List.map checkSentence sentences = values</code>",
- "1444": "<code>English.values : List Bool</code>",
- "1443": "<code>English.sentences : List Sent</code>",
- "1442": "<code>English.someNPs : List NP</code>",
- "1441": "<code>English.checkSentence (s : English.Sent) : Bool</code>",
- "1440": "<code>Assign Entity</code>",
+ "1445": "<code>English.values : List Bool</code>",
+ "1444": "<code>English.sentences : List Sent</code>",
+ "1443": "<code>English.someNPs : List NP</code>",
+ "1442": "<code>English.checkSentence (s : English.Sent) : Bool</code>",
+ "1441": "<code>Assign Entity</code>",
+ "1440": "<code>Interp Entity</code>",
  "144":
  "<code>Inhabited.default.{u} {α : Sort u} [self : Inhabited α] : α</code><span class=\"sep\"></span><code class=\"docstring\">`default` is a function that produces a \"default\" element of any\n`Inhabited` type. This element does not have any particular specified\nproperties, but it is often an all-zeroes value. </code>",
- "1439": "<code>Interp Entity</code>",
- "1438":
+ "1439":
  "<code>English.eval_iff_denote_fairy (I : Interp Entity) (g : Assign Entity) (f : Formula Term) :\n  f.eval entities I g (liftAssign fintFairy) = true ↔ f.denote (fun n as =&gt; I n as = true) g (liftAssign fintFairy)</code>",
- "1437":
+ "1438":
  "<code>English.everyoneCheered : checkSentence (Sent.sent NP.everyone VP.cheered) = false</code>",
- "1436":
+ "1437":
  "<code>English.someDwarfDefeatedSomeGiant :\n  checkSentence (Sent.sent (NP.npDet DET.some CN.dwarf) (VP.vpTrans TV.defeated (NP.npDet DET.some CN.giant))) = true</code>",
- "1435":
+ "1436":
  "<code>English.dorothyLaughed : checkSentence (Sent.sent NP.dorothy VP.laughed) = false</code>",
- "1434":
+ "1435":
  "<code>English.goldilocksLaughed : checkSentence (Sent.sent NP.goldilocks VP.laughed) = true</code>",
- "1433": "<code>English.checkSentence (s : Sent) : Bool</code>",
- "1432": "<code>English.ass0 : FOL.Assign English.Entity</code>",
- "1431": "<code>English.fintFairy : FOL.FInterp English.Entity</code>",
- "1430": "<code>English.intFairy : FOL.Interp English.Entity</code>",
+ "1434": "<code>English.checkSentence (s : Sent) : Bool</code>",
+ "1433": "<code>English.ass0 : FOL.Assign English.Entity</code>",
+ "1432": "<code>English.fintFairy : FOL.FInterp English.Entity</code>",
+ "1431": "<code>English.intFairy : FOL.Interp English.Entity</code>",
+ "1430": "<code>English.entities : List English.Entity</code>",
  "143": "<code><span class=\"literal char\">'A'</span> : Char</code>",
- "1429": "<code>English.entities : List English.Entity</code>",
- "1428": "<code>English.loveReflexive : LF</code>",
- "1427": "<code>English.ass0 : Assign Entity</code>",
- "1426": "<code>English.fintFairy : FInterp Entity</code>",
- "1425": "<code>English.intFairy : Interp Entity</code>",
- "1424":
+ "1429": "<code>English.loveReflexive : LF</code>",
+ "1428": "<code>English.ass0 : Assign Entity</code>",
+ "1427": "<code>English.fintFairy : FInterp Entity</code>",
+ "1426": "<code>English.intFairy : Interp Entity</code>",
+ "1425":
  "<code>English.self3IO_introduced : self3IO introduced Entity.A Entity.B = false</code>",
- "1423":
+ "1424":
  "<code>English.self3DO_introduced : self3DO introduced Entity.A Entity.B = true</code>",
- "1422": "<code>English.self3IO (p : ThreePlacePred) : TwoPlacePred</code>",
- "1421": "<code>ThreePlacePred</code>",
- "1420": "<code>English.self3DO (p : ThreePlacePred) : TwoPlacePred</code>",
+ "1423": "<code>English.self3IO (p : ThreePlacePred) : TwoPlacePred</code>",
+ "1422": "<code>ThreePlacePred</code>",
+ "1421": "<code>English.self3DO (p : ThreePlacePred) : TwoPlacePred</code>",
+ "1420": "<code>English.introduced : ThreePlacePred</code>",
  "142":
  "<code>String.back (s : String) : Char</code><span class=\"sep\"></span><code class=\"docstring\">Returns the last character in `s`. If `s = \"\"`, returns `(default : Char)`.\n\nExamples:\n\n* `\"abc\".back = 'c'`\n\n* `\"\".back = (default : Char)`\n</code>",
- "1419": "<code>English.introduced : ThreePlacePred</code>",
- "1418": "<code>α → α → β</code>",
- "1417": "<code>English.self {α β : Type} (p : α → α → β) : α → β</code>",
- "1416": "<code>TwoPlacePred</code>",
- "1415": "<code>English.passivize (r : TwoPlacePred) : OnePlacePred</code>",
- "1414": "<code>English.kill : ThreePlacePred</code>",
- "1413": "<code>English.give : ThreePlacePred</code>",
- "1412": "<code>English.defeat : TwoPlacePred</code>",
- "1411": "<code>English.admire : TwoPlacePred</code>",
- "1410": "<code>English.help : TwoPlacePred</code>",
+ "1419": "<code>α → α → β</code>",
+ "1418": "<code>English.self {α β : Type} (p : α → α → β) : α → β</code>",
+ "1417": "<code>TwoPlacePred</code>",
+ "1416": "<code>English.passivize (r : TwoPlacePred) : OnePlacePred</code>",
+ "1415": "<code>English.kill : ThreePlacePred</code>",
+ "1414": "<code>English.give : ThreePlacePred</code>",
+ "1413": "<code>English.defeat : TwoPlacePred</code>",
+ "1412": "<code>English.admire : TwoPlacePred</code>",
+ "1411": "<code>English.help : TwoPlacePred</code>",
+ "1410": "<code>English.love : TwoPlacePred</code>",
  "141":
  "<code>List.length.{u_1} {α : Type u_1} : List α → ℕ</code><span class=\"sep\"></span><code class=\"docstring\">The length of a list.\n\nThis function is overridden in the compiler to `lengthTR`, which uses constant stack space.\n\nExamples:\n* `([] : List String).length = 0`\n* `[\"green\", \"brown\"].length = 2`\n</code>",
- "1409": "<code>English.love : TwoPlacePred</code>",
- "1408": "<code>English.shudder : OnePlacePred</code>",
- "1407": "<code>English.cheer : OnePlacePred</code>",
- "1406": "<code>English.laugh : OnePlacePred</code>",
- "1405": "<code>English.thing : OnePlacePred</code>",
- "1404": "<code>English.female : OnePlacePred</code>",
- "1403": "<code>English.male : OnePlacePred</code>",
- "1402": "<code>English.woman : OnePlacePred</code>",
- "1401": "<code>English.man : OnePlacePred</code>",
- "1400": "<code>English.person : OnePlacePred</code>",
+ "1409": "<code>English.shudder : OnePlacePred</code>",
+ "1408": "<code>English.cheer : OnePlacePred</code>",
+ "1407": "<code>English.laugh : OnePlacePred</code>",
+ "1406": "<code>English.thing : OnePlacePred</code>",
+ "1405": "<code>English.female : OnePlacePred</code>",
+ "1404": "<code>English.male : OnePlacePred</code>",
+ "1403": "<code>English.woman : OnePlacePred</code>",
+ "1402": "<code>English.man : OnePlacePred</code>",
+ "1401": "<code>English.person : OnePlacePred</code>",
+ "1400": "<code>English.child : OnePlacePred</code>",
  "140":
  "<code>List.sum.{u_1} {α : Type u_1} [Add α] [Zero α] : List α → α</code><span class=\"sep\"></span><code class=\"docstring\">Computes the sum of the elements of a list.\n\nExamples:\n* `[a, b, c].sum = a + (b + (c + 0))`\n* `[1, 2, 5].sum = 8`\n</code>",
  "14":
  "<code class=\"docstring\">After `with`, there is an optional tactic that runs on all branches, and\nthen a list of alternatives.\n</code>",
- "1399": "<code>English.child : OnePlacePred</code>",
- "1398": "<code>English.dagger : OnePlacePred</code>",
- "1397": "<code>English.sword : OnePlacePred</code>",
- "1396": "<code>English.wizard : OnePlacePred</code>",
- "1395": "<code>English.giant : OnePlacePred</code>",
- "1394": "<code>English.dwarf : OnePlacePred</code>",
- "1393": "<code>English.princess : OnePlacePred</code>",
- "1392": "<code>English.boy : OnePlacePred</code>",
- "1391": "<code>English.girl : OnePlacePred</code>",
- "1390": "<code>List (Entity × Entity × Entity)</code>",
+ "1399": "<code>English.dagger : OnePlacePred</code>",
+ "1398": "<code>English.sword : OnePlacePred</code>",
+ "1397": "<code>English.wizard : OnePlacePred</code>",
+ "1396": "<code>English.giant : OnePlacePred</code>",
+ "1395": "<code>English.dwarf : OnePlacePred</code>",
+ "1394": "<code>English.princess : OnePlacePred</code>",
+ "1393": "<code>English.boy : OnePlacePred</code>",
+ "1392": "<code>English.girl : OnePlacePred</code>",
+ "1391": "<code>List (Entity × Entity × Entity)</code>",
+ "1390":
+ "<code>English.list3 (ts : List (Entity × Entity × Entity)) : ThreePlacePred</code>",
  "139":
  "<code>List.isEmpty.{u} {α : Type u} : List α → Bool</code><span class=\"sep\"></span><code class=\"docstring\">Checks whether a list is empty.\n\n`O(1)`.\n\nExamples:\n* `[].isEmpty = true`\n* `[\"grape\"].isEmpty = false`\n* `[\"apple\", \"banana\"].isEmpty = false`\n</code>",
- "1389":
- "<code>English.list3 (ts : List (Entity × Entity × Entity)) : ThreePlacePred</code>",
- "1388": "<code>List (Entity × Entity)</code>",
- "1387":
+ "1389": "<code>List (Entity × Entity)</code>",
+ "1388":
  "<code>English.list2 (ps : List (Entity × Entity)) : TwoPlacePred</code>",
- "1386": "<code>List Entity</code>",
- "1385": "<code>English.list1 (xs : List Entity) : OnePlacePred</code>",
- "1384": "<code>English.ThreePlacePred : Type</code>",
- "1383": "<code>English.TwoPlacePred : Type</code>",
- "1382": "<code>English.OnePlacePred : Type</code>",
- "1381": "<code>English.atreyu : Entity</code>",
- "1380": "<code>English.littleMook : Entity</code>",
+ "1387": "<code>List Entity</code>",
+ "1386": "<code>English.list1 (xs : List Entity) : OnePlacePred</code>",
+ "1385": "<code>English.ThreePlacePred : Type</code>",
+ "1384": "<code>English.TwoPlacePred : Type</code>",
+ "1383": "<code>English.OnePlacePred : Type</code>",
+ "1382": "<code>English.atreyu : Entity</code>",
+ "1381": "<code>English.littleMook : Entity</code>",
+ "1380": "<code>English.goldilocks : Entity</code>",
  "138":
  "<code>Rat : Type</code><span class=\"sep\"></span><code class=\"docstring\">Rational numbers, implemented as a pair of integers `num / den` such that the\ndenominator is positive and the numerator and denominator are coprime.\n</code>",
- "1379": "<code>English.goldilocks : Entity</code>",
- "1378": "<code>English.dorothy : Entity</code>",
- "1377": "<code>English.alice : Entity</code>",
- "1376": "<code>English.snowWhite : Entity</code>",
- "1375":
+ "1379": "<code>English.dorothy : Entity</code>",
+ "1378": "<code>English.alice : Entity</code>",
+ "1377": "<code>English.snowWhite : Entity</code>",
+ "1376":
  "<code>English.mem_entities (e : English.Entity) : e ∈ English.entities</code>",
- "1374": "<code>English.mem_entities (e : Entity) : e ∈ entities</code>",
- "1373": "<code>English.entities : List Entity</code>",
- "1372": "<code>English.Entity.Unspec : Entity</code>",
- "1371": "<code>English.Entity.Z : Entity</code>",
- "1370": "<code>English.Entity.Y : Entity</code>",
+ "1375": "<code>English.mem_entities (e : Entity) : e ∈ entities</code>",
+ "1374": "<code>English.entities : List Entity</code>",
+ "1373": "<code>English.Entity.Unspec : Entity</code>",
+ "1372": "<code>English.Entity.Z : Entity</code>",
+ "1371": "<code>English.Entity.Y : Entity</code>",
+ "1370": "<code>English.Entity.X : Entity</code>",
  "137": "<code>List ℤ</code>",
- "1369": "<code>English.Entity.X : Entity</code>",
- "1368": "<code>English.Entity.W : Entity</code>",
- "1367": "<code>English.Entity.V : Entity</code>",
- "1366": "<code>English.Entity.U : Entity</code>",
- "1365": "<code>English.Entity.T : Entity</code>",
- "1364": "<code>English.Entity.S : Entity</code>",
- "1363": "<code>English.Entity.R : Entity</code>",
- "1362": "<code>English.Entity.Q : Entity</code>",
- "1361": "<code>English.Entity.P : Entity</code>",
- "1360": "<code>English.Entity.O : Entity</code>",
+ "1369": "<code>English.Entity.W : Entity</code>",
+ "1368": "<code>English.Entity.V : Entity</code>",
+ "1367": "<code>English.Entity.U : Entity</code>",
+ "1366": "<code>English.Entity.T : Entity</code>",
+ "1365": "<code>English.Entity.S : Entity</code>",
+ "1364": "<code>English.Entity.R : Entity</code>",
+ "1363": "<code>English.Entity.Q : Entity</code>",
+ "1362": "<code>English.Entity.P : Entity</code>",
+ "1361": "<code>English.Entity.O : Entity</code>",
+ "1360": "<code>English.Entity.N : Entity</code>",
  "136": "<code>IntroL.average (xs : List ℤ) : Option ℚ</code>",
- "1359": "<code>English.Entity.N : Entity</code>",
- "1358": "<code>English.Entity.M : Entity</code>",
- "1357": "<code>English.Entity.L : Entity</code>",
- "1356": "<code>English.Entity.K : Entity</code>",
- "1355": "<code>English.Entity.J : Entity</code>",
- "1354": "<code>English.Entity.I : Entity</code>",
- "1353": "<code>English.Entity.H : Entity</code>",
- "1352": "<code>English.Entity.G : Entity</code>",
- "1351": "<code>English.Entity.F : Entity</code>",
- "1350": "<code>English.Entity.E : Entity</code>",
+ "1359": "<code>English.Entity.M : Entity</code>",
+ "1358": "<code>English.Entity.L : Entity</code>",
+ "1357": "<code>English.Entity.K : Entity</code>",
+ "1356": "<code>English.Entity.J : Entity</code>",
+ "1355": "<code>English.Entity.I : Entity</code>",
+ "1354": "<code>English.Entity.H : Entity</code>",
+ "1353": "<code>English.Entity.G : Entity</code>",
+ "1352": "<code>English.Entity.F : Entity</code>",
+ "1351": "<code>English.Entity.E : Entity</code>",
+ "1350": "<code>English.Entity.D : Entity</code>",
  "135":
  "<code>Option.some.{u} {α : Type u} (val : α) : Option α</code><span class=\"sep\"></span><code class=\"docstring\">Some value of type `α`. </code>",
- "1349": "<code>English.Entity.D : Entity</code>",
- "1348": "<code>English.Entity.C : Entity</code>",
- "1347": "<code>English.Entity.B : Entity</code>",
- "1346": "<code>English.Entity.A : Entity</code>",
- "1345": "<code>English.Entity : Type</code>",
- "1344":
+ "1349": "<code>English.Entity.C : Entity</code>",
+ "1348": "<code>English.Entity.B : Entity</code>",
+ "1347": "<code>English.Entity.A : Entity</code>",
+ "1346": "<code>English.Entity : Type</code>",
+ "1345":
  "<code><span class=\"literal string\">\"every boy admired a girl that no wizard helped\"</span> : String</code>",
- "1343":
+ "1344":
  "<code>English.tr4_surface : toString tr4 = \"every boy admired a girl that no wizard helped\"</code>",
- "1342":
+ "1343":
  "<code><span class=\"literal string\">\"that defeated a giant\"</span> : String</code>",
- "1341":
+ "1342":
  "<code><span class=\"literal string\">\"every princess loved every dwarf \"</span> : String</code>",
- "1340":
+ "1341":
  "<code>English.tr3_surface : toString tr3 = \"every princess loved every dwarf \" ++ \"that defeated a giant\"</code>",
+ "1340":
+ "<code><span class=\"literal string\">\"no giant that shuddered defeated every dwarf\"</span> : String</code>",
  "134": "<code>α</code>",
  "1339":
- "<code><span class=\"literal string\">\"no giant that shuddered defeated every dwarf\"</span> : String</code>",
- "1338":
  "<code>English.tr2_surface : toString tr2 = \"no giant that shuddered defeated every dwarf\"</code>",
- "1337":
+ "1338":
  "<code><span class=\"literal string\">\"every girl that laughed helped a boy\"</span> : String</code>",
- "1336":
+ "1337":
  "<code>English.tr1_surface : toString tr1 = \"every girl that laughed helped a boy\"</code>",
- "1335": "<code>English.tr4 : Sent</code>",
- "1334": "<code>English.tr3 : Sent</code>",
- "1333": "<code>English.tr2 : Sent</code>",
- "1332": "<code>English.tr1 : Sent</code>",
- "1331": "<code>English.lf3 : LF</code>",
- "1330": "<code>English.lf2 : LF</code>",
+ "1336": "<code>English.tr4 : Sent</code>",
+ "1335": "<code>English.tr3 : Sent</code>",
+ "1334": "<code>English.tr2 : Sent</code>",
+ "1333": "<code>English.tr1 : Sent</code>",
+ "1332": "<code>English.lf3 : LF</code>",
+ "1331": "<code>English.lf2 : LF</code>",
+ "1330": "<code>English.lf1 : LF</code>",
  "133":
  "<code>Option.none.{u} {α : Type u} : Option α</code><span class=\"sep\"></span><code class=\"docstring\">No value. </code>",
- "1329": "<code>English.lf1 : LF</code>",
- "1328":
+ "1329":
  "<code><span class=\"literal string\">\"shudder\"</span> : String</code>",
- "1327":
+ "1328":
  "<code><span class=\"literal string\">\"cheer\"</span> : String</code>",
- "1326":
+ "1327":
  "<code><span class=\"literal string\">\"laugh\"</span> : String</code>",
- "1325": "<code>English.lfRCN : RCN → Term → LF</code>",
- "1324":
+ "1326": "<code>English.lfRCN : RCN → Term → LF</code>",
+ "1325":
  "<code><span class=\"literal string\">\"person\"</span> : String</code>",
- "1323":
+ "1324":
  "<code><span class=\"literal string\">\"LittleMook\"</span> : String</code>",
- "1322":
+ "1323":
  "<code><span class=\"literal string\">\"SnowWhite\"</span> : String</code>",
- "1321": "<code>English.lfVP : VP → Term → LF</code>",
- "1320": "<code>English.lfNP : NP → (Term → LF) → LF</code>",
+ "1322": "<code>English.lfVP : VP → Term → LF</code>",
+ "1321": "<code>English.lfNP : NP → (Term → LF) → LF</code>",
+ "1320": "<code>English.lfSent : Sent → LF</code>",
  "132": "<code>IntroL.myLast {α : Type} : List α → Option α</code>",
- "1319": "<code>English.lfSent : Sent → LF</code>",
- "1318": "<code>English.lfDET : DET → (Term → LF) → (Term → LF) → LF</code>",
- "1317": "<code>English.freshVar (ps : List (Term → LF)) : Variable</code>",
- "1316": "<code>Term → LF</code>",
- "1315": "<code>List (Term → LF)</code>",
- "1314": "<code>English.freshIndex (ps : List (Term → LF)) : ℕ</code>",
- "1313": "<code>English.dummy : Term</code>",
- "1312": "<code>English.boundIndices : LF → List ℕ</code>",
- "1311": "<code><span class=\"literal string\">\"give\"</span> : String</code>",
- "1310": "<code>English.lfDV : DV → Term → Term → Term → LF</code>",
+ "1319": "<code>English.lfDET : DET → (Term → LF) → (Term → LF) → LF</code>",
+ "1318": "<code>English.freshVar (ps : List (Term → LF)) : Variable</code>",
+ "1317": "<code>Term → LF</code>",
+ "1316": "<code>List (Term → LF)</code>",
+ "1315": "<code>English.freshIndex (ps : List (Term → LF)) : ℕ</code>",
+ "1314": "<code>English.dummy : Term</code>",
+ "1313": "<code>English.boundIndices : LF → List ℕ</code>",
+ "1312": "<code><span class=\"literal string\">\"give\"</span> : String</code>",
+ "1311": "<code>English.lfDV : DV → Term → Term → Term → LF</code>",
+ "1310":
+ "<code><span class=\"literal string\">\"catch\"</span> : String</code>",
  "131": "<code>IntroL.countZeros_test : countZeros [0, 1, 0, 2, 0] = 3</code>",
  "1309":
- "<code><span class=\"literal string\">\"catch\"</span> : String</code>",
- "1308":
  "<code><span class=\"literal string\">\"defeat\"</span> : String</code>",
- "1307": "<code><span class=\"literal string\">\"help\"</span> : String</code>",
- "1306":
+ "1308": "<code><span class=\"literal string\">\"help\"</span> : String</code>",
+ "1307":
  "<code><span class=\"literal string\">\"admire\"</span> : String</code>",
- "1305": "<code><span class=\"literal string\">\"love\"</span> : String</code>",
- "1304": "<code>English.lfTV : TV → Term → Term → LF</code>",
- "1303": "<code>English.lfADJ : ADJ → Term → LF</code>",
- "1302": "<code>English.lfCN : CN → Term → LF</code>",
- "1301": "<code>English.LF : Type</code>",
- "1300":
+ "1306": "<code><span class=\"literal string\">\"love\"</span> : String</code>",
+ "1305": "<code>English.lfTV : TV → Term → Term → LF</code>",
+ "1304": "<code>English.lfADJ : ADJ → Term → LF</code>",
+ "1303": "<code>English.lfCN : CN → Term → LF</code>",
+ "1302": "<code>English.LF : Type</code>",
+ "1301":
  "<code><span class=\"literal string\">\"Goldilocks admired cheered\"</span> : String</code>",
+ "1300":
+ "<code><span class=\"literal string\">\"the dwarf that Snow White helped and \"</span> : String</code>",
  "130": "<code>IntroL.countZeros (ns : List ℕ) : ℕ</code>",
  "13":
  "<code class=\"docstring\">Assuming `x` is a variable in the local context with an inductive type,\n`induction x` applies induction on `x` to the main goal,\nproducing one goal for each constructor of the inductive type,\nin which the target is replaced by a general instance of that constructor\nand an inductive hypothesis is added for each recursive argument to the constructor.\nIf the type of an element in the local context depends on `x`,\nthat element is reverted and reintroduced afterward,\nso that the inductive hypothesis incorporates that hypothesis as well.\n\nFor example, given `n : Nat` and a goal with a hypothesis `h : P n` and target `Q n`,\n`induction n` produces one goal with hypothesis `h : P 0` and target `Q 0`,\nand one goal with hypotheses `h : P (Nat.succ a)` and `ih₁ : P a → Q a` and target `Q (Nat.succ a)`.\nHere the names `a` and `ih₁` are chosen automatically and are not accessible.\nYou can use `with` to provide the variables names for each constructor.\n- `induction e`, where `e` is an expression instead of a variable,\n  generalizes `e` in the goal, and then performs induction on the resulting variable.\n- `induction e using r` allows the user to specify the principle of induction that should be used.\n  Here `r` should be a term whose result type must be of the form `C t`,\n  where `C` is a bound variable and `t` is a (possibly empty) sequence of bound variables\n- `induction e generalizing z₁ ... zₙ`, where `z₁ ... zₙ` are variables in the local context,\n  generalizes over `z₁ ... zₙ` before applying the induction but then introduces them in each goal.\n  In other words, the net effect is that each inductive hypothesis is generalized.\n- Given `x : Nat`, `induction x with | zero =&gt; tac₁ | succ x' ih =&gt; tac₂`\n  uses tactic `tac₁` for the `zero` case, and `tac₂` for the `succ` case.\n</code>",
  "1299":
- "<code><span class=\"literal string\">\"the dwarf that Snow White helped and \"</span> : String</code>",
- "1298":
  "<code>English.dwarfHelpedAdmired_surface :\n  toString dwarfHelpedAdmired = \"the dwarf that Snow White helped and \" ++ \"Goldilocks admired cheered\"</code>",
- "1297": "<code>English.dwarfHelpedAdmired : SentC</code>",
- "1296": "<code>English.SentC.toText : SentC → String</code>",
- "1295": "<code>English.NPC.toText : NPC → String</code>",
- "1294": "<code>English.RCNC.toText : RCNC → String</code>",
- "1293": "<code>NPC</code>",
- "1292": "<code>English.SentC.sent (np : NPC) (vp : VP) : SentC</code>",
- "1291": "<code>English.SentC : Type</code>",
- "1290": "<code>RCNC</code>",
+ "1298": "<code>English.dwarfHelpedAdmired : SentC</code>",
+ "1297": "<code>English.SentC.toText : SentC → String</code>",
+ "1296": "<code>English.NPC.toText : NPC → String</code>",
+ "1295": "<code>English.RCNC.toText : RCNC → String</code>",
+ "1294": "<code>NPC</code>",
+ "1293": "<code>English.SentC.sent (np : NPC) (vp : VP) : SentC</code>",
+ "1292": "<code>English.SentC : Type</code>",
+ "1291": "<code>RCNC</code>",
+ "1290": "<code>English.NPC.npDetRel (det : DET) (rcn : RCNC) : NPC</code>",
  "129": "<code>IntroL.sumList_test : sumList [1, 2, 3, 4] = 10</code>",
- "1289": "<code>English.NPC.npDetRel (det : DET) (rcn : RCNC) : NPC</code>",
- "1288": "<code>English.NPC.base (np : NP) : NPC</code>",
- "1287": "<code>English.NPC : Type</code>",
- "1286":
+ "1289": "<code>English.NPC.base (np : NP) : NPC</code>",
+ "1288": "<code>English.NPC : Type</code>",
+ "1287":
  "<code>English.RCNC.objAnd (cn : CN) (compl : That) (np1 : NP) (tv1 : TV) (c : Coord) (np2 : NP) (tv2 : TV) : RCNC</code>",
- "1285":
+ "1286":
  "<code>English.RCNC.vpAnd (cn : CN) (compl : That) (left : VP) (c : Coord) (right : VP) : RCNC</code>",
- "1284": "<code>English.RCNC : Type</code>",
- "1283":
+ "1285": "<code>English.RCNC : Type</code>",
+ "1284":
  "<code><span class=\"literal string\">\"a dwarf defeated Little Mook with a sword\"</span> : String</code>",
- "1282":
+ "1283":
  "<code>English.mookSword_surface : toString mookSword = \"a dwarf defeated Little Mook with a sword\"</code>",
- "1281":
+ "1282":
  "<code><span class=\"literal string\">\"a dwarf defeated a giant with a sword\"</span> : String</code>",
- "1280":
+ "1281":
  "<code>English.giantSword_surface : toString giantSword1 = \"a dwarf defeated a giant with a sword\"</code>",
- "128": "<code>List ℕ</code>",
- "1279":
+ "1280":
  "<code>English.giantSword_ambiguous : toString giantSword1 = toString giantSword2</code>",
- "1278": "<code>English.mookSword : SentPP</code>",
- "1277": "<code>English.giantSword2 : SentPP</code>",
- "1276": "<code>English.giantSword1 : SentPP</code>",
- "1275": "<code>English.withSword : PP</code>",
- "1274": "<code>English.SentPP.toText : SentPP → String</code>",
- "1273": "<code>English.VPP.toText : VPP → String</code>",
- "1272": "<code>English.NPP.toText : NPP → String</code>",
- "1271": "<code>VPP</code>",
- "1270": "<code>English.SentPP.sent (np : NP) (vp : VPP) : SentPP</code>",
+ "128": "<code>List ℕ</code>",
+ "1279": "<code>English.mookSword : SentPP</code>",
+ "1278": "<code>English.giantSword2 : SentPP</code>",
+ "1277": "<code>English.giantSword1 : SentPP</code>",
+ "1276": "<code>English.withSword : PP</code>",
+ "1275": "<code>English.SentPP.toText : SentPP → String</code>",
+ "1274": "<code>English.VPP.toText : VPP → String</code>",
+ "1273": "<code>English.NPP.toText : NPP → String</code>",
+ "1272": "<code>VPP</code>",
+ "1271": "<code>English.SentPP.sent (np : NP) (vp : VPP) : SentPP</code>",
+ "1270": "<code>English.SentPP : Type</code>",
  "127": "<code>IntroL.sumList (ns : List ℕ) : ℕ</code>",
- "1269": "<code>English.SentPP : Type</code>",
- "1268": "<code>English.VPP.vpPP (tv : TV) (np : NP) (pp : PP) : VPP</code>",
- "1267": "<code>NPP</code>",
- "1266": "<code>English.VPP.objPP (tv : TV) (np : NPP) : VPP</code>",
- "1265": "<code>English.VPP.base (vp : VP) : VPP</code>",
- "1264": "<code>English.VPP : Type</code>",
- "1263": "<code>PP</code>",
- "1262":
+ "1269": "<code>English.VPP.vpPP (tv : TV) (np : NP) (pp : PP) : VPP</code>",
+ "1268": "<code>NPP</code>",
+ "1267": "<code>English.VPP.objPP (tv : TV) (np : NPP) : VPP</code>",
+ "1266": "<code>English.VPP.base (vp : VP) : VPP</code>",
+ "1265": "<code>English.VPP : Type</code>",
+ "1264": "<code>PP</code>",
+ "1263":
  "<code>English.NPP.withPP (det : DET) (cn : CN) (pp : PP) : NPP</code>",
- "1261": "<code>English.NPP : Type</code>",
- "1260": "<code>Prep</code>",
+ "1262": "<code>English.NPP : Type</code>",
+ "1261": "<code>Prep</code>",
+ "1260": "<code>English.PP.pp (p : Prep) (np : NP) : PP</code>",
  "126": "<code>List α</code>",
- "1259": "<code>English.PP.pp (p : Prep) (np : NP) : PP</code>",
- "1258": "<code>English.PP : Type</code>",
- "1257": "<code><span class=\"literal string\">\"with\"</span> : String</code>",
- "1256": "<code>English.Prep.with : Prep</code>",
- "1255": "<code>English.Prep : Type</code>",
- "1254":
+ "1259": "<code>English.PP : Type</code>",
+ "1258": "<code><span class=\"literal string\">\"with\"</span> : String</code>",
+ "1257": "<code>English.Prep.with : Prep</code>",
+ "1256": "<code>English.Prep : Type</code>",
+ "1255":
  "<code><span class=\"literal string\">\"Alice laughed and Dorothy cheered\"</span> : String</code>",
- "1253": "<code>English.sent2 : SentAnd</code>",
- "1252": "<code>English.SentAnd.toText : SentAnd → String</code>",
- "1251": "<code>Coord</code>",
- "1250": "<code>SentAnd</code>",
- "125": "<code>Type</code>",
- "1249":
+ "1254": "<code>English.sent2 : SentAnd</code>",
+ "1253": "<code>English.SentAnd.toText : SentAnd → String</code>",
+ "1252": "<code>Coord</code>",
+ "1251": "<code>SentAnd</code>",
+ "1250":
  "<code>English.SentAnd.coord (left : SentAnd) (c : Coord) (right : SentAnd) : SentAnd</code>",
- "1248": "<code>Sent</code>",
- "1247": "<code>English.SentAnd.base (s : Sent) : SentAnd</code>",
- "1246": "<code>English.SentAnd : Type</code>",
- "1245": "<code><span class=\"literal string\">\"and\"</span> : String</code>",
- "1244": "<code>English.Coord.and : Coord</code>",
- "1243": "<code>English.Coord : Type</code>",
- "1242":
+ "125": "<code>Type</code>",
+ "1249": "<code>Sent</code>",
+ "1248": "<code>English.SentAnd.base (s : Sent) : SentAnd</code>",
+ "1247": "<code>English.SentAnd : Type</code>",
+ "1246": "<code><span class=\"literal string\">\"and\"</span> : String</code>",
+ "1245": "<code>English.Coord.and : Coord</code>",
+ "1244": "<code>English.Coord : Type</code>",
+ "1243":
  "<code><span class=\"literal string\">\"the dwarf that Snow White helped admired every princess\"</span> : String</code>",
- "1241": "<code>English.sent1 : Sent</code>",
- "1240":
+ "1242": "<code>English.sent1 : Sent</code>",
+ "1241":
  "<code><span class=\"literal string\">\"shuddered\"</span> : String</code>",
+ "1240":
+ "<code><span class=\"literal string\">\"cheered\"</span> : String</code>",
  "124": "<code>IntroL.size {α : Type} : List α → ℕ</code>",
  "1239":
- "<code><span class=\"literal string\">\"cheered\"</span> : String</code>",
- "1238":
  "<code><span class=\"literal string\">\"laughed\"</span> : String</code>",
- "1237": "<code>English.RCN.toText : RCN → String</code>",
- "1236":
+ "1238": "<code>English.RCN.toText : RCN → String</code>",
+ "1237":
  "<code><span class=\"literal string\">\"someone\"</span> : String</code>",
- "1235":
+ "1236":
  "<code><span class=\"literal string\">\"everyone\"</span> : String</code>",
- "1234":
+ "1235":
  "<code><span class=\"literal string\">\"Atreyu\"</span> : String</code>",
- "1233":
+ "1234":
  "<code><span class=\"literal string\">\"Little Mook\"</span> : String</code>",
- "1232":
+ "1233":
  "<code><span class=\"literal string\">\"Goldilocks\"</span> : String</code>",
- "1231":
+ "1232":
  "<code><span class=\"literal string\">\"Alice\"</span> : String</code>",
- "1230":
+ "1231":
  "<code><span class=\"literal string\">\"Snow White\"</span> : String</code>",
+ "1230": "<code>English.VP.toText : VP → String</code>",
  "123":
  "<code>List.{u} (α : Type u) : Type u</code><span class=\"sep\"></span><code class=\"docstring\">Linked lists: ordered lists, in which each element has a reference to the next element.\n\nMost operations on linked lists take time proportional to the length of the list, because each\nelement must be traversed to find the next element.\n\n`List α` is isomorphic to `Array α`, but they are useful for different things:\n* `List α` is easier for reasoning, and `Array α` is modeled as a wrapper around `List α`.\n* `List α` works well as a persistent data structure, when many copies of the tail are shared. When\n  the value is not shared, `Array α` will have better performance because it can do destructive\n  updates.\n</code>",
- "1229": "<code>English.VP.toText : VP → String</code>",
- "1228": "<code>English.NP.toText : NP → String</code>",
- "1227": "<code>English.Sent.toText : Sent → String</code>",
- "1226": "<code>DV</code>",
- "1225": "<code>English.VP.vpDitrans (dv : DV) (iobj dobj : NP) : VP</code>",
- "1224": "<code>English.VP.vpTrans (tv : TV) (np : NP) : VP</code>",
- "1223": "<code>English.VP.shuddered : VP</code>",
- "1222": "<code>English.VP.cheered : VP</code>",
- "1221": "<code>English.VP.laughed : VP</code>",
- "1220": "<code>ADJ</code>",
+ "1229": "<code>English.NP.toText : NP → String</code>",
+ "1228": "<code>English.Sent.toText : Sent → String</code>",
+ "1227": "<code>DV</code>",
+ "1226": "<code>English.VP.vpDitrans (dv : DV) (iobj dobj : NP) : VP</code>",
+ "1225": "<code>English.VP.vpTrans (tv : TV) (np : NP) : VP</code>",
+ "1224": "<code>English.VP.shuddered : VP</code>",
+ "1223": "<code>English.VP.cheered : VP</code>",
+ "1222": "<code>English.VP.laughed : VP</code>",
+ "1221": "<code>ADJ</code>",
+ "1220": "<code>English.RCN.rcnAdj (adj : ADJ) (cn : CN) : RCN</code>",
  "122": "<code>Type u</code>",
- "1219": "<code>English.RCN.rcnAdj (adj : ADJ) (cn : CN) : RCN</code>",
- "1218": "<code>TV</code>",
- "1217":
+ "1219": "<code>TV</code>",
+ "1218":
  "<code>English.RCN.rcnObj (cn : CN) (compl : That) (np : NP) (tv : TV) : RCN</code>",
- "1216": "<code>That</code>",
- "1215":
+ "1217": "<code>That</code>",
+ "1216":
  "<code>English.RCN.rcnSubj (cn : CN) (compl : That) (vp : VP) : RCN</code>",
- "1214": "<code>English.RCN : Type</code>",
- "1213": "<code>RCN</code>",
- "1212": "<code>English.NP.npDetRel (det : DET) (rcn : RCN) : NP</code>",
- "1211": "<code>CN</code>",
- "1210": "<code>DET</code>",
+ "1215": "<code>English.RCN : Type</code>",
+ "1214": "<code>RCN</code>",
+ "1213": "<code>English.NP.npDetRel (det : DET) (rcn : RCN) : NP</code>",
+ "1212": "<code>CN</code>",
+ "1211": "<code>DET</code>",
+ "1210": "<code>English.NP.npDet (det : DET) (cn : CN) : NP</code>",
  "121": "<code>IntroL.sumTo_test : sumTo 4 = 10</code>",
- "1209": "<code>English.NP.npDet (det : DET) (cn : CN) : NP</code>",
- "1208": "<code>English.NP.someone : NP</code>",
- "1207": "<code>English.NP.everyone : NP</code>",
- "1206": "<code>English.NP.atreyu : NP</code>",
- "1205": "<code>English.NP.littleMook : NP</code>",
- "1204": "<code>English.NP.goldilocks : NP</code>",
- "1203": "<code>English.NP.dorothy : NP</code>",
- "1202": "<code>English.NP.alice : NP</code>",
- "1201": "<code>English.NP.snowWhite : NP</code>",
- "1200": "<code>English.VP : Type</code>",
+ "1209": "<code>English.NP.someone : NP</code>",
+ "1208": "<code>English.NP.everyone : NP</code>",
+ "1207": "<code>English.NP.atreyu : NP</code>",
+ "1206": "<code>English.NP.littleMook : NP</code>",
+ "1205": "<code>English.NP.goldilocks : NP</code>",
+ "1204": "<code>English.NP.dorothy : NP</code>",
+ "1203": "<code>English.NP.alice : NP</code>",
+ "1202": "<code>English.NP.snowWhite : NP</code>",
+ "1201": "<code>English.VP : Type</code>",
+ "1200": "<code>VP</code>",
  "120": "<code>IntroL.sumTo : ℕ → ℕ</code>",
  "12":
  "<code>HPow.hPow.{u, v, w} {α : Type u} {β : Type v} {γ : outParam (Type w)} [self : HPow α β γ] : α → β → γ</code><span class=\"sep\"></span><code class=\"docstring\">`a ^ b` computes `a` to the power of `b`.\nThe meaning of this notation is type-dependent. \n\nConventions for notations in identifiers:\n\n * The recommended spelling of `^` in identifiers is `pow`.</code>",
- "1199": "<code>VP</code>",
- "1198": "<code>English.NP : Type</code>",
- "1197": "<code>NP</code>",
- "1196": "<code>English.Sent.sent (np : NP) (vp : VP) : Sent</code>",
- "1195": "<code>English.Sent : Type</code>",
- "1194": "<code><span class=\"literal string\">\"that\"</span> : String</code>",
- "1193": "<code>English.That.that : That</code>",
- "1192": "<code>English.That : Type</code>",
- "1191": "<code><span class=\"literal string\">\"gave\"</span> : String</code>",
- "1190": "<code>English.DV.gave : DV</code>",
+ "1199": "<code>English.NP : Type</code>",
+ "1198": "<code>NP</code>",
+ "1197": "<code>English.Sent.sent (np : NP) (vp : VP) : Sent</code>",
+ "1196": "<code>English.Sent : Type</code>",
+ "1195": "<code><span class=\"literal string\">\"that\"</span> : String</code>",
+ "1194": "<code>English.That.that : That</code>",
+ "1193": "<code>English.That : Type</code>",
+ "1192": "<code><span class=\"literal string\">\"gave\"</span> : String</code>",
+ "1191": "<code>English.DV.gave : DV</code>",
+ "1190": "<code>English.DV : Type</code>",
  "119":
  "<code>IO.println.{u_1} {α : Type u_1} [ToString α] (s : α) : IO Unit</code><span class=\"sep\"></span><code class=\"docstring\">Converts `s` to a string using its `ToString α` instance, and prints it with a trailing newline to\nthe current standard output (as determined by `IO.getStdout`).\n</code>",
- "1189": "<code>English.DV : Type</code>",
- "1188":
+ "1189":
  "<code><span class=\"literal string\">\"caught\"</span> : String</code>",
- "1187":
+ "1188":
  "<code><span class=\"literal string\">\"defeated\"</span> : String</code>",
- "1186":
+ "1187":
  "<code><span class=\"literal string\">\"helped\"</span> : String</code>",
- "1185":
+ "1186":
  "<code><span class=\"literal string\">\"admired\"</span> : String</code>",
- "1184":
+ "1185":
  "<code><span class=\"literal string\">\"loved\"</span> : String</code>",
- "1183": "<code>English.TV.caught : TV</code>",
- "1182": "<code>English.TV.defeated : TV</code>",
- "1181": "<code>English.TV.helped : TV</code>",
- "1180": "<code>English.TV.admired : TV</code>",
+ "1184": "<code>English.TV.caught : TV</code>",
+ "1183": "<code>English.TV.defeated : TV</code>",
+ "1182": "<code>English.TV.helped : TV</code>",
+ "1181": "<code>English.TV.admired : TV</code>",
+ "1180": "<code>English.TV.loved : TV</code>",
  "118": "<code><span class=\"literal string\">\"'\"</span> : String</code>",
- "1179": "<code>English.TV.loved : TV</code>",
- "1178": "<code>English.TV : Type</code>",
- "1177": "<code><span class=\"literal string\">\"evil\"</span> : String</code>",
- "1176":
+ "1179": "<code>English.TV : Type</code>",
+ "1178": "<code><span class=\"literal string\">\"evil\"</span> : String</code>",
+ "1177":
  "<code><span class=\"literal string\">\"happy\"</span> : String</code>",
- "1175": "<code><span class=\"literal string\">\"fake\"</span> : String</code>",
- "1174": "<code>English.ADJ.evil : ADJ</code>",
- "1173": "<code>English.ADJ.happy : ADJ</code>",
- "1172": "<code>English.ADJ.fake : ADJ</code>",
- "1171": "<code>English.ADJ : Type</code>",
- "1170":
+ "1176": "<code><span class=\"literal string\">\"fake\"</span> : String</code>",
+ "1175": "<code>English.ADJ.evil : ADJ</code>",
+ "1174": "<code>English.ADJ.happy : ADJ</code>",
+ "1173": "<code>English.ADJ.fake : ADJ</code>",
+ "1172": "<code>English.ADJ : Type</code>",
+ "1171":
  "<code><span class=\"literal string\">\"dagger\"</span> : String</code>",
+ "1170":
+ "<code><span class=\"literal string\">\"sword\"</span> : String</code>",
  "117":
  "<code><span class=\"literal string\">\"this:\\n'\"</span> : String</code>",
  "1169":
- "<code><span class=\"literal string\">\"sword\"</span> : String</code>",
- "1168":
  "<code><span class=\"literal string\">\"wizard\"</span> : String</code>",
- "1167":
+ "1168":
  "<code><span class=\"literal string\">\"giant\"</span> : String</code>",
- "1166":
+ "1167":
  "<code><span class=\"literal string\">\"dwarf\"</span> : String</code>",
- "1165":
+ "1166":
  "<code><span class=\"literal string\">\"princess\"</span> : String</code>",
- "1164": "<code><span class=\"literal string\">\"boy\"</span> : String</code>",
- "1163": "<code><span class=\"literal string\">\"girl\"</span> : String</code>",
- "1162": "<code>English.CN.dagger : CN</code>",
- "1161": "<code>English.CN.sword : CN</code>",
- "1160": "<code>English.CN.wizard : CN</code>",
+ "1165": "<code><span class=\"literal string\">\"boy\"</span> : String</code>",
+ "1164": "<code><span class=\"literal string\">\"girl\"</span> : String</code>",
+ "1163": "<code>English.CN.dagger : CN</code>",
+ "1162": "<code>English.CN.sword : CN</code>",
+ "1161": "<code>English.CN.wizard : CN</code>",
+ "1160": "<code>English.CN.giant : CN</code>",
  "116":
  "<code><span class=\"literal string\">\"Their leader got up and addressed them like \"</span> : String</code>",
- "1159": "<code>English.CN.giant : CN</code>",
- "1158": "<code>English.CN.dwarf : CN</code>",
- "1157": "<code>English.CN.princess : CN</code>",
- "1156": "<code>English.CN.boy : CN</code>",
- "1155": "<code>English.CN.girl : CN</code>",
- "1154": "<code>English.CN : Type</code>",
- "1153":
+ "1159": "<code>English.CN.dwarf : CN</code>",
+ "1158": "<code>English.CN.princess : CN</code>",
+ "1157": "<code>English.CN.boy : CN</code>",
+ "1156": "<code>English.CN.girl : CN</code>",
+ "1155": "<code>English.CN : Type</code>",
+ "1154":
  "<code><span class=\"literal string\">\"every\"</span> : String</code>",
- "1152": "<code><span class=\"literal string\">\"the\"</span> : String</code>",
- "1151": "<code>English.DET.no : DET</code>",
- "1150": "<code>English.DET.some : DET</code>",
+ "1153": "<code><span class=\"literal string\">\"the\"</span> : String</code>",
+ "1152": "<code>English.DET.no : DET</code>",
+ "1151": "<code>English.DET.some : DET</code>",
+ "1150": "<code>English.DET.every : DET</code>",
  "115":
  "<code><span class=\"literal string\">\"cauldron.\\n\"</span> : String</code>",
- "1149": "<code>English.DET.every : DET</code>",
- "1148": "<code>English.DET.the : DET</code>",
- "1147": "<code>English.DET.a : DET</code>",
- "1146": "<code>English.DET : Type</code>",
- "1145":
+ "1149": "<code>English.DET.the : DET</code>",
+ "1148": "<code>English.DET.a : DET</code>",
+ "1147": "<code>English.DET : Type</code>",
+ "1146":
  "<code>InfEngine.ferio {α : Type} (A B C : Set α) (h₁ : B ⊆ Cᶜ) (h₂ : ∃ x ∈ A, x ∈ B) : ∃ x ∈ A, x ∉ C</code>",
- "1144": "<code>∃ x ∈ A, x ∈ B</code>",
- "1143":
+ "1145": "<code>∃ x ∈ A, x ∈ B</code>",
+ "1144":
  "<code>InfEngine.darii {α : Type} (A B C : Set α) (h₁ : B ⊆ C) (h₂ : ∃ x ∈ A, x ∈ B) : ∃ x ∈ A, x ∈ C</code>",
- "1142": "<code>B ⊆ Cᶜ</code>",
- "1141":
+ "1143": "<code>B ⊆ Cᶜ</code>",
+ "1142":
  "<code>InfEngine.celarent {α : Type} (A B C : Set α) (h₁ : B ⊆ Cᶜ) (h₂ : A ⊆ B) : A ⊆ Cᶜ</code>",
- "1140": "<code>x✝ ∈ A</code>",
+ "1141": "<code>x✝ ∈ A</code>",
+ "1140": "<code>B ⊆ C</code>",
  "114":
  "<code><span class=\"literal string\">\"Ten cannibals were seated around a boiling \"</span> : String</code>",
- "1139": "<code>B ⊆ C</code>",
- "1138": "<code>A ⊆ B</code>",
- "1137":
+ "1139": "<code>A ⊆ B</code>",
+ "1138":
  "<code>InfEngine.barbara {α : Type} (A B C : Set α) (h₁ : A ⊆ B) (h₂ : B ⊆ C) : A ⊆ C</code>",
- "1136":
+ "1137":
  "<code><span class=\"literal string\">\"all bears are mammals\\nno bears are mammals\"</span> : String</code>",
- "1135":
+ "1136":
  "<code><span class=\"literal string\">\"What about men?\"</span> : String</code>",
- "1134":
+ "1135":
  "<code><span class=\"literal string\">\"No men are women.\\nAll men are humans.\\nAll men are mammals.\\nNo men are owls.\\nSome men are not stupids.\\nSome men are stupids.\"</span> : String</code>",
- "1133":
+ "1134":
  "<code><span class=\"literal string\">\"Are any owls bears?\"</span> : String</code>",
- "1132":
+ "1133":
  "<code><span class=\"literal string\">\"Are all bears mammals?\"</span> : String</code>",
- "1131": "<code><span class=\"literal string\">\"OK.\"</span> : String</code>",
- "1130":
+ "1132": "<code><span class=\"literal string\">\"OK.\"</span> : String</code>",
+ "1131":
  "<code><span class=\"literal string\">\"I knew that already.\"</span> : String</code>",
+ "1130":
+ "<code><span class=\"literal string\">\"Inconsistent with my info.\"</span> : String</code>",
  "113":
  "<code><span class=\"literal string\">\"The night was pitch dark, mysterious and deep.\\n\"</span> : String</code>",
  "1129":
- "<code><span class=\"literal string\">\"Inconsistent with my info.\"</span> : String</code>",
- "1128":
  "<code><span class=\"literal string\">\"I don't know.\"</span> : String</code>",
- "1127": "<code><span class=\"literal string\">\"No.\"</span> : String</code>",
- "1126": "<code><span class=\"literal string\">\"Yes.\"</span> : String</code>",
- "1125":
+ "1128": "<code><span class=\"literal string\">\"No.\"</span> : String</code>",
+ "1127": "<code><span class=\"literal string\">\"Yes.\"</span> : String</code>",
+ "1126":
  "<code><span class=\"literal string\">\"No info.\"</span> : String</code>",
- "1124": "<code>InfEngine.respond (kb : KB) : Input → String</code>",
- "1123": "<code>InfEngine.Query.neg : Query → Query</code>",
- "1122": "<code>InfEngine.kb1 : KB</code>",
- "1121":
+ "1125": "<code>InfEngine.respond (kb : KB) : Input → String</code>",
+ "1124": "<code>InfEngine.Query.neg : Query → Query</code>",
+ "1123": "<code>InfEngine.kb1 : KB</code>",
+ "1122":
  "<code><span class=\"literal string\">\"some men are not stupids\"</span> : String</code>",
- "1120":
+ "1121":
  "<code><span class=\"literal string\">\"some men are stupids\\n\"</span> : String</code>",
+ "1120":
+ "<code><span class=\"literal string\">\"all humans are mammals\\n\"</span> : String</code>",
  "112":
  "<code><span class=\"literal string\">\"and off to bed.\"</span> : String</code>",
  "1119":
- "<code><span class=\"literal string\">\"all humans are mammals\\n\"</span> : String</code>",
- "1118":
  "<code><span class=\"literal string\">\"all women are humans\\n\"</span> : String</code>",
- "1117":
+ "1118":
  "<code><span class=\"literal string\">\"no men are women\\n\"</span> : String</code>",
- "1116":
+ "1117":
  "<code><span class=\"literal string\">\"all men are humans\\n\"</span> : String</code>",
- "1115":
+ "1116":
  "<code><span class=\"literal string\">\"some bears are stupids\\n\"</span> : String</code>",
- "1114":
+ "1115":
  "<code><span class=\"literal string\">\"no owls are mammals\\n\"</span> : String</code>",
- "1113":
+ "1114":
  "<code><span class=\"literal string\">\"all bears are mammals\\n\"</span> : String</code>",
- "1112": "<code>InfEngine.mytxt : String</code>",
- "1111":
+ "1113": "<code>InfEngine.mytxt : String</code>",
+ "1112":
  "<code>List.mapM.{u, v, w} {m : Type u → Type v} [Monad m] {α : Type w} {β : Type u} (f : α → m β) (as : List α) : m (List β)</code><span class=\"sep\"></span><code class=\"docstring\">Applies the monadic action `f` to every element in the list, left-to-right, and returns the list of\nresults.\n\nThis implementation is tail recursive. `List.mapM'` is a non-tail-recursive variant that may be\nmore convenient to reason about. `List.forM` is the variant that discards the results and\n`List.mapA` is the variant that works with `Applicative`.\n</code>",
- "1110": "<code><span class=\"literal string\">\"\\n\"</span> : String</code>",
+ "1111": "<code><span class=\"literal string\">\"\\n\"</span> : String</code>",
+ "1110": "<code>InfEngine.process (text : String) : Option KB</code>",
  "111":
  "<code><span class=\"literal string\">\"Let's cook and eat that final missionary, \"</span> : String</code>",
- "1109": "<code>InfEngine.process (text : String) : Option KB</code>",
- "1108": "<code>List Statement</code>",
- "1107":
+ "1109": "<code>List Statement</code>",
+ "1108":
  "<code>InfEngine.makeKB.go (kb : KB) : List Statement → Option KB</code>",
- "1106": "<code>InfEngine.makeKB : List Statement → Option KB</code>",
- "1105": "<code>InfEngine.update (st : Statement) (kb : KB) : Outcome</code>",
- "1104": "<code>InfEngine.Outcome.added (kb : KB) : Outcome</code>",
- "1103": "<code>InfEngine.Outcome.known : Outcome</code>",
- "1102": "<code>InfEngine.Outcome.inconsistent : Outcome</code>",
- "1101": "<code>InfEngine.Outcome : Type</code>",
- "1100":
+ "1107": "<code>InfEngine.makeKB : List Statement → Option KB</code>",
+ "1106": "<code>InfEngine.update (st : Statement) (kb : KB) : Outcome</code>",
+ "1105": "<code>InfEngine.Outcome.added (kb : KB) : Outcome</code>",
+ "1104": "<code>InfEngine.Outcome.known : Outcome</code>",
+ "1103": "<code>InfEngine.Outcome.inconsistent : Outcome</code>",
+ "1102": "<code>InfEngine.Outcome : Type</code>",
+ "1101":
  "<code><span class=\"literal string\">\"All bears are mammals.\"</span> : String</code>",
+ "1100": "<code><span class=\"literal string\">\"how\"</span> : String</code>",
  "110": "<code>IntroL.story : ℕ → String</code>",
  "11":
  "<code class=\"docstring\">`#eval e` evaluates the expression `e` by compiling it and running the compiled code. It then\nprints the resulting value.\n\n* The command attempts to use `ToExpr`, `Repr`, or `ToString` instances to print the result.\n* If `e` is a monadic value of type `m ty`, then the command tries to adapt the monad `m`\n  to one of the monads that `#eval` supports, which include `IO`, `CoreM`, `MetaM`, `TermElabM`, and `CommandElabM`.\n  Users can define `MonadEval` instances to extend the list of supported monads.\n\nThe `#eval` command gracefully degrades in capability depending on what is imported.\nImporting the `Lean.Elab.Command` module provides full capabilities.\n\nDue to unsoundness, `#eval` refuses to evaluate expressions that depend on `sorry`, even indirectly,\nsince the presence of `sorry` can lead to runtime instability and crashes.\nThis check can be overridden with the `#eval! e` command.\n\nOptions:\n* If `eval.pp` is true (default: true) then tries to use `ToExpr` instances to make use of the\n  usual pretty printer. Otherwise, only tries using `Repr` and `ToString` instances.\n* If `eval.type` is true (default: false) then pretty prints the type of the evaluated value.\n* If `eval.derive.repr` is true (default: true) then attempts to auto-derive a `Repr` instance\n  when there is no other way to print the result.\n\nSee also: `#reduce e` for evaluation by term reduction.\n</code>",
- "1099": "<code><span class=\"literal string\">\"how\"</span> : String</code>",
- "1098":
+ "1099":
  "<code><span class=\"literal string\">\"about\"</span> : String</code>",
- "1097": "<code><span class=\"literal string\">\"what\"</span> : String</code>",
- "1096": "<code><span class=\"literal string\">\"any\"</span> : String</code>",
- "1095": "<code><span class=\"literal string\">\"not\"</span> : String</code>",
- "1094": "<code><span class=\"literal string\">\"some\"</span> : String</code>",
- "1093": "<code><span class=\"literal string\">\"no\"</span> : String</code>",
- "1092": "<code><span class=\"literal string\">\"are\"</span> : String</code>",
- "1091": "<code><span class=\"literal string\">\"all\"</span> : String</code>",
- "1090": "<code>InfEngine.parse (line : String) : Option Input</code>",
+ "1098": "<code><span class=\"literal string\">\"what\"</span> : String</code>",
+ "1097": "<code><span class=\"literal string\">\"any\"</span> : String</code>",
+ "1096": "<code><span class=\"literal string\">\"not\"</span> : String</code>",
+ "1095": "<code><span class=\"literal string\">\"some\"</span> : String</code>",
+ "1094": "<code><span class=\"literal string\">\"no\"</span> : String</code>",
+ "1093": "<code><span class=\"literal string\">\"are\"</span> : String</code>",
+ "1092": "<code><span class=\"literal string\">\"all\"</span> : String</code>",
+ "1091": "<code>InfEngine.parse (line : String) : Option Input</code>",
+ "1090": "<code>Query</code>",
  "109": "<code>IntroL.genS (n : ℕ) : String</code>",
- "1089": "<code>Query</code>",
- "1088": "<code>InfEngine.Input.query (q : Query) : Input</code>",
- "1087": "<code>Statement</code>",
- "1086": "<code>InfEngine.Input.stmt (s : Statement) : Input</code>",
- "1085": "<code>InfEngine.Input : Type</code>",
- "1084": "<code><span class=\"literal string\">\" \"</span> : String</code>",
- "1083":
+ "1089": "<code>InfEngine.Input.query (q : Query) : Input</code>",
+ "1088": "<code>Statement</code>",
+ "1087": "<code>InfEngine.Input.stmt (s : Statement) : Input</code>",
+ "1086": "<code>InfEngine.Input : Type</code>",
+ "1085": "<code><span class=\"literal string\">\" \"</span> : String</code>",
+ "1084":
  "<code>String.splitOn (s : String) (sep : String := \" \") : List String</code><span class=\"sep\"></span><code class=\"docstring\">Splits a string `s` on occurrences of the separator string `sep`. The default separator is `\" \"`.\n\nWhen `sep` is empty, the result is `[s]`. When `sep` occurs in overlapping patterns, the first match\nis taken. There will always be exactly `n+1` elements in the returned list if there were `n`\nnon-overlapping matches of `sep` in the string. The separators are not included in the returned\nsubstrings.\n\nThis is a legacy function. Use `String.split` instead.\n\nExamples:\n* `\"here is some text \".splitOn = [\"here\", \"is\", \"some\", \"text\", \"\"]`\n* `\"here is some text \".splitOn \"some\" = [\"here is \", \" text \"]`\n* `\"here is some text \".splitOn \"\" = [\"here is some text \"]`\n* `\"ababacabac\".splitOn \"aba\" = [\"\", \"bac\", \"c\"]`\n</code>",
- "1082":
+ "1083":
  "<code>String.toLower (s : String) : String</code><span class=\"sep\"></span><code class=\"docstring\">Replaces each character in `s` with the result of applying `Char.toLower` to it.\n\n`Char.toLower` has no effect on characters outside of the range `'A'`–`'Z'`.\n\nExamples:\n* `\"ORANGE\".toLower = \"orange\"`\n* `\"Orange\".toLower = \"orange\"`\n* `\"ABc123\".toLower = \"abc123\"`\n</code>",
- "1081": "<code>String.mk (data : List Char) : String</code>",
- "1080":
+ "1082": "<code>String.mk (data : List Char) : String</code>",
+ "1081":
  "<code>Char.isWhitespace (c : Char) : Bool</code><span class=\"sep\"></span><code class=\"docstring\">Returns `true` if the character is a space `(' ', U+0020)`, a tab `('\\t', U+0009)`, a carriage\nreturn `('\\r', U+000D)`, or a newline `('\\n', U+000A)`.\n</code>",
+ "1080":
+ "<code>Char.isAlpha (c : Char) : Bool</code><span class=\"sep\"></span><code class=\"docstring\">Returns `true` if the character is an ASCII letter.\n\nThe ASCII letters are the following: `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`.\n</code>",
  "108":
  "<code class=\"docstring\">Pattern matching. `match e, ... with | p, ... =&gt; f | ...` matches each given\nterm `e` against each pattern `p` of a match alternative. When all patterns\nof an alternative match, the `match` term evaluates to the value of the\ncorresponding right-hand side `f` with the pattern variables bound to the\nrespective matched values.\nIf used as `match h : e, ... with | p, ... =&gt; f | ...`, `h : e = p` is available\nwithin `f`.\n\nWhen not constructing a proof, `match` does not automatically substitute variables\nmatched on in dependent variables' types. Use `match (generalizing := true) ...` to\nenforce this.\n\nSyntax quotations can also be used in a pattern match.\nThis matches a `Syntax` value against quotations, pattern variables, or `_`.\n\nQuoted identifiers only match identical identifiers - custom matching such as by the preresolved\nnames only should be done explicitly.\n\n`Syntax.atom`s are ignored during matching by default except when part of a built-in literal.\nFor users introducing new atoms, we recommend wrapping them in dedicated syntax kinds if they\nshould participate in matching.\nFor example, in\n```lean\nsyntax \"c\" (\"foo\" &lt;|&gt; \"bar\") ...\n```\n`foo` and `bar` are indistinguishable during matching, but in\n```lean\nsyntax foo := \"foo\"\nsyntax \"c\" (foo &lt;|&gt; \"bar\") ...\n```\nthey are not.\n</code>",
  "1079":
- "<code>Char.isAlpha (c : Char) : Bool</code><span class=\"sep\"></span><code class=\"docstring\">Returns `true` if the character is an ASCII letter.\n\nThe ASCII letters are the following: `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`.\n</code>",
- "1078":
  "<code>List.takeWhile.{u} {α : Type u} (p : α → Bool) (xs : List α) : List α</code><span class=\"sep\"></span><code class=\"docstring\">Returns the longest initial segment of `xs` for which `p` returns true.\n\n`O(|xs|)`.\n\nExamples:\n* `[7, 6, 4, 8].takeWhile (· &gt; 5) = [7, 6]`\n* `[7, 6, 6, 5].takeWhile (· &gt; 5) = [7, 6, 6]`\n* `[7, 6, 6, 8].takeWhile (· &gt; 5) = [7, 6, 6, 8]`\n</code>",
- "1077": "<code>InfEngine.preprocess (line : String) : List String</code>",
- "1076":
+ "1078": "<code>InfEngine.preprocess (line : String) : List String</code>",
+ "1077":
  "<code><span class=\"literal string\">\"Some greeks are philosophers.\"</span> : String</code>",
- "1075":
+ "1076":
  "<code><span class=\"literal string\">\"All greeks are mortals.\"</span> : String</code>",
- "1074":
+ "1075":
  "<code><span class=\"literal string\">\"All greeks are humans.\"</span> : String</code>",
- "1073": "<code>Relation Class</code>",
- "1072":
+ "1074": "<code>Relation Class</code>",
+ "1073":
  "<code>InfEngine.tellAbout (kb : KB) (a : Class) : List Statement</code>",
- "1071":
+ "1072":
  "<code><span class=\"literal string\">\"philosophers\"</span> : String</code>",
- "1070":
+ "1071":
  "<code><span class=\"literal string\">\"greeks\"</span> : String</code>",
+ "1070":
+ "<code><span class=\"literal string\">\"mortals\"</span> : String</code>",
  "107": "<code>IntroL.gen (x : ℕ) : String</code>",
  "1069":
- "<code><span class=\"literal string\">\"mortals\"</span> : String</code>",
- "1068":
  "<code><span class=\"literal string\">\"humans\"</span> : String</code>",
- "1067": "<code>InfEngine.kb0 : KB</code>",
- "1066": "<code>InfEngine.derive (kb : KB) : Query → Bool</code>",
- "1065": "<code>InfEngine.nsupersets (c : Class) (kb : KB) : List Class</code>",
- "1064": "<code>Class × Class</code>",
- "1063":
+ "1068": "<code>InfEngine.kb0 : KB</code>",
+ "1067": "<code>InfEngine.derive (kb : KB) : Query → Bool</code>",
+ "1066": "<code>InfEngine.nsupersets (c : Class) (kb : KB) : List Class</code>",
+ "1065": "<code>Class × Class</code>",
+ "1064":
  "<code>List.filterMap.{u, v} {α : Type u} {β : Type v} (f : α → Option β) : List α → List β</code><span class=\"sep\"></span><code class=\"docstring\">Applies a function that returns an `Option` to each element of a list, collecting the non-`none`\nvalues.\n\n`O(|l|)`.\n\nExample:\n```lean example\n#eval [1, 2, 5, 2, 7, 7].filterMap fun x =&gt;\n  if x &gt; 2 then some (2 * x) else none\n```\n```output\n[10, 14, 14]\n```\n</code>",
- "1062": "<code>List (Class × Class)</code>",
- "1061": "<code>InfEngine.nsubsetRel (kb : KB) : Relation Class</code>",
- "1060": "<code>InfEngine.supersets (c : Class) (kb : KB) : List Class</code>",
+ "1063": "<code>List (Class × Class)</code>",
+ "1062": "<code>InfEngine.nsubsetRel (kb : KB) : Relation Class</code>",
+ "1061": "<code>InfEngine.supersets (c : Class) (kb : KB) : List Class</code>",
+ "1060": "<code>InfEngine.subsetRel (kb : KB) : Relation Class</code>",
  "106": "<code>IntroL.factorial' (x : ℕ) : ℕ</code>",
- "1059": "<code>InfEngine.subsetRel (kb : KB) : Relation Class</code>",
- "1058": "<code>Class × Class × Bool</code>",
- "1057": "<code>KB</code>",
- "1056": "<code>InfEngine.domain (kb : KB) : List Class</code>",
- "1055": "<code>Relation α → List (α × α)</code>",
- "1054":
+ "1059": "<code>Class × Class × Bool</code>",
+ "1058": "<code>KB</code>",
+ "1057": "<code>InfEngine.domain (kb : KB) : List Class</code>",
+ "1056": "<code>Relation α → List (α × α)</code>",
+ "1055":
  "<code>InfEngine.rtc {α : Type} [DecidableEq α] (xs : List α) (r : Relation α) : Relation α</code>",
- "1053": "<code>α → α</code>",
- "1052":
+ "1054": "<code>α → α</code>",
+ "1053":
  "<code>InfEngine.lfp {α : Type} [DecidableEq α] (f : α → α) : ℕ → α → α</code>",
- "1051":
+ "1052":
  "<code>List.flatMap.{u, v} {α : Type u} {β : Type v} (b : α → List β) (as : List α) : List β</code><span class=\"sep\"></span><code class=\"docstring\">Applies a function that returns a list to each element of a list, and concatenates the resulting\nlists.\n\nExamples:\n* `[2, 3, 2].flatMap List.range = [0, 1, 0, 1, 2, 0, 1]`\n* `[\"red\", \"blue\"].flatMap String.toList = ['r', 'e', 'd', 'b', 'l', 'u', 'e']`\n</code>",
- "1050":
+ "1051":
  "<code>InfEngine.comp {α : Type} [DecidableEq α] (r s : Relation α) : Relation α</code>",
+ "1050": "<code>α × α</code>",
  "105": "<code>IntroL.factorial : ℕ → ℕ</code>",
- "1049": "<code>α × α</code>",
- "1048": "<code>Relation α</code>",
- "1047":
+ "1049": "<code>Relation α</code>",
+ "1048":
  "<code>InfEngine.rSection {α : Type} [DecidableEq α] (x : α) (r : Relation α) : List α</code>",
- "1046": "<code>InfEngine.Relation (α : Type) : Type</code>",
- "1045": "<code>InfEngine.KB : Type</code>",
- "1044": "<code>InfEngine.Statement.toStringImpl : Statement → String</code>",
- "1043": "<code>InfEngine.Query.whatAbout (a : Class) : Query</code>",
- "1042": "<code>InfEngine.Query.anyNot (a b : Class) : Query</code>",
- "1041": "<code>InfEngine.Query.areAny (a b : Class) : Query</code>",
- "1040": "<code>InfEngine.Query.areNone (a b : Class) : Query</code>",
+ "1047": "<code>InfEngine.Relation (α : Type) : Type</code>",
+ "1046": "<code>InfEngine.KB : Type</code>",
+ "1045": "<code>InfEngine.Statement.toStringImpl : Statement → String</code>",
+ "1044": "<code>InfEngine.Query.whatAbout (a : Class) : Query</code>",
+ "1043": "<code>InfEngine.Query.anyNot (a b : Class) : Query</code>",
+ "1042": "<code>InfEngine.Query.areAny (a b : Class) : Query</code>",
+ "1041": "<code>InfEngine.Query.areNone (a b : Class) : Query</code>",
+ "1040": "<code>InfEngine.Query.areAll (a b : Class) : Query</code>",
  "104":
  "<code>Nat.zero : ℕ</code><span class=\"sep\"></span><code class=\"docstring\">Zero, the smallest natural number.\n\nUsing `Nat.zero` explicitly should usually be avoided in favor of the literal `0`, which is the\n[simp normal form](https://lean-lang.org/doc/reference/4.33.0/find/?domain=Verso.Genre.Manual.section&name=simp-normal-forms).\n</code>",
- "1039": "<code>InfEngine.Query.areAll (a b : Class) : Query</code>",
- "1038": "<code>InfEngine.Query : Type</code>",
- "1037":
+ "1039": "<code>InfEngine.Query : Type</code>",
+ "1038":
  "<code>InfEngine.Statement.someAreNot (a b : Class) : Statement</code>",
- "1036": "<code>InfEngine.Statement.someAre (a b : Class) : Statement</code>",
- "1035": "<code>InfEngine.Statement.noneAre (a b : Class) : Statement</code>",
- "1034": "<code>Class</code>",
- "1033": "<code>InfEngine.Statement.allAre (a b : Class) : Statement</code>",
- "1032": "<code>InfEngine.Statement : Type</code>",
- "1031":
+ "1037": "<code>InfEngine.Statement.someAre (a b : Class) : Statement</code>",
+ "1036": "<code>InfEngine.Statement.noneAre (a b : Class) : Statement</code>",
+ "1035": "<code>Class</code>",
+ "1034": "<code>InfEngine.Statement.allAre (a b : Class) : Statement</code>",
+ "1033": "<code>InfEngine.Statement : Type</code>",
+ "1032":
  "<code>ToString.mk.{u} {α : Type u} (toString : α → String) : ToString α</code>",
- "1030":
+ "1031":
  "<code>ToString.{u} (α : Type u) : Type u</code><span class=\"sep\"></span><code class=\"docstring\">Types that can be converted into a string for display.\n\nThere is no expectation that the resulting string can be parsed back to the original data (see\n`Repr` for a similar class with this expectation).\n</code>",
+ "1030": "<code><span class=\"literal string\">\"non-\"</span> : String</code>",
  "103":
  "<code>Nat.succ (n : ℕ) : ℕ</code><span class=\"sep\"></span><code class=\"docstring\">The successor of a natural number `n`.\n\nUsing `Nat.succ n` should usually be avoided in favor of `n + 1`, which is the [simp normal\nform](https://lean-lang.org/doc/reference/4.33.0/find/?domain=Verso.Genre.Manual.section&name=simp-normal-forms).\n</code>",
- "1029": "<code><span class=\"literal string\">\"non-\"</span> : String</code>",
- "1028": "<code>InfEngine.Class.toStringImpl : Class → String</code>",
- "1027": "<code>InfEngine.Class.opposite : Class → Class</code>",
- "1026": "<code>InfEngine.Class.opp (name : String) : Class</code>",
- "1025": "<code>InfEngine.Class.cls (name : String) : Class</code>",
- "1024": "<code>InfEngine.Class : Type</code>",
- "1023":
+ "1029": "<code>InfEngine.Class.toStringImpl : Class → String</code>",
+ "1028": "<code>InfEngine.Class.opposite : Class → Class</code>",
+ "1027": "<code>InfEngine.Class.opp (name : String) : Class</code>",
+ "1026": "<code>InfEngine.Class.cls (name : String) : Class</code>",
+ "1025": "<code>InfEngine.Class : Type</code>",
+ "1024":
  "<code><span class=\"literal string\">\"xatal\"</span> : String</code>",
- "1022":
+ "1023":
  "<code>Phonema.appendSuffix_test5 : appendSuffix \"xat\" \"al\" = some \"xatal\"</code>",
- "1021":
+ "1022":
  "<code><span class=\"literal string\">\"xilal\"</span> : String</code>",
- "1020": "<code><span class=\"literal string\">\"xil\"</span> : String</code>",
+ "1021": "<code><span class=\"literal string\">\"xil\"</span> : String</code>",
+ "1020":
+ "<code>Phonema.appendSuffix_test4 : appendSuffix \"xil\" \"al\" = some \"xilal\"</code>",
  "102": "<code>Day</code>",
  "1019":
- "<code>Phonema.appendSuffix_test4 : appendSuffix \"xil\" \"al\" = some \"xilal\"</code>",
- "1018":
  "<code><span class=\"literal string\">\"bok'ol\"</span> : String</code>",
- "1017": "<code><span class=\"literal string\">\"al\"</span> : String</code>",
- "1016": "<code><span class=\"literal string\">\"bok'\"</span> : String</code>",
- "1015":
+ "1018": "<code><span class=\"literal string\">\"al\"</span> : String</code>",
+ "1017": "<code><span class=\"literal string\">\"bok'\"</span> : String</code>",
+ "1016":
  "<code>Phonema.appendSuffix_test3 : appendSuffix \"bok'\" \"al\" = some \"bok'ol\"</code>",
- "1014":
+ "1015":
  "<code><span class=\"literal string\">\"xathin\"</span> : String</code>",
- "1013": "<code><span class=\"literal string\">\"xat\"</span> : String</code>",
- "1012":
+ "1014": "<code><span class=\"literal string\">\"xat\"</span> : String</code>",
+ "1013":
  "<code>Phonema.appendSuffix_test2 : appendSuffix \"xat\" \"hin\" = some \"xathin\"</code>",
- "1011":
+ "1012":
  "<code><span class=\"literal string\">\"dubhun\"</span> : String</code>",
- "1010": "<code><span class=\"literal string\">\"hin\"</span> : String</code>",
+ "1011": "<code><span class=\"literal string\">\"hin\"</span> : String</code>",
+ "1010": "<code><span class=\"literal string\">\"dub\"</span> : String</code>",
  "101": "<code>IntroL.isWeekend (d : Day) : Bool</code>",
- "1009": "<code><span class=\"literal string\">\"dub\"</span> : String</code>",
- "1008":
+ "1009":
  "<code>Phonema.appendSuffix_test1 : appendSuffix \"dub\" \"hin\" = some \"dubhun\"</code>",
- "1007":
+ "1008":
  "<code>Phonema.appendSuffix (stem suffix : String) : Option String</code>",
- "1006": "<code><span class=\"literal string\">\"e\"</span> : String</code>",
- "1005": "<code><span class=\"literal string\">\"u\"</span> : String</code>",
- "1004": "<code><span class=\"literal string\">\"o\"</span> : String</code>",
- "1003": "<code><span class=\"literal string\">\"i\"</span> : String</code>",
- "1002": "<code>Phonema.unrealizeVowel (tok : String) : Option Phoneme</code>",
- "1001": "<code><span class=\"literal char\">'\\''</span> : Char</code>",
- "1000": "<code>Phonema.tokenize : List Char → List String</code>",
+ "1007": "<code><span class=\"literal string\">\"e\"</span> : String</code>",
+ "1006": "<code><span class=\"literal string\">\"u\"</span> : String</code>",
+ "1005": "<code><span class=\"literal string\">\"o\"</span> : String</code>",
+ "1004": "<code><span class=\"literal string\">\"i\"</span> : String</code>",
+ "1003": "<code>Phonema.unrealizeVowel (tok : String) : Option Phoneme</code>",
+ "1002": "<code><span class=\"literal char\">'\\''</span> : Char</code>",
+ "1001": "<code>Phonema.tokenize : List Char → List String</code>",
+ "1000":
+ "<code>Phonema.appendSuffixY_test2 :\n  List.map realize (appendSuffixY [c, a, c] [c, i, c]) = [some 'c', some 'a', some 'c', some 'c', some 'i', some 'c']</code>",
  "100": "<code>IntroL.Day.sunday : Day</code>",
  "10":
  "<code>Nat : Type</code><span class=\"sep\"></span><code class=\"docstring\">The natural numbers, starting at zero.\n\nThis type is special-cased by both the kernel and the compiler, and overridden with an efficient\nimplementation. Both use a fast arbitrary-precision arithmetic library (usually\n[GMP](https://gmplib.org/)); at runtime, `Nat` values that are sufficiently small are unboxed.\n</code>",
