@@ -1,0 +1,2733 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      (function(){
+  const {protocol:proto, host:hostName, pathname:path, search:srch, hash:hsh} = window.location;
+  if (!(path.endsWith("/") || path.endsWith(".html"))) {
+    window.location.replace(`${proto}//${hostName}${path}/${srch}${hsh}`);
+  }
+})()</script>
+    <script>
+      // Enable TypeScript checking.
+// @ts-check
+
+// Applies a saved table-of-contents width before the first paint.
+//
+// This is a tiny inline counterpart to toc-resize.js: it runs in the page head so that
+// returning desktop readers do not see the default width flash to their saved width.
+// It only records the width in the --verso-toc-user-width custom property; the
+// stylesheet clamps it and ignores it on mobile, and toc-resize.js then takes over the
+// interactive resizing. Keep the storage key in sync with toc-resize.js.
+
+(function () {
+    try {
+        const saved = localStorage.getItem("verso-toc-width");
+        // Parse to a number (as toc-resize.js does) and write that back, so a stored
+        // value with stray whitespace becomes a valid length rather than `" 420 px"`.
+        const width = saved === null ? NaN : Number(saved);
+        if (Number.isFinite(width)) {
+            document.documentElement.style.setProperty("--verso-toc-user-width", `${width}px`);
+        }
+    } catch (_) {
+        // Leave the default width in place when local storage is unavailable.
+    }
+})();
+</script>
+    <base href="./../"><meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>O estudo formal da língua natural</title><link rel="stylesheet" href="book.css">
+    <link rel="stylesheet" href="verso-vars.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js" integrity="sha384-zbcZAIxlvJtNE3Dp5nxLXdXtXyxwOdnILY1TDPVmKFhl4r4nSUG1r8bcFXGVa4Te" crossorigin="anonymous"></script>
+    <script defer="defer" src="-verso-search/elasticlunr.min.js"></script>
+    <script defer="defer" src="-verso-search/fuzzysort.min.js"></script>
+    <script defer="defer" src="-verso-search/searchIndex.js"></script>
+    <script defer="defer" src="-verso-search/search-config.js"></script>
+    <script type="module" src="-verso-search/search-init.js"></script>
+    <link rel="stylesheet" href="-verso-search/search-box.css">
+    <link rel="stylesheet" href="-verso-search/search-page.css">
+    <link rel="stylesheet" href="-verso-search/search-highlight.css">
+    <link rel="stylesheet" href="-verso-search/domain-display.css">
+    <script src="-verso-search/search-highlight.js" defer="defer"></script>
+    <script src="toc-resize.js" defer="defer"></script>
+    <script src="-verso-data/katex/katex.js"></script>
+    <script src="-verso-data/katex/math.js"></script>
+    <script src="-verso-data/popper.min.js"></script>
+    <script src="-verso-data/tippy-bundle.umd.min.js"></script>
+    <link rel="stylesheet" href="-verso-data/tippy-border.css">
+    <link rel="stylesheet" href="-verso-data/katex/katex.css">
+    <style>
+/* A display is set off vertically and indented a few characters from the left
+   margin — not flush left, not centered — the way a textbook indents a displayed
+   line. */
+.sf-display {
+  margin: 1em 0;
+  margin-left: 2.5em;
+}
+.sf-display pre {
+  margin: 0;
+  overflow-x: auto;
+}
+.sf-display pre code {
+  font-family: var(--verso-code-font-family, monospace);
+  white-space: pre;
+}
+</style><style>
+div.cswl-dev-note {
+  margin: 1em 0;
+  padding: 0.5em 0.9em;
+  border: 1px solid #e6a700;
+  border-left: 6px solid #e6a700;
+  background: #fff3b0;
+  border-radius: 3px;
+}
+div.cswl-dev-note > .cswl-dev-note-label {
+  font-family: var(--verso-structure-font-family);
+  font-weight: 700;
+  font-size: 0.85em;
+  letter-spacing: 0.03em;
+  color: #7a5800;
+  margin-bottom: 0.3em;
+}
+</style><style>
+.namedocs {
+  position: relative;
+  border: solid 1px #98B2C0;
+  border-radius: .5rem;
+  padding-top: var(--verso--box-padding);
+  margin-top: var(--verso--box-vertical-margin);
+  margin-bottom: var(--verso--box-vertical-margin);
+}
+
+.namedocs .text {
+  /* Causes margins on child elements to collapse inside the element, such
+     that the margins don't extend into parent with the background color.
+     The effect is that weird borders in the definition box don't happen anymore. */
+  display: flow-root;
+  /* Add a padding. this is the same as the margin applied to the first and last child.
+     The effect is that the padding looks the same size on all sides. */
+  padding: 0 var(--verso--box-padding);
+  border-top: 1px solid #98B2C0;
+}
+
+.namedocs .text > pre {
+  overflow-x: auto;
+}
+
+.namedocs .signature {
+  font-family: var(--verso-code-font-family);
+  margin-top: 0 !important;
+  margin-left: var(--verso--box-padding) !important;
+  margin-bottom: .75rem !important;
+}
+
+.namedocs .label {
+  display: block;
+  font-size: small;
+  font-family: var(--verso-structure-font-family);
+  position: absolute;
+  top: -0.65rem;
+  left: 1rem;
+  background: #fff;
+  padding: 0 .5rem .125rem;
+  border: 1px solid #98B2C0;
+  border-radius: 1rem;
+  color: #555;
+}
+
+.namedocs .docstring-section {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.namedocs .docstring-section-label {
+  font-size: inherit;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.namedocs > .text .constructor {
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.namedocs > .text .constructor::before {
+  content: '| ';
+  display: block;
+  font-family: var(--verso-code-font-family);
+  font-weight: bold;
+  float: left;
+  width: 0.5rem;
+  white-space: pre;
+}
+
+.namedocs > .text .constructor .name-and-type {
+  padding-left: 0.5rem;
+  float: left;
+  margin-top: 0;
+  max-width: calc(100% - 1rem);
+}
+.namedocs > .text .constructor .docs {
+  clear: both;
+  padding-left: 1rem;
+}
+
+/* These margins work together with the padding on .text */
+.namedocs .text > :first-child {
+  margin-top: var(--verso--box-padding);
+}
+.namedocs .text > :last-child {
+  margin-bottom: var(--verso--box-padding);
+}
+
+.namedocs .methods td, .namedocs .fields td {
+  vertical-align: top;
+}
+.namedocs .inheritance {
+  vertical-align: top;
+  font-size: smaller;
+  font-family: var(--verso-structure-font-family);
+}
+.namedocs .inheritance ol {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+.namedocs .inheritance ol li {
+  list-style-type: none;
+  display: inline-block;
+}
+.namedocs .inheritance ol li::after {
+  content: " > "
+}
+.namedocs .inheritance ol li:last-child::after {
+  content: "";
+}
+
+.namedocs .extends {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.namedocs .extends li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+.namedocs .extends li label {
+  padding-right: 1rem;
+}
+
+.namedocs .subdocs .name-and-type {
+  font-size: 1rem;
+  margin-left: 0;
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 0.5rem;
+}
+
+.namedocs .subdocs .docs {
+  margin-left: 1.5rem;
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 0.5rem;
+}
+
+.namedocs:has(input[data-parent-idx]) [data-inherited-from] {
+  transition-property: opacity, display;
+  transition-duration: 0.4s;
+  transition-behavior: allow-discrete;
+  @starting-style { opacity: 0 !important; }
+}
+
+#this-page-items .tactic-name { font-weight: bold; }
+.namedocs:has(input[data-parent-idx="0"]) [data-inherited-from="0"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="0"]:checked) [data-inherited-from="0"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="0"]:checked):has(.inheritance[data-inherited-from="0"]:hover) [data-inherited-from]:not([data-inherited-from="0"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="1"]) [data-inherited-from="1"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="1"]:checked) [data-inherited-from="1"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="1"]:checked):has(.inheritance[data-inherited-from="1"]:hover) [data-inherited-from]:not([data-inherited-from="1"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="2"]) [data-inherited-from="2"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="2"]:checked) [data-inherited-from="2"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="2"]:checked):has(.inheritance[data-inherited-from="2"]:hover) [data-inherited-from]:not([data-inherited-from="2"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="3"]) [data-inherited-from="3"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="3"]:checked) [data-inherited-from="3"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="3"]:checked):has(.inheritance[data-inherited-from="3"]:hover) [data-inherited-from]:not([data-inherited-from="3"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="4"]) [data-inherited-from="4"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="4"]:checked) [data-inherited-from="4"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="4"]:checked):has(.inheritance[data-inherited-from="4"]:hover) [data-inherited-from]:not([data-inherited-from="4"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="5"]) [data-inherited-from="5"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="5"]:checked) [data-inherited-from="5"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="5"]:checked):has(.inheritance[data-inherited-from="5"]:hover) [data-inherited-from]:not([data-inherited-from="5"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="6"]) [data-inherited-from="6"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="6"]:checked) [data-inherited-from="6"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="6"]:checked):has(.inheritance[data-inherited-from="6"]:hover) [data-inherited-from]:not([data-inherited-from="6"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="7"]) [data-inherited-from="7"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="7"]:checked) [data-inherited-from="7"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="7"]:checked):has(.inheritance[data-inherited-from="7"]:hover) [data-inherited-from]:not([data-inherited-from="7"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="8"]) [data-inherited-from="8"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="8"]:checked) [data-inherited-from="8"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="8"]:checked):has(.inheritance[data-inherited-from="8"]:hover) [data-inherited-from]:not([data-inherited-from="8"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="9"]) [data-inherited-from="9"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="9"]:checked) [data-inherited-from="9"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="9"]:checked):has(.inheritance[data-inherited-from="9"]:hover) [data-inherited-from]:not([data-inherited-from="9"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="10"]) [data-inherited-from="10"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="10"]:checked) [data-inherited-from="10"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="10"]:checked):has(.inheritance[data-inherited-from="10"]:hover) [data-inherited-from]:not([data-inherited-from="10"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="11"]) [data-inherited-from="11"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="11"]:checked) [data-inherited-from="11"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="11"]:checked):has(.inheritance[data-inherited-from="11"]:hover) [data-inherited-from]:not([data-inherited-from="11"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="12"]) [data-inherited-from="12"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="12"]:checked) [data-inherited-from="12"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="12"]:checked):has(.inheritance[data-inherited-from="12"]:hover) [data-inherited-from]:not([data-inherited-from="12"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="13"]) [data-inherited-from="13"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="13"]:checked) [data-inherited-from="13"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="13"]:checked):has(.inheritance[data-inherited-from="13"]:hover) [data-inherited-from]:not([data-inherited-from="13"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="14"]) [data-inherited-from="14"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="14"]:checked) [data-inherited-from="14"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="14"]:checked):has(.inheritance[data-inherited-from="14"]:hover) [data-inherited-from]:not([data-inherited-from="14"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="15"]) [data-inherited-from="15"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="15"]:checked) [data-inherited-from="15"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="15"]:checked):has(.inheritance[data-inherited-from="15"]:hover) [data-inherited-from]:not([data-inherited-from="15"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="16"]) [data-inherited-from="16"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="16"]:checked) [data-inherited-from="16"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="16"]:checked):has(.inheritance[data-inherited-from="16"]:hover) [data-inherited-from]:not([data-inherited-from="16"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="17"]) [data-inherited-from="17"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="17"]:checked) [data-inherited-from="17"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="17"]:checked):has(.inheritance[data-inherited-from="17"]:hover) [data-inherited-from]:not([data-inherited-from="17"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="18"]) [data-inherited-from="18"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="18"]:checked) [data-inherited-from="18"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="18"]:checked):has(.inheritance[data-inherited-from="18"]:hover) [data-inherited-from]:not([data-inherited-from="18"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="19"]) [data-inherited-from="19"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="19"]:checked) [data-inherited-from="19"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="19"]:checked):has(.inheritance[data-inherited-from="19"]:hover) [data-inherited-from]:not([data-inherited-from="19"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="20"]) [data-inherited-from="20"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="20"]:checked) [data-inherited-from="20"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="20"]:checked):has(.inheritance[data-inherited-from="20"]:hover) [data-inherited-from]:not([data-inherited-from="20"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="21"]) [data-inherited-from="21"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="21"]:checked) [data-inherited-from="21"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="21"]:checked):has(.inheritance[data-inherited-from="21"]:hover) [data-inherited-from]:not([data-inherited-from="21"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="22"]) [data-inherited-from="22"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="22"]:checked) [data-inherited-from="22"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="22"]:checked):has(.inheritance[data-inherited-from="22"]:hover) [data-inherited-from]:not([data-inherited-from="22"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="23"]) [data-inherited-from="23"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="23"]:checked) [data-inherited-from="23"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="23"]:checked):has(.inheritance[data-inherited-from="23"]:hover) [data-inherited-from]:not([data-inherited-from="23"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="24"]) [data-inherited-from="24"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="24"]:checked) [data-inherited-from="24"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="24"]:checked):has(.inheritance[data-inherited-from="24"]:hover) [data-inherited-from]:not([data-inherited-from="24"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="25"]) [data-inherited-from="25"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="25"]:checked) [data-inherited-from="25"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="25"]:checked):has(.inheritance[data-inherited-from="25"]:hover) [data-inherited-from]:not([data-inherited-from="25"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="26"]) [data-inherited-from="26"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="26"]:checked) [data-inherited-from="26"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="26"]:checked):has(.inheritance[data-inherited-from="26"]:hover) [data-inherited-from]:not([data-inherited-from="26"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="27"]) [data-inherited-from="27"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="27"]:checked) [data-inherited-from="27"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="27"]:checked):has(.inheritance[data-inherited-from="27"]:hover) [data-inherited-from]:not([data-inherited-from="27"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="28"]) [data-inherited-from="28"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="28"]:checked) [data-inherited-from="28"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="28"]:checked):has(.inheritance[data-inherited-from="28"]:hover) [data-inherited-from]:not([data-inherited-from="28"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="29"]) [data-inherited-from="29"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="29"]:checked) [data-inherited-from="29"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="29"]:checked):has(.inheritance[data-inherited-from="29"]:hover) [data-inherited-from]:not([data-inherited-from="29"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="30"]) [data-inherited-from="30"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="30"]:checked) [data-inherited-from="30"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="30"]:checked):has(.inheritance[data-inherited-from="30"]:hover) [data-inherited-from]:not([data-inherited-from="30"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="31"]) [data-inherited-from="31"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="31"]:checked) [data-inherited-from="31"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="31"]:checked):has(.inheritance[data-inherited-from="31"]:hover) [data-inherited-from]:not([data-inherited-from="31"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="32"]) [data-inherited-from="32"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="32"]:checked) [data-inherited-from="32"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="32"]:checked):has(.inheritance[data-inherited-from="32"]:hover) [data-inherited-from]:not([data-inherited-from="32"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="33"]) [data-inherited-from="33"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="33"]:checked) [data-inherited-from="33"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="33"]:checked):has(.inheritance[data-inherited-from="33"]:hover) [data-inherited-from]:not([data-inherited-from="33"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="34"]) [data-inherited-from="34"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="34"]:checked) [data-inherited-from="34"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="34"]:checked):has(.inheritance[data-inherited-from="34"]:hover) [data-inherited-from]:not([data-inherited-from="34"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="35"]) [data-inherited-from="35"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="35"]:checked) [data-inherited-from="35"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="35"]:checked):has(.inheritance[data-inherited-from="35"]:hover) [data-inherited-from]:not([data-inherited-from="35"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="36"]) [data-inherited-from="36"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="36"]:checked) [data-inherited-from="36"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="36"]:checked):has(.inheritance[data-inherited-from="36"]:hover) [data-inherited-from]:not([data-inherited-from="36"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="37"]) [data-inherited-from="37"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="37"]:checked) [data-inherited-from="37"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="37"]:checked):has(.inheritance[data-inherited-from="37"]:hover) [data-inherited-from]:not([data-inherited-from="37"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="38"]) [data-inherited-from="38"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="38"]:checked) [data-inherited-from="38"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="38"]:checked):has(.inheritance[data-inherited-from="38"]:hover) [data-inherited-from]:not([data-inherited-from="38"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="39"]) [data-inherited-from="39"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="39"]:checked) [data-inherited-from="39"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="39"]:checked):has(.inheritance[data-inherited-from="39"]:hover) [data-inherited-from]:not([data-inherited-from="39"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="40"]) [data-inherited-from="40"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="40"]:checked) [data-inherited-from="40"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="40"]:checked):has(.inheritance[data-inherited-from="40"]:hover) [data-inherited-from]:not([data-inherited-from="40"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="41"]) [data-inherited-from="41"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="41"]:checked) [data-inherited-from="41"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="41"]:checked):has(.inheritance[data-inherited-from="41"]:hover) [data-inherited-from]:not([data-inherited-from="41"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="42"]) [data-inherited-from="42"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="42"]:checked) [data-inherited-from="42"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="42"]:checked):has(.inheritance[data-inherited-from="42"]:hover) [data-inherited-from]:not([data-inherited-from="42"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="43"]) [data-inherited-from="43"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="43"]:checked) [data-inherited-from="43"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="43"]:checked):has(.inheritance[data-inherited-from="43"]:hover) [data-inherited-from]:not([data-inherited-from="43"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="44"]) [data-inherited-from="44"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="44"]:checked) [data-inherited-from="44"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="44"]:checked):has(.inheritance[data-inherited-from="44"]:hover) [data-inherited-from]:not([data-inherited-from="44"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="45"]) [data-inherited-from="45"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="45"]:checked) [data-inherited-from="45"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="45"]:checked):has(.inheritance[data-inherited-from="45"]:hover) [data-inherited-from]:not([data-inherited-from="45"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="46"]) [data-inherited-from="46"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="46"]:checked) [data-inherited-from="46"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="46"]:checked):has(.inheritance[data-inherited-from="46"]:hover) [data-inherited-from]:not([data-inherited-from="46"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="47"]) [data-inherited-from="47"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="47"]:checked) [data-inherited-from="47"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="47"]:checked):has(.inheritance[data-inherited-from="47"]:hover) [data-inherited-from]:not([data-inherited-from="47"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="48"]) [data-inherited-from="48"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="48"]:checked) [data-inherited-from="48"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="48"]:checked):has(.inheritance[data-inherited-from="48"]:hover) [data-inherited-from]:not([data-inherited-from="48"]) {
+  opacity: 0.5;
+}
+.namedocs:has(input[data-parent-idx="49"]) [data-inherited-from="49"] {
+  display: none;
+  opacity: 0;
+}
+.namedocs:has(input[data-parent-idx="49"]:checked) [data-inherited-from="49"] {
+  display: block;
+  transform: none;
+  opacity: 1;
+}
+.namedocs:has(input[data-parent-idx="49"]:checked):has(.inheritance[data-inherited-from="49"]:hover) [data-inherited-from]:not([data-inherited-from="49"]) {
+  opacity: 0.5;
+}
+</style><style>
+.diagram svg text[font-family="text"] {
+  font-family: var(--verso-text-font-family);
+}
+.diagram svg text[font-family="monospace"] {
+  font-family: var(--verso-code-font-family);
+}
+</style><style>
+.exercise {
+  margin: 1.2em 0;
+  padding: 0.6em 1em;
+  border-left: 3px solid #a00;
+  background: #fdf8ee;
+}
+.exercise-header {
+  font-family: var(--verso-structure-font-family);
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+.exercise-header .exercise-label,
+.exercise-header .exercise-stars,
+.exercise-header .exercise-name,
+.exercise-header .exercise-level {
+  font-family: inherit;
+}
+.exercise-stars { margin: 0 0.5em; color: #c08000; }
+.exercise-name  {
+  font-family: var(--verso-code-font-family);
+  font-style: italic;
+  color: #555;
+}
+.exercise-level {
+  margin-left: 0.5em;
+  font-weight: 700;
+  color: #a00;
+}
+</style><style>
+.marginalia .note {
+  position: relative;
+  padding: 0.5rem;
+}
+
+/*
+The margin-note layout responds to the width of <main>, not the viewport, because the
+ToC is resizable: a wider ToC leaves less room beside the text for notes. <main> is a
+query container (see Html/Style.lean), so the container queries below track the actual
+content width.
+
+There are two "in the margin" regimes, split at the same width where the content stops
+being left-aligned and becomes centered (1112px and 1212px of content width; at the
+default ToC width these are the old 1400px and 1500px viewport breakpoints):
+
+  * While the content is left-aligned there is a large area to its right, so a fixed
+    13rem note with a fixed 16rem overhang fits comfortably.
+  * Once the content is centered the note must fit the symmetric right gap, whose width
+    is (content - text column) / 2. A fixed overhang would overflow the page for content
+    widths just above the centering threshold, so the note and its overhang are sized in
+    container units, which always fit that gap.
+*/
+
+/* Narrow viewport (e.g. phone): the ToC is hidden and the note spans the text column. */
+@media screen and (width <= 700px) {
+  .marginalia .note {
+    float: left;
+    clear: left;
+    width: 90%;
+    margin: 1rem 5%;
+  }
+}
+
+/* Wider than a phone: by default float the note at the right of the text column,
+   overlapping the content. The container queries below lift it into the true margin
+   once there is room. */
+@media screen and (min-width: 701px) {
+  .marginalia .note {
+    float: right;
+    clear: right;
+    width: 40%;
+    margin: 1rem 0;
+    margin-left: 10%;
+  }
+}
+
+/* Left-aligned content: a fixed-size note in the wide area to its right. */
+@container main (width >= 1112px) {
+  .marginalia .note {
+    float: right;
+    clear: right;
+    width: 13rem;
+    margin: 1rem -16rem 0 0;
+  }
+}
+
+/* Centered content: size the note in container units so it always fits the symmetric
+   right gap. The threshold matches the content-centering threshold in Html/Style.lean,
+   so the fixed-overhang note above is only ever used while the content is left-aligned.
+   The overhang (18cqi) stays below the gap, (100cqi - text column) / 2, for every
+   content width at which the content is centered. */
+@container main (width >= 1212px) {
+  .marginalia .note {
+    width: 15cqi;
+    margin-right: -18cqi;
+  }
+}
+
+.marginalia:hover, .marginalia:hover .note, .marginalia:has(.note:hover) {
+  background-color: var(--lean-accent-light-blue);
+}
+
+body {
+  counter-reset: margin-note-counter;
+}
+.marginalia .note {
+  counter-increment: margin-note-counter;
+}
+.marginalia .note::before {
+  content: counter(margin-note-counter) ".";
+  position: absolute;
+  vertical-align: baseline;
+  font-size: 0.9em;
+  font-weight: bold;
+  left: -3rem;
+  width: 3rem;
+  text-align: right;
+}
+.marginalia::after {
+  content: counter(margin-note-counter);
+  vertical-align: super;
+  font-size: 0.7em;
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+</style><style>
+table.bnf {
+  margin: 1em auto;
+  border-collapse: collapse;
+  font-family: var(--verso-code-font-family, monospace);
+}
+table.bnf td {
+  padding: 0.15em 0.5em;
+  vertical-align: baseline;
+}
+table.bnf td.bnf-lhs { text-align: right; }
+table.bnf td.bnf-sep { text-align: center; }
+table.bnf td.bnf-alt { text-align: left; }
+table.bnf .bnf-nt  { font-style: italic; }
+table.bnf .bnf-mv  {
+  font-style: italic;
+  text-decoration: underline;
+  text-decoration-thickness: 0.5px;
+  text-underline-offset: 0.18em;
+}
+table.bnf .bnf-kw  { font-weight: 600; font-family: var(--verso-code-font-family, monospace); }
+/* Separator between inline alternatives of a compact production (`column ::=
+   A | B | ... | J` on one row) — not part of any token, so it stays unstyled
+   apart from a little breathing room. */
+table.bnf .bnf-sep-inline { padding: 0 0.3em; opacity: 0.65; }
+/* The gloss column: set in the body font, muted, and pushed away from the
+   grammar so it reads as an annotation rather than as part of the syntax. */
+table.bnf td.bnf-note {
+  padding-left: 2.5em;
+  text-align: left;
+  font-family: inherit;
+  font-style: italic;
+  opacity: 0.65;
+}
+</style><style>
+div.sf-quiz {
+  margin: 1em 0;
+  padding: 0.4em 0.8em;
+  border-left: 3px solid var(--sf-rule, #ccc);
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 2px;
+}
+div.sf-quiz > .sf-quiz-label {
+  font-family: var(--verso-structure-font-family);
+  font-weight: 600;
+  margin-bottom: 0.4em;
+}
+</style><style>
+details.sf-quiz-solution {
+  margin: 0.6em 0;
+}
+details.sf-quiz-solution > summary {
+  cursor: pointer;
+  display: inline-block;
+  font-family: var(--verso-structure-font-family);
+  font-weight: 600;
+  font-size: 0.85em;
+  padding: 0.2em 0.7em;
+  border: 1px solid var(--sf-rule, #ccc);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.04);
+  user-select: none;
+}
+details.sf-quiz-solution[open] > summary {
+  margin-bottom: 0.5em;
+}
+details.sf-quiz-solution > .sf-quiz-solution-body {
+  padding: 0.2em 0.8em;
+  border-left: 3px solid var(--sf-rule, #ccc);
+}
+</style><style>
+details.sf-details {
+  margin: 1em 0;
+  padding: 0.4em 0.8em;
+  border-left: 3px solid var(--sf-rule, #ccc);
+  background: rgba(0, 0, 0, 0.015);
+  border-radius: 2px;
+}
+details.sf-details > summary {
+  cursor: pointer;
+  font-family: var(--verso-structure-font-family);
+  font-weight: 600;
+  color: var(--sf-heading, inherit);
+  list-style: none;
+}
+details.sf-details > summary::-webkit-details-marker { display: none; }
+details.sf-details > summary::before {
+  content: "▸ ";
+  display: inline-block;
+  width: 1em;
+  transition: transform 120ms ease-in-out;
+}
+details.sf-details[open] > summary::before {
+  content: "▾ ";
+}
+details.sf-details[open] {
+  background: rgba(0, 0, 0, 0.03);
+}
+</style><style>
+
+.hl.lean {
+  white-space: pre;
+  font-weight: normal;
+  font-style: normal;
+  font-size: inherit;
+}
+
+.hl.lean .keyword {
+  color: var(--verso-code-keyword-color,);
+  font-weight: var(--verso-code-keyword-weight, bold);
+  font-style: var(--verso-code-keyword-style, normal);
+  font-family: var(--verso-code-keyword-font-family,);
+}
+
+.hl.lean .const {
+  color: var(--verso-code-const-color,);
+  font-weight: var(--verso-code-const-weight, normal);
+  font-style: var(--verso-code-const-style, normal);
+  font-family: var(--verso-code-const-font-family,);
+}
+
+.hl.lean .var {
+  color: var(--verso-code-var-color,);
+  font-weight: var(--verso-code-var-weight, normal);
+  font-style: var(--verso-code-var-style, italic);
+  font-family: var(--verso-code-var-font-family,);
+
+  position: relative;
+}
+
+.hl.lean .literal, .hl.lean .unknown {
+  color: var(--verso-code-color,);
+  font-weight: normal;
+  font-style: normal;
+  font-family: var(--verso-code-font-family,);
+}
+
+/* These lexically-classified token kinds default to the `.unknown` appearance. The rule follows
+   `.const` so it wins for the `anon-ctor` tokens, which also carry the `const` class. */
+.hl.lean .anon-ctor,
+.hl.lean .number,
+.hl.lean .char,
+.hl.lean .comment,
+.hl.lean .punctuation,
+.hl.lean .delim,
+.hl.lean .wildcard {
+  color: var(--verso-code-color,);
+  font-weight: normal;
+  font-style: normal;
+  font-family: var(--verso-code-font-family,);
+}
+
+.hover-container {
+  width: 0;
+  height: 0;
+  position: relative;
+  display: inline;
+}
+
+.hl.lean a {
+  color: inherit;
+  text-decoration: currentcolor underline dotted;
+}
+
+.hl.lean a:hover {
+  text-decoration: currentcolor underline solid;
+}
+
+.hl.lean .hover-info {
+  white-space: normal;
+}
+
+.hl.lean .token .hover-info {
+  display: none;
+  position: absolute;
+  background-color: #e5e5e5;
+  border: 1px solid black;
+  padding: 0.5rem;
+  z-index: 300;
+}
+
+.hl.lean .hover-info.messages {
+  max-height: 10rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+  padding: 0 0.5rem 0 0;
+  display: block;
+}
+
+.hl.lean .hover-info code {
+  white-space: pre-wrap;
+  background: none;
+  color: black;
+}
+
+.hl.lean .hover-info.messages > code {
+  padding: 0.5rem;
+  display: block;
+  width: fit-content;
+}
+
+.hl.lean .hover-info.messages > code:only-child {
+  margin: 0;
+}
+
+.hl.lean .hover-info.messages > code {
+  margin: 0.1rem;
+}
+
+.hl.lean .hover-info.messages > code:not(:first-child) {
+  margin-top: 0rem;
+}
+
+.hl.lean {
+}
+
+.hl.lean.block {
+  display: block;
+}
+
+.hl.lean.inline {
+  display: inline;
+  white-space: pre-wrap;
+}
+
+.hl.lean * {
+}
+
+.hl.lean .token {
+  transition: all 0.25s; /* Slight fade for highlights */
+}
+
+@media (hover: hover) {
+  .hl.lean .token.binding-hl, .hl.lean .literal:hover, .hl.lean .token.typed:hover {
+    background-color: #eee;
+    border-radius: 2px;
+    transition: none;
+  }
+}
+
+
+.hl.lean .has-info .token:not(.tactic-state):not(.tactic-state *), .hl.lean .has-info .inter-text:not(.tactic-state):not(.tactic-state *) {
+  text-decoration-style: wavy;
+  text-decoration-line: underline;
+  text-decoration-thickness: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.hl.lean .has-info .hover-info {
+  display: none;
+  position: absolute;
+  transform: translate(0.25rem, 0.3rem);
+  border: 1px solid black;
+  padding: 0.5rem;
+  z-index: 400;
+  text-align: left;
+}
+
+.hl.lean .has-info.error :not(.tactic-state):not(.tactic-state *){
+  text-decoration-color: red;
+}
+
+@media (hover: hover) {
+  .hl.lean .has-info.error:hover {
+    background-color: #ffb3b3;
+  }
+}
+
+.hl.lean .hover-info.messages > code.error {
+  background-color: #e5e5e5;
+  border-left: 0.2rem solid #ffb3b3;
+}
+
+.tippy-box[data-theme~='error'] .hl.lean .hover-info.messages > code.error {
+  background: none;
+  border: none;
+}
+
+.error .verso-message, .error .verso-message .token, .error .verso-message label {
+  color: var(--verso-error-color);
+}
+
+.error .verso-message .case-label:has(input[type="checkbox"])::before {
+  background-color: var(--verso-error-color) !important;
+}
+
+.hl.lean .has-info.warning :not(.tactic-state):not(.tactic-state *) {
+  text-decoration-color: var(--verso-warning-indicator-color);
+}
+
+@media (hover: hover) {
+  .hl.lean .has-info.warning:hover {
+    background-color:var(--verso-warning-color);
+  }
+}
+
+.hl.lean .hover-info.messages > code.warning {
+  background-color: var(--verso-warning-color);
+}
+
+.lean-output {
+  border-left: 0.2em solid transparent;
+  padding: 0 0 0 0.5em;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.lean-output.error {
+  border-color: var(--verso-error-indicator-color);
+}
+
+.lean-output.information {
+  border-color: var(--verso-info-indicator-color);
+}
+
+.lean-output.warning {
+  border-color: var(--verso-warning-indicator-color);
+}
+
+.hl.lean .hover-info.messages > code.error {
+  background-color: #e5e5e5;
+  border-left: 0.2rem solid var(--verso-warning-color);
+}
+
+.tippy-box[data-theme~='warning'] .hl.lean .hover-info.messages > code.warning {
+  background: none;
+  border: none;
+}
+
+
+.hl.lean .has-info.information :not(.tactic-state):not(.tactic-state *) {
+  text-decoration-color: var(--verso-info-indicator-color, blue);
+}
+
+@media (hover: hover) {
+  .hl.lean .has-info.information:hover {
+    background-color: #4777ff;
+  }
+}
+
+
+.hl.lean .hover-info.messages > code.information {
+  background-color: #e5e5e5;
+  border-left: 0.2rem solid #4777ff;
+}
+
+.tippy-box[data-theme~='info'] .hl.lean .hover-info.messages > code.information {
+  background: none;
+  border: none;
+}
+
+.hl.lean div.docstring {
+  font-family: var(--verso-text-font-family, sans-serif);
+  white-space: normal;
+  max-width: calc(min(40rem, 90vw));
+  width: max-content;
+}
+
+.hl.lean div.docstring > :last-child {
+  margin-bottom: 0;
+}
+
+.hl.lean div.docstring > :first-child {
+  margin-top: 0;
+}
+
+.hl.lean .hover-info .sep {
+  display: block;
+  width: auto;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0;
+  height: 1px;
+  border-top: 1px solid #ccc;
+}
+
+.hl.lean code {
+  font-family: var(--verso-code-font-family);
+}
+
+.hl.lean .tactic-state {
+  display: none;
+  position: relative;
+  width: fit-content;
+  border: 1px solid #888888;
+  border-radius: 0.1rem;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  background-color: #ffffff;
+}
+
+.hl.lean.popup .tactic-state {
+  position: static;
+  display: block;
+  width: auto;
+  border: none;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  background-color: #ffffff;
+}
+
+
+.hl.lean .tactic {
+  position: relative;
+  display: inline;
+  vertical-align: top;
+  /* Without these, mobile Safari will start making font sizes inconsistent when its text size adjustment feature is triggered.*/
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.hl.lean .tactic:has(> .tactic-toggle:checked) {
+  display: inline-grid;
+  grid-template-columns: 1fr;
+}
+
+.hl.lean .tactic-toggle:checked ~ .tactic-state {
+  display: inline-block;
+  vertical-align: top;
+  grid-row: 2;
+  justify-self: start;
+}
+
+.hl.lean .tactic > label {
+  position: relative;
+  grid-row: 1;
+  display: inline;
+}
+
+@media (hover: hover) {
+  /* Highlight a region on hover only when its own toggle is unchecked, and only the innermost
+     hovered region: `label:hover` bubbles to ancestor labels, so suppress the highlight on a region
+     whose label contains a more deeply nested hovered tactic label. */
+  .hl.lean .tactic:has(> .tactic-toggle:not(:checked)) > label:hover:not(:has(.tactic > label:hover)) {
+    background-color: #eeeeee;
+  }
+}
+
+.hl.lean .tactic-toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  z-index: -10;
+}
+
+.hl.lean .tactic > label::after {
+  content: "";
+  border: 1px solid #bbbbbb;
+  /* These need to be em, not rem, to scale with the font */
+  border-radius: 1em;
+  height: 0.25em;
+  vertical-align: middle;
+  width: 0.6em;
+  margin-left: 0.1em;
+  margin-right: 0.1em;
+  display: inline-block;
+  transition: all 0.5s;
+}
+
+/*
+@media (hover: hover) {
+  .hl.lean .tactic > label:hover::after {
+    border: 1px solid #aaaaaa;
+    background-color: #aaaaaa;
+    transition: all 0.5s;
+  }
+}
+*/
+
+.hl.lean .tactic > label:has(+ .tactic-toggle:checked)::after {
+  border: 1px solid #999999;
+  background-color: #999999;
+  transition: all 0.5s;
+}
+
+.hl.lean .tactic-state .goal + .goal {
+  margin-top: 1.5em;
+}
+
+/*
+Some CSS frameworks customize details/summary in ways not compatible with Verso's output.
+*/
+
+.hl.lean details {
+  display: block !important;
+  margin: 0;
+}
+
+.hl.lean details summary {
+  display: list-item !important;
+  margin: 0;
+}
+
+.hl.lean details summary:focus {
+  outline: none;
+  outline-offset: none;
+  color: inherit;
+}
+
+.hl.lean ul > li {
+  margin-bottom: 0;
+}
+
+.hl.lean details summary::marker {
+  display: inline !important;
+}
+
+.hl.lean details > summary:first-of-type {
+  list-style-type: disclosure-closed;
+  list-style-position: inside;
+}
+
+.hl.lean details[open] > summary:first-of-type {
+  list-style-type: disclosure-open;
+}
+
+.hl.lean details summary::before, .hl.lean details summary::after {
+  content: "" !important;
+  background: none;
+  display: none;
+}
+
+.hl.lean .tactic-state summary {
+  /* These need to be em, not rem, to scale with the font */
+  margin-left: -0.5em;
+}
+
+.hl.lean .tactic-state details {
+  /* These need to be em, not rem, to scale with the font */
+  padding-left: 0.5em;
+}
+
+.hl.lean .case-label {
+  display: block;
+  position: relative;
+}
+
+.hl.lean .case-label input[type="checkbox"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  z-index: -10;
+}
+
+.hl.lean .case-label:has(input[type="checkbox"])::before {
+  display: inline-block;
+  background-color: black;
+  content: ' ';
+  transition: ease 0.2s;
+  margin-right: 0.7em;
+  clip-path: polygon(100% 0, 0 0, 50% 100%);
+  width: 0.6em;
+  height: 0.6em;
+  vertical-align: middle;
+}
+
+.hl.lean .case-label:has(input[type="checkbox"]:not(:checked))::before {
+  transform: rotate(-90deg);
+}
+
+.hl.lean .case-label:has(input[type="checkbox"]) {
+
+}
+
+.hl.lean .case-label:has(input[type="checkbox"]:checked) {
+
+}
+
+
+.hl.lean .labeled-case > :not(:first-child) {
+  max-height: 0px;
+  display: block;
+  overflow: hidden;
+  transition: max-height 0.1s ease-in;
+  /* These need to be em, not rem, to scale with the font */
+  margin-left: 0.5em;
+  margin-top: 0.1em;
+}
+
+.hl.lean .labeled-case:has(.case-label input[type="checkbox"]:checked) > :not(:first-child) {
+  max-height: 100%;
+}
+
+
+.hl.lean .goal-name::before {
+  font-style: normal;
+  content: "case ";
+}
+
+.hl.lean .goal-name {
+  font-style: italic;
+  font-family: var(--verso-code-font-family);
+  color: inherit;
+}
+
+.hl.lean .hypotheses {
+  display: table;
+}
+
+.hl.lean .hypothesis {
+  display: table-row;
+}
+
+.hl.lean .hypothesis > * {
+  display: table-cell;
+}
+
+
+.hl.lean .hypotheses .colon {
+  text-align: center;
+  /* This needs to be em, not rem, to scale with the font */
+  min-width: 1em;
+}
+
+.hl.lean .hypotheses .name {
+  text-align: right;
+}
+
+.hl.lean .hypotheses .name,
+.hl.lean .hypotheses .type,
+.hl.lean .conclusion .type {
+  font-family: var(--verso-code-font-family);
+}
+
+.tippy-box {
+  /* Without these, mobile Safari will start making font sizes inconsistent when its text size adjustment feature is triggered.*/
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.tippy-box[data-theme~='lean'] {
+  background-color: #e5e5e5;
+  color: black;
+  border: 1px solid black;
+}
+.tippy-box[data-theme~='lean'][data-placement^='top'] > .tippy-arrow::before {
+  border-top-color: #e5e5e5;
+}
+.tippy-box[data-theme~='lean'][data-placement^='bottom'] > .tippy-arrow::before {
+  border-bottom-color: #e5e5e5;
+}
+.tippy-box[data-theme~='lean'][data-placement^='left'] > .tippy-arrow::before {
+  border-left-color: #e5e5e5;
+}
+.tippy-box[data-theme~='lean'][data-placement^='right'] > .tippy-arrow::before {
+  border-right-color: #e5e5e5;
+}
+
+.tippy-box[data-theme~='message'][data-placement^='top'] > .tippy-arrow::before {
+  border-top-color: #e5e5e5;
+  border-width: 11px 11px 0;
+}
+.tippy-box[data-theme~='message'][data-placement^='top'] > .tippy-arrow::after {
+  bottom: -11px;
+  border-width: 11px 11px 0;
+}
+.tippy-box[data-theme~='message'][data-placement^='bottom'] > .tippy-arrow::before {
+  border-width: 0 11px 11px;
+}
+.tippy-box[data-theme~='message'][data-placement^='bottom'] > .tippy-arrow::after {
+  top: -11px;
+  border-width: 0 11px 11px;
+}
+.tippy-box[data-theme~='message'][data-placement^='left'] > .tippy-arrow::before {
+  border-left-color: #e5e5e5;
+  border-width: 11px 0 11px 11px;
+}
+.tippy-box[data-theme~='message'][data-placement^='left'] > .tippy-arrow::after {
+  right: -11px;
+  border-width: 11px 0 11px 11px;
+}
+
+.tippy-box[data-theme~='message'][data-placement^='right'] > .tippy-arrow::before {
+  border-right-color: #e5e5e5;
+  border-width: 11px 11px 11px 0;
+}
+.tippy-box[data-theme~='message'][data-placement^='right'] > .tippy-arrow::after {
+  left: -11px;
+  border-width: 11px 11px 11px 0;
+}
+
+
+
+.tippy-box[data-theme~='warning'] {
+  background-color: #e5e5e5;
+  color: black;
+  border: 3px solid var(--verso-warning-color);
+}
+
+.tippy-box[data-theme~='error'] {
+  background-color: #e5e5e5;
+  color: black;
+  border: 3px solid #f7a7af;
+}
+
+.tippy-box[data-theme~='info'] {
+  background-color: #e5e5e5;
+  color: black;
+  border: 3px solid #99b3c2;
+}
+
+.tippy-box[data-theme~='tactic'] {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+.tippy-box[data-theme~='tactic'][data-placement^='top'] > .tippy-arrow::before {
+  border-top-color: white;
+}
+.tippy-box[data-theme~='tactic'][data-placement^='bottom'] > .tippy-arrow::before {
+  border-bottom-color: white;
+}
+.tippy-box[data-theme~='tactic'][data-placement^='left'] > .tippy-arrow::before {
+  border-left-color: white;
+}
+.tippy-box[data-theme~='tactic'][data-placement^='right'] > .tippy-arrow::before {
+  border-right-color: white;
+}
+
+.extra-doc-links {
+  list-style-type: none;
+  margin-left: 0;
+  padding: 0;
+}
+
+.extra-doc-links > li {
+  display: inline-block;
+}
+
+.extra-doc-links > li:not(:last-child)::after {
+  content: '|';
+  display: inline-block;
+  margin: 0 0.25em;
+}
+
+.verso-message .trace {
+  display: block;
+}
+
+.verso-message .trace > summary::marker {
+  color: var(--verso-text-color);
+}
+
+.verso-message .trace-children {
+  margin: 0;
+  padding: 0;
+}
+
+.verso-message .trace-children > li {
+  list-style-type: none;
+  margin-left: 1.5em;
+}
+
+.verso-message .trace-children > li:not(:has(.trace)) {
+  margin-left: 0;
+}
+
+.verso-message .trace-class {
+  color: color-mix(in srgb, currentColor 70%, transparent);
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+.verso-message .text {
+  white-space: pre-wrap;
+}
+
+</style><script>
+      
+window.onload = async () => {
+
+    // Don't show hovers inside of closed tactic states
+    function blockedByTactic(elem) {
+      let parent = elem.parentNode;
+      while (parent && "classList" in parent) {
+        if (parent.classList.contains("tactic")) {
+          const toggle = parent.querySelector(":scope > input.tactic-toggle");
+          if (toggle) {
+            return !toggle.checked;
+          }
+        }
+        parent = parent.parentNode;
+      }
+      return false;
+    }
+
+    // Track whether any tippy is visible (O(1) check instead of DOM scan)
+    let visibleTippyCount = 0;
+    function blockedByTippy(elem) {
+      return visibleTippyCount > 0;
+    }
+
+    // Binding highlights via event delegation with cached lookups
+    const bindingCache = new Map(); // context+binding -> [token elements]
+    let highlightedTokens = [];
+    function getBindingTokens(context, binding) {
+      const key = context + "\0" + binding;
+      let tokens = bindingCache.get(key);
+      if (!tokens) {
+        tokens = [];
+        for (const example of document.querySelectorAll(".hl.lean")) {
+          if (example.dataset.leanContext == context) {
+            for (const tok of example.querySelectorAll(".token[data-binding=\"" + CSS.escape(binding) + "\"]")) {
+              tokens.push(tok);
+            }
+          }
+        }
+        bindingCache.set(key, tokens);
+      }
+      return tokens;
+    }
+    for (const container of document.querySelectorAll(".hl.lean")) {
+      container.addEventListener("mouseover", (event) => {
+        const c = event.target.closest(".token");
+        if (!c || !c.dataset.binding || c.dataset.binding === "" || !container.contains(c)) return;
+        if (blockedByTactic(c)) return;
+        const tokens = getBindingTokens(container.dataset.leanContext, c.dataset.binding);
+        for (const tok of tokens) {
+          tok.classList.add("binding-hl");
+        }
+        highlightedTokens = tokens;
+      });
+      container.addEventListener("mouseout", (event) => {
+        const c = event.target.closest(".token");
+        if (!c || !container.contains(c)) return;
+        for (const tok of highlightedTokens) {
+          tok.classList.remove("binding-hl");
+        }
+        highlightedTokens = [];
+      });
+    }
+    /* Render docstrings */
+    if ('undefined' !== typeof marked) {
+        for (const d of document.querySelectorAll("code.docstring, pre.docstring")) {
+            const str = d.innerText;
+            const html = marked.parse(str);
+            const rendered = document.createElement("div");
+            rendered.classList.add("docstring");
+            rendered.innerHTML = html;
+            d.parentNode.replaceChild(rendered, d);
+        }
+    }
+    // Add hovers
+    const versoDocData = await (fetch("-verso-docs.json").then((resp) => resp.json()));
+
+    function hideParentTooltips(element) {
+      let parent = element.parentElement;
+      while (parent) {
+        const tippyInstance = parent._tippy;
+        if (tippyInstance) {
+          tippyInstance.hide();
+        }
+        parent = parent.parentElement;
+      }
+    }
+
+
+
+    const defaultTippyProps = {
+      /* DEBUG -- remove the space: * /
+      onHide(any) { return false; },
+      trigger: "click",
+      // */
+      /* theme: "lean", */
+      maxWidth: "none",
+      appendTo: () => document.body,
+      interactive: true,
+      delay: [100, null],
+      /* ignoreAttributes: true, */
+      followCursor: 'initial',
+      onShow(inst) {
+        if (inst.reference.className == 'tactic') {
+          const toggle = inst.reference.querySelector(":scope > input.tactic-toggle");
+          if (toggle && toggle.checked) {
+            return false;
+          }
+          hideParentTooltips(inst.reference);
+          if (blockedByTippy(inst.reference)) { return false; }
+
+        } else if (inst.reference.querySelector(".hover-info") || "versoHover" in inst.reference.dataset) {
+          if (blockedByTactic(inst.reference)) { return false };
+          if (blockedByTippy(inst.reference)) { return false; }
+        } else { // Nothing to show here!
+          return false;
+        }
+      },
+      onShown(inst) { visibleTippyCount++; },
+      onHidden(inst) { visibleTippyCount = Math.max(0, visibleTippyCount - 1); },
+      content (tgt) {
+        const content = document.createElement("span");
+        if (tgt.className == 'tactic') {
+          const state = tgt.querySelector(":scope > .tactic-state").cloneNode(true);
+          state.style.display = "block";
+          content.appendChild(state);
+          content.style.display = "block";
+          content.className = "hl lean popup";
+        } else {
+          content.className = "hl lean";
+          content.style.display = "block";
+          content.style.maxHeight = "300px";
+          content.style.overflowY = "auto";
+          content.style.overflowX = "hidden";
+          const hoverId = tgt.dataset.versoHover;
+          const hoverInfo = tgt.querySelector(".hover-info");
+          if (hoverId) { // Docstrings from the table
+            // TODO stop doing an implicit conversion from string to number here
+            let data = versoDocData[hoverId];
+            if (data) {
+              const info = document.createElement("span");
+              info.className = "hover-info";
+              info.style.display = "block";
+              info.innerHTML = data;
+              content.appendChild(info);
+              /* Render docstrings - TODO server-side */
+              if ('undefined' !== typeof marked) {
+                  for (const d of content.querySelectorAll("code.docstring, pre.docstring")) {
+                      const str = d.innerText;
+                      const html = marked.parse(str);
+                      const rendered = document.createElement("div");
+                      rendered.classList.add("docstring");
+                      rendered.innerHTML = html;
+                      d.parentNode.replaceChild(rendered, d);
+                  }
+              }
+            } else {
+              content.innerHTML = "Failed to load doc ID: " + hoverId;
+            }
+          } else if (hoverInfo) { // The inline info, still used for compiler messages
+            content.appendChild(hoverInfo.cloneNode(true));
+          }
+          const extraLinks = tgt.parentElement.dataset['versoLinks'];
+          if (extraLinks) {
+            try {
+              const extras = JSON.parse(extraLinks);
+              const links = document.createElement('ul');
+              links.className = 'extra-doc-links';
+              extras.forEach((l) => {
+                const li = document.createElement('li');
+                li.innerHTML = "<a href=\"" + l['href'] + "\" title=\"" + l.long + "\">" + l.short + "</a>";
+                links.appendChild(li);
+              });
+              content.appendChild(links);
+            } catch (error) {
+              console.error(error);
+            }
+          }
+        }
+        return content;
+      }
+    };
+
+
+    document.querySelectorAll('.hl.lean .const.token, .hl.lean .keyword.token, .hl.lean .literal.token, .hl.lean .option.token, .hl.lean .var.token, .hl.lean .typed.token, .hl.lean .level-var, .hl.lean .level-const, .hl.lean .level-op, .hl.lean .sort').forEach(element => {
+      element.setAttribute('data-tippy-theme', 'lean');
+    });
+    document.querySelectorAll('.hl.lean .has-info.warning').forEach(element => {
+      element.setAttribute('data-tippy-theme', 'warning message');
+    });
+    document.querySelectorAll('.hl.lean .has-info.information').forEach(element => {
+      element.setAttribute('data-tippy-theme', 'info message');
+    });
+    document.querySelectorAll('.hl.lean .has-info.error').forEach(element => {
+      element.setAttribute('data-tippy-theme', 'error message');
+    });
+    document.querySelectorAll('.hl.lean .tactic').forEach(element => {
+      element.setAttribute('data-tippy-theme', 'tactic');
+    });
+    // Skip tokens inside closed tactics — they interfere with tactic tippys
+    const closedTactics = new Set();
+    document.querySelectorAll('.hl.lean .tactic').forEach(tactic => {
+      const toggle = tactic.querySelector(':scope > input.tactic-toggle');
+      if (toggle && !toggle.checked) closedTactics.add(tactic);
+    });
+    function isInsideClosedTactic(el) {
+      const tactic = el.closest('.tactic');
+      return tactic && tactic !== el && closedTactics.has(tactic);
+    }
+
+    const tokenSelector = '.hl.lean .const.token, .hl.lean .keyword.token, .hl.lean .literal.token, .hl.lean .option.token, .hl.lean .var.token, .hl.lean .typed.token, .hl.lean .has-info, .hl.lean .tactic, .hl.lean .level-var, .hl.lean .level-const, .hl.lean .level-op, .hl.lean .sort';
+    tippy(Array.from(document.querySelectorAll(tokenSelector)).filter(el => !isInsideClosedTactic(el)), defaultTippyProps);
+
+    // Create/destroy token tippys when tactic checkbox toggles
+    const tacticTippySelector = '.const.token, .keyword.token, .literal.token, .option.token, .var.token, .typed.token, .has-info, .level-var, .level-const, .level-op, .sort';
+    document.querySelectorAll('.hl.lean .tactic').forEach(tactic => {
+      const toggle = tactic.querySelector(':scope > input.tactic-toggle');
+      if (toggle) toggle.addEventListener('change', () => {
+        if (toggle.checked) {
+          closedTactics.delete(tactic);
+          tactic.querySelectorAll('.token').forEach(tok => {
+            if (!tok._tippy && tok.matches(tacticTippySelector)) {
+              tippy(tok, defaultTippyProps);
+            }
+          });
+        } else {
+          closedTactics.add(tactic);
+          tactic.querySelectorAll('.token').forEach(tok => {
+            if (tok._tippy) tok._tippy.destroy();
+          });
+        }
+      });
+  });
+}
+</script>
+    </head>
+  <body>
+    <header>
+      <div class="header-logo-wrapper"></div>
+      <div class="header-title-wrapper">
+        <a href="" class="header-title"><h1>
+            Semântica computacional com Lean</h1>
+          </a></div>
+      </header>
+    <label for="toggle-toc" id="toggle-toc-click"><span class="line line1"></span><span class="line line2"></span><span class="line line3"></span></label><div class="with-toc">
+      <div class="toc-backdrop" onclick="document.getElementById('toggle-toc-click')?.click()"></div>
+      <nav id="toc">
+        <input type="checkbox" id="toggle-toc"><div class="first">
+          <a href="" class="toc-title"><h1>
+              Semântica computacional com Lean</h1>
+            </a><div class="split-tocs">
+            <div class="split-toc book">
+              <div class="title">
+                <label for="--verso-manual-toc-----bookRoot" class="toggle-split-toc"><input type="checkbox" class="toggle-split-toc" id="--verso-manual-toc-----bookRoot" checked="checked"></label><span class="">Table of Contents</span></div>
+              <table><tr class="current numbered"><td class="num">1.</td><td><a href="IntroCS/#IntroCS">O estudo formal da língua natural</a></td></tr><tr class="numbered"><td class="num">2.</td><td><a href="IntroL/#IntroL">Programação Funcional no Lean</a></td></tr><tr class="numbered"><td class="num">3.</td><td><a href="Logic/#Logic">Lógica</a></td></tr><tr class="numbered"><td class="num">4.</td><td><a href="Sets/#Sets">Conjuntos e Relações</a></td></tr><tr class="numbered"><td class="num">5.</td><td><a href="SeaBattle/#SeaBattle">Batalha Naval</a></td></tr><tr class="numbered"><td class="num">6.</td><td><a href="Morphology/#Morphology">Morfologia</a></td></tr><tr class="numbered"><td class="num">7.</td><td><a href="InfEngine/#InfEngine">Um motor de inferência</a></td></tr><tr class="numbered"><td class="num">8.</td><td><a href="English/#English">Um fragmento de inglês</a></td></tr></table></div>
+            <div class="split-toc">
+              <div class="title">
+                <label for="--verso-manual-toc-IntroCS" class="toggle-split-toc"><input type="checkbox" class="toggle-split-toc" id="--verso-manual-toc-IntroCS" checked="checked"></label><span class="number">1.</span> <span class="current"><a href="IntroCS/#IntroCS">O estudo formal da língua natural</a></span></div>
+              <table><tr class="numbered"><td class="num">1.1.</td><td><a href="IntroCS/#Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--O-estudo-da-l___ngua-natural">O estudo da língua natural</a></td></tr><tr class="numbered"><td class="num">1.2.</td><td><a href="IntroCS/#Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Sintaxe___-sem___ntica-e-pragm___tica">Sintaxe, semântica e pragmática</a></td></tr><tr class="numbered"><td class="num">1.3.</td><td><a href="IntroCS/#Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Os-prop___sitos-da-comunica______o">Os propósitos da comunicação</a></td></tr><tr class="numbered"><td class="num">1.4.</td><td><a href="IntroCS/#Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--L___nguas-naturais-e-l___nguas-formais">Línguas naturais e línguas formais</a></td></tr><tr class="numbered"><td class="num">1.5.</td><td><a href="IntroCS/#Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--O-que-a-sem___ntica-formal-n___o-___">O que a semântica formal não é</a></td></tr><tr class="numbered"><td class="num">1.6.</td><td><a href="IntroCS/#Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Sem___ntica-computacional-e-programa______o-funcional">Semântica computacional e programação funcional</a></td></tr></table></div>
+            </div>
+          </div>
+        <div class="last"></div>
+        </nav>
+      <div class="toc-resize-handle"></div>
+      <main><div class="content-wrapper">
+          <nav class="prev-next-buttons">
+            <a class="local-button active" href="#" rel="prev" title=" Semântica computacional com Lean"><span class="arrow">←</span><span class="where"> Semântica computacional com Lean</span></a><a class="local-button active" href="IntroL/#IntroL" rel="next" title="2. Programação Funcional no Lean"><span class="where">2. Programação Funcional no Lean</span><span class="arrow">→</span></a></nav>
+          <section>
+            <h1>
+              1. O estudo formal da língua natural<span class="permalink-widget inline"><a href="find/?domain=Verso.Genre.Manual.section&amp;name=IntroCS" title="Permalink">🔗</a></span></h1>
+            <p>
+              Este capítulo introduz semântica computacional.</p>
+            <p>
+              O capítulo começa com uma visão geral do estudo formal da linguagem. As áreas
+abrangentes da sintaxe, semântica e pragmática são distinguidas, e o conceito de
+significado é discutido.</p>
+            <p>
+              Como iremos nos concentrar na linguagem como uma ferramenta para descrever
+estados de coisas e transmitir informações, e como os lógicos desenvolveram
+ferramentas específicas para essas tarefas, a lógica será importante para nós. O
+capítulo enfatiza as semelhanças entre as línguas naturais e as linguagens
+formais que foram desenvolvidas por lógicos e cientistas da computação. O
+capítulo termina com uma discussão sobre a utilidade da programação funcional
+para a semântica computacional e com uma visão geral do restante do livro.</p>
+            <code class="hl lean block" data-lean-context="examples"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.namespace-991" data-verso-hover="2">namespace</span><span class="inter-text"> </span><span class="unknown token" data-binding="">IntroCS</span><span class="inter-text">
+</span><span class="unknown token" data-binding=""></span></code><section>
+              <h2 id="Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--O-estudo-da-l___ngua-natural">
+                1.1. O estudo da língua natural<span class="permalink-widget inline"><a href="find/?domain=Verso.Genre.Manual.section&amp;name=Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--O-estudo-da-l___ngua-natural" title="Permalink">🔗</a></span></h2>
+              <p>
+                A língua é uma das capacidades mais notáveis do ser humano e um dos traços
+distintivos que nos separam dos demais habitantes deste planeta. As línguas
+humanas são sistemas sofisticados para manipular símbolos que codificam
+informação, e para compor sons em expressões estruturadas como palavras,
+sintagmas e sentenças. Essas expressões podem então servir, de inúmeras
+maneiras, a ações comunicativas como troca de informação, persuasão e engano,
+expressão de pensamentos, raciocínio, e muito mais.</p>
+              <p>
+                A linguística é o estudo científico da língua humana. Para fazer da linguística
+uma ciência é necessário especificar o objeto de estudo. Em seu livro <em>Syntactic
+Structures</em> (1957), o linguista Noam Chomsky fez a proposta influente de
+identificar uma língua humana com o conjunto de todas as sentenças corretas (ou:
+gramaticais) dessa língua. Essa idealização abstrai das limitações cognitivas de
+quem usa a língua. Chomsky chamou de competência a capacidade que os usuários da
+língua têm de reconhecer, ao menos em princípio, os membros desse conjunto, e a
+distinguiu do desempenho, as capacidades efetivas dos usuários da língua,
+afetadas por condições como limitações de memória, distração e erros. Neste
+livro faremos a mesma distinção. Vamos nos concentrar no estudo da competência
+e, portanto, supor que uma língua particular nos é dada como um conjunto de
+sentenças.</p>
+              <p>
+                O que exatamente nos torna falantes competentes de nossa língua? O que é o
+conhecimento linguístico? É certamente algo a que temos acesso apenas limitado.
+Para a maioria dos falantes de uma língua, as regras e regularidades da língua
+materna são implícitas. Eles sabem aplicá-las corretamente, mas, quando lhes
+pedem que as enunciem, em geral ficam sem saber o que dizer. Descrições
+explícitas das regras e regularidades de uma língua são chamadas de gramáticas.
+Gramáticas podem ser vistas como modelos de nossa competência linguística.</p>
+              <p>
+                Como as gramáticas estão representadas como dispositivo cognitivo no cérebro do
+usuário da língua, não temos como saber. De fato, gramáticas podem ser
+representadas de maneiras bem diferentes. Na vida cotidiana as encontramos, por
+exemplo, em dicionários, em referências de língua on-line e em livros didáticos
+para aprender línguas estrangeiras. Seu desenho difere conforme o propósito.
+Gramáticas para quem aprende uma língua costumam seguir diretrizes pedagógicas e
+podem simplificar demais as regras. Gramáticas usadas em linguística costumam
+visar a ser tão explícitas e completas quanto possível. Elas podem começar
+especificando elementos básicos como sons, palavras e significados. Em seguida
+enunciam regras sobre como combiná-los em expressões estruturadas mais
+complexas. Em geral há vários níveis de representação, de acordo com as
+subdisciplinas da teoria gramatical:</p>
+              <ul>
+                <li>
+                  <p>
+                    A fonologia explora quais são as menores unidades que distinguem significado
+  (os sons) e como elas se combinam nas menores unidades que carregam
+  significado (os morfemas).</p>
+                  </li>
+                <li>
+                  <p>
+                    A morfologia se ocupa de como os morfemas se combinam em palavras.</p>
+                  </li>
+                <li>
+                  <p>
+                    A sintaxe estuda como as palavras se combinam em sintagmas e sentenças.</p>
+                  </li>
+                <li>
+                  <p>
+                    A semântica investiga os significados das expressões básicas e como o
+  significado é atribuído às expressões complexas com base no significado de
+  expressões mais simples e na estrutura sintática.</p>
+                  </li>
+                </ul>
+              <p>
+                Neste livro não nos ocuparemos de modo algum da fonologia, e também ignoraremos
+a maior parte dos aspectos da morfologia. Vamos nos concentrar na forma
+linguística no nível dos sintagmas e das sentenças. Isso significa que
+começaremos pelas palavras como blocos de construção básicos. A tarefa principal
+será então desenvolver uma gramática que nos forneça noções de boa-formação
+sintática e de estrutura sintática, e que nos permita desenvolver a noção de
+significado para as estruturas bem formadas. Assim, nossas gramáticas</p>
+              <ul>
+                <li>
+                  <p>
+                    devem ser capazes de construir exatamente aquelas expressões que são bem
+  formadas na língua de nossa escolha,</p>
+                  </li>
+                <li>
+                  <p>
+                    devem determinar os constituintes das expressões linguísticas complexas, bem
+  como sua estrutura interna,</p>
+                  </li>
+                <li>
+                  <p>
+                    e devem nos permitir atribuir significados apropriados às expressões
+  sintaticamente bem formadas, com base em sua estrutura.</p>
+                  </li>
+                </ul>
+              <p>
+                Em outras palavras, a noção de boa-formação sintática nos permite determinar se
+uma expressão particular é de fato uma expressão bem formada de uma dada
+categoria, e determinar sua estrutura interna. A estrutura, por sua vez, ajudará
+a relacionar as formas linguísticas com o mundo extralinguístico (aquilo de que
+elas tratam).</p>
+              </section>
+            <section>
+              <h2 id="Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Sintaxe___-sem___ntica-e-pragm___tica">
+                1.2. Sintaxe, semântica e pragmática<span class="permalink-widget inline"><a href="find/?domain=Verso.Genre.Manual.section&amp;name=Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Sintaxe___-sem___ntica-e-pragm___tica" title="Permalink">🔗</a></span></h2>
+              <p>
+                Uma tricotomia básica no estudo da língua é a que se faz entre sintaxe,
+semântica e pragmática. Grosso modo, a sintaxe diz respeito ao aspecto de forma
+da língua, a semântica ao seu aspecto de significado, e a pragmática ao seu uso.
+Desenvolver compreensão sobre a semântica de uma língua pressupõe conhecimento
+da sintaxe dessa língua; o estudo do uso da língua pressupõe conhecimento tanto
+da sintaxe quanto da semântica. Não surpreende, então, que para muitas línguas
+saibamos mais sobre sua sintaxe e sua semântica do que sobre os aspectos
+pragmáticos de seu uso. Eis definições aproximadas das três noções:</p>
+              <p>
+                <strong>Sintaxe</strong> é o estudo das cadeias e da estrutura que lhes é imposta pelas
+gramáticas que as geram.</p>
+              <p>
+                <strong>Semântica</strong> é o estudo da relação entre cadeias e seus significados, isto é, de
+sua relação com a estrutura extralinguística de que elas tratam.</p>
+              <p>
+                <strong>Pragmática</strong> é o estudo do uso de cadeias significativas para comunicar sobre
+estrutura extralinguística, num processo de interação entre usuários da língua.</p>
+              <p>
+                Num slogan: a sintaxe estuda a Forma, a semântica estuda a Forma + o Conteúdo, e
+a pragmática estuda a Forma + o Conteúdo + o Uso. Neste capítulo examinaremos o
+que se pode dizer sobre essa tricotomia em casos concretos.</p>
+              <p>
+                É matéria de estipulação o que se toma como "forma" na língua natural. A seguir
+vamos nos concentrar na língua escrita, mais especificamente em sentenças bem
+formadas. Assim, olharemos para as línguas como conjuntos de cadeias de símbolos
+tomados de algum alfabeto.</p>
+              <p>
+                Essa escolha torna particularmente fácil transpor a distância entre linguagens
+formais e línguas naturais, pois as linguagens formais também podem ser vistas
+como conjuntos de cadeias. A diferença entre línguas naturais e linguagens
+formais está na maneira como os conjuntos de cadeias são dados. No caso das
+linguagens formais, a linguagem é dada por definição estipulativa: uma cadeia
+pertence à linguagem se é produzida por uma gramática dessa linguagem, ou
+reconhecida por um algoritmo de análise sintática dessa linguagem. Um algoritmo
+de análise para C, digamos, pode estar errado no sentido de não estar em
+conformidade com o padrão internacional da linguagem de programação C, mas em
+última instância não há certo ou errado aqui: a maneira como as linguagens
+formais são dadas é matéria de definição.</p>
+              <p>
+                No caso das línguas naturais, a situação é bem diferente. Um formalismo
+gramatical proposto para uma língua natural (ou para um fragmento de uma língua
+natural) pode estar errado no sentido de não concordar com as intuições dos
+falantes nativos da língua. Se uma dada cadeia é ou não uma sentença bem formada
+de alguma língua é questão a ser decidida com base nas intuições linguísticas
+dos falantes nativos dessa língua.</p>
+              <p>
+                Uma vez dada uma gramática para uma língua, podemos associar estruturas às
+sentenças. No caso das línguas naturais, os falantes nativos têm intuições sobre
+quais constituintes de uma sentença pertencem uns aos outros, e uma gramática de
+língua natural terá de estar em conformidade com esses juízos. Isso poderia
+constituir um argumento para considerar árvores de constituintes, em vez de
+cadeias, como as formas que são dadas.</p>
+              <p>
+                Ainda outras escolhas são possíveis, dependendo do objetivo. Quem considera o
+problema do reconhecimento de língua natural pode tomar cadeias de fonemas (as
+menores unidades distintivas de som de uma língua) como as formas básicas. Quem
+quer admitir incerteza no reconhecimento da língua passa a ter como formas
+básicas listas de palavras com possibilidade de escolha, os chamados reticulados
+de palavras (com <em>full proof</em> e <em>fool proof</em> listados em pé de igualdade como
+alternativas), ou reticulados de fonemas (cadeias de fonemas envolvendo a
+possibilidade de escolha). Talvez possamos atribuir probabilidades às escolhas. E
+assim por diante. E assim por diante.</p>
+              <p>
+                Um caminho alternativo até o significado é apontar, ou demonstrar diretamente,
+que é possivelmente o ponto de partida da aprendizagem de conceitos básicos. As
+opiniões de cada um sobre os princípios da aprendizagem de conceitos tendem a
+ser tingidas por preconceitos filosóficos, então não nos deixemos levar pela
+especulação. Em vez disso, eis um relato em primeira mão. Foi assim que Helen
+Keller, nascida surda-muda e cega, aprendeu o significado da palavra <em>water</em> com
+sua professora, a senhorita Sullivan:</p>
+              <blockquote><p>
+                  Descemos o caminho até a casa do poço, atraídas pela fragrância da</p>
+                </blockquote><blockquote><p>
+                  madressilva que a cobria. Alguém estava tirando água, e minha professora</p>
+                </blockquote><blockquote><p>
+                  colocou minha mão sob a bica. Enquanto o jato fresco corria sobre uma das</p>
+                </blockquote><blockquote><p>
+                  mãos, ela soletrou na outra a palavra <em>water</em>, primeiro devagar, depois</p>
+                </blockquote><blockquote><p>
+                  depressa. Fiquei imóvel, toda a minha atenção fixa nos movimentos dos dedos</p>
+                </blockquote><blockquote><p>
+                  dela. De repente senti uma consciência nebulosa como de algo esquecido — um</p>
+                </blockquote><blockquote><p>
+                  frêmito de pensamento que retornava; e de algum modo o mistério da linguagem</p>
+                </blockquote><blockquote><p>
+                  me foi revelado. Soube então que "w-a-t-e-r" significava aquela coisa</p>
+                </blockquote><blockquote><p>
+                  maravilhosa e fresca que corria sobre a minha mão. Aquela palavra viva</p>
+                </blockquote><blockquote><p>
+                  despertou minha alma, deu-lhe luz, esperança, alegria, libertou-a!</p>
+                </blockquote><blockquote></blockquote><blockquote><p>
+                   (Keller, 1902)<span class="marginalia"><span class="note"><span class="citation">Helen Keller (1902). “The Story of My Life”. <em>Doubleday, Page & Co., Nova York.</em> <strong></strong>.</span></span></span></p>
+                </blockquote><section>
+                <h3 id="Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Sintaxe___-sem___ntica-e-pragm___tica--Saber-___que___-e-___como___">
+                  1.2.1. Saber "que" e "como"<span class="permalink-widget inline"><a href="find/?domain=Verso.Genre.Manual.section&amp;name=Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Sintaxe___-sem___ntica-e-pragm___tica--Saber-___que___-e-___como___" title="Permalink">🔗</a></span></h3>
+                <p>
+                  As explicações de significado caem em duas classes amplas: significado como
+<em>saber como</em> e significado como <em>saber que</em>. Se dizemos que Joãozinho não sabe o
+significado de uma boa surra, referimo-nos ao significado operacional. Se Helen
+Keller escreve que <em>water</em> significa a coisa maravilhosa e fresca que corria
+sobre a sua mão, então ela se refere ao significado como referência, ou
+significado denotacional.</p>
+                <p>
+                  Em geral os dois estão entrelaçados. Suponha que lhe perguntemos como chegar ao
+Teatro Municipal. Você poderia dizer algo como: "Vire à direita no próximo
+semáforo e você o verá bem à sua frente." Entender o significado disso envolve
+ser capaz de seguir as instruções (ser capaz de descobrir qual semáforo conta
+como o "próximo", qual direção é "à direita", e ser capaz de reconhecer o
+edifício à frente). Formulado em termos de "ser capaz de descobrir...", "ser
+capaz de reconhecer...", isso é significado como saber como. Ser capaz de
+entender o significado das instruções envolve também ser capaz de distinguir
+instruções corretas de instruções erradas. Em outras palavras, as instruções
+classificam situações, estando eu posicionado em algum lugar de alguma cidade,
+voltado para uma direção particular: em algumas situações as instruções fornecem
+uma descrição que é verdadeira, em outras uma descrição que é falsa. Isso é
+significado denotacional.</p>
+                <p>
+                  O significado denotacional pode ser formalizado como conhecimento das condições
+de verdade em situações. O significado operacional pode ser formalizado como
+algoritmos para executar ações (cognitivas). A semântica operacional de <em>mais</em>
+na expressão <em>sete mais cinco</em> é a operação de somar dois números naturais; essa
+operação pode ser dada como um conjunto de instruções de cálculo, ou como a
+descrição do funcionamento de uma máquina de calcular. A distinção entre
+semântica denotacional e semântica operacional é básica em ciência da
+computação, e muitas vezes há bastante trabalho envolvido em mostrar que as duas
+coincidem.</p>
+                <p>
+                  Frequentemente o significado operacional é mais fino que o denotacional. Por
+exemplo, as expressões <em>sete mais cinco</em> e <em>duas vezes seis</em> ambas se referem ao
+número natural doze, de modo que seu significado denotacional é o mesmo. Mas
+elas têm significado operacional diferente, pois a receita para somar sete e
+cinco é diferente da receita para multiplicar dois e seis.</p>
+                <p>
+                  Que as duas denotam o mesmo número é algo que se pode não apenas calcular, mas
+demonstrar:</p>
+                <code class="hl lean block" data-lean-context="examples"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.example-13635">example</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.typeSpec-13643">:</span><span class="inter-text"> </span><span class="literal number token" data-binding="" data-verso-hover="3">7</span><span class="inter-text"> </span><span class="punctuation operator token" data-binding="kw-occ-«term_+_»-13645">+</span><span class="inter-text"> </span><span class="literal number token" data-binding="" data-verso-hover="3">5</span><span class="inter-text"> </span><span class="punctuation operator token" data-binding="kw-occ-«term_=_»-13645">=</span><span class="inter-text"> </span><span class="literal number token" data-binding="" data-verso-hover="3">2</span><span class="inter-text"> </span><span class="punctuation operator token" data-binding="kw-occ-«term_*_»-13653">*</span><span class="inter-text"> </span><span class="literal number token" data-binding="" data-verso-hover="3">6</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Command.declValSimple-13659">:=</span><span class="inter-text"> </span><span class="tactic"><label for="tactic-state-15919050027947414367-13662-13664-0"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.byTactic-13662" data-verso-hover="4">by</span></label><input type="checkbox" class="tactic-toggle" id="tactic-state-15919050027947414367-13662-13664-0"><span class="tactic-state"><span class="goal"><span class="conclusion"><span class="prefix">⊢ </span><span class="type"><span class="inter-text"></span><span class="unknown token" data-binding="">7</span><span class="inter-text"> </span><span class="const token" data-binding="const-HAdd.hAdd" data-verso-hover="5">+</span><span class="inter-text"> </span><span class="unknown token" data-binding="">5</span><span class="inter-text"> </span><span class="const token" data-binding="const-Eq" data-verso-hover="6">=</span><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HMul.hMul" data-verso-hover="7">*</span><span class="inter-text"> </span><span class="unknown token" data-binding="">6</span></span></span></span></span></span><span class="inter-text"> </span><span class="tactic"><label for="tactic-state-7-13665-13668-2"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Tactic.tacticRfl-13665" data-verso-hover="8">rfl</span></label><input type="checkbox" class="tactic-toggle" id="tactic-state-7-13665-13668-2"><span class="tactic-state">All goals completed! 🐙</span></span><span class="inter-text">
+</span><span class="unknown token" data-binding=""></span></code><p>
+                  Sobre o código deste capítulo, um aviso. Ele está aqui para dar uma ideia de
+onde vamos chegar, e não para ser acompanhado linha a linha agora — nada nele é
+apresentado, e tudo o que ele usa é explicado nos capítulos seguintes. Leia-o
+como se lê uma fotografia do destino no começo da viagem: se despertar
+curiosidade, cumpriu seu papel; se não disser nada por enquanto, siga em frente
+sem preocupação.</p>
+                </section>
+              </section>
+            <section>
+              <h2 id="Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Os-prop___sitos-da-comunica______o">
+                1.3. Os propósitos da comunicação<span class="permalink-widget inline"><a href="find/?domain=Verso.Genre.Manual.section&amp;name=Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Os-prop___sitos-da-comunica______o" title="Permalink">🔗</a></span></h2>
+              <p>
+                O objetivo mais elevado da comunicação é usar a língua como instrumento para a
+busca coletiva da verdade. Mas a língua é também um instrumento para fazer seus
+concidadãos acreditarem em coisas, ou para confundir seus inimigos. Mesmo que
+dois usuários da língua concordem em não se enganar, isso não exclui o uso da
+ironia.</p>
+              <p>
+                Um uso muito importante da língua, e do qual nos ocuparemos bastante nas páginas
+seguintes, é como instrumento para descrever estados de coisas e como
+instrumento de raciocínio. É um uso que as linguagens formais e a língua natural
+têm em comum. As linguagens formais são frequentemente projetadas como
+instrumentos de consulta ou de raciocínio, ou ao menos como instrumentos para
+reconstruções formais de processos de raciocínio. Por isso elas são um ponto
+focal natural para o estudo formal da língua.</p>
+              <p>
+                Pode-se ver a coisa assim. Suponha que queiramos usar a língua para comunicar
+fatos básicos, como "o sol está brilhando", "está frio", "está chovendo", e
+assim por diante. Se você quiser negar um fato desses, precisa poder dizer algo
+como "não está frio". Você pode também querer exprimir sua incerteza sobre qual
+de dois fatos é o caso, e então gostaria de dizer "ou está frio ou está
+chovendo". Do mesmo modo, você pode querer dizer "está frio e está chovendo", ou:
+"se chover, então está frio". Assim, os ingredientes do tipo mais simples de
+comunicação são: fatos básicos, negações, conjunções, disjunções e implicações.
+Um fragmento de língua natural que só tenha isso já é bastante útil. De fato, a
+utilidade desse fragmento simples é evidente para os lógicos há muito tempo. O
+estudo do que pode ser expresso nesse fragmento chama-se lógica proposicional ou
+lógica booleana, em homenagem ao matemático britânico George Boole (1815–1864).</p>
+              <p>
+                Para ver como a lógica proposicional pode ser usada para exprimir o que se passa
+em discursos comunicativos simples, suponha que queiramos falar sobre fatos
+básicos a, b. Suponha que você não saiba nada sobre se esses fatos são
+verdadeiros ou não. Então, para você, há quatro possibilidades: ambos os fatos
+são verdadeiros, ambos são falsos, o primeiro é verdadeiro e o segundo falso, ou
+o primeiro é falso e o segundo verdadeiro. Agora nós lhe dizemos "a ou b". Se
+você acreditar em nós, isso lhe permitirá descartar uma das quatro
+possibilidades, aquela em que tanto a quanto b são falsos. Ou, se você tomar
+nossa afirmação no sentido exclusivo, ela lhe permitirá até descartar duas das
+quatro possibilidades. Seu conhecimento cresceu pela eliminação de
+possibilidades.</p>
+              <div class="exercise stars-1">
+                <div class="exercise-header">
+                  <span class="exercise-label">Exercício</span><span class="exercise-stars">★</span><span class="exercise-name">(possibilities)</span></div>
+                <p>
+                  A ignorância completa sobre a verdade ou falsidade de dois fatos se modela como
+incerteza entre quatro possibilidades. Com dez fatos básicos, quantas
+possibilidades? E no caso geral de <code>n</code> fatos?</p>
+                <code class="hl lean block" data-lean-context="examples"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-17032">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-IntroCS.possibilities" data-verso-hover="9" id="IntroCS___possibilities">possibilities</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.typeSpec-17050">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat" data-verso-hover="10">Nat</span><span class="inter-text"> </span><span class="punctuation operator token" data-binding="kw-occ-Lean.Parser.Term.arrow-17052">→</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat" data-verso-hover="10">Nat</span><span class="inter-text">
+  </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.matchAlts-17066">|</span><span class="inter-text"> </span><span class="literal number token" data-binding="" data-verso-hover="3">0</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.matchAlts-17066">=&gt;</span><span class="inter-text"> </span><span class="literal number token" data-binding="">1</span><span class="inter-text">
+  </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.matchAlts-17066">|</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.106" data-verso-hover="3">n</span><span class="inter-text"> </span><span class="punctuation operator token" data-binding="kw-occ-«term_+_»-17079">+</span><span class="inter-text"> </span><span class="literal number token" data-binding="">1</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.matchAlts-17066">=&gt;</span><span class="inter-text"> </span><span class="literal number token" data-binding="" data-verso-hover="3">2</span><span class="inter-text"> </span><span class="punctuation operator token" data-binding="kw-occ-«term_*_»-17088">*</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___possibilities" title="Definition of example"><span class="const token" data-binding="const-IntroCS.possibilities" data-verso-hover="9">possibilities</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.106" data-verso-hover="3">n</span><span class="inter-text">
+</span><span class="unknown token" data-binding=""></span></code><code class="hl lean block" data-lean-context="examples"><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="highlighted"><span class="inter-text"></span><span class="unknown token" data-binding="">1024</span><span class="inter-text"></span></span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-17121" data-verso-hover="11">#eval</span></span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___possibilities" title="Definition of example"><span class="const token" data-binding="const-IntroCS.possibilities" data-verso-hover="9">possibilities</span></a><span class="inter-text"> </span><span class="literal number token" data-binding="" data-verso-hover="3">10</span><span class="inter-text">
+</span><span class="unknown token" data-binding=""></span></code><p>
+                  Em Lean, podemos provar propriedades sobre funções, embora óbvio para este caso,
+sabemos que a função <code>possibilities</code> computa basicamente a expressão $2^n$.
+No passo indutivo é preciso desdobrar a potência, e há
+dois lemas para isso: <code>Nat.pow_succ'</code> e <code>Nat.pow_succ</code>.</p>
+                <code class="hl lean block" data-lean-context="examples"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.example-17435">example</span><span class="inter-text"> </span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.explicitBinder-17443">(</span><span class="var token" data-binding="var-_uniq.2" data-verso-hover="3">n</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.explicitBinder-17443">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat" data-verso-hover="10">Nat</span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.explicitBinder-17443">)</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.typeSpec-17453">:</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___possibilities" title="Definition of example"><span class="const token" data-binding="const-IntroCS.possibilities" data-verso-hover="9">possibilities</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.2" data-verso-hover="3">n</span><span class="inter-text"> </span><span class="punctuation operator token" data-binding="kw-occ-«term_=_»-17455">=</span><span class="inter-text"> </span><span class="literal number token" data-binding="" data-verso-hover="3">2</span><span class="inter-text"> </span><span class="punctuation operator token" data-binding="kw-occ-«term_^_»-17473">^</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.2" data-verso-hover="3">n</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Command.declValSimple-17479">:=</span><span class="inter-text"> </span><span class="tactic"><label for="tactic-state-14432350639515154362-17482-17484-3"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.byTactic-17482" data-verso-hover="4">by</span></label><input type="checkbox" class="tactic-toggle" id="tactic-state-14432350639515154362-17482-17484-3"><span class="tactic-state"><span class="goal"><span class="hypotheses"><span class="hypothesis"><span class="name"><span class="var token" data-binding="var-_uniq.2" data-verso-hover="3">n</span></span><span class="colon">:</span><span class="type"><span class="inter-text"></span><span class="const token" data-binding="const-Nat" data-verso-hover="10">Nat</span><span class="inter-text"></span></span></span></span><span class="conclusion"><span class="prefix">⊢ </span><span class="type"><span class="inter-text"></span><a href="IntroCS/#IntroCS___possibilities" title="Definition of example"><span class="const token" data-binding="const-IntroCS.possibilities" data-verso-hover="9">possibilities</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.2" data-verso-hover="3">n</span><span class="inter-text"> </span><span class="const token" data-binding="const-Eq" data-verso-hover="6">=</span><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HPow.hPow" data-verso-hover="12">^</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.2" data-verso-hover="3">n</span></span></span></span></span></span><span class="inter-text">
+ </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Tactic.induction-17486" data-verso-hover="13">induction</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.2" data-verso-hover="3">n</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Tactic.inductionAlts-17498" data-verso-hover="14">with</span><span class="inter-text">
+  </span><span class="tactic"><label for="tactic-state-11936143054303156748-17505-17514-5"><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Tactic.inductionAltLHS-17505">|</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat.zero" data-verso-hover="15">zero</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="">=&gt;</span></label><input type="checkbox" class="tactic-toggle" id="tactic-state-11936143054303156748-17505-17514-5"><span class="tactic-state"><span class="goal"><span class="labeled-case" checked="checked"><label class="case-label"><input type="checkbox" id="--verso-unique-6" checked="checked"><span for="--verso-unique-6" class="goal-name">zero</span></label><span class="conclusion"><span class="prefix">⊢ </span><span class="type"><span class="inter-text"></span><a href="IntroCS/#IntroCS___possibilities" title="Definition of example"><span class="const token" data-binding="const-IntroCS.possibilities" data-verso-hover="9">possibilities</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">0</span><span class="inter-text"> </span><span class="const token" data-binding="const-Eq" data-verso-hover="6">=</span><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HPow.hPow" data-verso-hover="12">^</span><span class="inter-text"> </span><span class="unknown token" data-binding="">0</span></span></span></span></span></span></span><span class="inter-text"> </span><span class="tactic"><label for="tactic-state-7-17515-17518-7"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Tactic.tacticRfl-17515" data-verso-hover="8">rfl</span></label><input type="checkbox" class="tactic-toggle" id="tactic-state-7-17515-17518-7"><span class="tactic-state">All goals completed! 🐙</span></span><span class="inter-text">
+  </span><span class="tactic"><label for="tactic-state-3997470101130773016-17521-17535-8"><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Tactic.inductionAltLHS-17521">|</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat.succ" data-verso-hover="16">succ</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.88" data-verso-hover="17">ih</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="">=&gt;</span></label><input type="checkbox" class="tactic-toggle" id="tactic-state-3997470101130773016-17521-17535-8"><span class="tactic-state"><span class="goal"><span class="labeled-case" checked="checked"><label class="case-label"><input type="checkbox" id="--verso-unique-9" checked="checked"><span for="--verso-unique-9" class="goal-name">succ</span></label><span class="hypotheses"><span class="hypothesis"><span class="name"><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span></span><span class="colon">:</span><span class="type"><span class="inter-text"></span><span class="const token" data-binding="const-Nat" data-verso-hover="10">Nat</span><span class="inter-text"></span></span></span><span class="hypothesis"><span class="name"><span class="var token" data-binding="var-_uniq.88" data-verso-hover="17">ih</span></span><span class="colon">:</span><span class="type"><span class="inter-text"></span><a href="IntroCS/#IntroCS___possibilities" title="Definition of example"><span class="const token" data-binding="const-IntroCS.possibilities" data-verso-hover="9">possibilities</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span><span class="inter-text"> </span><span class="const token" data-binding="const-Eq" data-verso-hover="6">=</span><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HPow.hPow" data-verso-hover="12">^</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span></span></span></span><span class="conclusion"><span class="prefix">⊢ </span><span class="type"><span class="inter-text"></span><a href="IntroCS/#IntroCS___possibilities" title="Definition of example"><span class="const token" data-binding="const-IntroCS.possibilities" data-verso-hover="9">possibilities</span></a><span class="inter-text"> </span><span class="const token" data-binding="const-HAdd.hAdd" data-verso-hover="5">(</span><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span><span class="inter-text"> </span><span class="const token" data-binding="const-HAdd.hAdd" data-verso-hover="5">+</span><span class="inter-text"> </span><span class="unknown token" data-binding="">1</span><span class="const token" data-binding="const-HAdd.hAdd" data-verso-hover="5">)</span><span class="inter-text"> </span><span class="const token" data-binding="const-Eq" data-verso-hover="6">=</span><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HPow.hPow" data-verso-hover="12">^</span><span class="inter-text"> </span><span class="const token" data-binding="const-HAdd.hAdd" data-verso-hover="5">(</span><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span><span class="inter-text"> </span><span class="const token" data-binding="const-HAdd.hAdd" data-verso-hover="5">+</span><span class="inter-text"> </span><span class="unknown token" data-binding="">1</span><span class="const token" data-binding="const-HAdd.hAdd" data-verso-hover="5">)</span></span></span></span></span></span></span><span class="inter-text"> </span><span class="tactic"><label for="tactic-state-7-17536-17573-10"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Tactic.rwSeq-17536" data-verso-hover="18">rw</span><span class="inter-text"> </span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Tactic.rwRuleSeq-17539">[</span><span class="tactic"><label for="tactic-state-15425098600573279908-17540-17554-11"><a href="IntroCS/#IntroCS___possibilities" title="Definition of example"><span class="const token" data-binding="const-IntroCS.possibilities" data-verso-hover="9">possibilities</span></a><span class="punctuation separator token" data-binding="kw-occ-Lean.Parser.Tactic.rwRuleSeq-17539">,</span></label><input type="checkbox" class="tactic-toggle" id="tactic-state-15425098600573279908-17540-17554-11"><span class="tactic-state"><span class="goal"><span class="labeled-case" checked="checked"><label class="case-label"><input type="checkbox" id="--verso-unique-12" checked="checked"><span for="--verso-unique-12" class="goal-name">succ</span></label><span class="hypotheses"><span class="hypothesis"><span class="name"><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span></span><span class="colon">:</span><span class="type"><span class="inter-text"></span><span class="const token" data-binding="const-Nat" data-verso-hover="10">Nat</span><span class="inter-text"></span></span></span><span class="hypothesis"><span class="name"><span class="var token" data-binding="var-_uniq.88" data-verso-hover="17">ih</span></span><span class="colon">:</span><span class="type"><span class="inter-text"></span><a href="IntroCS/#IntroCS___possibilities" title="Definition of example"><span class="const token" data-binding="const-IntroCS.possibilities" data-verso-hover="9">possibilities</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span><span class="inter-text"> </span><span class="const token" data-binding="const-Eq" data-verso-hover="6">=</span><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HPow.hPow" data-verso-hover="12">^</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span></span></span></span><span class="conclusion"><span class="prefix">⊢ </span><span class="type"><span class="inter-text"></span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HMul.hMul" data-verso-hover="7">*</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___possibilities" title="Definition of example"><span class="const token" data-binding="const-IntroCS.possibilities" data-verso-hover="9">possibilities</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span><span class="inter-text"> </span><span class="const token" data-binding="const-Eq" data-verso-hover="6">=</span><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HPow.hPow" data-verso-hover="12">^</span><span class="inter-text"> </span><span class="const token" data-binding="const-HAdd.hAdd" data-verso-hover="5">(</span><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span><span class="inter-text"> </span><span class="const token" data-binding="const-HAdd.hAdd" data-verso-hover="5">+</span><span class="inter-text"> </span><span class="unknown token" data-binding="">1</span><span class="const token" data-binding="const-HAdd.hAdd" data-verso-hover="5">)</span></span></span></span></span></span></span><span class="inter-text"> </span><span class="tactic"><label for="tactic-state-14672379008282191008-17555-17558-13"><span class="var token" data-binding="var-_uniq.88" data-verso-hover="17">ih</span><span class="punctuation separator token" data-binding="kw-occ-Lean.Parser.Tactic.rwRuleSeq-17539">,</span></label><input type="checkbox" class="tactic-toggle" id="tactic-state-14672379008282191008-17555-17558-13"><span class="tactic-state"><span class="goal"><span class="labeled-case" checked="checked"><label class="case-label"><input type="checkbox" id="--verso-unique-14" checked="checked"><span for="--verso-unique-14" class="goal-name">succ</span></label><span class="hypotheses"><span class="hypothesis"><span class="name"><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span></span><span class="colon">:</span><span class="type"><span class="inter-text"></span><span class="const token" data-binding="const-Nat" data-verso-hover="10">Nat</span><span class="inter-text"></span></span></span><span class="hypothesis"><span class="name"><span class="var token" data-binding="var-_uniq.88" data-verso-hover="17">ih</span></span><span class="colon">:</span><span class="type"><span class="inter-text"></span><a href="IntroCS/#IntroCS___possibilities" title="Definition of example"><span class="const token" data-binding="const-IntroCS.possibilities" data-verso-hover="9">possibilities</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span><span class="inter-text"> </span><span class="const token" data-binding="const-Eq" data-verso-hover="6">=</span><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HPow.hPow" data-verso-hover="12">^</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span></span></span></span><span class="conclusion"><span class="prefix">⊢ </span><span class="type"><span class="inter-text"></span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HMul.hMul" data-verso-hover="7">*</span><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HPow.hPow" data-verso-hover="12">^</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span><span class="inter-text"> </span><span class="const token" data-binding="const-Eq" data-verso-hover="6">=</span><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HPow.hPow" data-verso-hover="12">^</span><span class="inter-text"> </span><span class="const token" data-binding="const-HAdd.hAdd" data-verso-hover="5">(</span><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span><span class="inter-text"> </span><span class="const token" data-binding="const-HAdd.hAdd" data-verso-hover="5">+</span><span class="inter-text"> </span><span class="unknown token" data-binding="">1</span><span class="const token" data-binding="const-HAdd.hAdd" data-verso-hover="5">)</span></span></span></span></span></span></span><span class="inter-text"> </span><span class="tactic"><label for="tactic-state-15240287732236235013-17559-17572-15"><span class="const token" data-binding="const-Nat.pow_succ'" data-verso-hover="19">Nat.pow_succ'</span></label><input type="checkbox" class="tactic-toggle" id="tactic-state-15240287732236235013-17559-17572-15"><span class="tactic-state"><span class="goal"><span class="labeled-case" checked="checked"><label class="case-label"><input type="checkbox" id="--verso-unique-16" checked="checked"><span for="--verso-unique-16" class="goal-name">succ</span></label><span class="hypotheses"><span class="hypothesis"><span class="name"><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span></span><span class="colon">:</span><span class="type"><span class="inter-text"></span><span class="const token" data-binding="const-Nat" data-verso-hover="10">Nat</span><span class="inter-text"></span></span></span><span class="hypothesis"><span class="name"><span class="var token" data-binding="var-_uniq.88" data-verso-hover="17">ih</span></span><span class="colon">:</span><span class="type"><span class="inter-text"></span><a href="IntroCS/#IntroCS___possibilities" title="Definition of example"><span class="const token" data-binding="const-IntroCS.possibilities" data-verso-hover="9">possibilities</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span><span class="inter-text"> </span><span class="const token" data-binding="const-Eq" data-verso-hover="6">=</span><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HPow.hPow" data-verso-hover="12">^</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span></span></span></span><span class="conclusion"><span class="prefix">⊢ </span><span class="type"><span class="inter-text"></span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HMul.hMul" data-verso-hover="7">*</span><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HPow.hPow" data-verso-hover="12">^</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span><span class="inter-text"> </span><span class="const token" data-binding="const-Eq" data-verso-hover="6">=</span><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HMul.hMul" data-verso-hover="7">*</span><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HPow.hPow" data-verso-hover="12">^</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.87" data-verso-hover="3">k</span></span></span></span></span></span></span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Tactic.rwRuleSeq-17539">]</span></label><input type="checkbox" class="tactic-toggle" id="tactic-state-7-17536-17573-10"><span class="tactic-state">All goals completed! 🐙</span></span><span class="inter-text">
+</span><span class="unknown token" data-binding=""></span></code></div>
+              <p>
+                Se você quiser apenas estudar a troca simples de informação factual, faz sentido
+concentrar-se no fragmento de língua natural que pode ser traduzido para a
+lógica proposicional. Mas suponha que você queira ser mais explícito ao exprimir
+relações entre coisas. Se você deseja declarar seu amor a alguém, digamos, então
+enunciar uma proposição básica como "há amor" talvez não seja articulado o
+bastante. Você pode querer dizer algo mais ousado, como "eu amo você". Uma fala
+dessas exprime relações entre sujeitos e objetos. Você pode usar pronomes como
+"eu" e "você", mas também nomes próprios. Você ainda pode fazer o que é
+proposicional, como disjunções e negações, mas pode também exprimir fatos
+quantificacionais. Você pode usar o poder da quantificação para acrescentar algo
+à sua declaração romântica, reforçando-a para "não amo ninguém além de você".
+Você está agora no domínio que se chama lógica de predicados.</p>
+              <p>
+                Pode-se dizer coisas interessantes com a lógica de predicados, ao menos se você
+souber usá-la, pois a lógica de predicados é muito expressiva. Veremos adiante
+que a lógica de predicados nos leva bem longe na expressão dos significados de
+enunciados de língua natural. Ainda mais expressiva é a lógica tipada de ordem
+superior, que também será usada extensivamente neste livro. Na lógica tipada
+você pode dizer coisas mais abstratas (mas ainda românticas) como "amar alguém
+como você me faz muito feliz". Por fim, ao final do livro, daremos uma olhada na
+lógica do conhecimento, ou lógica epistêmica. Isso lançará luz sobre o
+significado de enunciados como "não tenho certeza absoluta se ainda amo você".
+Ela também nos permitirá dar um quadro abstrato de como a comunicação por meio
+de enunciados declarativos leva ao crescimento do conhecimento, de maneiras
+sutis. Estudaremos o crescimento do conhecimento da audiência sobre o que o
+falante sabe, mas também o crescimento do conhecimento do falante sobre o
+conhecimento da audiência sobre o conhecimento do falante, e assim por diante.</p>
+              <p>
+                A lógica é um campo que fez um progresso tremendo ao concentrar-se em linguagens
+formais bem definidas, como as linguagens de exemplo acima, e estudar suas
+propriedades em profundidade. É possível ver linguagens lógicas como a da lógica
+proposicional ou a da lógica de predicados como fragmentos de língua natural,
+concentrando-se no conjunto específico de sentenças da língua natural que podem
+ser traduzidas para a linguagem lógica. Este será um método importante neste
+livro. Esse método dos fragmentos, de tomar as coisas passo a passo, foi
+proposto pela primeira vez para a análise da língua natural pelo lógico e
+filósofo Richard Montague (1930–1971), nos anos 1970, quando ele fez a seguinte
+afirmação famosa:</p>
+              <blockquote><p>
+                  Não há, em minha opinião, diferença teórica importante entre as línguas</p>
+                </blockquote><blockquote><p>
+                  naturais e as linguagens artificiais dos lógicos; de fato, considero possível</p>
+                </blockquote><blockquote><p>
+                  compreender a sintaxe e a semântica de ambos os tipos de linguagem dentro de</p>
+                </blockquote><blockquote><p>
+                  uma única teoria natural e matematicamente precisa.</p>
+                </blockquote><blockquote></blockquote><blockquote><p>
+                   (Montague, 1974)<span class="marginalia"><span class="note"><span class="citation">Richard Montague (1974). “Formal Philosophy: Selected Papers of Richard Montague”. <em>Editado por Richmond H. Thomason. Yale University Press, New Haven.</em> <strong></strong>.</span></span></span></p>
+                </blockquote><p>
+                O trabalho pioneiro de Montague mostrou como as línguas naturais podem ser
+descritas formalmente usando técnicas tomadas de empréstimo à lógica. Ele
+introduziu instrumentos para computar significados de maneira sistemática e deu
+origem a toda uma tradição de semântica formal, um termo bastante geral que
+recobre as abordagens lógicas da semântica de língua natural.</p>
+              <p>
+                Nosso objetivo último é formar um modelo adequado de partes de nossa competência
+linguística. Adequado significa que o modelo tem de ser realista em termos de
+complexidade e de aprendibilidade. Não seremos tão ambiciosos a ponto de afirmar
+que nosso relato espelha processos cognitivos reais, mas o que afirmamos é que
+nosso relato impõe restrições sobre a aparência que os processos cognitivos
+reais podem ter. No resto deste capítulo, vamos explorar os meios que nos
+ajudarão a cumprir esse objetivo.</p>
+              </section>
+            <section>
+              <h2 id="Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--L___nguas-naturais-e-l___nguas-formais">
+                1.4. Línguas naturais e línguas formais<span class="permalink-widget inline"><a href="find/?domain=Verso.Genre.Manual.section&amp;name=Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--L___nguas-naturais-e-l___nguas-formais" title="Permalink">🔗</a></span></h2>
+              <p>
+                O inglês, o sueco, o russo e o híndi são línguas naturais. A linguagem da
+aritmética do ensino fundamental, a linguagem da lógica proposicional e a
+linguagem de programação Lean são linguagens formais. Mas a distinção não é
+absoluta, pois encontramos casos intermediários, como o esperanto. Para ver se
+podemos traçar uma linha divisória, vejamos alguns traços de projeto cruciais
+das línguas humanas.</p>
+              <ul>
+                <li>
+                  <p>
+                    <strong>Dupla articulação</strong> (ou dupla estruturação): a construção do conteúdo
+  linguístico pode ser analisada em dois níveis estruturais. Um é o nível que
+  contém as menores unidades significativas da língua: morfemas ou palavras,
+  como <em>cat</em>. Elas, porém, não são mínimas: em outro nível são feitas de um
+  pequeno conjunto de sons da fala, os chamados fonemas. Estes não carregam
+  significado em si, apenas diferenciam unidades significativas — por exemplo
+  /k/ e /m/, que distinguem <em>cat</em> de <em>mat</em>.</p>
+                  </li>
+                <li>
+                  <p>
+                    <strong>Recursão</strong>: padrões estruturais em sentenças ou sintagmas podem repetir-se a
+  si mesmos. Um nome comum <em>bird</em> pode ser modificado para formar o nome comum
+  complexo <em>green bird</em>, que pode ser modificado de novo para formar <em>small
+  green bird</em>, e de novo, para formar <em>beautiful small green bird</em>.</p>
+                  </li>
+                <li>
+                  <p>
+                    <strong>Contextualidade</strong>: o que um sintagma ou uma sentença significa é determinado
+  em parte pelo contexto em que o sintagma é usado.</p>
+                  </li>
+                </ul>
+              <div class="exercise stars-1">
+                <div class="exercise-header">
+                  <span class="exercise-label">Exercício</span><span class="exercise-stars">★</span><span class="exercise-name">(sentence-go-on)</span></div>
+                <p>
+                  Pollard e Sag dão este exemplo de recursão que estende sentenças:</p>
+                <pre>Sentences can go on.
+Sentences can go on and on.
+Sentences can go on and on and on.
+Sentences can go on and on and on and on.
+...
+</pre><p>
+                  Dê uma descrição concisa do padrão de recursão — isto é, escreva o gerador.
+<code>sentence n</code> deve produzir a sentença com <code>n</code> repetições de "and on".</p>
+                <p>
+                  Uma observação que economiza tempo: a recursão <strong>não</strong> cabe direto em
+<code>sentence</code>, porque o ponto final tem de ficar sempre no fim. O que se repete é
+o pedaço <code>" and on"</code>, e é ele que merece a função recursiva. Por isso o
+esqueleto vem em duas partes.</p>
+                <p>
+                  <code>andOn n</code> são as <code>n</code> repetições de <code>" and on"</code>, sem mais nada.</p>
+                <code class="hl lean block" data-lean-context="examples"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-23827">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-IntroCS.andOn" data-verso-hover="20" id="IntroCS___andOn">andOn</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.typeSpec-23837">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat" data-verso-hover="10">Nat</span><span class="inter-text"> </span><span class="punctuation operator token" data-binding="kw-occ-Lean.Parser.Term.arrow-23839">→</span><span class="inter-text"> </span><span class="const token" data-binding="const-String" data-verso-hover="21">String</span><span class="inter-text">
+  </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.matchAlts-23856">|</span><span class="inter-text"> </span><span class="literal number token" data-binding="" data-verso-hover="3">0</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.matchAlts-23856">=&gt;</span><span class="inter-text"> </span><span class="literal string token" data-binding="" data-verso-hover="22">""</span><span class="inter-text">
+  </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.matchAlts-23856">|</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.103" data-verso-hover="3">n</span><span class="inter-text"> </span><span class="punctuation operator token" data-binding="kw-occ-«term_+_»-23870">+</span><span class="inter-text"> </span><span class="literal number token" data-binding="">1</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.matchAlts-23856">=&gt;</span><span class="inter-text"> </span><span class="literal string token" data-binding="" data-verso-hover="23">" and on"</span><span class="inter-text"> </span><span class="punctuation operator token" data-binding="kw-occ-«term_++_»-23879">++</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___andOn" title="Definition of example"><span class="const token" data-binding="const-IntroCS.andOn" data-verso-hover="20">andOn</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.103" data-verso-hover="3">n</span><span class="inter-text">
+</span><span class="unknown token" data-binding=""></span></code><p>
+                  E a sentença é o começo, mais as repetições, mais o ponto.</p>
+                <code class="hl lean block" data-lean-context="examples"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-23978">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-IntroCS.sentence" data-verso-hover="24" id="IntroCS___sentence">sentence</span><span class="inter-text"> </span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.explicitBinder-23991">(</span><span class="var token" data-binding="var-_uniq.2" data-verso-hover="3">n</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.explicitBinder-23991">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat" data-verso-hover="10">Nat</span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.explicitBinder-23991">)</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.typeSpec-24001">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-String" data-verso-hover="21">String</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Command.declValSimple-24010">:=</span><span class="inter-text">
+  </span><span class="literal string token" data-binding="" data-verso-hover="25">"Sentences can go on"</span><span class="inter-text"> </span><span class="punctuation operator token" data-binding="kw-occ-«term_++_»-24015">++</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___andOn" title="Definition of example"><span class="const token" data-binding="const-IntroCS.andOn" data-verso-hover="20">andOn</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.2" data-verso-hover="3">n</span><span class="inter-text"> </span><span class="punctuation operator token" data-binding="kw-occ-«term_++_»-24015">++</span><span class="inter-text"> </span><span class="literal string token" data-binding="" data-verso-hover="26">"."</span><span class="inter-text">
+</span><span class="unknown token" data-binding=""></span></code><code class="hl lean block" data-lean-context="examples"><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="highlighted"><span class="inter-text"></span><span class="literal string token" data-binding="" data-verso-hover="27">"Sentences can go on and on and on."</span><span class="inter-text"></span></span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-24068" data-verso-hover="11">#eval</span></span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___sentence" title="Definition of example"><span class="const token" data-binding="const-IntroCS.sentence" data-verso-hover="24">sentence</span></a><span class="inter-text"> </span><span class="literal number token" data-binding="" data-verso-hover="3">2</span><span class="inter-text">
+</span><span class="unknown token" data-binding=""></span></code></div>
+              <div class="sf-quiz">
+                <div class="sf-quiz-label">
+                  Quiz</div>
+                <p>
+                  Há infinitas sentenças em inglês? Ou segue que
+sentenças em inglês podem ter comprimento infinito? Ou as duas coisas?</p>
+                <details class="sf-quiz-solution"><summary>Show solution</summary><div class="sf-quiz-solution-body">
+                    <p>
+                      De fato, segue-se do exemplo que há infinitas frases. Ainda assim, cada frase
+tem comprimento finito.</p>
+                    <p>
+                      Conjuntos finitos de coisas infinitas são diferentes de conjuntos infinitos de
+coisas finitas. O conjunto de frases da língua inglesa é um exemplo de um
+conjunto infinito de coisas finitas. Portanto, "As frases podem continuar
+indefinidamente" não significa que uma única frase possa continuar
+indefinidamente, mas sim que o processo de construir frases cada vez mais longas
+pode continuar indefinidamente.</p>
+                    </div>
+                  </details></div>
+              <p>
+                As propriedades de dupla articulação, recursão e contextualidade separam as
+línguas humanas dos sistemas comunicativos dos animais, como a dança das
+abelhas. São elas as responsáveis pela economia criativa da língua, pois nos
+permitem construir e compreender infinitas sentenças usando apenas finitos sons
+e finitas regras — uma precondição para que as crianças aprendam a língua tão
+rápida e facilmente quanto aprendem.</p>
+              <p>
+                Outra noção-chave, quando se fala das propriedades das línguas humanas, é a
+composicionalidade. O chamado princípio da composicionalidade vai nos ocupar
+bastante no que se segue. Esse princípio costuma ser atribuído ao matemático
+alemão Gottlob Frege (1848–1925). O que ele diz é que o significado de uma
+expressão complexa depende dos significados de suas partes e do modo como elas
+são combinadas sintaticamente. Essa formulação é bastante vaga, no entanto,
+porque nada se diz ainda sobre o que são significados, o que conta como parte de
+uma expressão, e de que tipo de dependência estamos falando. Para fazer sentido,
+o princípio tem de ser especificado quanto a essas questões. Além disso, ele só é
+significativo quando entendido contra o pano de fundo de exigências adicionais
+sobre uma teoria semântica, por exemplo a exigência de que a atribuição de
+significado seja sistemática. Um relato sistemático assim capturará o fato de que,
+uma vez que sabemos o significado de <em>white unicorn</em> e de <em>brown elk</em>, também
+sabemos o que significam <em>brown unicorn</em> e <em>white elk</em>.</p>
+              <p>
+                A composicionalidade não aparece na lista das propriedades cruciais das línguas
+humanas dada acima, porque supomos que ela é primariamente uma questão de
+metodologia. A pergunta não é se as línguas naturais satisfazem o princípio da
+composicionalidade, mas antes se podemos e queremos projetar a montagem do
+significado de modo que esse princípio seja respeitado. Montar a representação do
+significado de maneira composicional tem o mérito da elegância, mas nem sempre é
+direto. Uma dificuldade recorrente é a dependência de contexto do significado na
+língua natural. Para enunciar o significado de um pronome é preciso informação
+sobre o contexto em que o pronome ocorre. Algo semelhante vale para as
+pressuposições. Nesses casos há, em geral, dois tipos de reação. A saída fácil é
+abrir mão da composicionalidade. O outro tipo de reação é enriquecer e estender
+nossa teoria semântica de modo a permitir capturar de maneira composicional
+fenômenos aparentemente não composicionais. Voltaremos a essas questões a seu
+tempo, quando olharmos mais de perto a resolução de pronomes e a pressuposição.</p>
+              <p>
+                Além das línguas naturais, há outros sistemas de manipulação de símbolos que
+também exibem algumas das propriedades listadas acima, por exemplo a linguagem
+da lógica de predicados e as linguagens de programação de alto nível. Mas estas
+aparentemente carecem de outras propriedades das línguas humanas. Por exemplo,
+carecem de toda a dimensão pragmática que as línguas humanas empregam: o engano,
+a ironia, transmitir informação sem enunciá-la explicitamente, e capacidades como
+criar e compreender metáforas. As linguagens formais também carecem da
+flexibilidade das línguas humanas, induzida pela vagueza junto com o uso intenso
+de contexto e de conhecimento de fundo. Essas diferenças, de fato, são a razão
+pela qual as línguas naturais são bem adequadas à comunicação eficiente entre
+humanos, ao passo que as linguagens formais se destacam para fazer matemática e
+para interagir com computadores.</p>
+              <p>
+                Essas diferenças importantes se tornam visíveis se nos concentramos no modo como
+as línguas naturais e as linguagens formais são usadas. As diferenças somem de
+vista se olhamos para as línguas como conjuntos de sentenças. Quando nos
+concentramos em fragmentos de línguas naturais e descrevemos sua gramática de
+maneira formal, estamos, de fato, fazendo exatamente o mesmo que ao descrever
+linguagens formais.</p>
+              <p>
+                Em termos de programação, o princípio diz: a interpretação é uma função
+recursiva sobre a estrutura sintática. Cada construção da gramática tem um caso
+na definição, e o caso combina os resultados obtidos para os filhos. É a forma
+exata dos programas que percorrem tipos indutivos.</p>
+              <p>
+                Daí em diante as duas metades do assunto passam a ter a mesma forma. Um
+fragmento da língua é um tipo; sua semântica é uma função definida por casos
+sobre esse tipo; uma construção mal formada é um termo que não tipa.</p>
+              <p>
+                Abaixo está a sintaxe de um fragmento de uma linguagem sobre expressões
+aritméticas e a função de interpretação de 'frases' desta linguagem em termos do
+Lean. A <a href="https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form">BNF</a>
+correspondente seria:</p>
+              <pre>Expr := | num Nat | plus Expr Expr | times Expr Expr
+</pre><code class="hl lean block" data-lean-context="examples"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.inductive-29659" data-verso-hover="28">inductive</span><span class="inter-text"> </span><span class="const token" data-binding="const-IntroCS.Expr" data-verso-hover="29" id="IntroCS___Expr">Expr</span><span class="inter-text"> </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.inductive-29659" data-verso-hover="28">where</span><span class="inter-text">
+  </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Command.ctor-29682">|</span><span class="inter-text"> </span><span class="const token" data-binding="const-IntroCS.Expr.num" data-verso-hover="30" id="IntroCS___Expr___num">num</span><span class="inter-text"> </span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.explicitBinder-29688">(</span><span class="var token" data-binding="var-_uniq.5" data-verso-hover="3">n</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.explicitBinder-29688">:</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat" data-verso-hover="10">Nat</span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.explicitBinder-29688">)</span><span class="inter-text">
+  </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Command.ctor-29700">|</span><span class="inter-text"> </span><span class="const token" data-binding="const-IntroCS.Expr.plus" data-verso-hover="31" id="IntroCS___Expr___plus">plus</span><span class="inter-text"> </span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.explicitBinder-29707">(</span><span class="var token" data-binding="var-_uniq.8" data-verso-hover="32">a</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.10" data-verso-hover="32">b</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.explicitBinder-29707">:</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___Expr" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr" data-verso-hover="29">Expr</span></a><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.explicitBinder-29707">)</span><span class="inter-text">
+  </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Command.ctor-29722">|</span><span class="inter-text"> </span><span class="const token" data-binding="const-IntroCS.Expr.times" data-verso-hover="33" id="IntroCS___Expr___times">times</span><span class="inter-text"> </span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.explicitBinder-29730">(</span><span class="var token" data-binding="var-_uniq.14" data-verso-hover="32">a</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.16" data-verso-hover="32">b</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.explicitBinder-29730">:</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___Expr" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr" data-verso-hover="29">Expr</span></a><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.explicitBinder-29730">)</span><span class="inter-text">
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.optDeriving-29743">deriving</span><span class="inter-text"> </span><span class="const token" data-binding="const-Repr" data-verso-hover="34">Repr</span><span class="inter-text">
+
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-29758">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-IntroCS.sevenPlusFive" data-verso-hover="35" id="IntroCS___sevenPlusFive">sevenPlusFive</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.typeSpec-29776">:</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___Expr" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr" data-verso-hover="29">Expr</span></a><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Command.declValSimple-29783">:=</span><span class="inter-text">
+  </span><a href="IntroCS/#IntroCS___Expr___times" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.times" data-verso-hover="33">.times</span></a><span class="inter-text"> </span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.hygienicLParen-29795">(</span><a href="IntroCS/#IntroCS___Expr___plus" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.plus" data-verso-hover="31">.plus</span></a><span class="inter-text"> </span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.hygienicLParen-29802">(</span><a href="IntroCS/#IntroCS___Expr___num" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.num" data-verso-hover="30">.num</span></a><span class="inter-text"> </span><span class="literal number token" data-binding="" data-verso-hover="3">7</span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.paren-29802">)</span><span class="inter-text"> </span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.hygienicLParen-29811">(</span><a href="IntroCS/#IntroCS___Expr___num" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.num" data-verso-hover="30">.num</span></a><span class="inter-text"> </span><span class="literal number token" data-binding="" data-verso-hover="3">5</span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.paren-29811">)</span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.paren-29795">)</span><span class="inter-text"> </span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.hygienicLParen-29821">(</span><a href="IntroCS/#IntroCS___Expr___num" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.num" data-verso-hover="30">.num</span></a><span class="inter-text"> </span><span class="literal number token" data-binding="" data-verso-hover="3">1</span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.paren-29821">)</span><span class="inter-text">
+
+</span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-29831">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-IntroCS.twoTimesSix" data-verso-hover="36" id="IntroCS___twoTimesSix">twoTimesSix</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.typeSpec-29847">:</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___Expr" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr" data-verso-hover="29">Expr</span></a><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Command.declValSimple-29854">:=</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___Expr___times" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.times" data-verso-hover="33">.times</span></a><span class="inter-text"> </span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.hygienicLParen-29864">(</span><a href="IntroCS/#IntroCS___Expr___num" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.num" data-verso-hover="30">.num</span></a><span class="inter-text"> </span><span class="literal number token" data-binding="" data-verso-hover="3">2</span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.paren-29864">)</span><span class="inter-text"> </span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.hygienicLParen-29873">(</span><a href="IntroCS/#IntroCS___Expr___num" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.num" data-verso-hover="30">.num</span></a><span class="inter-text"> </span><span class="literal number token" data-binding="" data-verso-hover="3">6</span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Term.paren-29873">)</span><span class="inter-text">
+</span><span class="unknown token" data-binding=""></span></code><p>
+                A interpretação: um caso por construção da sintaxe, cada caso combinando
+os resultados obtidos para as partes.</p>
+              <code class="hl lean block" data-lean-context="examples"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.definition-30011">def</span><span class="inter-text"> </span><span class="const token" data-binding="const-IntroCS.eval" data-verso-hover="37" id="IntroCS___eval">eval</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.typeSpec-30020">:</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___Expr" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr" data-verso-hover="29">Expr</span></a><span class="inter-text"> </span><span class="punctuation operator token" data-binding="kw-occ-Lean.Parser.Term.arrow-30022">→</span><span class="inter-text"> </span><span class="const token" data-binding="const-Nat" data-verso-hover="10">Nat</span><span class="inter-text">
+ </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.matchAlts-30036">|</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___Expr___num" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.num" data-verso-hover="30">.num</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.17" data-verso-hover="3">n</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.matchAlts-30036">=&gt;</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.17" data-verso-hover="3">n</span><span class="inter-text">
+ </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.matchAlts-30036">|</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___Expr___plus" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.plus" data-verso-hover="31">.plus</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.30" data-verso-hover="32">a</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.31" data-verso-hover="32">b</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.matchAlts-30036">=&gt;</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___eval" title="Definition of example"><span class="const token" data-binding="const-IntroCS.eval" data-verso-hover="37">eval</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.30" data-verso-hover="32">a</span><span class="inter-text"> </span><span class="punctuation operator token" data-binding="kw-occ-«term_+_»-30066">+</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___eval" title="Definition of example"><span class="const token" data-binding="const-IntroCS.eval" data-verso-hover="37">eval</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.31" data-verso-hover="32">b</span><span class="inter-text">
+ </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.matchAlts-30036">|</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___Expr___times" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.times" data-verso-hover="33">.times</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.79" data-verso-hover="32">a</span><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.80" data-verso-hover="32">b</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.matchAlts-30036">=&gt;</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___eval" title="Definition of example"><span class="const token" data-binding="const-IntroCS.eval" data-verso-hover="37">eval</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.79" data-verso-hover="32">a</span><span class="inter-text"> </span><span class="punctuation operator token" data-binding="kw-occ-«term_*_»-30099">*</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___eval" title="Definition of example"><span class="const token" data-binding="const-IntroCS.eval" data-verso-hover="37">eval</span></a><span class="inter-text"> </span><span class="var token" data-binding="var-_uniq.80" data-verso-hover="32">b</span><span class="inter-text">
+</span><span class="unknown token" data-binding=""></span></code><code class="hl lean block" data-lean-context="examples"><span class="has-info information"><span class="hover-container"><span class="hover-info messages"><code class="verso-message information"><span class="text"></span><span class="highlighted"><span class="inter-text"></span><span class="unknown token" data-binding="">12</span><span class="inter-text"></span></span></code></span></span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.eval-30128" data-verso-hover="11">#eval</span></span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___eval" title="Definition of example"><span class="const token" data-binding="const-IntroCS.eval" data-verso-hover="37">eval</span></a><span class="inter-text"> </span><a href="IntroCS/#IntroCS___sevenPlusFive" title="Definition of example"><span class="const token" data-binding="const-IntroCS.sevenPlusFive" data-verso-hover="35">sevenPlusFive</span></a><span class="inter-text">
+</span><span class="unknown token" data-binding=""></span></code><p>
+                Estruturas sintáticas diferentes, mesma denotação.</p>
+              <code class="hl lean block" data-lean-context="examples"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.example-30221">example</span><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Term.typeSpec-30229">:</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___eval" title="Definition of example"><span class="const token" data-binding="const-IntroCS.eval" data-verso-hover="37">eval</span></a><span class="inter-text"> </span><a href="IntroCS/#IntroCS___sevenPlusFive" title="Definition of example"><span class="const token" data-binding="const-IntroCS.sevenPlusFive" data-verso-hover="35">sevenPlusFive</span></a><span class="inter-text"> </span><span class="punctuation operator token" data-binding="kw-occ-«term_=_»-30231">=</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___eval" title="Definition of example"><span class="const token" data-binding="const-IntroCS.eval" data-verso-hover="37">eval</span></a><span class="inter-text"> </span><a href="IntroCS/#IntroCS___twoTimesSix" title="Definition of example"><span class="const token" data-binding="const-IntroCS.twoTimesSix" data-verso-hover="36">twoTimesSix</span></a><span class="inter-text"> </span><span class="built-in delim token" data-binding="kw-occ-Lean.Parser.Command.declValSimple-30269">:=</span><span class="inter-text"> </span><span class="tactic"><label for="tactic-state-875508673292366722-30272-30274-17"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Term.byTactic-30272" data-verso-hover="4">by</span></label><input type="checkbox" class="tactic-toggle" id="tactic-state-875508673292366722-30272-30274-17"><span class="tactic-state"><span class="goal"><span class="conclusion"><span class="prefix">⊢ </span><span class="type"><span class="inter-text"></span><a href="IntroCS/#IntroCS___eval" title="Definition of example"><span class="const token" data-binding="const-IntroCS.eval" data-verso-hover="37">eval</span></a><span class="inter-text"> </span><a href="IntroCS/#IntroCS___sevenPlusFive" title="Definition of example"><span class="const token" data-binding="const-IntroCS.sevenPlusFive" data-verso-hover="35">sevenPlusFive</span></a><span class="inter-text"> </span><span class="const token" data-binding="const-Eq" data-verso-hover="6">=</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___eval" title="Definition of example"><span class="const token" data-binding="const-IntroCS.eval" data-verso-hover="37">eval</span></a><span class="inter-text"> </span><a href="IntroCS/#IntroCS___twoTimesSix" title="Definition of example"><span class="const token" data-binding="const-IntroCS.twoTimesSix" data-verso-hover="36">twoTimesSix</span></a></span></span></span></span></span><span class="inter-text">
+  </span><span class="tactic"><label for="tactic-state-15129538114691460118-30277-30309-19"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Tactic.unfold-30277" data-verso-hover="38">unfold</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___sevenPlusFive" title="Definition of example"><span class="const token" data-binding="const-IntroCS.sevenPlusFive" data-verso-hover="35">sevenPlusFive</span></a><span class="inter-text"> </span><a href="IntroCS/#IntroCS___twoTimesSix" title="Definition of example"><span class="const token" data-binding="const-IntroCS.twoTimesSix" data-verso-hover="36">twoTimesSix</span></a></label><input type="checkbox" class="tactic-toggle" id="tactic-state-15129538114691460118-30277-30309-19"><span class="tactic-state"><span class="goal"><span class="conclusion"><span class="prefix">⊢ </span><span class="type"><span class="inter-text"></span><a href="IntroCS/#IntroCS___eval" title="Definition of example"><span class="const token" data-binding="const-IntroCS.eval" data-verso-hover="37">eval</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="unknown token" data-binding="">(</span><span class="unknown token" data-binding="">(</span><a href="IntroCS/#IntroCS___Expr___num" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.num" data-verso-hover="30">Expr.num</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">7</span><span class="unknown token" data-binding="">)</span><span class="unknown token" data-binding="">.</span><a href="IntroCS/#IntroCS___Expr___plus" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.plus" data-verso-hover="31">plus</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><a href="IntroCS/#IntroCS___Expr___num" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.num" data-verso-hover="30">Expr.num</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">5</span><span class="unknown token" data-binding="">)</span><span class="unknown token" data-binding="">)</span><span class="unknown token" data-binding="">.</span><a href="IntroCS/#IntroCS___Expr___times" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.times" data-verso-hover="33">times</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><a href="IntroCS/#IntroCS___Expr___num" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.num" data-verso-hover="30">Expr.num</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">1</span><span class="unknown token" data-binding="">)</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="const token" data-binding="const-Eq" data-verso-hover="6">=</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___eval" title="Definition of example"><span class="const token" data-binding="const-IntroCS.eval" data-verso-hover="37">eval</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="unknown token" data-binding="">(</span><a href="IntroCS/#IntroCS___Expr___num" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.num" data-verso-hover="30">Expr.num</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span><span class="unknown token" data-binding="">)</span><span class="unknown token" data-binding="">.</span><a href="IntroCS/#IntroCS___Expr___times" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.times" data-verso-hover="33">times</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><a href="IntroCS/#IntroCS___Expr___num" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.num" data-verso-hover="30">Expr.num</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">6</span><span class="unknown token" data-binding="">)</span><span class="unknown token" data-binding="">)</span></span></span></span></span></span><span class="inter-text">
+  </span><span class="keyword token" data-binding="kw-occ-Lean.Parser.Tactic.tacticRepeat_-30312" data-verso-hover="39">repeat</span><span class="inter-text"> </span><span class="tactic"><label for="tactic-state-4486764896116000383-30319-30333-21"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Tactic.rewriteSeq-30319" data-verso-hover="40">rewrite</span><span class="inter-text"> </span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Tactic.rwRuleSeq-30327">[</span><span class="tactic"><label for="tactic-state-15112733965898858222-30328-30332-22"><a href="IntroCS/#IntroCS___eval" title="Definition of example"><span class="const token" data-binding="const-IntroCS.eval" data-verso-hover="37">eval</span></a></label><input type="checkbox" class="tactic-toggle" id="tactic-state-15112733965898858222-30328-30332-22"><span class="tactic-state"><span class="goal"><span class="conclusion"><span class="prefix">⊢ </span><span class="type"><span class="inter-text"></span><a href="IntroCS/#IntroCS___eval" title="Definition of example"><span class="const token" data-binding="const-IntroCS.eval" data-verso-hover="37">eval</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="unknown token" data-binding="">(</span><a href="IntroCS/#IntroCS___Expr___num" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.num" data-verso-hover="30">Expr.num</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">7</span><span class="unknown token" data-binding="">)</span><span class="unknown token" data-binding="">.</span><a href="IntroCS/#IntroCS___Expr___plus" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.plus" data-verso-hover="31">plus</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><a href="IntroCS/#IntroCS___Expr___num" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.num" data-verso-hover="30">Expr.num</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">5</span><span class="unknown token" data-binding="">)</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="const token" data-binding="const-HMul.hMul" data-verso-hover="7">*</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___eval" title="Definition of example"><span class="const token" data-binding="const-IntroCS.eval" data-verso-hover="37">eval</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><a href="IntroCS/#IntroCS___Expr___num" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.num" data-verso-hover="30">Expr.num</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">1</span><span class="unknown token" data-binding="">)</span><span class="inter-text"> </span><span class="const token" data-binding="const-Eq" data-verso-hover="6">=</span><span class="inter-text"> </span><a href="IntroCS/#IntroCS___eval" title="Definition of example"><span class="const token" data-binding="const-IntroCS.eval" data-verso-hover="37">eval</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><span class="unknown token" data-binding="">(</span><a href="IntroCS/#IntroCS___Expr___num" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.num" data-verso-hover="30">Expr.num</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span><span class="unknown token" data-binding="">)</span><span class="unknown token" data-binding="">.</span><a href="IntroCS/#IntroCS___Expr___times" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.times" data-verso-hover="33">times</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">(</span><a href="IntroCS/#IntroCS___Expr___num" title="Definition of example"><span class="const token" data-binding="const-IntroCS.Expr.num" data-verso-hover="30">Expr.num</span></a><span class="inter-text"> </span><span class="unknown token" data-binding="">6</span><span class="unknown token" data-binding="">)</span><span class="unknown token" data-binding="">)</span></span></span></span></span></span><span class="punctuation bracket token" data-binding="kw-occ-Lean.Parser.Tactic.rwRuleSeq-30327">]</span></label><input type="checkbox" class="tactic-toggle" id="tactic-state-4486764896116000383-30319-30333-21"><span class="tactic-state"><span class="goal"><span class="conclusion"><span class="prefix">⊢ </span><span class="type"><span class="const token" data-binding="const-HAdd.hAdd" data-verso-hover="5">(</span><span class="unknown token" data-binding="">7</span><span class="inter-text"> </span><span class="const token" data-binding="const-HAdd.hAdd" data-verso-hover="5">+</span><span class="inter-text"> </span><span class="unknown token" data-binding="">5</span><span class="const token" data-binding="const-HAdd.hAdd" data-verso-hover="5">)</span><span class="inter-text"> </span><span class="const token" data-binding="const-HMul.hMul" data-verso-hover="7">*</span><span class="inter-text"> </span><span class="unknown token" data-binding="">1</span><span class="inter-text"> </span><span class="const token" data-binding="const-Eq" data-verso-hover="6">=</span><span class="inter-text"> </span><span class="unknown token" data-binding="">2</span><span class="inter-text"> </span><span class="const token" data-binding="const-HMul.hMul" data-verso-hover="7">*</span><span class="inter-text"> </span><span class="unknown token" data-binding="">6</span></span></span></span></span></span><span class="inter-text">
+  </span><span class="tactic"><label for="tactic-state-7-30336-30339-25"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Tactic.tacticRfl-30336" data-verso-hover="8">rfl</span></label><input type="checkbox" class="tactic-toggle" id="tactic-state-7-30336-30339-25"><span class="tactic-state">All goals completed! 🐙</span></span><span class="inter-text"> </span><span class="comment delimiter token" data-binding="">--</span><span class="comment line token" data-binding=""> ou simplesmente `rfl`</span><span class="inter-text">
+</span><span class="unknown token" data-binding=""></span></code></section>
+            <section>
+              <h2 id="Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--O-que-a-sem___ntica-formal-n___o-___">
+                1.5. O que a semântica formal não é<span class="permalink-widget inline"><a href="find/?domain=Verso.Genre.Manual.section&amp;name=Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--O-que-a-sem___ntica-formal-n___o-___" title="Permalink">🔗</a></span></h2>
+              <p>
+                Um preconceito difundido contra a semântica formal para a língua natural é o de
+que ela não passa de um exercício de tipografia. Explica-se o significado de
+<em>and</em> na língua natural dizendo que o significado de <em>Toto barked and Dorothy
+smiled</em> é igual a A e B, onde A é o significado de <em>Toto barked</em> e B é o
+significado de <em>Dorothy smiled</em>. Parece que nada se ganha ao explicar <em>and</em> por
+"e".</p>
+              <p>
+                A resposta a isso é que <em>and</em> se refere a uma operação que se supõe já
+apreendida, a saber, a operação de tomar o encontro booleano de dois objetos numa
+estrutura booleana. Supondo que saibamos o que é uma estrutura booleana, isso é
+uma explicação de verdade, e não apenas um truque tipográfico. Por outro lado, se
+alguém está justamente aprendendo o que são estruturas booleanas ao ser exposto a
+um relato da semântica da lógica proposicional, pode bem parecer que nada
+acontece na explicação semântica da conjunção proposicional.</p>
+              <p>
+                Uma história conhecida sobre a linguista Barbara Partee conta que ela certa vez
+encerrou um curso sobre semântica de Montague convidando os alunos a fazer
+perguntas. Como era o fim do curso, podiam perguntar qualquer coisa, por mais
+vagamente relacionada ao assunto que fosse. Um aluno então perguntou: "Qual é o
+significado da vida?" E Partee disse: "Para responder a essa pergunta basta ver
+como Montague trataria a palavra <em>life</em>. Ele a traduziria em sua lógica
+intensional como a constante <code>life'</code>, e usaria um operador de cap para indicar
+que se referia ao significado, isto é, à extensão em todos os mundos possíveis.
+Portanto a resposta à sua pergunta é: o significado da vida é <code>^life'</code>. Mais
+alguma pergunta?"</p>
+              <p>
+                O cerne do problema é que é difícil, de todo modo, evitar a referência ao
+significado por meio de símbolos. Compare com o processo de explicar o
+significado da palavra <em>bicycle</em> a alguém que não fala inglês. Uma maneira de
+explicar o significado da palavra é desenhar uma bicicleta. Se seu aluno conhece
+bicicletas, o significado será transmitido assim que ele ou ela apreender que o
+desenho é apenas outra maneira de se referir ao significado efetivo. O desenho em
+si é apenas outro símbolo, pois um desenho de bicicleta é apenas outra maneira de
+se referir a bicicletas. Do mesmo modo, <em>and</em> é apenas outro símbolo para o
+encontro booleano.</p>
+              <p>
+                Uma das coisas que tornam tão fascinante o estudo da língua de um ponto de vista
+formal é que podemos tomar emprestadas ideias das ciências formais — matemática,
+lógica e ciência da computação teórica — assim como a linguística também toma
+emprestadas ideias da psicologia, da filosofia, e assim por diante. Ideias e
+instrumentos formais podem ser usados para modelar a competência linguística num
+arcabouço claro e preciso, que por fim nos permite implementar a língua natural
+numa máquina. Se isso é útil depende dos objetivos de cada um. Quando decidimos
+nos ocupar do processamento da língua por meio de computadores, os métodos
+formais são indispensáveis, porque não podemos nos apoiar nas intuições informais
+do usuário da língua — computadores não aprendem línguas do modo como os humanos
+aprendem. Para pôr significados num computador, temos de representar significados
+de maneira exata e compacta. Para esse fim vamos usar representações de
+significado numa linguagem formal, o que tem a vantagem de ser não ambíguo e
+preciso, e que também nos dá a possibilidade de provar nossas afirmações e nos
+fornece um instrumento de raciocínio.</p>
+              <p>
+                Em contraste com a situação dos estudos informais, forjaremos nós mesmos os
+instrumentos conceituais de nosso estudo, por meio de definições formais. Essas
+definições devem ser tomadas muito ao pé da letra. Vez após vez será necessário
+relembrar as definições para entender a análise. Nesse aspecto o estudo formal é
+bem diferente de ler romances. A abordagem formal da língua convida a mastigar, e
+mastigar, e mastigar de novo, até chegar à digestão adequada. Se você ainda não
+está acostumado a ler coisas escritas em estilo formal, pode ter a sensação de
+que as explicações vão rápido demais. A culpa não é sua e, além disso, o remédio
+é fácil: basta lembrar-se de ir mais devagar.</p>
+              </section>
+            <section>
+              <h2 id="Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Sem___ntica-computacional-e-programa______o-funcional">
+                1.6. Semântica computacional e programação funcional<span class="permalink-widget inline"><a href="find/?domain=Verso.Genre.Manual.section&amp;name=Sem___ntica-computacional-com-Lean--O-estudo-formal-da-l___ngua-natural--Sem___ntica-computacional-e-programa______o-funcional" title="Permalink">🔗</a></span></h2>
+              <p>
+                A abordagem da semântica de língua natural propagada por Richard Montague — às
+vezes chamada de programa montagoviano — mostrou-se muito fecunda nas últimas
+décadas. Mais recentemente desenvolveu-se uma disciplina de programação dita
+funcional, que se ajusta naturalmente à abordagem de Montague. Como a gramática
+de Montague, a programação funcional se baseia no chamado cálculo lambda tipado.</p>
+              <p>
+                Ora, por que afinal os linguistas teriam de adquirir habilidades de programação?
+A programação funcional é uma habilidade útil para linguistas não só pelo encaixe
+com a gramática de Montague, mas também porque permite experimentos
+esclarecedores com formatos de regras linguísticas. Implementar um sistema de
+regras força o linguista a ser inteiramente preciso quanto às regras que propõe.
+Você descobrirá que, uma vez versado em programação funcional, seus esforços de
+programação lhe darão retorno imediato sobre suas teorias linguísticas.</p>
+              <p>
+                Há basicamente duas coisas para as quais as máquinas são usadas em semântica
+computacional. Uma é automatizar a construção de representações de significado. A
+outra é operar sobre os resultados. Operações possíveis são a verificação de
+modelos (ou a construção de modelos) e a execução de tarefas de inferência.
+Operações desse tipo são essenciais para aplicações de Processamento de Língua
+Natural, por exemplo para buscar informação dentro de documentos ou bases de
+dados (recuperação de informação), como implementado em mecanismos de busca na
+web, para desenvolver e implementar sistemas de diálogo ou sistemas de resposta a
+perguntas, e a longo prazo também para que máquinas executem tarefas de
+inteligência artificial.</p>
+              <p>
+                Mas, além dessas aplicações práticas, há também benefícios que surgem do processo
+de automatizar a construção de representações de significado. Nesse contexto, a
+escolha da programação funcional não é acidental. Com Lean, o passo da definição
+formal ao programa é particularmente fácil. Isso pressupõe, evidentemente, que
+você esteja à vontade com definições formais. Nossa razão para combinar o treino
+em raciocínio e em linguística computacional com uma introdução à programação
+funcional é que um e outro podem ser fecundos entre si. Por um lado, os programas
+em Lean servirão como ilustrações concretas das coisas que a semântica
+computacional permite computar. Por outro, ser forçado a ser inteiramente
+explícito sobre a teoria semântica que se quer implementar pode dar ideias de
+como refinar e melhorar essa teoria. Além disso, como linguagens de programação
+como Lean repousam sobre uma base formal sólida, implementar uma teoria semântica
+oferece um modo fácil de verificar que ela está correta e que faz o que deveria
+fazer (ou o que se espera que faça). Esperamos mostrar ao longo do livro como
+Lean pode ajudar na reflexão sobre a semântica formal que se quer usar. Afinal, a
+semântica computacional é, em larga medida, não apenas a ciência mas também a
+arte de processar significado por computador.</p>
+              <p>
+                A maior parte do trabalho atual em semântica computacional usa Prolog, uma
+linguagem baseada na lógica de predicados e projetada para engenharia de
+conhecimento. Decidimos nos afastar dessa tradição. Programas em Prolog devem ser
+implementações de predicados lógicos, mas há um senão. Para fazer do Prolog uma
+linguagem de programação completa, foi preciso acrescentar operadores de
+controle, como <code>assert</code>, <code>retract</code> e <code>cut</code>. Sem o poder desse controle a
+linguagem simplesmente não é expressiva o bastante, mas os efeitos de controle
+tornam os programas em Prolog muitas vezes difíceis de entender e de depurar, e
+estragam a pureza lógica. Diferentemente do paradigma da programação em lógica, o
+paradigma da programação funcional admite pureza lógica. A programação funcional
+pode produzir implementações notavelmente fiéis às definições formais. Neste
+estágio isso é apenas o enunciado de uma afirmação, evidentemente, mas o resto do
+livro pode ser visto como uma ilustração dessa afirmação.</p>
+              <code class="hl lean block" data-lean-context="examples"><span class="keyword token" data-binding="kw-occ-Lean.Parser.Command.end-38875" data-verso-hover="41">end</span><span class="inter-text"> </span><span class="unknown token" data-binding="">IntroCS</span><span class="inter-text">
+</span><span class="unknown token" data-binding=""></span></code></section>
+            </section>
+          <nav class="prev-next-buttons">
+            <a class="local-button active" href="#" rel="prev" title=" Semântica computacional com Lean"><span class="arrow">←</span><span class="where"> Semântica computacional com Lean</span></a><a class="local-button active" href="IntroL/#IntroL" rel="next" title="2. Programação Funcional no Lean"><span class="where">2. Programação Funcional no Lean</span><span class="arrow">→</span></a></nav>
+          </div>
+        </main></div>
+    </body>
+  </html>
+

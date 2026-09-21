@@ -1,0 +1,1 @@
+window.docContents[225].resolve({"/Morphology/#Morphology":{"contents":"Três exemplos de processamento de língua natural: harmonia vocálica do\nfinlandês, plural do sueco e uma representação de fonemas por traços.\n\n\n\n\n\n\n\n","context":"Semântica computacional com Lean","header":"6. Morfologia","id":"/Morphology/#Morphology"}});

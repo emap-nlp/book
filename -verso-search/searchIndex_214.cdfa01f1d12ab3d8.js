@@ -1,0 +1,1 @@
+window.docContents[214].resolve({"/Logic/PL/#PL":{"contents":"namespace PL\n\n\n\n\n\n\n\n\n\n\n","context":"Semântica computacional com Lean\u0009Lógica","header":"3.2. Lógica Proposicional","id":"/Logic/PL/#PL"}});

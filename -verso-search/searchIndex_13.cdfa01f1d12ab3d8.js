@@ -1,0 +1,1 @@
+window.docContents[13].resolve({"/English/#Sem___ntica-computacional-com-Lean--Um-fragmento-de-ingl___s--Um-fragmento-do-Ingl___s":{"contents":"\n\n","context":"Semântica computacional com Lean\u0009Um fragmento de inglês","header":"8.2. Um fragmento do Inglês","id":"/English/#Sem___ntica-computacional-com-Lean--Um-fragmento-de-ingl___s--Um-fragmento-do-Ingl___s"}});
