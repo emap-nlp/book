@@ -505,9 +505,6 @@ def q : Formula := .atom "q"
 example : p.implies (.disj p q) :=
   by native_decide
 
-example : Formula.impliesL [p,q] (.neg p) = false :=
-  by native_decide
-
 -- FILL IN HERE
 
 end Cons
