@@ -1,4 +1,5 @@
 import Mathlib.Tactic
+import CSwLCompat
 
 -- # Programação Funcional no Lean
 
@@ -38,7 +39,7 @@ namespace IntroL
 -- um termo do tipo `String`. Em alguns contextos, o tipo não precisa ser
 -- declarado quando Lean consegue descobri-lo sozinho. Escrever `def n := 100`
 -- funciona, porque Lean irá interpretar `100 : ℕ` e logo estabelecer que a
--- constante `n : ℕ` — mas escrever o tipo é conveniente e ajuda a tornar o
+-- constante `n : ℕ`, mas escrever o tipo é conveniente e ajuda a tornar o
 -- código mais legível. O comando `#check` pergunta ou confirma o tipo, sem
 -- calcular nada.
 
@@ -62,7 +63,7 @@ def author : String := "Chomsky"
 -- ## Funções
 
 -- O tipo `Nat → Nat` representa todas as funções que recebem um número natual
--- e devolvem um número natural. O termo `fun x => x * x : Nat → Nat` é uma
+-- e devolvem um número natural. O termo `fun x : Nat => x * x` é uma
 -- particular função deste tipo. Ao aplicar o termo `12 : Nat`, temos o
 -- `144 : Nat` como resposta. Ao invés de `fun` podemos usar `λ` e ao invés de
 -- `=>` podemos usar `↦`, em Lean podemos usar os caracteres unicode.
@@ -77,13 +78,10 @@ def author : String := "Chomsky"
 def square₁ : Nat → Nat :=
   fun x => x * x
 
-def square₂ : ℕ → ℕ :=
-  λ x ↦ x * x
-
 -- Normalmente pode ser conveniente nomear os parâmetros de uma função. A
 -- seguir, parâmetros de mesmo tipo podem ser agrupados.
 
-def square₃ (x : ℕ) : ℕ := x * x
+def square₂ (x : ℕ) : ℕ := x * x
 
 def agePlusNameSize (age : ℕ) (name : String) : ℕ :=
   age * name.length
@@ -92,6 +90,12 @@ def maximum (n k : Nat) : Nat :=
   if n < k then
     k
   else n
+
+-- O nome do argumento não importa, as duas funções abaixo são iguais, como
+-- podemos comprovar pela prova abaixo usando `rfl`.
+
+example :
+    (λ (x : Nat) => x * x) = (λ (z : Nat) => z * z) := rfl
 
 -- Nomes são definidos em `namespaces`. As definições deste capítulo estarão
 -- no namespace `IntroL`. A notação `name.length` acima infere pelo tipo de
@@ -103,8 +107,8 @@ def maximum (n k : Nat) : Nat :=
 -- segunda forma. Mas as duas dizem o mesmo. As três versões de `square` tem o
 -- mesmo tipo e como veremos, podemos provar que são iguais.
 
-#check square₃
-#check (square₃)
+#check square₂
+#check (square₂)
 
 -- As vezes podemos querer introduzir uma constante ou tipo sem especificar
 -- seu comportamento o valor. Para isso usamos `opaque`, um símbolo com o tipo
@@ -120,22 +124,32 @@ opaque g : ℕ → ℕ → ℕ
 
 #check g a
 
--- ### Exercise (1 star): sumOfSquares ⭐
+-- Os exercícios deste capítulo vêm com **testes** escritos como teoremas
+-- simples. Um `example` enuncia uma afirmação sem lhe dar nome; o que vem
+-- depois do `:=` é a justificativa. A tática `rfl` fecha uma igualdade quando
+-- os dois lados **calculam** o mesmo valor — é o que confere se a definição
+-- pedida faz o que se pediu. Um `theorem` é um `example` com nome, e o nome
+-- serve para que o enunciado possa ser referenciado depois, possivelmente na
+-- prova de outro teorema. Aqui esses três recursos aparecem só como
+-- ferramenta de teste. O que significa provar em Lean, e como se constrói uma
+-- prova que `rfl` não fecha sozinha, é o assunto de Prova em Lean.
 
--- Defina `sumOfSquares` que recebe dois naturais e devolve `m² + n²`.
+-- ### Exercise (1 star): sum-of-squares ⭐
+
+-- Defina `sumOfSquares` que recebe dois naturais e devolve `m² + n²`. Para
+-- fechar o exemplo, use `rfl`.
 
 def sumOfSquares (m n : Nat) : Nat :=
  sorry
 
-example : sumOfSquares 3 4 = 25 := by
- sorry
+example : sumOfSquares 3 4 = 25 := sorry
 
--- Lean é uma linguagem muito extensiva, na verdade, boa parte de Lean é
--- escrita em Lean, usando os recursos de *meta programação*. Os operadores
--- `+` ou `*` entre outros são símbolos sintáticos associados a definições.
--- Lean tem um mecanismo de `classes` para definir operadores polimorficos
--- como o `+` para os naturais (interpretado como a função `Nat.add`) ou para
--- números de ponto flutuante.
+-- Lean é uma linguagem muito extensiva, boa parte de Lean é escrita em Lean,
+-- usando os recursos de *meta programação*. Os operadores `+` ou `*` entre
+-- outros são símbolos sintáticos associados a definições. Lean tem um
+-- mecanismo de `classes` para definir operadores polimorficos como o `+` para
+-- os naturais (interpretado como a função `Nat.add`) ou para números de ponto
+-- flutuante.
 
 #eval Nat.add 2 2
 #eval Float.add 2.1 2
@@ -163,12 +177,16 @@ example : sumOfSquares 3 4 = 25 := by
 #check fun (x : Nat) => x * x
 #check (fun x => x * x) 4
 
--- Se função é valor, então nada impede que ela seja *argumento* de outra
--- função. `h` recebe uma função de `Nat → Nat` e um valor, e é isso que o
--- torna uma função de ordem superior.
+-- Funções podem ser passadas como *argumento* para outras funções.
+-- `tranformWord` recebe uma função, e é isso que o torna uma função de ordem
+-- superior.
 
-def h (f : Nat → Nat) (x : Nat) : Nat := f x
-#eval h (λ x => x + 1) 10
+def pluralize (w : String) : String := w ++ "s"
+
+def transformWord (f : String → String) (w : String) : String :=
+  f w
+
+#eval transformWord pluralize "dragon"
 
 -- Uma função também pode ser produzida como resultado. O que é equivalente a
 -- uma avaliação parcial. Abaixo, a função `h₁` recebe dois naturais para
@@ -185,40 +203,6 @@ def h₂ (x : Nat) : (Nat → Nat) :=
   fun y => x + y
 
 #check h₁ 1
-
--- ### Exercise (1 star): construindo-termos ⭐
-
--- Adaptado de (Baanen et al., 2026). Cada `def` declara `{α β γ : Type}`, são
--- funções parametrizadas por tipo. Para as quatro funções abaixo, cujo tipo
--- foi definido, pede-se fornecer o termo para o tipo correspondente. Dica,
--- use `_` para identificar no *InfoView* qual tipo o termo na posição deverá
--- ter.
-
--- O `section` permite criar uma seção, onde definições podem compartilhar,
--- por exemplo, a declaração de variáveis. Veja o tipo de `projFst`.
-
-section
-variable {α β γ : Type}
-
-def I : α → α :=
-  fun x => x
-
-def K : α → β → α :=
-  fun a _b ↦ a
-
-def C : (α → β → γ) → β → α → γ :=
-  sorry
-
-def projFst : α → α → α :=
-  sorry
-
-def projSnd : α → α → α :=
-  sorry
-
-def someNonsense : (α → β → γ) → α → (α → γ) → β → γ :=
-  sorry
-
-end
 
 -- ## Expressões
 
@@ -292,252 +276,25 @@ def scaleX (p : Point) (factor : Float) : Point :=
 
 #eval scaleX ⟨2.0, 3.0⟩ 10.0
 
--- ## O tipo Prop e Provas
-
--- O que diferencia Lean de outras linguagens como Python e Java é a
--- capacidade de na mesma linguagem que usamos para 'programar' funções,
--- escrevermos 'provas' sobre estas funções.
-
--- Nesta 'Exemplos extraídos de (Yingchareonthawornchai, 2025). Uma proposição
--- é um enunciado que pode ser verdadeiro ou falso. O enunciado `1 = 1` é
--- verdadeiro, enquanto `square₁ 12 = 2` é falso. Toda proposição é todo tipo
--- `Prop`.
-
-#check square₁ 12 = 2
-
--- Podemos declarar proposições como a seguir e verificar que `1 = 1 : Prop`,
--- mas não podemos *avaliar* uma proposição.
-
-def p1 : Prop := 1 = 1
-
-#check p1
-
--- Toda proposição verdadeira tem uma prova, e uma prova é um *termo* do tipo
--- da proposição que testemunha a verdade da proposição. Provar `1 = 1` é
--- exibir um termo de tipo `1 = 1`, exatamente o que o termo `Eq.refl 1` faz
--- abaixo. Declarar um teorema é muito parecido com declarar uma função.
-
-theorem OneEqSelf : 1 = 1 := Eq.refl 1
-
--- A mesma ideia vale para dizer que duas funções são a mesma coisa — não é
--- analogia, é a proposição `f = g`, provável do mesmo jeito. Agora usando o
--- modo `tactic` iniciado com `by`. Usamos as taticas `rfl` e `intro` que
--- iremos explicar a seguir. Com `example` não precisamos dar nomes a teoremas
--- que não serão reusados.
-
-example :
-  ∀ (z : Nat), (λ x ↦ x * x) z = (fun y => y * y) z := by
-  intro n
-  rfl
-
--- Note que perguntar pelo tipo não é o mesmo que decidir se ela é verdadeira:
-
-#check (square₁ = square₂)
-
--- Provar é dar um termo cujo tipo é a proposição. Para uma igualdade em que
--- os dois lados reduzem ao mesmo valor, o termo é `rfl` — de *reflexividade*,
--- que é o princípio de que tudo é igual a si mesmo. Ver (Baanen et al., 2026)
--- para uma explicação sobre `rfl`.
-
-theorem square₁_eq_square₂ : square₁ = square₂ := by
- rfl
-
--- Escrito com `by`, `rfl` é uma *tática*: uma instrução para construir a
--- prova. Você pode inspecionar a definição de Lean para `Eq.refl`.
-
-#print square₁_eq_square₂
-
--- theorem IntroL.square₁_eq_square₂ : square₁ = square₂ :=
--- Eq.refl square₁
-
--- Além de `rfl`, um pequeno repertório de táticas resolve o que os capítulos
--- 3 e 4 precisam — conferido nos próprios arquivos, não escolhido a priori. A
--- ordem abaixo é a de (Yingchareonthawornchai, 2025), que apresenta as
--- táticas nesta sequência; `decide`, `omega`, `obtain`, `cases`, `simp` e
--- `induction` não vêm de lá (o curso os introduz onde a necessidade aparece)
--- e ficam ao final, fora da ordem do FAA2025:
-
--- rfl          fecha a = b quando os dois lados calculam o mesmo valor
--- exact e      fornece o termo que é a prova
--- intro h      introduz uma hipótese, para provar uma implicação ou ∀
--- constructor  parte um ∧ ou um ↔ em dois objetivos
--- apply h      aplica uma implicação ou lema, deixando a(s) premissa(s)
---              como novo(s) objetivo(s)
--- unfold nome  desdobra uma definição, antes de continuar
--- rw [h]       reescreve o objetivo usando a igualdade h, da esquerda para
---              a direita
--- assumption   fecha o objetivo com uma hipótese já disponível
--- decide       fecha um objetivo decidível calculando a resposta
--- omega        resolve aritmética linear em Nat e Int
--- obtain ⟨_,_⟩ := h  desmonta uma hipótese composta (conjunção, existencial)
--- cases h      dado h : P ∨ Q, parte a prova em dois casos
--- simp [...]   reescreve com um conjunto de lemas até não haver mais o que
---              simplificar
--- induction x  prova por casos sobre a forma como x foi construído
-
--- Duas notações de prova não são táticas: `⟨t, h⟩` monta um par (para provar
--- uma conjunção ou exibir a testemunha de um existencial), e `h.1`/`h.2`
--- desmontam um par que está numa hipótese.
-
--- ### Exercício'
-
--- Termine a prova usando `rfl`.
-
-example : 7 * 6 = 42 :=
-  rfl
-
--- ### Exercício' — `double n = n + n`
-
--- Prove que `double n = n + n`; uma variável aparece, então `rfl` não basta.
-
-example (n : Nat) : square₁ n = n * n := by
-  unfold square₁
-  rfl
-
--- ### Exercício' — `P → P`
-
--- Provar `P → Q` é: suponha `P`, derive `Q`. Provar `P ∧ Q` é provar as duas
--- coisas. Fonte: (Yingchareonthawornchai, 2025)
-
-example (P : Prop) : P → P := by
-  intro h
-  exact h
-
--- ### Exercise (1 star): p-implica-q-implica-p ⭐
-
--- Complete a prova abaixo. Fonte: (Yingchareonthawornchai, 2025)
-
-example (P Q : Prop) : P → (Q → P) := by
-  sorry
-
--- ### Exercício' — Conjunção a partir das partes
-
--- Fonte: (Yingchareonthawornchai, 2025). Dica: `constructor` parte o objetivo
--- `P ∧ Q` em dois; cada um se fecha com `exact`.
-
-#check And.intro
-
--- And.intro {a b : Prop} (left : a) (right : b) : a ∧ b
-
-example (P Q : Prop) (hP : P) (hQ : Q) : P ∧ Q := by
-  apply And.intro
-  · exact hP
-  · exact hQ
-
--- ### Exercício' — Comutatividade da conjunção
-
--- Fonte: (Yingchareonthawornchai, 2025). Dica: um `↔` se parte em dois
--- objetivos com `constructor`; em cada um, `intro h` seguido de
--- `obtain ⟨_,_⟩ := h` desmonta a conjunção da hipótese, e `constructor`
--- reconstrói a conjunção invertida.
-
--- Veja também o que acontece ao avaliar `(10,20).1`. `And` em Lean é uma
--- `structure` com dois campos.
-
-example (P Q : Prop) : P ∧ Q ↔ Q ∧ P := by
- constructor
- · intro h
-   obtain ⟨h1, h2⟩ := h
-   apply And.intro
-   · exact h2
-   · exact h1
- · intro h
-   constructor
-   · exact h.2
-   · exact h.1
-
--- ### Exercise (1 star): transitividade-implicacao ⭐
-
--- Fonte: (Yingchareonthawornchai, 2025). Dica: `intro`, depois `apply` duas
--- vezes, encadeando as duas hipóteses.
-
-example (P Q R : Prop) (h : P → Q) (h2 : Q → R) :
-    P → R := by
-  sorry
-
--- ### Exercise (1 star): apply-varias-premissas ⭐
-
--- Adaptado de (Yingchareonthawornchai, 2025).
-
-example (P Q R S : Prop) (h0 : P ∧ Q ∧ R)
-    (h : P → Q → R → S) : S := by
-  sorry
-
--- Nem toda prova precisa de lógica proposicional abstrata — às vezes o que
--- falta é desdobrar uma definição local antes de concluir.
-
--- ### Exercise (1 star): prova-direta-unfold ⭐
-
--- Fonte: (Yingchareonthawornchai, 2025), com `f` definida localmente igual ao
--- arquivo. Dica: `intro h`, `unfold f at h` (ou `rw [f] at h`), depois
--- concluir por `omega` ou `assumption`.
-
-def f₁ (x y : Nat) : Prop := x = y
-
-example (x : Nat) : f₁ x 1 → x ≠ 2 := by
-  sorry
-
--- ### Exercise (1 star): desmontando-conjuncao-unfold ⭐
-
--- Fonte: (Yingchareonthawornchai, 2025).
-
-example (x y : Nat) : f₁ 0 x ∧ f₁ 0 y → x = y := by
-  sorry
-
--- ### Exercício' — Existe um par par
-
--- Prove que `∃ n : Nat, n + n = 10`, exibindo a testemunha com `⟨_, _⟩` ou
--- usando `Exists.intro`.
-
-#check Exists.intro
-
--- Exists.intro.{u} {α : Sort u} {p : α → Prop} (w : α) (h : p w) : Exists p
-
-example : ∃ n : Nat, n + n = 10 := by
-  apply Exists.intro 5
-  rfl
-
--- ### Exercise (1 star): casos-sobre-ou ⭐
-
--- Prove que `P ∨ Q → Q ∨ P`, usando `cases` sobre a hipótese, complete a
--- prova.
-
-#check Or.intro_left
-
--- Or.intro_left {a : Prop} (b : Prop) (h : a) : a ∨ b
-
-#check Or.intro_right
-
--- Or.intro_right {b : Prop} (a : Prop) (h : b) : a ∨ b
-
-example (P Q : Prop) : P ∨ Q → Q ∨ P := by
-  intro h
-  cases h with
-  | inl hp =>
-    sorry
-  | inr hq =>
-    sorry
-
--- ## Tipos indutivos
-
--- Ref. CSwFP/3 §3.13 (p. 55) — adiantado para antes da recursão, por
--- necessidade Lean-vs-Haskell: em Lean a recursão se apresenta por casamento
--- de padrão sobre um `inductive`, então o tipo indutivo tem de vir primeiro.
-
--- `inductive` declara um tipo listando as formas que seus valores podem ter.
--- Quando nenhuma forma carrega argumento, o tipo é uma enumeração; quando
--- carrega, é um registro variante; quando a forma se refere ao próprio tipo
--- sendo definido, é uma árvore. As três coisas são o mesmo mecanismo.
-
--- Essa é a construção mais importante do curso. O capítulo 3 mostra que uma
--- gramática escrita na notação usual — a Forma de Backus-Naur — é
--- literalmente um tipo `inductive`, e do capítulo 4 em diante todo fragmento
--- da língua é declarado assim.
-
--- A enumeração é o caso mais simples. `deriving Repr, DecidableEq` pede que a
--- exibição e o teste de igualdade sejam gerados em vez de escritos à mão.
-
--- Os dias da semana, nada mais são dias da semana.
+-- ## Tipos Indutivos
+
+-- Tipos indutivos vêm antes da recursão porque, em Lean, uma função recursiva
+-- se escreve casando padrão sobre as formas de um tipo indutivo: sem o tipo
+-- declarado, não há sobre o que recursar.
+
+-- A palavra-chave `inductive` declara um tipo listando as formas que seus
+-- valores podem ter. Quando nenhuma forma carrega argumento, o tipo é uma
+-- enumeração; quando carrega, é um registro variante; quando a forma se
+-- refere ao próprio tipo sendo definido, é uma árvore. As três coisas são o
+-- mesmo mecanismo.
+
+-- Essa é a construção mais importante do curso. Em Batalha Naval veremos que
+-- uma gramática escrita na notação usual — a Forma de Backus-Naur — é
+-- literalmente um tipo `inductive`, e daí em diante todo fragmento da língua
+-- é declarado assim. A enumeração é o caso mais simples.
+-- `deriving Repr, DecidableEq` pede que a exibição e o teste de igualdade
+-- sejam gerados em vez de escritos à mão. Os dias da semana, nada mais são
+-- dias da semana.
 
 inductive Day where
   | monday
@@ -549,79 +306,21 @@ inductive Day where
   | sunday
 deriving Repr
 
--- ### Exercício' — Day
+-- ### Exercise (1 star): is-weekend ⭐
 
 -- Complete `isWeekend`, que responde se o dia é sábado ou domingo.
 
 def isWeekend (d : Day) : Bool :=
- match d with
- | .saturday => true
- | .sunday => true
- | _ => false
+ sorry
 
--- `Bool` é a enumeração de duas formas; `Nat` é o caso em que uma das formas
--- se refere ao próprio tipo que está sendo definido. E `#print` mostra a
--- declaração.
-
-#print Bool
-
--- inductive Bool : Type
--- number of parameters: 0
--- constructors:
--- Bool.false : Bool
--- Bool.true : Bool
-
-#print Day
-
--- inductive IntroL.Day : Type
--- number of parameters: 0
--- constructors:
--- IntroL.Day.monday : Day
--- IntroL.Day.tuesday : Day
--- IntroL.Day.wednesday : Day
--- IntroL.Day.thursday : Day
--- IntroL.Day.friday : Day
--- IntroL.Day.saturday : Day
--- IntroL.Day.sunday : Day
-
-#print Nat
-
--- inductive Nat : Type
--- number of parameters: 0
--- constructors:
--- Nat.zero : ℕ
--- Nat.succ : ℕ → ℕ
-
--- Ou seja: um natural é `Nat.zero`, ou é `Nat.succ n` para algum natural `n`,
--- e nada mais. O `2` que se escreve é notação para
--- `Nat.succ (Nat.succ
--- Nat.zero)`.
+-- O tipo `Bool` é a enumeração de duas formas, dois construtores. O tipo
+-- `Nat` é o caso em que uma das formas se refere ao próprio tipo que está
+-- sendo definido. Podemos usar `#print Nat` para mostrar a declaração do tipo
+-- `Nat`.
 
 example : 2 = Nat.succ (Nat.succ Nat.zero) := rfl
 
--- ## Prova por indução
-
--- A última tática da tabela, `induction`, prova algo para todo valor de um
--- tipo indutivo, e não para um valor de cada vez.
-
--- ### Exercício' — Indução sobre `Nat`
-
--- Prove que `n + 0 = n` para todo `n`, usando `induction n`. No caso `0`,
--- `rfl` fecha; no caso `n + 1`, a hipótese de indução (`ih`) resolve `omega`.
-
-example (n : Nat) : n + 0 = n := by
- induction n with
- | zero => rfl
- | succ a ih =>
-   -- try `apply?`
-   omega
-
--- Quem quiser praticar Lean provas em Lean, pode jogar o [Natural Number
--- Game](https://adam.math.hhu.de/#/g/leanprover-community/nng4/).
-
 -- ## Recursão
-
--- Ref. CSwFP/3 §3.5 (p. 40).
 
 -- Uma definição recursiva precisa de duas coisas: ter caso base, e chegar
 -- nele. O segundo não é uma recomendação — é uma exigência que o compilador
@@ -641,18 +340,9 @@ def factorial : Nat → Nat
   | 0     => 1
   | n + 1 => (n + 1) * factorial n
 
-#eval factorial 5
-
--- 120
-
-#eval factorial 0
-
--- 1
-
 -- A mesma função sem casar padrão, decidindo o caso base com um `if`.
 -- Funciona, e serve de contraste: aqui o argumento da chamada recursiva é
--- `x
--- - 1`, e que ele seja menor que `x` é um fato a ser verificado, não algo
+-- `x - 1`, e que ele seja menor que `x` é um fato a ser verificado, não algo
 -- que a forma da definição já garanta. Neste caso Lean verifica sozinho; em
 -- definições menos óbvias, não — e aí a prova de terminação passa a ser
 -- trabalho do programador.
@@ -663,9 +353,8 @@ def factorial' (x : Nat) : Nat :=
 
 -- O casamento de padrão de `factorial` é um *açucar sintático*, na verdade a
 -- expressão `match` está oculta na definição. A seguir, usamos de forma
--- explicita.
-
--- Como exemplo, vamos implementar em Lean um gerador recursivo de sentença.
+-- explicita. Como exemplo, vamos implementar em Lean um gerador recursivo de
+-- sentença.
 
 def gen (x : Nat) : String :=
   match x with
@@ -674,11 +363,7 @@ def gen (x : Nat) : String :=
 
 def genS (n : Nat) : String := gen n ++ "."
 
-#eval genS 3
-
--- "Sentences can go on and on and on and on."
-
--- A função de story a seguir fornece outro exemplo de recursão.
+-- A função `story` a seguir fornece outro exemplo de recursão.
 
 def story : Nat → String
   | 0     =>
@@ -694,20 +379,13 @@ def story : Nat → String
 
 -- podemos usar `#eval story 2` direto, mas as quebras de linha não seriam
 -- interpretadas. o símbolo `<|` faz com que a expressão `story 2` seja
--- interpretada antes de passada para a função `IO.println` que efetivamente
--- imprime uma linha na saída.
+-- executada antes de passada para a função `IO.println` que efetivamente
+-- interpreta as quebras de linha e outros caracteres especiais que possam
+-- estar contidos em uma string.
 
 #eval IO.println <| story 2
 
--- The night was pitch dark, mysterious and deep.
--- Ten cannibals were seated around a boiling cauldron.
--- Their leader got up and addressed them like this:
--- 'The night was pitch dark, mysterious and deep.
--- Ten cannibals were seated around a boiling cauldron.
--- Their leader got up and addressed them like this:
--- 'Let's cook and eat that final missionary, and off to bed.''
-
--- ### Exercise (1 star): sumTo ⭐
+-- ### Exercise (1 star): sum-to ⭐
 
 -- Implemente `sumTo n` para devolver `0 + 1 + ... + n` e termine a prova de
 -- que a função está correta para a entrada `4`.
@@ -717,9 +395,7 @@ def sumTo : Nat → Nat :=
 
 theorem sumTo_test : sumTo 4 = 10 := sorry
 
--- ## Listas e polimorfismo
-
--- Ref. CSwFP/3 §3.6 (p. 41) + §3.4 (p. 39, polimorfismo genérico).
+-- ## Listas e Polimorfismo
 
 -- `List α` é o tipo das listas de elementos do tipo `α`, e é um tipo indutivo
 -- como os da seção anterior: uma lista é vazia, `[]` (`List.nil`), ou é um
@@ -728,214 +404,204 @@ theorem sumTo_test : sumTo 4 = 10 := sorry
 
 #print List
 
--- inductive List.{u} : Type u → Type u
--- number of parameters: 1
--- constructors:
--- List.nil : {α : Type u} → List α
--- List.cons : {α : Type u} → α → List α → List α
-
 -- É por isso que a recursão sobre lista tem exatamente a forma da recursão
--- sobre `Nat` — dois casos, e o segundo dá acesso a algo estritamente menor,
--- aqui a cauda.
-
--- O `α` em `List α` é um parâmetro: `List Nat` e `List String` são tipos
--- diferentes, produzidos pelo mesmo `List`. Uma função que não olha para
--- dentro dos elementos não tem por que se comprometer com um deles.
-
--- Como já falamos, `{α : Type}` declara o parâmetro entre chaves, o que o
--- torna *implícito*. Lean o descobre a partir do argumento, e quem chama não
+-- sobre `Nat`. Dois casos, e o segundo dá acesso a algo estritamente menor,
+-- aqui a cauda. O `α` em `List α` é um parâmetro: `List Nat` e `List String`
+-- são tipos diferentes, produzidos pelo mesmo `List`. Uma função que não olha
+-- para dentro dos elementos não tem por que se comprometer com um deles. Como
+-- já falamos, `{α : Type}` declara o parâmetro entre chaves, o que o torna
+-- *implícito*. Lean o descobre a partir do argumento, e quem chama não
 -- escreve.
 
 def size {α : Type} : List α → Nat
   | []      => 0
   | _ :: xs => 1 + size xs
 
-#eval size [10, 20, 30]
+-- ### Exercise (1 star): sum-list ⭐
 
--- 3
+-- Complete `sumList` que soma os elementos de uma lista.
 
-#eval size ["Chomsky", "Montague"]
-
--- 2
-
--- ### Exercise (1 star): sumList ⭐
-
--- `sumList` soma os elementos de uma lista. Complete e termine a prova.
-
-def sumList : List Nat → Nat :=
+def sumList (ns : List Nat) : Nat :=
   sorry
 
-theorem sumList_test : sumList [1, 2, 3, 4] = 10 :=
-  sorry
+theorem sumList_test : sumList [1, 2, 3, 4] = 10 := sorry
 
--- ### Exercise (1 star): countZeros ⭐
+-- ### Exercise (1 star): count-zeros ⭐
 
--- `countZeros` conta quantos zeros a lista tem. Idem.
+-- Termina a implementação de `countZeros`, que conta quantos zeros temos na
+-- lista passada.
 
-def countZeros : List Nat → Nat :=
+def countZeros (ns : List Nat) : Nat :=
   sorry
 
 theorem countZeros_test : countZeros [0, 1, 0, 2, 0] = 3 :=
   sorry
 
--- ## O tipo Option
+-- ## O tipo `Option`
 
 -- Uma função de tipo `List α → α` promete devolver um elemento para qualquer
 -- lista que receba. Para a lista vazia não existe elemento nenhum, e a
--- promessa é impossível. Não por falta de cuidado do programador, mas porque
--- o tipo afirma algo falso.
-
--- A correção é no tipo, não no corpo: `List α → Option α` promete devolver
--- *ou* um elemento (`some x`) *ou* nada (`none`). Quem chama fica obrigado a
--- tratar os dois casos. O ganho é que o caso sem resposta deixa de ser
--- invisível: ele está na assinatura, e não há como esquecê-lo.
-
-#print Option
-
--- inductive Option.{u} : Type u → Type u
--- number of parameters: 1
--- constructors:
--- Option.none : {α : Type u} → Option α
--- Option.some : {α : Type u} → α → Option α
+-- promessa é impossível. A correção é no tipo, não no corpo:
+-- `List α → Option α` promete devolver *ou* um elemento (`some x`) *ou* nada
+-- (`none`). Quem chama fica obrigado a tratar os dois casos. O ganho é que o
+-- caso sem resposta deixa de ser invisível: ele está na assinatura, não pode
+-- ser ignorado.
 
 def myLast {α : Type} : List α → Option α
   | []      => none
   | [x]     => some x
   | _ :: xs => myLast xs
 
-#eval myLast [1,2,3]
-
--- some 3
-
-#eval myLast ([] : List Nat)
-
--- none
-
 def average (xs : List Int) : Option Rat :=
   if xs.isEmpty then none
   else some ((xs.sum : Rat) / (xs.length : Rat))
 
-#eval average [1,2,3,4]
+-- Como alternativa ao retorno de um `Option`, algumas funções como
+-- `String.back` retornam o valor *default* do tipo que retornam. O tipo
+-- `Char` tem como valor default `'A'`.
 
--- some (5 / 2)
-
-#eval average []
-
--- none
-
--- Algumas funções devolvem um valor default no caso ruim, em vez de `Option`.
--- `String.back` é uma delas, e vale conhecer as que são assim.
-
-#eval "rad".back
-
--- 'd'
-
+#eval (default : Char)
 #eval "".back
 
--- 'A'
+-- ## Processamento de Listas
 
--- ## Processamento de listas e composição de funções
-
--- Ref. CSwFP/3 §3.7 e CSwFP/3 §3.8 (p. 42–43).
-
--- Algumas perações cobrem quase todo uso de lista no curso. Todas se
+-- Algumas operações cobrem quase todo uso de lista no curso. Todas se
 -- escreveriam por recursão, como `size` acima, mas estas função de ordem
 -- superior simplificam nosso trabalho.
 
--- `map` aplica uma função a cada elemento; `filter` filtra a lista com os que
--- satisfazem uma condição. A `foldl` (e também temos a `foldr`) reduzem a
--- lista a um valor final a partir do processamento sucesso de uma função.
+-- A função `List.map` aplica uma função a cada elemento; `List.filter` filtra
+-- a lista com os que satisfazem uma condição. A `List.foldl` (e também temos
+-- a `List.foldr`) reduzem a lista a um valor final a partir do processamento
+-- sucesso de uma função.
 
 def entities : List String :=
   ["Dorothy", "Toto", "Aunt Em", "Scarecrow"]
 
 #eval entities.map String.length
-
--- [7, 4, 7, 9]
-
 #eval entities.filter (fun x => x.length > 4)
-
--- ["Dorothy", "Aunt Em", "Scarecrow"]
-
 #eval entities.foldl (fun s a => a.length + s) 0
 
--- 27
-
--- `all` e `any` perguntam se *todos* os elementos satisfazem uma condição, ou
--- se *algum* satisfaz, ambas devolvem `Bool`.
+-- As funções `List.all` e `List.any` perguntam se *todos* os elementos
+-- satisfazem uma condição, ou se *algum* satisfaz, ambas devolvem `Bool`.
 
 #eval entities.all (fun e => e.length > 2)
-
--- true
-
 #eval entities.any (fun e => e.startsWith "T")
 
--- true
+-- ## Composição de Funções
 
 -- E a composição: `f ∘ g` é a função que aplica `g` e depois `f`, de modo que
--- `(f ∘ g) x` é `f (g x)`. Ela produz função nova sem nomear argumento nenhum
--- — `double ∘ double` é quadruplicar.
+-- `(f ∘ g) x` é `f (g x)`. Podemos compor duas conversões, de Kelvin para
+-- Celsius, depois de Celsius para Fahrenheit.
 
 #eval (square₁ ∘ square₂) 5
-
--- 625
-
 #eval entities.map (size ∘ String.toList)
 
--- [7, 4, 7, 9]
+def celsiusToFahrenheit (c : Int) : Int := c * 9 / 5 + 32
+def kelvinToCelsius (k : Int) : Int := k - 273
 
--- ## Classes de tipos
+def kelvinToFahrenheit : Int → Int := celsiusToFahrenheit ∘ kelvinToCelsius
 
--- Ref. CSwFP/3 §3.9 (p. 45).
+-- ## Classes de Tipos
 
--- Nós já vimos isso lá no começo, mas `count` conta ocorrências em qualquer
--- lista cujos elementos se possam comparar. Essa exigência entra na
--- assinatura entre colchetes, `[BEq α]`: uma instância de igualdade para `α`,
--- que Lean encontra sozinho no ponto de uso.
+-- Vamos definir uma função para contar as ocorrências de um valor de um tipo
+-- `α`, em qualquer lista de valores do tipo `α`. Para esta função, nossa
+-- única exigência é garantir que poderemos comparar valores do tipo `α`. Essa
+-- exigência entra na assinatura entre colchetes, `[BEq α]`. Isto significa
+-- que uma instância de igualdade para `α` deve estar disponível para o Lean
+-- encontrar no ponto de uso. Tente remover `[BEq α]` na definição abaixo, o
+-- erro irá aparecer no uso do operador `==`.
 
--- Duas noções de igualdade convivem, e vale separá-las desde já:
+def count {α : Type} [BEq α] (x : α) : List α → Nat
+  | []      => 0
+  | y :: ys => if x == y then count x ys + 1 else count x ys
+
+-- Até aqui só usamos a classe `BEq`, tanto `Nat` quanto `String` tem
+-- instâncias para esta classe e por isso `count` funcionará para estes tipos.
+
+-- Na declaração do tipo `Day`, a instrução `deriving Repr` pediu para que uma
+-- instância padrão para a classe `Repr` fosse gerada. E podemos também pedir
+-- para que seja gerada uma instância para `BEq`.
+
+deriving instance BEq for Day
+
+#eval count Day.friday [.friday, .sunday, .friday, .monday]
+
+-- Note que para outros tipos, a noção de igualdade pode não ser tão trivial,
+-- e exigir uma implementação específica. Por exemplo:
+
+structure Angle where
+  deg : Int
+deriving Repr
+
+def Angle.norm (a : Angle) : Int :=
+  a.deg % 360
+
+instance : BEq Angle where
+  beq a b := a.norm == b.norm
+
+#eval (⟨-90⟩ : Angle) == ⟨270⟩
+
+-- Em tempo, em Lean, duas noções de igualdade convivem:
 
 -- - `BEq α` devolve `Bool` e se escreve `==`.
 
 -- - `DecidableEq α` devolve uma *prova* de igualdade ou de desigualdade.
 --   Permite usar `=` num `if` e usar o resultado numa demonstração.
 
--- Tente remover `[BEq α]` na definição abaixo.
+-- Outra classe relevante em Lean é a classe `Repr` para especificar como
+-- valores de um tipo devem ser representados textualmente. Uma instância de
+-- `Repr` não produz diretamente uma `String`; ela produz um valor de tipo
+-- `Std.Format`, uma representação intermediária que descreve o texto a ser
+-- exibido e permite incluir informações sobre indentação e possíveis quebras
+-- de linha. Assim, ao definir uma instância de `Repr` para um tipo, estamos
+-- essencialmente dizendo ao Lean como representar valores desse tipo,
+-- deixando para uma etapa posterior a decisão de como essa representação será
+-- efetivamente apresentada.
 
-def count {α : Type} [BEq α] (x : α) : List α → Nat
-  | []      => 0
-  | y :: ys => if x == y then count x ys + 1 else count x ys
+-- Essa separação entre a estrutura a ser impressa e sua apresentação concreta
+-- é a ideia central de *pretty printing*. Em vez de decidir antecipadamente
+-- onde cada linha deve terminar, construímos um documento que pode ser
+-- renderizado de diferentes maneiras conforme o espaço disponível: uma
+-- expressão pode aparecer em uma única linha quando couber ou ser distribuída
+-- em várias linhas, com indentação apropriada, quando necessário. A abordagem
+-- foi sistematizada por Wadler (Wadler, 2003) e é usada pelo `Std.Format` do
+-- Lean. Para nós, isso é particularmente interessante porque mostra mais um
+-- exemplo de como classes e instâncias permitem associar uma operação a um
+-- tipo sem modificar sua definição: a estrutura sintática ou semântica
+-- permanece a mesma, enquanto sua forma de apresentação é fornecida por uma
+-- instância de Repr.
 
-#eval count 2 [1, 2, 2, 3]
+-- A seguir, vamos customizar a instância de `Day` para a classe `Repr`.
+-- Usamos a palavra-chave `instance`. Não precisamos dar nome a instâncias,
+-- mas neste caso usamos `insReprDay`.
 
--- 2
+instance insReprDay : Repr Day where
+  reprPrec := fun d _n =>
+   match d with
+   | .monday    => f!"segunda"
+   | .tuesday   => f!"terça"
+   | .wednesday => f!"quarta"
+   | .thursday  => f!"quinta"
+   | .friday    => f!"sexta"
+   | .saturday  => f!"sábado"
+   | .sunday    => f!"domingo"
 
-#eval count "thou" ["thou","art","thou"]
+#eval Day.friday
 
--- 2
-
--- ## Cadeias e textos
-
--- Ref. CSwFP/3 §3.10 (p. 47–48).
+-- ## Cadeias de Textos
 
 -- `String` é uma sequência UTF-8 empacotada, não uma lista de caracteres.
 -- Isso a torna eficiente para guardar texto e inadequada para percorrer a
--- cadeia. Não há padrão `c :: cs` para casar diretamente numa `String`.
-
--- Mas podemos converter uma `String` em uma lista de caracteres e uma lista
--- de caracteres em uma `String`.
+-- cadeia. Não há padrão `c :: cs` para casar diretamente numa `String`. Mas
+-- podemos converter uma `String` em uma lista de caracteres e uma lista de
+-- caracteres em uma `String`.
 
 def hword : List Char → Bool
   | []      => false
   | c :: cs => c == 'h' || hword cs
 
 #eval hword "shrimptoast".toList
-
--- true
-
 #eval hword "antiquing".toList
-
--- false
 
 def reversal : List Char → List Char
   | []     => []
@@ -943,16 +609,81 @@ def reversal : List Char → List Char
 
 #eval String.ofList (reversal "Chomsky".toList)
 
--- "yksmohC"
-
--- Remove o último caractere.
-
 def initS (s : String) : String :=
   String.ofList s.toList.dropLast
 
-#eval initS "flicka"
+#eval initS "Brasil"
 
--- "flick"
+-- ## Lean e o Cálculo Lambda
+
+-- No [cálculo lambda](https://en.wikipedia.org/wiki/Lambda_calculus) (LC)
+-- temos três formas de construir expressões. Usando a Forma de Backus-Naur
+-- (BNF) para representar a linguagem de LC.
+
+-- E ::= _v | "(" E E ")" | "(" "λ" _v "↦" E ")" ;
+
+-- Uma expressão é uma variável, ou a justaposição de duas expressões
+-- (aplicação), ou um lambda seguido de variável e expressão (abstração). E
+-- nada além disso é expressão. A gramática acima pode ser implementada como
+-- um tipo indutivo. Cada cláusula da BNF corresponde a um construtor.
+
+inductive Lam where
+  | var (name : String)
+  | app (fn arg : Lam)
+  | abs (binder : String) (body : Lam)
+
+-- Essa correspondência é o motor do curso. Cada fragmento de linguagem,
+-- expresso como uma gramática, pode ser formalizado como um tipo `inductive`.
+-- O que torna "esta expressão é bem formada" a mesma coisa que "este termo
+-- tem esse tipo". O tipo `Lam` não será usado. Lean é baseado no Cálculo de
+-- Construtores Indutivos (CiC), uma extensão de LC com tipos. Mas `Lam` serve
+-- apenas para ilustrar a idéia de como uma gramática para uma linguagem pode
+-- ser implementada como tipo indutivo. Veremos outros exemplos no decorrer do
+-- texto.
+
+-- A redução de um termo lambda significa simplificar o termo até um formato
+-- que não adimite maiores simplficações. Quando aplicamos um termo a outro
+-- termo, temos uma β-redução. O parâmetro da função é substituido pelo termo
+-- passado como valor para a abstração no corpo da abstração. Em Lean essa
+-- redução é o que o `#eval` executa e o que o `rfl` verifica:
+
+#eval (λ x => x + 42) 5 = 5 + 42
+example : (fun x => x + 42) 5 = 47 := rfl
+
+-- A substituição de termos por termos não é trivial, considere a aplicação de
+-- `x` em `(λ y λ x ↦ x + y) x`. Trocando `y` por `x`, obtém-se `λ x ↦ x + x`.
+-- Mas o resultado correto é uma função que soma dois valores distintos. Em
+-- Lean este tipo de erro não ocorre.
+
+-- Um aspecto do cálculo lambda é que reduções podem não terminar. Observe o
+-- comportamento de redução de `(λ x ↦ x x) (λ x ↦ x x)`. Esta expressão não é
+-- bem formada em Lean. Substituindo `x` por `(λx ↦ x x)` no corpo `x x`,
+-- obtém-se `(λx ↦ x x) (λx ↦ x x)`, o mesmo termo de partida. A redução é
+-- portanto um laço, qualquer número de passos devolve o termo original, e a
+-- normalização nunca termina. Lean acusa dois erros na declaração a seguir. A
+-- auto-aplicação `x x` exige que `x` seja função de algum tipo `?m → ?n`, mas
+-- o argumento é o próprio `x`, que teria então de ter simultaneamente o tipo
+-- `?m`. Como não há atribuição de tipos possível, o termo não pode nem ser
+-- *escrito* em Lean.
+
+sf_expect_failure
+  def omega := (fun x => x x) (fun x => x x)
+
+-- No *cálculo lambda tipado* (LCT) no qual Lean é baseado todo termo bem
+-- tipado tem forma normal, e a redução sempre termina. A contrapositiva é o
+-- que se observa aqui: um termo cuja redução não termina não pode ser bem
+-- tipado. É por isso que Lean pode ser ao mesmo tempo uma linguagem de
+-- programação e uma lógica consistente: a terminação é garantida pelos tipos.
+-- O preço é que Lean pode não conseguir determinar sozinho que uma função
+-- sempre termina, e nestes casos teremos que ajudar Lean fornecendo a prova
+-- de terminação.
+
+-- Para além dos tipos simples, em Lean, temos também os **tipos indutivos**
+-- (como apresentado), **tipos dependentes** (um tipo pode depender de um
+-- valor, como `Vector`), **proposições como tipos**, o tipo `Prop` como
+-- veremos em Proof, e os **universos** de tipos `Type`, `Type 1`, e assim por
+-- diante, o que evita os paradoxos que apareceriam se tivéssemos um tipo de
+-- todos os tipos.
 
 end IntroL
 

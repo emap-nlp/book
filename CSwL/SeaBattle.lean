@@ -1,27 +1,25 @@
 import CSwLCompat
 import Mathlib.Data.List.Chain
 
--- # Gramáticas para jogos
+-- # Batalha Naval
 
--- O capítulo trata de como definir uma língua — no sentido amplo: um conjunto
--- de strings bem formadas — por meio de uma gramática. Os dois exemplos são
--- de linguagens sobre jogos.
+-- Como definir uma língua — no sentido amplo: um conjunto de strings bem
+-- formadas — por meio de uma gramática. O exemplo é a linguagem de um jogo.
 
--- ## Batalha Naval
-
--- ### Sintaxe
+-- ## Sintaxe
 
 -- Batalha naval é um jogo de tabuleiro de dois jogadores, no qual os
 -- jogadores têm de adivinhar em que quadrados estão os navios do oponente. O
 -- jogo pode ser jogado com uma comunicação bastante limitada entre os
 -- jogadores.
 
--- Cada jogador tem dois tabuleiros, `10×10` (colunas `A..J`, linhas `0..9`).
--- Um tabuleiro representa a disposição dos navios do jogador e onde ele irá
--- registrar os 'tiros' do seu oponente, o outro representa a tabuleiro do seu
--- oponente, onde ele marca os 'tiros' que realizou, que podem acertar ou
--- erras parte dos navios do oponente. O objetivo de cada jogador é revelar o
--- tabuleiro do oponente, afundando todos os navios a frota adversária.
+-- Cada jogador tem dois tabuleiros, `10 × 10`. Usualmente, as colunas são
+-- identificadas por `A..J` e as linhas `0..9`. Um tabuleiro representa a
+-- disposição dos navios do jogador e onde ele irá registrar os 'tiros' do seu
+-- oponente, o outro representa a tabuleiro do seu oponente, onde ele marca os
+-- 'tiros' que realizou, que podem acertar ou erras parte dos navios do
+-- oponente. O objetivo de cada jogador é revelar o tabuleiro do oponente,
+-- afundando todos os navios a frota adversária.
 
 -- Modelar o jogo como uma linguagem `L` significa determinarmos quais são as
 -- sentenças válidas de nossa linguagem. Como o jogo é jogado em turnos, cada
@@ -94,25 +92,8 @@ structure Turn where
 -- Um `Attack` basicamente corresponde a uma coordenada, as colunas poderiam
 -- ter sido modeladas como as linhas, o que tornaria o design mais simples.
 -- Mas preferimos seguir o estilo de coordenadas usual, que facilita a leitura
--- e associação de letras a colunas e números para linhas.
-
--- O tipo `Fin 10` corresponde os números naturais menores que 10. O termo
--- `(10 : Fin 10)` corresponde ao `0` (`10 % 10`, via `OfNat`), mas isso só
--- vale para o literal `10` interpretado nesse tipo. A instância
--- `OfNat (Fin 10) 10` (usada ao escrever `10 : Fin 10`) normaliza o literal
--- por `% 10` antes de guardá-lo. O construtor `⟨n, prova⟩` (`Fin.mk`) exige
--- uma prova de `n < 10` como dado — para `n = 10` essa prova não existe
--- (`10 < 10` é falso), então `⟨10, by omega⟩` sequer elabora. Ou seja,
--- `(10 : Fin 10)` sempre existe via módulo, e `(⟨10, _⟩ : Fin 10)` só existe
--- para `n` de fato menor que `10`.
-
-#eval (10 : Fin 10)
-#eval (11 : Fin 10)
-
-example : (11 : Fin 10) = 1 := rfl
-example : ⟨0, by omega⟩ = (0 : Fin 10) := rfl
-
--- Se `Column` também fosse um `Fin 10` então poderíamos modelar com um par
+-- e associação de letras a colunas e números para linhas. Se `Column` também
+-- fosse um `Fin 10` então poderíamos modelar com um par
 -- `Attack : Fin 10 × Fin 10`.
 
 -- Uma possível extensão de nossa gramática seria representar como sentença um
@@ -153,7 +134,7 @@ def game1 : Game :=
 -- regra para "não atacar duas vezes a mesma posição" vai para além da sintaxe
 -- ou semântica, refere-se a pragmática, ou como ele deve ser jogado.
 
--- ### Exercise (2 stars): BNFgameOver ⭐⭐
+-- ### Exercise (2 stars): game-over-grammar ⭐⭐
 
 -- Revise a gramática de modo que fique explícito, nas regras da gramática,
 -- que o jogo termina assim que um dos jogadores é derrotado.
@@ -183,7 +164,7 @@ inductive WellFormed : Game → Prop where
 -- predicado, e não o tipo `Game`, carregar a restrição que a gramática
 -- revisada impõe estruturalmente.
 
--- ### Exercise (3 stars): WellFormedDefeatedLast ⭐⭐⭐
+-- ### Exercise (3 stars): defeated-last ⭐⭐⭐
 
 -- Prove que toda `Game` bem-formada não é vazia, e que ela sempre termina com
 -- uma reação `.defeated`, não importa o comprimento da sequência.
@@ -218,7 +199,7 @@ example : ¬ WellFormed badDerivation := by
   cases h with
   | step t g hne hwf => apply hne; simp
 
--- ### Semântica
+-- ## Semântica
 
 -- Dar semântica a Batalha Naval exige um modelo do que existe fora da
 -- linguagem — o estado do tabuleiro — e uma regra que ligue cada expressão da
@@ -318,17 +299,16 @@ def exampleState : State :=
 -- `State` pode conter só esse navio: a prova de `shipsOK` que a `structure`
 -- exige não existe.
 
+def gapShip : Grid := [(.A, 0), (.C, 0)]
+
 sf_expect_failure
-  /-- Contraexemplo: mesma linha, com lacuna na coluna B. -/
-  def gapShip : Grid := [(.A, 0), (.C, 0)]
-  
   def badState : State :=
     { ships := [gapShip]
       attacks := []
       noClashes := by native_decide
       shipsOK := by native_decide }
 
--- ### Exercise (3 stars): addShip ⭐⭐⭐
+-- ### Exercise (3 stars): add-ship ⭐⭐⭐
 
 -- Um estado válido só pode ser estendido por outro estado válido. Complete
 -- `addShip`, que tenta adicionar um navio a um estado, preservando as duas
@@ -340,11 +320,9 @@ def addShip (ship : Grid) (s : State) : Option State :=
 example : (addShip [(.A, 0), (.A, 1)] exampleState).isSome :=
   sorry
 
-/-- `gapShip` não é um navio válido: a adição falha. -/
 example : addShip gapShip exampleState = none :=
   sorry
 
-/-- `destroyerCells` já ocupa células de `exampleState`: colide. -/
 example : addShip destroyerCells exampleState = none :=
   sorry
 
@@ -404,7 +382,7 @@ def updateBattle (a : Attack) (s : State) : State :=
 
 end Battleship
 
--- ### Pragmática
+-- ## Pragmática
 
 -- As definições da seção anterior para `hit`, `missed`, `defeated` e `sunk`
 -- seguem uma hierarquia entre as reações: todo ataque que termina uma partida
@@ -447,129 +425,8 @@ end Battleship
 -- por outro caminho, exigindo a reação mais informativa em cada estágio do
 -- jogo.
 
--- ### Exercise (1 star): Grice ⭐
+-- ### Exercise (1 star): grice-maxims ⭐
 
 -- O que mais se pode dizer sobre a pragmática de Batalha Naval em termos das
 -- máximas de Grice?
-
--- ## Mastermind (Jogo Senha)
-
--- Outra linguagem bem simples é a do Mastermind (Jogo Senha). O Mastermind é
--- um jogo de dois jogadores em que um deles tenta descobrir o código
--- escolhido pelo outro. Um dos jogadores decide uma sequência de quatro pinos
--- coloridos, com as cores escolhidas dentro de um conjunto fixo. O outro
--- jogador (quem tenta decifrar) tenta adivinhar o padrão de cores. Depois de
--- cada palpite, quem propôs o código dá uma resposta indicando sua correção.
--- Essa resposta consiste numa sequência de pinos pretos e brancos: um pino
--- preto para cada pino da cor certa na posição certa, e um pino branco para
--- cada pino adicional da cor certa, mas na posição errada. Se o código
--- secreto é vermelho, azul, verde, amarelo, e o palpite é verde, azul,
--- vermelho, laranja, a resposta é um preto (o azul está na posição certa) e
--- dois brancos (verde e vermelho aparecem no palpite, mas nas posições
--- erradas). Os palpites e as respostas se alternam até que o padrão seja
--- descoberto. O desafio é adivinhar o padrão no menor número de tentativas.
-
--- colour ::= "red" | "yellow" | "blue" | "green" | "orange" ;
--- answer ::= "black" | "white" ;
--- guess ::= colour colour colour colour ;
--- reaction ::= answer
---   | answer answer
---   | answer answer answer
---   | answer answer answer answer ;
--- turn ::= guess reaction ;
--- game ::= turn | turn game ;
-
--- Note que os pinos pretos e brancos são colocados em qualquer ordem, não
--- correspondem a uma sinalização por posição. Uma desvantagem da
--- implementação a seguir é que dois diferentes termos do tipo `Reaction`
--- poderiam representar a mesma *resposta* para uma tentativa. Sobre a
--- definição de `Subtypes`, ver (Baanen et al., 2026).
-
-namespace Mastermind
-
-inductive Colour where
-  | red | yellow | blue | green | orange
-  deriving DecidableEq, Repr
-
-inductive Answer where
-  | black | white
-  deriving DecidableEq, Repr
-
-abbrev Guess := Vector Colour 4
-
-/-- uma alternativa `Vector (Option Answer) 4` -/
-abbrev Reaction := { r : List Answer // r.length ≤ 4 }
-
-structure Turn where
-  guess : Guess
-  reaction : Reaction
-  deriving DecidableEq, Repr
-
-abbrev Game := List Turn
-
-def turn1 : Turn :=
-  ⟨#v[.green, .blue, .red, .orange],
-   (⟨[.black, .white], by simp⟩ : Reaction) ⟩
-
-end Mastermind
-
--- ### Exercise (1 star): mastermind-4-passos ⭐
-
--- Revise a gramática para garantir que um jogo tenha no máximo quatro
--- jogadas.
-
-namespace Mastermind
-
-abbrev Game₄ := sorry
-
-end Mastermind
-
--- ### Exercise (1 star): chess-grammar ⭐
-
--- Escreva suas próprias gramáticas para o xadrez e em seguida sua
--- implementação no Lean.
-
--- figure ::= "King" | "Queen" | "Knight"
---   | "Rook" | "Bishop" | "Pawn" ;
--- row    ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" ;
--- column ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" ;
--- move   ::= figure row column ;
--- turn   ::= move move ;
--- game   ::= turn | turn game ;
-
-namespace Chess
-
-inductive Figure where
-  | king | queen | knight | rook | bishop | pawn
-  deriving DecidableEq, Repr
-
-inductive Row where
-  | a | b | c | d | e | f | g | h
-  deriving DecidableEq, Repr
-
-structure Move where
-  figure : Figure
-  row : Row
-  column : Fin 8
-  deriving DecidableEq, Repr
-
-structure Turn where
-  white : Move
-  black : Move
-  deriving DecidableEq, Repr
-
-abbrev Game := List Turn
-
-end Chess
-
--- _Quiz:_
-
--- Todas as gramáticas que discutimos geram linguagens infinitas?
-
--- A partir das discussões acima, poderíamos sugerir uma primeira gramática
--- para um fragmennto do inglês talvez um tanto quanto permissiva. Qualquer
--- sequencia de caracteres ASCII.
-
--- character ::= _ascii ;
---  string ::= character | character string ;
 

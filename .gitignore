@@ -1,4 +1,5 @@
-
-**/.DS_Store
+# Lake's build directory -- `lake build` fills it with several gigabytes.
 /.lake
-/CLAUDE.local.md
+
+# macOS Finder metadata.
+**/.DS_Store
