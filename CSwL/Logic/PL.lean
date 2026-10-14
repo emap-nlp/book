@@ -31,7 +31,7 @@ sf_expect_failure
     | And.intro ha _hb => ha
 
 -- Nesta seção, queremos manipular fórmulas e decidir quando uma fórmula `α` é
--- consequência lógica de `β`, isto é, `β ⊧ α `. A noção de consequência
+-- consequência lógica de `β`, isto é, `β ⊨ α `. A noção de consequência
 -- lógica é semântica. Para toda possível escolha de valores verdade para os
 -- símbolos proposicionais em `α` e `β`, sempre que `β` for verdade, `α` deve
 -- ser verdade. Para *computar* o valor verdade de uma fórmula, vamos precisar
@@ -65,7 +65,7 @@ inductive Formula where
   | disj (f g : Formula)
   deriving DecidableEq, Repr
 
--- Os contrutores `Formula.top` e `Formula.bot` representam as proposições
+-- Os construtores `Formula.top` e `Formula.bot` representam as proposições
 -- "sempre verdadeira" e "sempre falsa". São objetos sintáticos que serão
 -- sempre interpretados como os valores verdade `true` e `false` na semântica.
 -- Com este tipo, podemos representar fórmulas arbitrariamente complexas.
@@ -157,7 +157,7 @@ example : Maria.form₁.names₁ == ["MB", "MJ", "MT"] :=
   sorry
 
 -- Nem todos os conectivos precisam ser definidos como "primitivos". Como
--- vimos na seção pl-lean a implicação pode ser definida como uma dijunção. E
+-- vimos na seção pl-lean a implicação pode ser definida como uma disjunção. E
 -- a dupla implicação como uma conjunção de implicações.
 
 def Formula.impl (f g : Formula) : Formula := .disj (.neg f) g
@@ -181,7 +181,7 @@ def Formula.disjs : List Formula → Formula
   | [f] => f
   | f :: fs => .disj f (Formula.disjs fs)
 
--- Note que `Formula.bot` é o elemento neutro da dijunção, `bot ∨ a`. E
+-- Note que `Formula.bot` é o elemento neutro da disjunção, `bot ∨ a`. E
 -- `Formula.top` é o elemento neutro da conjunção, `top ∧ a`. Uma conjunção
 -- vazia é sempre verdadeira, uma disjunção vazia é sempre falsa. O que sugere
 -- as implementações alternativas a seguir.
@@ -276,7 +276,7 @@ example : form2.depth = 3 := sorry
 -- noção semântica de **consequência lógica**. Entendemos que `P` deve ser
 -- verdade sempre que `P ∧ Q` for verdade, para qualquer possível tradução de
 -- `P` e `Q` de volta para expressões em uma linguagem natural, por isso
--- aceitamos `P ∧ Q ⊧ P`. Para formalizar esta noção de "todas as possíveis
+-- aceitamos `P ∧ Q ⊨ P`. Para formalizar esta noção de "todas as possíveis
 -- traduções", vamos precisar de um processo para avaliar fórmulas lógicas em
 -- valores verdade.
 
@@ -422,13 +422,13 @@ end ExSat
 -- chamando atenção para a relação entre `P ⊨ Q` e `⊨ P → Q`. Uma proposição
 -- `Q` é consequência lógica de `P` se, e somente se, a implicação `P → Q` é
 -- uma tautologia. Se `P → Q ≡ ¬ P ∨ Q ≡ ¬ (P ∧ ¬ Q)` então podemos também
--- dizer que `P ⊧ Q` se e somente se `⊨ ¬ (P ∧ ¬ Q)`.
+-- dizer que `P ⊨ Q` se e somente se `⊨ ¬ (P ∧ ¬ Q)`.
 
 -- Podemos estender para uma consequência lógica de fórmulas
--- `{P₁, …, Pₙ} ⊧ α`, indicando que toda valoração que torna as fórmulas
+-- `{P₁, …, Pₙ} ⊨ α`, indicando que toda valoração que torna as fórmulas
 -- `P₁, …, Pₙ` verdadeiras também torna `α` verdadeira. O que equivale afirmar
 -- que a implicação da conjunção das premissas na conclusão é válida
--- `⊧ (P₁ ∧ … ∧ Pₙ) → α`.
+-- `⊨ (P₁ ∧ … ∧ Pₙ) → α`.
 
 -- Duas fórmulas `α` e `β` são **logicamente equivalentes**, escrevemos
 -- `α ≡ β`, se têm o mesmo valor de verdade para toda valoração possível.
@@ -470,7 +470,7 @@ end ExEquiv
 -- ### Exercise (2 stars): implies-from-list ⭐⭐
 
 -- Nossa definição `Formula.implies` relaciona duas fórmulas. Complete a
--- definição abaixo para que possamos falar de `Γ ⊧ α`, a consequência lógica
+-- definição abaixo para que possamos falar de `Γ ⊨ α`, a consequência lógica
 -- de um conjunto de fórmulas.
 
 def Formula.impliesL (hs : List Formula) (c : Formula) : Bool :=
@@ -482,11 +482,11 @@ def Formula.impliesL (hs : List Formula) (c : Formula) : Bool :=
 -- exemplos usnado termos do tipo `Formula`. As duas primeiras já foram
 -- formalizada.
 
--- 1. `p ⊧ p ∨ q`
--- 2. `p, q ⊧ ¬ p`
--- 3. `p → q ⊧ ¬p → ¬q`
--- 4. `¬q ⊧ p→q`
--- 5. `¬p, q→p ⊧ ¬q`
+-- 1. `p ⊨ p ∨ q`
+-- 2. `p, q ⊨ ¬ p`
+-- 3. `p → q ⊨ ¬p → ¬q`
+-- 4. `¬q ⊨ p→q`
+-- 5. `¬p, q→p ⊨ ¬q`
 
 -- Em todos os casos, para fechar ou não as provas, você só precisa da tática
 -- `native_decide`. Note que quando existe consequência lógica, o tipo `Bool`
@@ -568,8 +568,8 @@ theorem neg_taut_is_contradiction (f : Formula) :
   simp only [contradiction, satisfiable, tautology, eval, hv]
   simp [List.all_eq_true]
 
--- E também podemos provar o princípio da contraposição. Temos que `F₁ ⊧ F₂`
--- se e somente se `¬ F₂ ⊧ ¬F₁`. Expandindo a definição de `Formula.implies` e
+-- E também podemos provar o princípio da contraposição. Temos que `F₁ ⊨ F₂`
+-- se e somente se `¬ F₂ ⊨ ¬F₁`. Expandindo a definição de `Formula.implies` e
 -- `Formula.satisfiable`, temos o enunciado do teorema
 -- `contraposition_principle₁`. A prova dele é direta, corresponde a avaliação
 -- da definição de `Formula.eval` seguida da aplicação da comutativade da

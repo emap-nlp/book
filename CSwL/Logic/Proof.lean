@@ -1,5 +1,6 @@
 import Mathlib.Tactic
 import CSwL.IntroL
+import CSwLCompat
 
 -- # Provas em Lean
 
@@ -100,6 +101,30 @@ namespace PL
 -- em Lean e, em seguida, usar Lean para verificar se uma conclusão decorre de
 -- um conjunto de hipóteses.
 
+-- ### Exercise (1 star): prop-exchange ⭐
+
+-- Se o câmbio cair, temos inflação. Se as exportações crescerem, diminuímos o
+-- déficit. O câmbio cai ou diminuímos o déficit. Logo, temos inflação ou as
+-- exportações crescem.
+
+-- complete a definição `exchange` para formalizar o parágrafo anterior. Você
+-- deverá usar as variáveis proposicionais declaradas para `p` (câmbio cai),
+-- `q` (temos inflação), `r` (exportações crescem) e `s` (diminuimos o
+-- déficit) para construir a proposição esperada.
+
+namespace Exchange
+
+variable (p q r s : Prop)
+
+def exchange : Prop :=
+  sorry
+
+end Exchange
+
+-- O leitor mais observador irá notas que o argumento do parágrafo é inválido.
+-- Mas a sua negação também não vale em geral. Isto é, a fórmula que obtivemos
+-- acima é verdadeira em alguns casos e falsa em outros.
+
 -- Chamamos "sistema dedutivo" um conjunto das regras de dedução. Existem
 -- vários sistemas dedutivos. A formalização de Prop em Lean corresponde a
 -- implementação do sistema chamado **dedução natural** definido por Gerhard
@@ -159,13 +184,15 @@ example (h : P ∧ Q) : Q ∧ P := by
 
 example (h : P ∧ Q) : Q ∧ P := ⟨h.2, h.1⟩
 
--- Para provar `P ∨ Q` basta provar um dos dois lados. São duas regras, e os
--- construtores `Or.inl` (aplicado pela tática `left`) e `Or.inr` (aplicado
--- pela tática `right`) formalizam elas. A regra de eliminação da disjunção é
--- o teorema `Or.elim`, a chamada "prova por casos". Dada a hipótese `P ∨ Q`,
--- não sabemos qual das duas proposições é verdadeira. Portanto, para concluir
--- `R`, precisamos provar `R` em ambos os casos (assumindo `P` no primeiro e
--- `Q` no segundo). A tática `cases` gera exatamente esses dois cenários.
+-- A disjunção `∨` é **inclusiva**: `P ∨ Q` é verdadeira também quando `P` e
+-- `Q` são ambas verdadeiras. Para provar `P ∨ Q` basta provar um dos dois
+-- lados. São duas regras, e os construtores `Or.inl` (aplicado pela tática
+-- `left`) e `Or.inr` (aplicado pela tática `right`) formalizam elas. A regra
+-- de eliminação da disjunção é o teorema `Or.elim`, a chamada "prova por
+-- casos". Dada a hipótese `P ∨ Q`, não sabemos qual das duas proposições é
+-- verdadeira. Portanto, para concluir `R`, precisamos provar `R` em ambos os
+-- casos (assumindo `P` no primeiro e `Q` no segundo). A tática `cases` gera
+-- exatamente esses dois cenários.
 
 example (hP : P) : P ∨ Q := by
   left
@@ -250,24 +277,6 @@ example : ¬(P ∧ Q) ↔ (¬P ∨ ¬Q) := sorry
 
 example : (P → Q) ↔ (¬Q → ¬P) := sorry
 
--- ### Exercise (1 star): exchange-prop ⭐
-
--- Se o câmbio cair, temos inflação. Se as exportações crescerem, diminuímos o
--- déficit. O câmbio cai ou diminuímos o déficit. Logo, temos inflação ou as
--- exportações crescem.
-
--- complete a definição `exchange` para formalizar o parágrafo anterior. Você
--- deverá usar as variáveis proposicionais declaradas para `p` (câmbio cai),
--- `q` (temos inflação), `r` (exportações crescem) e `s` (diminuimos o
--- déficit) para construir a proposição esperada.
-
-section
-variable (p q r s : Prop)
-
-def exchange : Prop :=
-  sorry
-end
-
 -- ### Exercise (2 stars): implication-as-disj ⭐⭐
 
 -- Complete a prova abaixo. Note que esta prova precisa do fragmento clássico.
@@ -335,7 +344,7 @@ example (x y : Nat) : E x 0 ∧ E y 0 → x = y := by
 -- - Cláudia nunca diz a verdade.
 
 -- Para começar, vamos introduzir variáveis do tipo `Prop`, cada uma delas
--- representado uma proposição. São 3 pessoas e 3 cores. Vamos representar
+-- representando uma proposição. São 3 pessoas e 3 cores. Vamos representar
 -- "Ana veste azul" por `Aa` e assim por diante.
 
 namespace Dresses
@@ -531,6 +540,63 @@ example : ∃ n : Nat, n + n = 10 := by
 
 end FOL
 
+-- ## Argumentos Inválidos e Contraexemplos
+
+-- Considere o argumento: "se chover, a rua fica molhada. A rua está molhada.
+-- Logo, choveu."
+
+-- Com `p` para "chove" e `q` para "a rua fica molhada", podemos formalizá-lo
+-- como fizemos no exercício `prop-exchange`.
+
+namespace WetStreet
+
+variable (p q : Prop)
+
+def wetStreet : Prop := ((p → q) ∧ q) → p
+
+#check wetStreet
+
+-- Como `p` e `q` foram declaradas com `variable`, a definição `wetStreet` não
+-- se refere a uma proposição fixa. Lean acrescenta essas variáveis como
+-- argumentos da definição, como mostra o `#check`. Por isso precisamos
+-- escrever `wetStreet p q` para obter uma proposição, só depois de receber as
+-- duas proposições ela se torna uma proposição. Nos `example` a seguir,
+-- dentro do mesmo `namespace`, `p` e `q` são também argumentos, de modo que
+-- provar `¬ wetStreet p q` significa provar `∀ p q, ¬ wetStreet p q`. Isso é
+-- impossível: se `p` for verdadeira, a conclusão vale e a implicação inteira
+-- é verdadeira. Depois de `unfold` e `intro`, ficamos com a hipótese `h` e o
+-- objetivo `False`, e nada no contexto nos permite prosseguir.
+
+sf_expect_failure
+  example : ¬ wetStreet p q := by
+    unfold wetStreet
+    intro h
+    -- we can't finish it
+
+-- Já `¬ ∀ p q, wetStreet p q` afirma que `wetStreet` **não** é verdadeira
+-- para todas as escolhas de `p` e `q`. Para prová-la basta exibir uma única
+-- escolha que torne as premissas verdadeiras e a conclusão falsa, um
+-- contraexemplo: não chove (`p` é `False`) e, ainda assim, a rua está molhada
+-- (`q` é `True`). A proposição `True` é a que sempre vale, e sua prova é
+-- `True.intro`. Na prova abaixo, `apply h False True` reduz o objetivo
+-- `False` à tarefa de provar as premissas para essa escolha.
+
+example : ¬ ∀ p q, wetStreet p q := by
+ intro h
+ unfold wetStreet at h
+ apply h False True
+ constructor
+ · intro hp ; exact True.intro
+ · trivial
+
+end WetStreet
+
+-- A tática `trivial` tenta fechar o goal com algumas outras táticas e
+-- teoremas simples. `True.intro` está no conjunto dos teoremas usados. Uma
+-- fórmula como `wetStreet`, verdadeira para algumas escolhas das variáveis e
+-- falsa para outras, é chamada *contingente*. O mesmo acontece com a fórmula
+-- `exchange` do exercício `prop-exchange`.
+
 -- ## Provas por Indução
 
 -- Uma das ferramentas fundamentais no Lean é a tática `induction`. Em vez de
@@ -590,8 +656,34 @@ example : double₁ = double₂ := by
 example : (List.range 100000).length = 100000 := by
   native_decide
 
--- Outras táticas como `omega` e `simp` aparecerão em momentos específicos dos
--- capítulos seguintes e serão explicadas à medida que se fizerem necessárias.
+-- A tática `simp` (de *simplificar*) reescreve o *goal* repetidamente usando
+-- uma coleção de igualdades e equivalências já provadas na biblioteca,
+-- chamadas *lemas de simplificação*, como `n + 0 = n`, `xs ++ [] = xs` ou
+-- `(p ∧ p) ↔ p`. Ela continua reescrevendo enquanto algum lema se aplica e,
+-- se o *goal* se reduzir a algo trivialmente verdadeiro, a prova é fechada.
+-- Entre colchetes, podemos acrescentar outros fatos à coleção: hipóteses do
+-- contexto ou nomes de definições, que passam a ser expandidas como faria
+-- `unfold`. A variante `simp only [...]` usa **apenas** os fatos listados, o
+-- que torna o passo mais previsível. Assim como `unfold E at h`, a forma
+-- `simp at h` simplifica a hipótese `h` em vez do *goal*; se `h` se reduzir a
+-- `False`, a prova termina.
+
+example (xs : List Nat) : (xs ++ []).length + 0 = xs.length := by
+  simp
+
+example (n : Nat) : double₁ n = 2 * n := by
+  simp only [double₁]
+
+example (p q : Prop) (hp : p) : p ∧ (q → q) := by
+  simp [hp]
+
+example (n : Nat) (h : n + 0 ≠ n) : False := by
+  simp at h
+
+-- Como `simp` esconde quais lemas usou, é melhor reservá-la para passos
+-- rotineiros e escrever à mão as etapas que importam para o argumento. Outras
+-- táticas, como `omega`, aparecerão em momentos específicos dos capítulos
+-- seguintes e serão explicadas à medida que se fizerem necessárias.
 
 end Proof
 
