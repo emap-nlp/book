@@ -1,11 +1,11 @@
 import Mathlib.Algebra.Group.Nat.Even
-import Mathlib.Data.Rel
+import Mathlib.Basic.Rel
 import Mathlib.Logic.Relation
 import Mathlib.Data.Set.Basic
 import Mathlib.Data.Set.Insert
 import Mathlib.Data.Finset.Prod
 import Mathlib.Data.Fintype.Prod
-import Mathlib.Data.Setoid.Basic
+import Mathlib.Order.Setoid.Basic
 import Mathlib.Tactic
 
 -- # Conjuntos e Relações
@@ -300,7 +300,7 @@ example (n : Nat) : Even n ↔ n % 2 = 0 := Nat.even_iff
 
 #print Rel
 
--- @[reducible] def Rel.{u_6, u_7} : Type u_6 → Type u_7 → Type (max u_6 u_7) :=
+-- @[reducible] def Rel.{u_6, u_7} : Sort u_6 → Sort u_7 → Sort (max (max 1 u_6) u_7) :=
 -- fun α β => α → β → Prop
 
 -- `Rel α β` é `α → β → Prop`. É a primeira vez neste capítulo que o domínio

@@ -284,7 +284,7 @@ def tellAbout (kb : KB) (a : Class) : List Statement :=
 def preprocess (line : String) : List String :=
   let kept := line.toList.takeWhile
     (fun c => c.isAlpha || c.isWhitespace)
-  (String.mk kept).toLower.splitOn " "
+  (String.ofList kept).toLower.splitOn " "
     |>.filter (fun w => w ≠ "")
 
 -- Depois se casa a lista de palavras contra as produções da gramática. Uma

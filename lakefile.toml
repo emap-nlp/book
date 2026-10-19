@@ -1,11 +1,12 @@
 name = "cswl-extracted"
 version = "0.1.0"
 defaultTargets = ["CSwL"]
+allowNonModules = true
 
 [[require]]
 name = "mathlib"
 git = "https://github.com/leanprover-community/mathlib4"
-rev = "db584cd6d46c92f209a44c0f1c829460d327499d"
+rev = "56a005855ea17e0b0958f73ec801ae140b0a1679"
 
 [[lean_lib]]
 name = "CSwL"

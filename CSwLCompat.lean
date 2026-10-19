@@ -16,8 +16,7 @@
 -- 2. No `namespace Tests` from the end of the original
 --    `SFLCompat/Experiment.lean`: those are `#guard_msgs` that check the
 --    exact text of Lean diagnostics ("Unknown identifier `x`", literal
---    positions via `(positions := true)`, etc.). `CSwL` is on the same
---    `v4.33.0` as `sf-in-lean` today, but pinning that text here risks
+--    positions via `(positions := true)`, etc.). Pinning that text here risks
 --    breaking both the book's build and every extracted project's build
 --    (the file is copied verbatim) on any message drift between Lean
 --    versions -- with no payoff for the course, which uses neither `recall`
