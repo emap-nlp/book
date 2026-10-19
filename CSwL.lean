@@ -5,4 +5,4 @@ import CSwL.Sets
 import CSwL.SeaBattle
 import CSwL.Morphology
 import CSwL.InfEngine
-import CSwL.English
+import CSwL.ModelChecking
