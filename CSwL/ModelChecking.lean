@@ -595,10 +595,11 @@ def lfDV : DV → Term → Term → Term → LF
 
 -- ### Variáveis novas
 
--- A tradução de um determinante toma dois argumentos de tipo `Term → LF` —
--- formas lógicas com um buraco de termo dentro — e produz uma forma lógica.
--- No caso dos quantificadores, o primeiro argumento é a **restrição** e o
--- segundo o **escopo**.
+-- A tradução de um determinante toma dois argumentos de tipo `Term → LF`,
+-- formas lógicas obtidas a partir de um termo, e produz uma forma lógica. No
+-- caso dos quantificadores, o primeiro argumento é a **restrição** e o
+-- segundo o **escopo**. Falaremos disso em A visão relacional dos
+-- quantificadores.
 
 -- A tradução dos determinantes precisa ser feita com algum cuidado, porque
 -- envolve construir uma forma lógica em que uma variável fica ligada. Para
@@ -746,11 +747,35 @@ end
 -- função tem de estar definida em todos os casos — a tradução existe, mas não
 -- é uma boa tradução.
 
--- Vejamos três exemplos.
+-- Vejamos um primeiro exemplo passo-a-passo.
 
-def lf1 : LF :=
-  lfSent (.sent (.npDet .some .dwarf)
-                (.vpTrans .defeated (.npDet .some .giant)))
+def s1 :=
+  Sent.sent (.npDet .every .dwarf)
+            (.vpTrans .defeated (.npDet .some .giant))
+
+#eval toString s1
+
+open FOL in
+def l0 :=
+ let x : Variable := ⟨"x", [2]⟩
+ let y : Variable := ⟨"x", [1]⟩
+ let dwarf := λ x ↦ Formula.atom "dwarf" [Term.var x]
+ let giant := λ x ↦ Formula.atom "giant" [Term.var x]
+ let defeat := λ x y ↦ Formula.atom "defeat"
+  [(Term.var x),(Term.var y)]
+ Formula.forall_ x (Formula.impl
+  (dwarf x)
+  (Formula.exists_ y (Formula.conj (giant y) (defeat x y))))
+
+#eval toString l0
+
+open FOL in
+example : lfSent s1 = l0 := by
+ unfold s1 l0
+ simp [lfSent, lfNP, lfDET, lfCN, lfVP, lfCN, freshVar,
+   freshIndex, lfTV, boundIndices]
+
+-- Outros dois exemplos de fórmulas.
 
 def lf2 : LF :=
   lfSent (.sent (.npDetRel .the

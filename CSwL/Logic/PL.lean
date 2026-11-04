@@ -161,6 +161,7 @@ example : Maria.form₁.names₁ == ["MB", "MJ", "MT"] :=
 -- a dupla implicação como uma conjunção de implicações.
 
 def Formula.impl (f g : Formula) : Formula := .disj (.neg f) g
+
 def Formula.iff (f g : Formula) : Formula :=
   .conj (Formula.impl f g) (Formula.impl g f)
 

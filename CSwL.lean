@@ -6,3 +6,5 @@ import CSwL.SeaBattle
 import CSwL.Morphology
 import CSwL.InfEngine
 import CSwL.ModelChecking
+import CSwL.Composition
+import CSwL.Parsing
