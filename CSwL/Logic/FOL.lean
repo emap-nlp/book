@@ -238,6 +238,28 @@ end ExSchool
 -- `(P[x] ∧ ∃x, R[x,x])` é aberta, o `x` de `P[x]` está fora do escopo do
 -- `∃x`. Mas `∃y (P[y] ∧ ∃x R[x,x])` é uma sentença.
 
+-- THE FOLLOWING DETAILS CAN BE SKIPPED (Ligação e c-comando)
+-- A ligação também pode ser descrita pela árvore sintática da fórmula. Na
+-- árvore de `P[x] ∧ ∀x (Q[x] → R[x,y])`, os quantificadores e os conectivos
+-- são folhas, ao lado das fórmulas atômicas.
+
+-- •
+--      ┌──────┼──────┐
+--    P[x]     ∧      •
+--                ┌───┴───┐
+--                ∀x      •
+--                    ┌───┼────┐
+--                   Q[x] →  R[x,y]
+
+-- A raiz tem três filhos: P[x], ∧ e um nó interno. Esse nó tem os filhos ∀x e outro nó interno, cujos filhos são Q[x], → e R[x,y].
+
+-- O `∀x` liga as ocorrências de `x` em `Q[x]` e em `R[x,y]`, que estão abaixo
+-- do seu irmão na árvore, mas não a de `P[x]`, que está fora desse ramo. Essa
+-- relação entre um nó e os nós abaixo dos seus irmãos se chama **c-comando**.
+-- Ela vem da sintaxe das línguas naturais, e voltaremos a ela em Análise
+-- sintática.
+-- END DETAILS
+
 -- Coletar as variáveis livres de uma fórmula é uma operação recorrente.
 -- Abaixo, definimos a função freeVars que recebe como parâmetro uma função
 -- que extrai as variáveis de um termo. Para `R_reflexive`, só precisamos de

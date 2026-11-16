@@ -136,7 +136,7 @@ example (A B : Set Nat) : A ⊆ A ∪ B := sorry
 
 example (A B : Set Nat) : A ∩ B ⊆ A := sorry
 
--- A Mathlib tem esses dois últimos prontos, com os nomes
+-- A Mathlib (Community, 2020) tem esses dois últimos prontos, com os nomes
 -- `Set.subset_union_left` e `Set.inter_subset_left`. Aqui o exercício é
 -- escrever a prova, não encontrá-los — mas vale procurar depois, para ver
 -- como as coisas se chamam.

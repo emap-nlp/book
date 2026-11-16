@@ -66,6 +66,10 @@ sf_expect_failure
 -- de outra `→`, como em `(ℤ → ℤ) → ℚ`: o tipo das funções que recebem uma
 -- função de `ℤ` em `ℤ` e devolvem um `ℚ`.
 
+-- As notações `ℕ`, `ℤ` e `ℚ` vêm da Mathlib (Community, 2020), a biblioteca
+-- de matemática mantida pela comunidade Lean. Ela reúne definições e teoremas
+-- de muitas áreas da matemática, e usaremos partes dela ao longo do livro.
+
 -- Ao abrir um arquivo Lean, podemos além de escrever declarações, podemos
 -- interagir diretamente com o sistema através de comandos. Comandos são
 -- prefixados com `#`. O comando `#eval` calcula o valor de um termo.
