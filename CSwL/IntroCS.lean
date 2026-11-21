@@ -1,4 +1,4 @@
--- # O estudo formal da língua natural
+-- # O Estudo Formal da Língua Natural
 
 -- Este capítulo introduz semântica computacional.
 
@@ -17,7 +17,7 @@
 
 namespace IntroCS
 
--- ## O estudo da língua natural
+-- ## O Estudo da Língua Natural
 
 -- A língua é uma das capacidades mais notáveis do ser humano e um dos traços
 -- distintivos que nos separam dos demais habitantes deste planeta. As línguas
@@ -100,7 +100,7 @@ namespace IntroCS
 -- sua vez, ajudará a relacionar as formas linguísticas com o mundo
 -- extralinguístico (aquilo de que elas tratam).
 
--- ## Sintaxe, semântica e pragmática
+-- ## Sintaxe, Semântica e Pragmática
 
 -- Uma tricotomia básica no estudo da língua é a que se faz entre sintaxe,
 -- semântica e pragmática. Grosso modo, a sintaxe diz respeito ao aspecto de
@@ -202,7 +202,7 @@ namespace IntroCS
 
 -- (Keller, 1902)
 
--- ### Saber "que" e "como"
+-- ### Significado Operacional e Significado Denotacional
 
 -- As explicações de significado caem em duas classes amplas: significado como
 -- *saber como* e significado como *saber que*. Se dizemos que Joãozinho não
@@ -255,7 +255,7 @@ example : 7 + 5 = 2 * 6 := by rfl
 -- se despertar curiosidade, cumpriu seu papel; se não disser nada por
 -- enquanto, siga em frente sem preocupação.
 
--- ## Os propósitos da comunicação
+-- ## Os Propósitos da Comunicação
 
 -- O objetivo mais elevado da comunicação é usar a língua como instrumento
 -- para a busca coletiva da verdade. Mas a língua é também um instrumento para
@@ -386,7 +386,7 @@ example (n : Nat) : possibilities n = 2 ^ n := by
 -- aparência que os processos cognitivos reais podem ter. No resto deste
 -- capítulo, vamos explorar os meios que nos ajudarão a cumprir esse objetivo.
 
--- ## Línguas naturais e línguas formais
+-- ## Línguas Naturais e Línguas Formais
 
 -- O inglês, o sueco, o russo e o híndi são línguas naturais. A linguagem da
 -- aritmética do ensino fundamental, a linguagem da lógica proposicional e a
@@ -549,7 +549,7 @@ example : eval sevenPlusFive = eval twoTimesSix := by
   repeat rewrite [eval]
   rfl -- ou simplesmente `rfl`
 
--- ## O que a semântica formal não é
+-- ## Equívocos sobre a Semântica Formal
 
 -- Um preconceito difundido contra a semântica formal para a língua natural é
 -- o de que ela não passa de um exercício de tipografia. Explica-se o
@@ -616,7 +616,7 @@ example : eval sevenPlusFive = eval twoTimesSix := by
 -- culpa não é sua e, além disso, o remédio é fácil: basta lembrar-se de ir
 -- mais devagar.
 
--- ## Semântica computacional e programação funcional
+-- ## Semântica Computacional e Programação Funcional
 
 -- A abordagem da semântica de língua natural propagada por Richard Montague —
 -- às vezes chamada de programa montagoviano — mostrou-se muito fecunda nas

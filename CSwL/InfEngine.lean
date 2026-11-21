@@ -1,6 +1,6 @@
 import CSwL.Sets
 
--- # Um motor de inferência
+-- # Um Motor de Inferência
 
 namespace InfEngine
 
@@ -47,7 +47,7 @@ namespace InfEngine
 -- que há A. Sob essa suposição, as expressões da aresta superior implicam as
 -- imediatamente abaixo delas.
 
--- ## Uma língua para falar de classes
+-- ## Uma Língua sobre Classes
 
 -- A gramática é um fragmento minúsculo para perguntar e afirmar coisas sobre
 -- classes:
@@ -106,7 +106,7 @@ def Statement.toStringImpl : Statement → String
 
 instance : ToString Statement := ⟨Statement.toStringImpl⟩
 
--- ## A base de conhecimento e as regras
+-- ## A Base de Conhecimento e as Regras
 
 -- Nossa aplicação é uma extensão ligeira da lógica aristotélica, pois
 -- consideramos o caso em que há toda uma base de conhecimento de premissas
@@ -149,7 +149,7 @@ abbrev KB := List (Class × Class × Bool)
 -- A ⟹ A            ──────────────────────
 --                        A ⇏ não-A
 
--- ## O motor
+-- ## O Motor
 
 -- A implementação usa listas de pares para relações. A **seção à direita** de
 -- uma relação num ponto dá tudo que se relaciona com ele.
@@ -272,7 +272,7 @@ def tellAbout (kb : KB) (a : Class) : List Statement :=
 
 -- ["All greeks are humans.", "All greeks are mortals.", "Some greeks are philosophers."]
 
--- ## A interface em língua natural
+-- ## A Interface em Língua Natural
 
 -- Falta ligar o motor à língua. São três peças: reconhecer uma sentença
 -- escrita, incorporá-la à base, e responder a uma pergunta.
@@ -455,7 +455,7 @@ example :
     process "all bears are mammals\nno bears are mammals"
       = none := sorry
 
--- ## A validade dos silogismos, demonstrada
+-- ## A Prova da Validade dos Silogismos
 
 -- O motor acima **decide** se uma conclusão se segue de uma base: ele
 -- responde `true` ou `false`, e a resposta se confere rodando. Mas a validade

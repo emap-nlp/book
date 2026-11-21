@@ -2,13 +2,13 @@ import CSwL.Parsing.ParseTrees
 import Mathlib.Data.List.Palindrome
 import CSwLCompat
 
--- # Reconhecendo e Analisando Linguagens Livres de Contexto
+-- # Reconhecimento e Análise de Linguagens Livres de Contexto
 
 namespace Parsing
 
--- Uma gramática pode gerar palavras sobre um alfabeto de caracteres ou frases
--- sobre um alfabeto de palavras ou tokens. Dada uma sequência, podemos usar a
--- gramática para responder a duas perguntas.
+-- Uma gramática pode gerar palavras sobre um alfabeto de caracteres ou
+-- sentenças sobre um alfabeto de palavras ou tokens. Dada uma sequência,
+-- podemos usar a gramática para responder a duas perguntas.
 
 -- Chamamos de **reconhecimento** o procedimento que responde se a sequência
 -- pertence à linguagem gerada pela gramática. Na **análise**, ou **parsing**,
@@ -31,7 +31,8 @@ namespace Parsing
 -- caracteres e `String.ofList` para exibir os pedaços como textos.
 
 -- A função `splitN n` generaliza esse procedimento. Em zero pedaços, só a
--- lista vazia pode ser dividida, e há uma única divisão. Para dois ou mais
+-- lista vazia pode ser dividida, e há uma única divisão. Em um pedaço, a
+-- única divisão tem a lista inteira como único pedaço. Para dois ou mais
 -- pedaços, a função usa `split2` para separar o primeiro e divide
 -- recursivamente o restante.
 

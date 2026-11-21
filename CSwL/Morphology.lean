@@ -5,7 +5,7 @@ import CSwL.IntroL
 -- Três exemplos de processamento de língua natural: harmonia vocálica do
 -- finlandês, plural do sueco e uma representação de fonemas por traços.
 
--- ## Harmonia vocálica do finlandês
+-- ## Harmonia Vocálica do Finlandês
 
 namespace FinnishVowelHarmony
 
@@ -137,7 +137,7 @@ theorem swedishPlural_test7 :
 
 end SwedishPlural
 
--- ## Aplicação: representando fonemas
+-- ## A Representação de Fonemas
 
 -- Vimos uma implementação simples da harmonia vocálica do finlandês por
 -- manipulação de strings. Do ponto de vista linguístico isso não satisfaz:

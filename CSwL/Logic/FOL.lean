@@ -8,7 +8,7 @@ namespace FOL
 
 -- ## Introdução
 
--- Se usarmos lógica proposicional para formalizar a frase "Toda maçã é
+-- Se usarmos lógica proposicional para formalizar a sentença "Toda maçã é
 -- vermelha", teremos uma letra proposicional, um átomo indivisível que não
 -- nos permitiria capturar a idéia do quantificador e da dependencia declarada
 -- entre as *coisas* que são maçãs e a cor destas mesmas *coisas*. A lógica de
@@ -24,8 +24,8 @@ namespace FOL
 -- ## Sintaxe de FOL
 
 -- Nossa sintaxe terá dois elementos principais, **termos** e **fórmulas**.
--- Como fizemos em pl-syntax, nossa sintaxe será formalizada como tipos
--- indutivos.
+-- Como fizemos na seção Sintaxe de Lógica Proposicional, nossa sintaxe será
+-- formalizada como tipos indutivos.
 
 -- Os *termos* podem ser variáveis ou funções aplicadas a outros termos. Uma
 -- variável carrega nome e um índice (lista de naturais usada para gerar
@@ -48,20 +48,21 @@ def x : Variable := ⟨"x", []⟩
 def y : Variable := ⟨"y", []⟩
 def z : Variable := ⟨"z", []⟩
 
--- A instrução `deriving Repr` gera, como em IntroL, uma instância de `Repr`,
--- que o `#eval` usa para exibir o valor como um termo Lean, mostrando sua
--- estrutura. Para exibir uma variável na notação usual da lógica,
--- implementamos também uma instância da classe `ToString`, que converte um
--- valor em `String`. Quando um tipo tem as duas instâncias, `#eval` usa a de
--- `Repr`; para ver a notação, escrevemos `#eval toString`. As cadeias `s!"…"`
--- funcionam como as `f!"…"` de IntroL, mas produzem uma `String`.
+-- A instrução `deriving Repr` gera, como no capítulo Programação Funcional no
+-- Lean, uma instância de `Repr`, que o `#eval` usa para exibir o valor como
+-- um termo Lean, mostrando sua estrutura. Para exibir uma variável na notação
+-- usual da lógica, implementamos também uma instância da classe `ToString`,
+-- que converte um valor em `String`. Quando um tipo tem as duas instâncias,
+-- `#eval` usa a de `Repr`; para ver a notação, escrevemos `#eval toString`.
+-- As cadeias `s!"…"` funcionam como as `f!"…"` do capítulo Programação
+-- Funcional no Lean, mas produzem uma `String`.
 
 #eval Variable.mk "x" [1]
 #eval toString <| Variable.mk "x" [1]
 
--- No segundo `#eval`, o operador `<|`, que já usamos em IntroL, aplica a
--- função à sua esquerda a tudo o que está à sua direita e dispensa os
--- parênteses.
+-- No segundo `#eval`, o operador `<|`, que já usamos no capítulo Programação
+-- Funcional no Lean, aplica a função à sua esquerda a tudo o que está à sua
+-- direita e dispensa os parênteses.
 
 -- Termos denotam objetos do domínio, e diferentes termos podem denotar um
 -- mesmo objeto como os termos `(5 + 3) × 4`, `8 × 4` e `32`. Para representar
@@ -115,13 +116,14 @@ inductive Formula (α : Type) where
 -- A conjunção e a disjunção são binárias, e `top` e `bot` são construtores
 -- próprios, o mesmo que fizemos para as fórmulas proposicionais.
 
--- Note que o tipo `Formula` é diferente do tipo `PL.Formula` definido em
--- pl-syntax, cada um em seu próprio `namespace`. Mais uma vez, estamos usando
--- Lean como metalinguagem para implementar FOL. Em tipos dependentes, não
--- fazemos a distinção entre termos e fórmulas. Como vimos em IntroL, em Lean
--- toda expressão é um termo e todo termo tem um tipo. Então quando falarmos
--- em termos, ora estamos falando do termo Lean que pode representar uma
--- `Formula` ou `Term` de FOL.
+-- Note que o tipo `Formula` é diferente do tipo `PL.Formula` definido na
+-- seção Sintaxe de Lógica Proposicional, cada um em seu próprio `namespace`.
+-- Mais uma vez, estamos usando Lean como metalinguagem para implementar FOL.
+-- Em tipos dependentes, não fazemos a distinção entre termos e fórmulas. Como
+-- vimos no capítulo Programação Funcional no Lean, em Lean toda expressão é
+-- um termo e todo termo tem um tipo. Então quando falarmos em termos, ora
+-- estamos falando do termo Lean que pode representar uma `Formula` ou `Term`
+-- de FOL.
 
 -- Também como fizemos para `PL.Formula`, as funções abaixo introduzem as
 -- notações n-árias de `Formula.conj` e `Formula.disj`.
@@ -175,9 +177,10 @@ def R_simetric : Formula Variable :=
   .forall_ x (.forall_ y
     (.impl (.atom "R" [x, y]) (.atom "R" [y, x])))
 
--- Assim como definimos em pl-syntax, chamamos de uma linguagem de primeira
--- ordem o conjunto de todas as fórmulas que podem ser construídas a partir de
--- um vocabulário de símbolos predicativos e funcionais.
+-- Assim como definimos na seção Sintaxe de Lógica Proposicional, chamamos de
+-- uma linguagem de primeira ordem o conjunto de todas as fórmulas que podem
+-- ser construídas a partir de um vocabulário de símbolos predicativos e
+-- funcionais.
 
 -- ### Exercise (2 stars): ex-fol-translate ⭐⭐
 
@@ -257,7 +260,7 @@ end ExSchool
 -- do seu irmão na árvore, mas não a de `P[x]`, que está fora desse ramo. Essa
 -- relação entre um nó e os nós abaixo dos seus irmãos se chama **c-comando**.
 -- Ela vem da sintaxe das línguas naturais, e voltaremos a ela em Análise
--- sintática.
+-- Sintática.
 -- END DETAILS
 
 -- Coletar as variáveis livres de uma fórmula é uma operação recorrente.
@@ -420,10 +423,11 @@ def openForm (f : Formula Term) : Bool :=
 
 -- ## Semântica de FOL
 
--- Em PL, uma valoração dos símbolos proposicionais nos permite determinar o
--- valor de verdade de uma fórmula. Em FOL, esse papel cabe a uma *estrutura*,
--- que dá significado aos símbolos do vocabulário (ou assinatura) da
--- linguagem: os símbolos predicativos e funcionais, cada um com sua aridade.
+-- Na seção Lógica Proposicional, uma valoração dos símbolos proposicionais
+-- nos permite determinar o valor de verdade de uma fórmula. Em FOL, esse
+-- papel cabe a uma *estrutura*, que dá significado aos símbolos do
+-- vocabulário (ou assinatura) da linguagem: os símbolos predicativos e
+-- funcionais, cada um com sua aridade.
 
 -- Uma estrutura $\mathcal A$ é como um dicionário para traduzir a linguagem
 -- de primeira ordem $L$. Ela nos diz sobre qual coleção de coisas os símbolos
@@ -491,11 +495,11 @@ def liftAssign {D : Type} (fint : FInterp D) (g : Assign D) : Term → D
 
 abbrev Interp (D : Type) := String → List D → Bool
 
--- Em seguida definimos como avaliar fórmulas. Como em lógica proposicional, a
--- definição calcula o resultado `Bool`. As cláusulas dos quantificadores são
--- as que alteram a atribuição de valores à variáveis. `∀v F` vale quando `F`
--- vale para toda escolha de valor de `v`, e `∃v F` quando vale para ao menos
--- uma.
+-- Em seguida definimos como avaliar fórmulas. Como na seção Lógica
+-- Proposicional, a definição calcula o resultado `Bool`. As cláusulas dos
+-- quantificadores são as que alteram a atribuição de valores à variáveis.
+-- `∀v F` vale quando `F` vale para toda escolha de valor de `v`, e `∃v F`
+-- quando vale para ao menos uma.
 
 -- Aqui aparece a diferença em relação à lógica proposicional. Em nossa
 -- implementação, para avaliar uma fórmula com quantificador é preciso
@@ -815,12 +819,12 @@ def frm₂ : Formula Term := .forall_ x (.exists_ y (.atom "R" [tx, ty]))
 -- 1. Todo mestre tem um aprendiz.
 -- 2. Ele tem um aprendiz.
 
--- Assim como definimos em PL. Uma sentença $α$ em FOL é **válida**, $⊨ α$, se
--- é verdadeira em toda estrutura para a linguagem de $α$. Uma estrutura
--- $\mathcal A$ com $\mathcal A ⊨ α$ é um **modelo** de $α$. Escrevemos $P ⊨
--- C$ para indicar que a sentença $C$ é consequência lógica da sentença $P$
--- ($P$ de premissa, $C$ de conclusão). Isto ocorre se todo modelo de $P$ é
--- também modelo de $C$.
+-- Assim como definimos na seção Lógica Proposicional. Uma sentença $α$ em FOL
+-- é **válida**, $⊨ α$, se é verdadeira em toda estrutura para a linguagem de
+-- $α$. Uma estrutura $\mathcal A$ com $\mathcal A ⊨ α$ é um **modelo** de
+-- $α$. Escrevemos $P ⊨ C$ para indicar que a sentença $C$ é consequência
+-- lógica da sentença $P$ ($P$ de premissa, $C$ de conclusão). Isto ocorre se
+-- todo modelo de $P$ é também modelo de $C$.
 
 -- Mas como julgar afirmações da forma $P ⊨ C$? Em FOL não temos a função
 -- `PL.Formula.allVals`, que enumera todas as possíveis valorações. Logo não
@@ -828,13 +832,14 @@ def frm₂ : Formula Term := .forall_ x (.exists_ y (.atom "R" [tx, ty]))
 -- contraexemplo. Um contraexemplo para $P ⊨ C$ é uma estrutura $\mathcal A$
 -- com $\mathcal A ⊨ P$ mas $\mathcal A ⊭ C$.
 
--- ## Traduzindo `Formula` para `Prop`
+-- ## Tradução de `Formula` em `Prop`
 
--- Como fizemos em PL, agora podemos mapear termos do tipo `Formula` em
--- `Prop`. Temos `Formula.eval` que calcula o valor verdade de uma fórmula
--- para uma dada estrutura e atribuição em `Bool`; `Formula.denote` produz a
--- proposição que a fórmula afirma. O tipo para interpretação também precisa
--- mudar, `Interp` devolvia um `Bool`, `Denot` devolve uma `Prop`.
+-- Como fizemos na seção Lógica Proposicional, agora podemos mapear termos do
+-- tipo `Formula` em `Prop`. Temos `Formula.eval` que calcula o valor verdade
+-- de uma fórmula para uma dada estrutura e atribuição em `Bool`;
+-- `Formula.denote` produz a proposição que a fórmula afirma. O tipo para
+-- interpretação também precisa mudar, `Interp` devolvia um `Bool`, `Denot`
+-- devolve uma `Prop`.
 
 abbrev Denot (D : Type) := String → List D → Prop
 
@@ -1069,15 +1074,16 @@ def Formula.ValidT (f : Formula Term) : Prop :=
 -- Até aqui, nossa noção de consequência lógica relaciona **duas** fórmulas.
 -- Mas o argumento mais comum tem várias premissas: dizemos que `C` é
 -- consequência de `P₁, …, Pₙ` quando toda estrutura que é modelo de todas as
--- premissas também é modelo de $C$. Assim como fizemos em PL, no próximo
--- exercício vamos definir a consequência lógica de um conjunto de premissas
--- em uma conclusão.
+-- premissas também é modelo de $C$. Assim como fizemos na seção Lógica
+-- Proposicional, no próximo exercício vamos definir a consequência lógica de
+-- um conjunto de premissas em uma conclusão.
 
 -- ### Exercise (2 stars): ex-fol-implies-from-list ⭐⭐
 
--- Assim como `PL.Formula.impliesL` fez em PL, complete a definição abaixo
--- para que possamos falar de $Δ ⊨ α$, a consequência lógica de uma lista de
--- fórmulas. Use `Formula.ValidT` e `Formula.conjs`.
+-- Assim como `PL.Formula.impliesL` fez na seção Lógica Proposicional,
+-- complete a definição abaixo para que possamos falar de $Δ ⊨ α$, a
+-- consequência lógica de uma lista de fórmulas. Use `Formula.ValidT` e
+-- `Formula.conjs`.
 
 def Formula.ImpliesL (hs : List (Formula Term)) (c : Formula Term) : Prop :=
   sorry

@@ -1,7 +1,7 @@
 import CSwL.Parsing.ParseTrees
 import Mathlib.Data.List.Monad
 
--- # Parsers e combinadores de parsers
+-- # Parsers e Combinadores de Parsers
 
 namespace Parsing
 
@@ -43,12 +43,14 @@ namespace Parsing
 -- Para implementar um parser, usamos `List α` como estado, pois a lista
 -- representa a parte da entrada que ainda falta analisar. Escolhemos `List`
 -- para `m`, de modo que o parser possa devolver zero, uma ou várias
--- respostas.
+-- respostas. A lista vazia indica falha, e duas árvores distintas com o mesmo
+-- resto são duas análises do mesmo prefixo.
 
 -- Substituindo, `StateT (List α) List β` é `List α → List (β × List α)`, como
--- o `example` abaixo confirma. A vantagem de reusar `StateT` é que as
--- operações para combinar parsers, que veremos a seguir, já vêm prontas com
--- ele, e não precisamos defini-las.
+-- o `example` abaixo confirma. Em `Parser α β`, portanto, `α` é o tipo dos
+-- símbolos da entrada e `β` é o tipo do resultado, que pode ser uma árvore. A
+-- vantagem de reusar `StateT` é que as operações para combinar parsers, que
+-- veremos a seguir, já vêm prontas com ele, e não precisamos defini-las.
 
 #print StateT
 
@@ -56,12 +58,6 @@ abbrev Parser (α β : Type) := StateT (List α) List β
 
 example {α β : Type} :
     Parser α β = (List α → List (β × List α)) := rfl
-
--- Em `Parser α β`, `α` é o tipo dos símbolos da entrada e `β` é o tipo do
--- resultado, que pode ser uma árvore. Cada par devolvido pelo parser contém
--- um resultado e o resto da entrada correspondente. Quando o parser produz
--- duas árvores distintas com o mesmo resto, elas são duas análises do mesmo
--- prefixo.
 
 -- A expressão `p.run xs` aplica o parser `p` à entrada `xs`. Para transformar
 -- um valor `r : β` em um parser, usamos `pure r`. Ao receber `xs`, esse
@@ -309,6 +305,10 @@ def parseAs {α β : Type} (label : β)
   : Parser α (ParseTree α β) :=
   .branch label <$> collect ps
 
+#eval (parseAs "NP" [det, n]).run
+    ["every", "wizard", "smiled"] |>.map
+  fun (t, ys) => (toString t, ys)
+
 example {α β : Type} (l : β)
     (p : Parser α (ParseTree α β)) :
     parseAs l [p] = (fun t => .branch l [t]) <$> p := by
@@ -428,7 +428,7 @@ theorem npEps_every_wizard :
 -- também pode ocorrer se os símbolos antes da chamada recursiva aceitarem a
 -- entrada vazia.
 
--- No reconhecedor por divisão da seção Reconhecendo e Analisando Linguagens
+-- No reconhecedor por divisão da seção Reconhecimento e Análise de Linguagens
 -- Livres de Contexto, os pedaços externos das regras recursivas têm um
 -- símbolo cada, o que permitia provar que as chamadas recursivas recebiam
 -- entradas menores. Existem combinadores de parsers que garantem a terminação
@@ -453,7 +453,7 @@ partial def leftRec : Parser Char (ParseTree Char Char) :=
 -- Há também algoritmos que analisam qualquer gramática livre de contexto,
 -- inclusive com recursão à esquerda, como CKY e Earley. Em vez de descer
 -- pelas regras, eles guardam numa tabela as análises já encontradas para cada
--- trecho da entrada. A seção Leituras adicionais traz referências.
+-- trecho da entrada. A seção Leituras Adicionais traz referências.
 -- END DETAILS
 
 -- ### Exercise (2 stars): palindrome-parser ⭐⭐

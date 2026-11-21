@@ -16,7 +16,7 @@ import CSwLCompat
 
 namespace Proof
 
--- ## O tipo `Prop` e Provas
+-- ## O Tipo `Prop` e Provas
 
 -- O que diferencia Lean de outras linguagens como Python ou Java, é a
 -- capacidade de usarmos a mesma linguagem para programar funções e escrever
@@ -42,7 +42,8 @@ open IntroL in
 -- que definimos qualquer função. Provar `1 = 1` é exibir um termo de tipo
 -- `1 = 1`, exatamente o que o construtor `refl` do tipo `Eq` faz abaixo. Este
 -- tipo representa a relação de igualdade. Podemos notar que declarar um
--- teorema é muito parecido com declarar uma função, como vimos em IntroL.
+-- teorema é muito parecido com declarar uma função, como vimos no capítulo
+-- Programação Funcional no Lean.
 
 theorem OneEqSelf : 1 = 1 := Eq.refl 1
 
@@ -433,7 +434,7 @@ end Dresses
 
 end PL
 
--- ## As regras dos Quantificadores em Lean
+-- ## As Regras dos Quantificadores em Lean
 
 -- O tipo `Prop` não está limitado ao raciocínio proposicional; ele também nos
 -- permite representar proposições da lógica de primeira ordem. Como vimos, o

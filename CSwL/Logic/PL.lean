@@ -9,10 +9,10 @@ namespace PL
 
 -- ## Introdução
 
--- Em "Proof" as fórmulas proposicionais foram escritas diretamente como
--- termos do tipo `Prop`, e usando táticas construimos provas de proposições
--- `α` a partir de um conjunto de hipóteses `Γ`. Isto é, mostramos como
--- derivar `α` a partir de `Γ`, isto é `Γ ⊢ α`.
+-- Na seção Provas em Lean as fórmulas proposicionais foram escritas
+-- diretamente como termos do tipo `Prop`, e usando táticas construimos provas
+-- de proposições `α` a partir de um conjunto de hipóteses `Γ`. Isto é,
+-- mostramos como derivar `α` a partir de `Γ`, isto é `Γ ⊢ α`.
 
 -- Em Lean, `Prop` é um tipo assim como qualquer particular proposição também
 -- é um tipo. A variável `h` abaixo pode ser entendida como um identificador
@@ -157,8 +157,8 @@ example : Maria.form₁.names₁ == ["MB", "MJ", "MT"] :=
   sorry
 
 -- Nem todos os conectivos precisam ser definidos como "primitivos". Como
--- vimos na seção pl-lean a implicação pode ser definida como uma disjunção. E
--- a dupla implicação como uma conjunção de implicações.
+-- vimos no exercício `implication-as-disj`, a implicação pode ser definida
+-- como uma disjunção. E a dupla implicação como uma conjunção de implicações.
 
 def Formula.impl (f g : Formula) : Formula := .disj (.neg f) g
 
@@ -273,13 +273,13 @@ example : form2.depth = 3 := sorry
 
 -- ## Semântica de Lógica Proposicional
 
--- Todas as regras de derivação que usamos em "Proof" são justificadas por uma
--- noção semântica de **consequência lógica**. Entendemos que `P` deve ser
--- verdade sempre que `P ∧ Q` for verdade, para qualquer possível tradução de
--- `P` e `Q` de volta para expressões em uma linguagem natural, por isso
--- aceitamos `P ∧ Q ⊨ P`. Para formalizar esta noção de "todas as possíveis
--- traduções", vamos precisar de um processo para avaliar fórmulas lógicas em
--- valores verdade.
+-- Todas as regras de derivação que usamos na seção Provas em Lean são
+-- justificadas por uma noção semântica de **consequência lógica**. Entendemos
+-- que `P` deve ser verdade sempre que `P ∧ Q` for verdade, para qualquer
+-- possível tradução de `P` e `Q` de volta para expressões em uma linguagem
+-- natural, por isso aceitamos `P ∧ Q ⊨ P`. Para formalizar esta noção de
+-- "todas as possíveis traduções", vamos precisar de um processo para avaliar
+-- fórmulas lógicas em valores verdade.
 
 -- A partir de um mapeamento inicial de símbolos proposicionais em valores
 -- boleanos, o tipo `Bool` em Lean, obtemos de forma recursiva o valor verdade
@@ -386,8 +386,8 @@ def Formula.contradiction (f : Formula) : Bool :=
 #eval (Formula.neg form1).tautology
 #eval form1.satisfiable
 
--- E como já sabemos da seção pl-lean, podemos mostrar que `form3` é uma
--- tautologia.
+-- E como já sabemos do exercício `implication-as-disj`, podemos mostrar que
+-- `form3` é uma tautologia.
 
 #eval form3.tautology
 
@@ -542,7 +542,7 @@ def update (vals : List Valuation) (f : Formula) : List Valuation :=
 #eval (update form1.allVals (.neg form1))
 #eval (update form2.allVals (.neg form2))
 
--- ## Traduzindo `Formula` para `Prop`
+-- ## Tradução de `Formula` em `Prop`
 
 -- Dadas as definições da sintaxe e semântica de `PL`, Podemos provar alguns
 -- meta-teoremas sobre elas. Nos capítulos seguintes, estes resultados não

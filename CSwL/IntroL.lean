@@ -186,7 +186,7 @@ opaque g : ℕ → ℕ → ℕ
 -- serve para que o enunciado possa ser referenciado depois, possivelmente na
 -- prova de outro teorema. Aqui esses três recursos aparecem só como
 -- ferramenta de teste. O que significa provar em Lean, e como se constrói uma
--- prova que `rfl` não fecha sozinha, é o assunto de Prova em Lean.
+-- prova que `rfl` não fecha sozinha, é o assunto da seção Provas em Lean.
 
 -- ### Exercise (1 star): sum-of-squares ⭐
 
@@ -343,8 +343,8 @@ def scaleX (p : Point) (factor : Float) : Point :=
 #print Bool
 
 -- Outro exemplo muito comum é dado abaixo, o final `deriving Repr` pede que
--- Lean gere automaticamente uma instância da classe `Repr` para `Day`, vide
--- classes, para exibição dos valores do tipo.
+-- Lean gere automaticamente uma instância da classe `Repr` para `Day`, vide a
+-- seção Classes de Tipos, para exibição dos valores do tipo.
 
 inductive Day where
   | monday
@@ -506,7 +506,7 @@ def countZeros (ns : List Nat) : Nat :=
 theorem countZeros_test : countZeros [0, 1, 0, 2, 0] = 3 :=
   sorry
 
--- ## O tipo `Option`
+-- ## O Tipo `Option`
 
 -- Uma função de tipo `List α → α` promete devolver um elemento para qualquer
 -- lista que receba. Para a lista vazia não existe elemento nenhum, e a
@@ -750,9 +750,9 @@ sf_expect_failure
 -- Para além dos tipos simples, em Lean, temos também os **tipos indutivos**
 -- (como apresentado), **tipos dependentes** (um tipo pode depender de um
 -- valor, como `Vector`), **proposições como tipos**, o tipo `Prop` como
--- veremos em Proof, e os **universos** de tipos `Type`, `Type 1`, e assim por
--- diante, o que evita os paradoxos que apareceriam se tivéssemos um tipo de
--- todos os tipos.
+-- veremos na seção Provas em Lean, e os **universos** de tipos `Type`,
+-- `Type 1`, e assim por diante, o que evita os paradoxos que apareceriam se
+-- tivéssemos um tipo de todos os tipos.
 
 end IntroL
 

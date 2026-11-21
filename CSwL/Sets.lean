@@ -18,7 +18,7 @@ namespace Sets
 
 open Set
 
--- ## Conjuntos e notação de conjuntos
+-- ## Conjuntos e Notação de Conjuntos
 
 -- Um conjunto de elementos de `α` por sua função característica: a função
 -- que, dado um elemento, responde se ele pertence ao conjunto. Há duas
@@ -94,7 +94,7 @@ example : 3 ∈ above2 := by
   unfold above2
   decide
 
--- ### Aquecimento: conjuntos com nome
+-- ### Aquecimento: Conjuntos com Nome
 
 def above5 : Set Nat := {n | n > 5}
 
@@ -141,7 +141,7 @@ example (A B : Set Nat) : A ∩ B ⊆ A := sorry
 -- escrever a prova, não encontrá-los — mas vale procurar depois, para ver
 -- como as coisas se chamam.
 
--- ### Mais teoria dos conjuntos
+-- ### Mais Teoria dos Conjuntos
 
 section
 variable {α : Type} (A B C D : Set α)
@@ -234,7 +234,7 @@ example : Aᶜᶜ = A := sorry
 
 end
 
--- #### Calcular ou enunciar
+-- #### Cálculo ou Enunciado
 
 -- `α → Prop` enuncia a pertinência. Existe também `α → Bool`, que a calcula,
 -- e é o que se usa quando o conjunto é finito e a resposta tem que ser
@@ -379,7 +379,7 @@ example :
     Equivalence (· = · : Entity → Entity → Prop) :=
   eq_equivalence
 
--- ### Calcular ou enunciar, outra vez
+-- ### Cálculo ou Enunciado com Relações
 
 -- Vale a mesma escolha da seção de conjuntos. A divisibilidade vem na
 -- biblioteca na versão que enuncia — `m ∣ n` afirma que existe um fator que
@@ -538,7 +538,7 @@ theorem counterexample_different :
 -- justamente essa unicidade que permite escrever `f x` em vez de "algum `b`
 -- tal que `(x, b) ∈ f`".
 
--- ### Função característica
+-- ### Função Característica
 
 -- Toda relação, vista como conjunto de pares, tem uma função característica:
 -- a função que decide se um par está nela. Reaproveitando `likesR` de acima —

@@ -1,4 +1,4 @@
--- # Leituras adicionais
+-- # Leituras Adicionais
 
 -- Lógicas para falar de relações em árvores foram propostas em Blackburn,
 -- Gardent, and Meyer-Viol (1993) (lógica modal) e em Backofen, Rogers, and
@@ -17,8 +17,8 @@
 
 -- Uma linguagem de programação de propósito específico para desenvolver
 -- aplicações multilíngues de língua natural, com a análise sintática no
--- centro, é o Grammatical Framework, ou GF. O GF é semelhante a Haskell, mas
--- especializado na escrita de gramáticas. Ver Ranta (2009) e
+-- centro, é o Grammatical Framework, ou GF. O GF é uma linguagem funcional,
+-- especializada na escrita de gramáticas. Ver Ranta (2009) e
 -- [grammaticalframework.org](https://www.grammaticalframework.org).
 
 -- Os parsers construídos com combinadores seguem a descida recursiva, que não
@@ -26,7 +26,9 @@
 -- gramática livre de contexto, como CKY e Earley, são apresentados no
 -- capítulo 19 de Jurafsky and Martin (2026), em Carroll (2022) e em Allen
 -- (1995). Bunt, Carroll, and Satta (2004) reúnem trabalhos sobre técnicas de
--- análise sintática de língua natural. Bender and Emerson (2024) tratam do
--- uso computacional de gramáticas de grande cobertura no formalismo HPSG,
--- incluindo a análise sintática com elas.
+-- análise sintática de língua natural. Estruturas de traços, unificação e
+-- subcategorização são apresentadas no formalismo HPSG em Sag and Wasow
+-- (1999). Bender and Emerson (2024) tratam do uso computacional de gramáticas
+-- de grande cobertura no formalismo HPSG, incluindo a análise sintática com
+-- elas.
 
