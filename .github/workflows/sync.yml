@@ -25,6 +25,11 @@ on:
   schedule:
     - cron: "0 2 * * 1"
   workflow_dispatch:
+    inputs:
+      force:
+        description: "Sync and redeploy even if .cswl-commit is already up to date"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -37,7 +42,7 @@ concurrency:
 
 jobs:
   sync:
-    if: github.repository == 'emap-nlp/book'
+    if: github.repository == 'emap-lean/book'
     runs-on: ubuntu-latest
     outputs:
       changed: ${{ steps.check.outputs.changed }}
@@ -55,7 +60,7 @@ jobs:
       - name: Check whether it is new
         id: check
         run: |
-          if cmp -s "$RUNNER_TEMP/release/commit.txt" .cswl-commit; then
+          if [[ "${{ inputs.force }}" != "true" ]] && cmp -s "$RUNNER_TEMP/release/commit.txt" .cswl-commit; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "Already at CSwL@$(cat .cswl-commit)."
           else
@@ -71,6 +76,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
+          git diff --cached --quiet && { echo "Lake project unchanged."; exit 0; }
           git commit -m "Update from CSwL@$(cut -c1-7 .cswl-commit)"
           git push origin HEAD:main
 
